@@ -37,10 +37,14 @@ Enable in terminal options
     https://stribny.name/blog/2020/04/get-some-beautiful-programming-fonts-for-your-editor-and-terminal-in-fedora/  
     https://github.com/sainnhe/icursive-nerd-font
 
+##### I3
+    rufo
+    polybar (don't forget : chmod +x launch.sh)
+    sudo dnf install fontawesome-fonts
+
 ##### Kitty
     https://sw.kovidgoyal.net/kitty/
 
-##### Help
     https://gist.github.com/awidegreen/3854277  
     https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim  
     https://github.com/ChristianChiarulli/nvim/tree/master/lua/user  
