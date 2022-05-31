@@ -77,25 +77,27 @@ cmp.setup.cmdline(':', {
 require'lspconfig'.pylsp.setup{
 
     capabilities = capabilities,
-settings = {
-            pylsp = {
-                plugins = {
-                    configurationSources = { "flake8", "mypy", "pycodestyle" },
-                    -- flake8 = { enabled = false},
-                    mypy = { enabled = true },
-                    pycodestyle= {enabled = true,
-                                  maxLineLength=118,
-                                  ignore={'E127'},
-                                  -- ignore={'E302', 'E127', 'E501'},
-                                 },
-                    pyflakes = {enabled=true},
+    settings = {
+                pylsp = {
+                    plugins = {
+                        configurationSources = { "flake8", "mypy", "pycodestyle" },
+                        -- flake8 = { enabled = false},
+                        mypy = { enabled = true },
+                        pycodestyle= {enabled = true,
+                                      maxLineLength=118,
+                                      ignore={'E127'},
+                                      -- ignore={'E302', 'E127', 'E501'},
+                                     },
+                        pyflakes = {enabled=true},
+                    },
                 },
             },
-        },
+    }
 
-}
 
-  require('lspconfig')['emmet_ls'].setup {
+
+
+require('lspconfig')['emmet_ls'].setup {
     capabilities = capabilities,
     filetypes = { "html", "htmldjango", "css", "typescriptreact", "javascriptreact" },
   }

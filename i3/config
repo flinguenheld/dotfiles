@@ -106,6 +106,12 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+Control+a focus child
 
+
+# Move the current workspace to the next output
+# (effectively toggles when you only have two outputs)
+bindsym $mod+x move workspace to output next
+
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -170,13 +176,15 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-set $mode_launcher Launch: [f]irefox [t]hunderbird
+set $mode_launcher Launch: [b]rave [d]iscord [t]hunderbird [f]irefox
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
-    bindsym f exec firefox
+    bindsym b exec brave
+    bindsym d exec discord
     bindsym t exec thunderbird
+    bindsym f exec firefox
 
     bindsym Escape mode "default"
     bindsym Return mode "default"

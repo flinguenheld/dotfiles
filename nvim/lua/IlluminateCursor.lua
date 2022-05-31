@@ -1,5 +1,5 @@
 -- ILLUMINATE −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-require'lspconfig'.pyright.setup {
+require'lspconfig'.pylsp.setup {
     on_attach = function(client)
         require 'illuminate'.on_attach(client)
     end,
