@@ -1,0 +1,21 @@
+[global_config]
+  borderless = True
+  tab_position = hidden
+  title_transmit_bg_color = "#1c71d8"
+  title_font = Sans 13
+[keybindings]
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+    font = Hack Nerd Font  12
+    scrollbar_position = hidden
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]

@@ -95,8 +95,6 @@ require'lspconfig'.pylsp.setup{
     }
 
 
-
-
 require('lspconfig')['emmet_ls'].setup {
     capabilities = capabilities,
     filetypes = { "html", "htmldjango", "css", "typescriptreact", "javascriptreact" },

@@ -244,6 +244,11 @@ _G.packer_plugins = {
     path = "/home/micha/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
+  ["vim-terminator"] = {
+    loaded = true,
+    path = "/home/micha/.local/share/nvim/site/pack/packer/start/vim-terminator",
+    url = "https://github.com/erietz/vim-terminator"
+  },
   vimux = {
     loaded = true,
     path = "/home/micha/.local/share/nvim/site/pack/packer/start/vimux",

@@ -32,6 +32,9 @@ require('packer').startup(function()
     -- Test tree
     use 'kyazdani42/nvim-tree.lua'
 
+    -- Terminator
+    use 'erietz/vim-terminator'
+
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
     use 'Pocco81/AutoSave.nvim'
@@ -139,9 +142,9 @@ require('Trouble')
 
 require('AlphaStartup')
 require('AutoSave')
+require('IlluminateCursor') -- Be careful, it loads cmp defaults -_-'
 require('LspCmp')
 require('Comments')
-require('IlluminateCursor')
 require('AutoPair')
 
 require('IndentBlankLine')
