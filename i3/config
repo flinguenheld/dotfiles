@@ -21,7 +21,8 @@
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
-font pango:Hack Nerd Font 10
+font pango:Hack Nerd Font Complete Mono 10
+# font pango:DejaVu Sans Mono 10
 title_align center
 
 # Start XDG autostart .desktop files using dex. See also
@@ -215,16 +216,16 @@ bindsym Shift+Print exec flameshot gui
 # Menus −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 
 # Power --
-set $mode_power Menu power : [l] lock, [e] logout, [s] sleep, [r] reboot, [o] off
+set $mode_power Menu power : Control + <b>[l]</b> lock, [e] logout, [s] sleep, [r] reboot, [o] off
 bindsym $mod+p mode "$mode_power"
 
-mode "$mode_power"{
+mode --pango_markup "$mode_power"{
 
-    bindsym l exec --no-startup-id ~/.config/i3/i3_mode_power.py -l, mode "default"
-    bindsym e exec --no-startup-id ~/.config/i3/i3_mode_power.py -e, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/i3_mode_power.py -s, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/i3_mode_power.py -r, mode "default"
-    bindsym o exec --no-startup-id ~/.config/i3/i3_mode_power.py -o, mode "default"
+    bindsym Control+l exec --no-startup-id ~/.config/i3/i3_mode_power.py -l, mode "default"
+    bindsym Control+e exec --no-startup-id ~/.config/i3/i3_mode_power.py -e, mode "default"
+    bindsym Control+s exec --no-startup-id ~/.config/i3/i3_mode_power.py -s, mode "default"
+    bindsym Control+r exec --no-startup-id ~/.config/i3/i3_mode_power.py -r, mode "default"
+    bindsym Control+o exec --no-startup-id ~/.config/i3/i3_mode_power.py -o, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -233,14 +234,14 @@ mode "$mode_power"{
 
 
 # Launcher -- useless ?
-set $mode_app Applications: [b] brave, [n] brave incognito, [f] files, [d] discord, [t] thunderbird
+set $mode_app Applications: <b>[b]</b> brave, [p] brave incognito, [n] nautilus, [d] discord, [t] thunderbird
 bindsym $mod+o mode "$mode_app"
 
-mode "$mode_app" {
+mode --pango_markup "$mode_app" {
 
     bindsym b exec brave-browser, mode default
-    bindsym n exec brave-browser --incognito, mode default
-    bindsym f exec nautilus, mode default
+    bindsym p exec brave-browser --incognito, mode default
+    bindsym n exec nautilus, mode default
     bindsym d exec Discord, mode default
     bindsym t exec thunderbird, mode default
 
@@ -254,3 +255,109 @@ mode "$mode_app" {
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################
+# color settings for bar and windows #
+######################################
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+
+
+
+
+# Start i3blocks to display a workspace bar
+bar {
+    font pango:Hack Nerd Font Complete Mono 12
+    # font pango:DejaVu Sans Mono 10
+
+    i3bar_command i3bar
+    # status_command i3blocks
+    status_command i3blocks -c ~/.config/i3/i3blocks_primary.conf
+
+    output primary
+    position top
+    strip_workspace_numbers yes
+
+    workspace_min_width 60
+
+    tray_output nonprimary
+    tray_padding 2
+
+
+
+
+    colors {
+        separator          $purple
+        background         $darkbluetrans
+        statusline         $white
+
+                            # border          bg              txt         indicator
+        focused_workspace   $lighterblue    $lighterblue    $darkblue   $purple
+        active_workspace    $lightdblue     $lightdblue     $darkblue   $purple
+        inactive_workspace  $darkblue       $darkblue       $lightdblue $purple
+        urgent_workspace    $urgentred      $urgentred      $white      $purple
+    }
+
+    colors {
+        background #282A36
+        statusline #F8F8F2
+        separator  #44475A
+
+                            # border          bg              txt         indicator
+        focused_workspace  #44475A #44475A #F8F8F2
+        active_workspace   #282A36 #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode       #FF5555 #FF5555 #F8F8F2
+    }
+}
+
+bar {
+    font pango:Hack Nerd Font Complete Mono 12
+
+    i3bar_command i3bar
+    status_command i3blocks -c ~/.config/i3/i3blocks_secondary.conf
+
+    output nonprimary
+    position top
+    strip_workspace_numbers yes
+
+    workspace_min_width 60
+
+    colors {
+        background #282A36
+        statusline #F8F8F2
+        separator  #44475A
+
+        focused_workspace  #44475A #44475A #F8F8F2
+        active_workspace   #282A36 #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode       #FF5555 #FF5555 #F8F8F2
+    }
+}

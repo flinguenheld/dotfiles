@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Copyright © 2016 Anton Karmanov <bergentroll@openmailbox.org>
+# https://github.com/vivien/i3blocks-contrib/tree/master/email
+
+import argparse
+import imaplib
+from getpass import getpass
+import keyring
+
+# _Settings____________________________________________________________________
+
+config = {
+    'HOST': 'mail.gandi.net',
+    'PORT': 993,
+    'USER': 'florent@linguenheld.fr',
+}
+# _____________________________________________________________________________
+
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        description='In interactive mode you able to manage your keys.'
+    )
+    parser.add_argument(
+        '-a', '--add', type=str, help='add key to keyring'
+    )
+    parser.add_argument(
+        '-r', '--remove', type=str, help='remove key from keyring'
+    )
+    args = parser.parse_args()
+    if args.add:
+        match = False
+        while not match:
+            pass_1 = getpass('Type password : ')
+            pass_2 = getpass('Type password again: ')
+            if pass_1 == pass_2:
+                match = True
+                keyring.set_password('i3blocks-email', args.add, pass_1)
+            else:
+                print('\nPasswords do not match!\n')
+        return(True)
+    elif args.remove:
+        ack = input(
+            'Are you sure want to delete key for {}? '.format(args.remove)
+        )
+        if ack.lower() in ('y', 'yes'):
+            keyring.delete_password('i3blocks-email', args.remove)
+        else:
+            print('Cancel.')
+        return(True)
+    return(False)
+
+
+def get_PASS():
+    return(keyring.get_password('i3blocks-email', config['USER']))
+
+
+def serf():
+    box = imaplib.IMAP4_SSL(host=config['HOST'], port=config['PORT'])
+    box.login(config['USER'], config['PASS'])
+    box.select()
+    result, ids = box.search(None, 'UNSEEN')
+    box.logout()
+    return(len(ids[0].split()))
+
+
+def printer(new_count):
+    if new_count > 0:
+        print(f'<span foreground="#91e78b">New emails : {new_count}</span>')
+    else:
+        print('<span foreground="#707880">No mail</span>')
+
+
+if not get_args():
+    config['PASS'] = get_PASS()
+    printer(serf())
