@@ -4,6 +4,7 @@
 
 import argparse
 import os
+from time import sleep
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-l', '--lock', action='store_true', help='Launch i3lock')
@@ -13,6 +14,8 @@ parser.add_argument('-r', '--reboot', action='store_true', help='Reboot now')
 parser.add_argument('-o', '--poweroff', action='store_true', help='Shutdown now')
 args = parser.parse_args()
 
+
+sleep(2)
 
 if args.lock:
     os.system("i3lock")

@@ -1,0 +1,2 @@
+i3-msg -q exec firefox https://www.wordreference.com/enfr/a%20value%20meal
+i3-msg -q exec firefox https://www.macmillandictionary.com/dictionary/british/a%20value%20meal
