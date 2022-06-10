@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # 2022 - Florent Linguenheld
 
 # Manage the impressive script to display vocabulary in the bar !
@@ -41,6 +42,7 @@ else
     ~/.config/i3/scripts/vocabulary/vocabulary.py
     new_line=2
 fi
+
 
 # Display the selected line
 sed -n "$new_line"p ~/.config/i3/scripts/vocabulary/translations.txt | head

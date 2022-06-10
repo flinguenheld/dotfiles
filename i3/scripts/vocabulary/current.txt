@@ -1,2 +1,0 @@
-i3-msg -q exec firefox https://www.wordreference.com/enfr/work%20on
-i3-msg -q exec firefox https://www.macmillandictionary.com/dictionary/british/work%20on

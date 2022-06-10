@@ -28,15 +28,13 @@ words = []
 # Choose a file and read it
 files_list = listdir(PATH_WORDS)
 with open(f'{PATH_WORDS}{files_list[randint(0, len(files_list)-1)]}', 'r') as file:
-    pass
-
     for line in file:
         words.append(line[:-1])
 
 # Randomise one word and scrap !
 word = words[randint(0, len(words) - 1)]
 
-# word = 'aurniset'
+# word = 'TestWordNotFound'
 # Scrap on wordReference.com
 dict = scrap_wordref(word)
 
@@ -46,13 +44,14 @@ formated_text = str()
 if 'error' in dict:
     formated_text += "<span foreground='#EBB4A2'><b>English words</b> : </span>"
     formated_text += f"<span foreground='#FFF'>{dict['error']} (with : {word})</span>"
+    formated_text += '\n'  # Jump mandatory !
 
 elif 'notfound' in dict:
     formated_text += f"<span foreground='#A1C5DA'><b>{word}</b> : </span>"
     formated_text += f"<span foreground='#EBB4A2'>{dict['notfound']}</span>"
+    formated_text += '\n'
 
 else:
-
     for key, translation in dict.items():
 
         formated_text += f"<span foreground='#A1C5DA'><b>{translation['word']}</b></span>"
@@ -62,7 +61,7 @@ else:
         formated_text += f" - <span foreground='#F2F2F2'><small>{key}/{len(dict)}</small></span>"
         formated_text += '\n'
 
-# Fill file
+# Fill files
 word = word.replace(' ', '%20')
 with open(f'{PATH}/links.txt', 'w') as file:
     file.write(f'i3-msg -q exec firefox https://www.wordreference.com/enfr/{word}\n')
@@ -71,3 +70,16 @@ with open(f'{PATH}/links.txt', 'w') as file:
 with open(f'{PATH}/translations.txt', 'w') as file:
     file.write('current=2\n')
     file.write(f'{formated_text}')
+
+
+# if __name__ == "__main__":
+#     with open(f'{PATH}links.txt', 'r') as file:
+#         for line in file:
+#             print(line[:-1])
+
+#     print('--')
+#     with open(f'{PATH}translations.txt', 'r') as file:
+#         for line in file:
+#             print(line[:-1])
+
+
