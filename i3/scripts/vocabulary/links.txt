@@ -1,2 +1,2 @@
-i3-msg -q exec firefox https://www.wordreference.com/enfr/parp
-i3-msg -q exec firefox https://www.macmillandictionary.com/dictionary/british/parp
+i3-msg -q exec brave-browser https://www.wordreference.com/enfr/figure%20out
+i3-msg -q exec brave-browser https://www.macmillandictionary.com/dictionary/british/figure%20out

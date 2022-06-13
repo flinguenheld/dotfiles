@@ -2,12 +2,12 @@
 
 # 2022 - Florent Linguenheld
 
-# Manage the impressive script to display vocabulary in the bar !
-# A word has usually several translations, that is why you can clic :
+# Manage the impressive script to display vocabulary in the i3bar with i3blocks !
+# A word has usually several translations, this is why you can clic :
 #       button 1 to display the next meaning
 #       button 3 to display the previous meaning
 #
-# Or generate a new word with the button 3
+# Or generate a new word with other buttons
 #
 # The scrip vocabulary.py generates randomly a new word.
 # Then it writes one html sentence per meaning on the file : 'translations.txt'

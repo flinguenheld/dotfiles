@@ -102,4 +102,8 @@ require('lspconfig')['emmet_ls'].setup {
   require('lspconfig')['sumneko_lua'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['bashls'].setup {
+    capabilities = capabilities
+  }
+
 

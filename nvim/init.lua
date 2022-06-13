@@ -35,6 +35,8 @@ require('packer').startup(function()
     -- Terminator
     use 'erietz/vim-terminator'
 
+    use 'tversteeg/registers.nvim'
+
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
     use 'Pocco81/AutoSave.nvim'

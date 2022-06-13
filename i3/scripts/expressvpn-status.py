@@ -1,18 +1,20 @@
 #!/usr/bin/python
+
 import os
 
 
 stream = os.popen('expressvpn status')
 output = stream.read()
 
-text = "<span foreground='#F24405'><b> Impossible de lire le status d'expressvpn</b></span>"
+icon = "<span size='x-large'></span>"
+text = f"<span foreground='#e53838'>{icon} </span><b>Impossible de lire le status d'expressvpn</b>"
 for line in output.split('\n'):
     if 'Connected to' in line:
-        text = f"<span foreground='#9EF8EE'> {line[10:]}</span>"
+        text = f"<span foreground='#8ee000'>{icon} </span>{line[10:]}"
         break
 
     elif 'Not connected' in line:
-        text = f"<span foreground='#FA7F08'> {line}</span>"
+        text = f"<span foreground='#faa918'>{icon} {line}</span>"
         break
 
 print(text)

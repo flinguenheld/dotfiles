@@ -1,2 +1,3 @@
 current=2
-<span foreground='#A1C5DA'><b>prout</b></span> - <span foreground='#AED4EB' font-style='italic'>(interj)</span> - <span foreground='#FFF'>bruit de pet - informal</span> - <span foreground='#EBB4A2' font-style='italic'>parp </span> - <span foreground='#F2F2F2'><small>1/1</small></span>
+<span foreground='#1CB0F6'><b>figure [sth] out</b></span> - <span foreground='#14d4f4' font-style='italic'>(vtr phrasal sep)</span> - <span foreground='#FFF'>solve - une situation, un problème</span> - <span foreground='#E53838' font-style='italic'>résoudre</span> - <span foreground='#F2F2F2'><small>1/2</small></span>
+<span foreground='#1CB0F6'><b>figure [sth] out</b></span> - <span foreground='#14d4f4' font-style='italic'>(vtr phrasal sep)</span> - <span foreground='#FFF'>understand</span> - <span foreground='#E53838' font-style='italic'>comprendre</span> - <span foreground='#F2F2F2'><small>2/2</small></span>

@@ -68,9 +68,9 @@ def serf():
 
 def printer(new_count):
     if new_count > 0:
-        print(f'<span foreground="#91e78b">New emails : {new_count}</span>')
+        print(f'<span foreground="#7ac70c" size="large"><span size="x-large">﫮 </span> {new_count}</span>')
     else:
-        print('<span foreground="#707880">No mail</span>')
+        print('<span foreground="#cfcfcf" size="large"><span size="x-large"> </span>0</span>')
 
 
 if not get_args():

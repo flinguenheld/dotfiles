@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-""" Best menu ever for power :) - 2022-06-04 """
-
 import argparse
 import os
 from time import sleep
@@ -15,7 +13,7 @@ parser.add_argument('-o', '--poweroff', action='store_true', help='Shutdown now'
 args = parser.parse_args()
 
 
-sleep(2)
+sleep(1)
 
 if args.lock:
     os.system("i3lock")
