@@ -1,2 +1,2 @@
-i3-msg -q exec brave-browser https://www.wordreference.com/enfr/drop%20in
-i3-msg -q exec brave-browser https://www.macmillandictionary.com/dictionary/british/drop%20in
+i3-msg -q exec brave-browser https://www.wordreference.com/enfr/income
+i3-msg -q exec brave-browser https://www.macmillandictionary.com/dictionary/british/income

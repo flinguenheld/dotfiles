@@ -1,6 +1,6 @@
 ### Config nvim
 
-![Logo FLinguenheld](https://raw.githubusercontent.com/FLinguenheld/ocrp6/main/forelif.png "Pouet")
+![Logo FLinguenheld](https://raw.githubusercontent.com/FLinguenheld/dotfiles/main/forelif.png "Pouet")
 
 ****
 #### Requirements

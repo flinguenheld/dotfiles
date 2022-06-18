@@ -8,6 +8,7 @@ function move_sinks_to_new_default {
     done
 }
 
+
 inc=${1:-1}
 num_devices=$(pactl list sinks | grep -c Name:)
 sink_arr=($(pactl list sinks | grep Name: | sed -r 's/\s+Name: (.+)/\1/'))
@@ -16,3 +17,7 @@ default_sink_index=$(for i in "${!sink_arr[@]}"; do if [[ "$default_sink" = "${s
 default_sink_index=$(( ($default_sink_index + $num_devices + $inc) % $num_devices ))
 default_sink=${sink_arr[$default_sink_index]}
 pactl set-default-sink $default_sink
+
+
+# Refresh the bar
+killall -s USR1 py3status

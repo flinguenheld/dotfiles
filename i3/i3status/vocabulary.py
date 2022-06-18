@@ -50,12 +50,6 @@ class Py3status:
     UNWANTED_CHARACTERS = r'[(⇒)]'
 
     cycle = 300
-    color_word = '#1cb0f6'
-    color_type = '#14d4f4'
-    color_synonym = '#ffffff'
-    color_translation = '#e53838'
-    color_index = '#f2f2f2'
-    color_error = '#e53838'
 
     def vocabulary(self):
 
@@ -91,12 +85,12 @@ class Py3status:
             words = self.py3.storage_get('words')
             current_index = self.py3.storage_get('current_index')
 
-            # full_text += f"<span foreground='#1CB0F6'><b>{words[current_index]['word']}</b></span>"
-            full_text += f"<span foreground='{self.color_word}'><b>{words[current_index]['word']}</b></span>"
-            full_text += f" - <span foreground='{self.color_type}' font-style='italic'>({words[current_index]['type']})</span>"
-            full_text += f" - <span foreground='{self.color_synonym}'>{words[current_index]['synonym']}</span>"
-            full_text += f" - <span foreground='{self.color_translation}' font-style='italic'>{words[current_index]['translation']}</span>"
-            full_text += f" - <span foreground='{self.color_index}'><small>{current_index + 1}/{len(words)}</small></span>"
+            # full_text += f"<span foreground='{self.color_word}'><b>{words[current_index]['word']}</b></span>"
+            full_text += f"<span foreground='{self.py3.COLOR_WORD}'><b>{words[current_index]['word']}</b></span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_TYPE}' font-style='italic'>({words[current_index]['type']})</span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_SYNONYM}'>{words[current_index]['synonym']}</span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_TRANSLATION}' font-style='italic'>{words[current_index]['translation']}</span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_INDEX}'><small>{current_index + 1}/{len(words)}</small></span>"
 
         return {
             'full_text': full_text,
