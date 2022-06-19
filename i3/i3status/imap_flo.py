@@ -161,11 +161,11 @@ class Py3status:
             full_text = f"<span color='{self.py3.COLOR_NO_DATA_YET}'><span font-size='110%'> </span>wait…</span>"
 
         elif self.mail_count == 0:
-            full_text = f"<span color='{self.py3.COLOR_EMPTY}'><span font-size='130%'></span>  " \
+            full_text = f"<span color='{self.py3.COLOR_EMPTY}'><span font-size='150%'></span>  " \
                 "<span font-size='110%'><b>0</b></span></span>"
 
         elif self.mail_count > 0:
-            full_text = f"<span color='{self.py3.COLOR_NEW_MAILS}'><span font-size='130%'></span>  " \
+            full_text = f"<span color='{self.py3.COLOR_NEW_MAILS}'><span font-size='150%'></span>  " \
                 f"<span font-size='110%'><b>{self.mail_count}</b></span></span>"
 
         if self.network_error is not None and self.degraded_when_stale:

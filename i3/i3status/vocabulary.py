@@ -87,10 +87,13 @@ class Py3status:
 
             # full_text += f"<span foreground='{self.color_word}'><b>{words[current_index]['word']}</b></span>"
             full_text += f"<span foreground='{self.py3.COLOR_WORD}'><b>{words[current_index]['word']}</b></span>"
-            full_text += f" - <span foreground='{self.py3.COLOR_TYPE}' font-style='italic'>({words[current_index]['type']})</span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_TYPE}' font-style='italic'>" \
+                f"({words[current_index]['type']})</span>"
             full_text += f" - <span foreground='{self.py3.COLOR_SYNONYM}'>{words[current_index]['synonym']}</span>"
-            full_text += f" - <span foreground='{self.py3.COLOR_TRANSLATION}' font-style='italic'>{words[current_index]['translation']}</span>"
-            full_text += f" - <span foreground='{self.py3.COLOR_INDEX}'><small>{current_index + 1}/{len(words)}</small></span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_TRANSLATION}' font-style='italic'>" \
+                f"{words[current_index]['translation']}</span>"
+            full_text += f" - <span foreground='{self.py3.COLOR_INDEX}'>" \
+                f"<small>{current_index + 1}/{len(words)}</small></span>"
 
         return {
             'full_text': full_text,

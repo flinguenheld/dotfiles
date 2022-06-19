@@ -5,7 +5,7 @@ import os
 
 class Py3status:
 
-    icon = "<span font-size='120%'></span>"
+    icon = "<span font-size='130%'></span>"
 
     def expressvpn(self):
 

@@ -4,3 +4,12 @@
 
 ****
 #### Requirements
+
+pipewire-pulse  
+rofi  
+terminator  
+flameshot   (screenshot)  
+
+    
+keyring
+

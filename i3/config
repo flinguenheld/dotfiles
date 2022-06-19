@@ -40,21 +40,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# ?
+# ? --
 exec --no-startup-id xdg-user-dirs-update
 
 # −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 # Sound −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-
-# mode "pass-through" {
-#     bindsym $mod+t mode "default"
-
-#     bindsym Escape mode "default"
-#     bindsym Return mode "default"
-# }
-
-# bindsym $mod+t mode "pass-through"
-
 
 # Pipewire-pulse
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
@@ -161,16 +151,16 @@ bindsym $mod+Control+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:<span font-size='250%'></span>"
-set $ws2 "2:<span font-size='250%'></span>"
-set $ws3 "3:<span font-size='250%'></span>"
-set $ws4 "4:<span font-size='250%'></span>"
-set $ws5 "5:<span font-size='250%'></span>"
-set $ws6 "6:<span font-size='250%'></span>"
-set $ws7 "7:<span font-size='250%'></span>"
-set $ws8 "8:<span font-size='250%'></span>"
-set $ws9 "9:<span font-size='250%'></span>"
-set $ws10 "10:<span font-size='250%'></span>"
+set $ws1 "1:<span font-size='230%'></span>"
+set $ws2 "2:<span font-size='230%'></span>"
+set $ws3 "3:<span font-size='230%'></span>"
+set $ws4 "4:<span font-size='230%'></span>"
+set $ws5 "5:<span font-size='230%'></span>"
+set $ws6 "6:<span font-size='230%'></span>"
+set $ws7 "7:<span font-size='230%'></span>"
+set $ws8 "8:<span font-size='230%'></span>"
+set $ws9 "9:<span font-size='230%'></span>"
+set $ws10 "10:<span font-size='230%'></span>"
 # set $ws10 "10:<span size='xx-large'></span>"
 
 # switch to workspace (Bépo numbers are shift + num :| )
@@ -234,16 +224,16 @@ bindsym Shift+Print exec flameshot gui
 # Menus −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 
 # Power --
-set $mode_power Menu power : Control + <b>[l]</b> lock, [e] logout, [s] sleep, [r] reboot, [o] off
+set $mode_power Menu power :   <b>Ctrl</b> +   <b>[l]</b> lock  -  <b>[e]</b> logout  -  <b>[s]</b> sleep  -  <b>[r]</b> reboot  -  <b>[o]</b> off
 bindsym $mod+p mode "$mode_power"
 
 mode --pango_markup "$mode_power"{
 
-    bindsym Control+l exec --no-startup-id ~/.config/i3/scripts/power.py -l, mode "default"
-    bindsym Control+e exec --no-startup-id ~/.config/i3/scripts/power.py -e, mode "default"
-    bindsym Control+s exec --no-startup-id ~/.config/i3/scripts/power.py -s, mode "default"
-    bindsym Control+r exec --no-startup-id ~/.config/i3/scripts/power.py -r, mode "default"
-    bindsym Control+o exec --no-startup-id ~/.config/i3/scripts/power.py -o, mode "default"
+    bindsym Control+l exec --no-startup-id ~/.config/i3/power.py -l, mode "default"
+    bindsym Control+e exec --no-startup-id ~/.config/i3/power.py -e, mode "default"
+    bindsym Control+s exec --no-startup-id ~/.config/i3/power.py -s, mode "default"
+    bindsym Control+r exec --no-startup-id ~/.config/i3/power.py -r, mode "default"
+    bindsym Control+o exec --no-startup-id ~/.config/i3/power.py -o, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -252,7 +242,7 @@ mode --pango_markup "$mode_power"{
 
 
 # Launcher -- useless ?
-set $mode_app Applications: <b>[b]</b> brave, [p] brave incognito, [n] nautilus, [d] discord, [t] thunderbird
+set $mode_app Applications :    <b>[b]</b> brave  -  <b>[p]</b> brave incognito  -  <b>[n]</b> nautilus  -  <b>[d]</b> discord  -  <b>[t]</b> thunderbird
 bindsym $mod+o mode "$mode_app"
 
 mode --pango_markup "$mode_app" {
@@ -269,24 +259,36 @@ mode --pango_markup "$mode_app" {
 
 
 # −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Bars −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# Colors −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 
-# Start i3blocks to display a workspace bar
+# class                 border  backgr. text    indicator child_border
+# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused          #4c7899 #1cb0f6 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+
+# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# Bars −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 bar {
     font pango:Hack Nerd Font Complete Mono 13
-    # font pango:DejaVu Sans Mono 10
-
-    i3bar_command i3bar
-    # status_command i3blocks
-    status_command i3blocks -c ~/.config/i3/i3blocks_primary.conf
-
     output primary
+
+    separator_symbol "    -    "
     position top
+    # status_command py3status
+    i3bar_command i3bar
+    status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config_primary.conf
+
     strip_workspace_numbers yes
     # strip_workspace_name yes
+    workspace_min_width 80
 
-    workspace_min_width 60
-
+    # display in the second (I know it is strange to write this here)
     tray_output nonprimary
 
     colors {
@@ -295,26 +297,28 @@ bar {
         separator  #44475A
 
                             # border          bg              txt         indicator
-        focused_workspace  #1cb0f6          #1cb0f6         #000000
+        focused_workspace  #7ac70c          #1cb0f6         #000000
         active_workspace   #282A36          #6f6f6f         #F8F8F8
-        inactive_workspace #282A36          #282A36         #BFBFBF
+        inactive_workspace #282A36          #282A36         #7f7f7f
         urgent_workspace   #FF5555          #FF5555         #F8F8F2
-        binding_mode       #a560e8          #8549ba         #FFFFFF
+        binding_mode       #bff199          #bff199         #000000
     }
 }
 
 bar {
     font pango:Hack Nerd Font Complete Mono 13
-
-    i3bar_command i3bar
-    status_command i3blocks -c ~/.config/i3/i3blocks_secondary.conf
-
     output nonprimary
-    position top
-    strip_workspace_numbers yes
-    tray_padding 2
 
-    workspace_min_width 60
+    separator_symbol "    -    "
+    position top
+    i3bar_command i3bar
+    status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config_secondary.conf
+
+    strip_workspace_numbers yes
+    # strip_workspace_name yes
+    workspace_min_width 80
+
+    tray_padding 2
 
     colors {
         background #000000
@@ -322,33 +326,10 @@ bar {
         separator  #44475A
 
                             # border          bg              txt         indicator
-        focused_workspace  #1cb0f6          #1cb0f6         #000000
+        focused_workspace  #7ac70c          #1cb0f6         #000000
         active_workspace   #282A36          #6f6f6f         #F8F8F8
-        inactive_workspace #282A36          #282A36         #BFBFBF
+        inactive_workspace #282A36          #282A36         #7f7f7f
         urgent_workspace   #FF5555          #FF5555         #F8F8F2
-        binding_mode       #a560e8          #8549ba         #FFFFFF
+        binding_mode       #bff199          #bff199         #000000
     }
-
-}
-
- bar {
-    font pango:Hack Nerd Font Complete Mono 13
-    output primary
-
-    separator_symbol "     "
-    position bottom
-    # status_command py3status
-    i3bar_command i3bar
-    status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config.conf
-
-
-    strip_workspace_numbers yes
-    # strip_workspace_name yes
-    workspace_min_width 70
-
-    colors {
-         statusline #949494
-         separator #4e4e4e
-    }
-
 }
