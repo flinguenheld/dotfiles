@@ -1,2 +1,0 @@
-i3-msg -q exec brave-browser https://www.wordreference.com/enfr/dawn
-i3-msg -q exec brave-browser https://www.macmillandictionary.com/dictionary/british/dawn

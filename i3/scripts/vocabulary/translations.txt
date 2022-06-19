@@ -1,4 +1,0 @@
-current=2
-<span foreground='#1CB0F6'><b>income</b></span> - <span foreground='#14d4f4' font-style='italic'>(n)</span> - <span foreground='#FFF'>personal earnings - d'une personne</span> - <span foreground='#E53838' font-style='italic'>revenu </span> - <span foreground='#F2F2F2'><small>1/3</small></span>
-<span foreground='#1CB0F6'><b>income</b></span> - <span foreground='#14d4f4' font-style='italic'>(n)</span> - <span foreground='#FFF'>profit</span> - <span foreground='#E53838' font-style='italic'>bénéfices </span> - <span foreground='#F2F2F2'><small>2/3</small></span>
-<span foreground='#1CB0F6'><b>income</b></span> - <span foreground='#14d4f4' font-style='italic'>(n)</span> - <span foreground='#FFF'>gross receipts</span> - <span foreground='#E53838' font-style='italic'>recettes </span> - <span foreground='#F2F2F2'><small>3/3</small></span>

@@ -1,7 +1,7 @@
 [global_config]
   borderless = True
   tab_position = hidden
-  title_transmit_bg_color = "#1c71d8"
+  title_transmit_bg_color = "#1cb0f6"
   title_font = Sans 13
 [keybindings]
 [profiles]
