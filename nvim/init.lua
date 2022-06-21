@@ -1,4 +1,4 @@
--- :PackerSync to install
+-- :ackerSync to install
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
@@ -36,6 +36,7 @@ require('packer').startup(function()
     use 'erietz/vim-terminator'
 
     use 'tversteeg/registers.nvim'
+    use  'preservim/tagbar'
 
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
