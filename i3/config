@@ -36,8 +36,6 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# i3lock sleep 5 && xset s activate  
-
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -129,8 +127,8 @@ bindsym $mod+e layout toggle split
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
 bindsym $mod+Control+x move workspace to output next
-# Come back on the previous workplace by switching the current workplace
-workspace_auto_back_and_forth yes
+# Come back on the previous workplace by switching the current workplace <- Eventually boring
+# workspace_auto_back_and_forth yes
 
 
 # −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
@@ -245,13 +243,13 @@ mode --pango_markup "$mode_power"{
 
 
 # Launcher -- useless ?
-set $mode_app Applications :    <b>[b]</b> brave  -  <b>[p]</b> brave incognito  -  <b>[n]</b> nautilus  -  <b>[d]</b> discord  -  <b>[t]</b> thunderbird
+set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[n]</b> nautilus  -  <b>[d]</b> discord  -  <b>[t]</b> thunderbird
 bindsym $mod+o mode "$mode_app"
 
 mode --pango_markup "$mode_app" {
 
-    bindsym b exec brave-browser, mode default
-    bindsym p exec brave-browser --incognito, mode default
+    bindsym v exec vivaldi, mode default
+    bindsym Control+v exec vivaldi --incognito, mode default
     bindsym n exec nautilus, mode default
     bindsym d exec Discord, mode default
     bindsym t exec thunderbird, mode default

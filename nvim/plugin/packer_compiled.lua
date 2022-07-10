@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
+  ["marks.nvim"] = {
+    loaded = true,
+    path = "/home/pousti/.local/share/nvim/site/pack/packer/start/marks.nvim",
+    url = "https://github.com/chentoast/marks.nvim"
+  },
   melange = {
     loaded = true,
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/melange",

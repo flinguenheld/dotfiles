@@ -29,6 +29,9 @@ require('packer').startup(function()
     use 'nvim-telescope/telescope-file-browser.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
 
+    -- Marks
+    use 'chentoast/marks.nvim'
+
     -- Test tree
     use 'kyazdani42/nvim-tree.lua'
 
@@ -88,6 +91,7 @@ vim.opt.wildignore = vim.opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
 vim.opt.joinspaces = false              -- no double spaces with join
 -- vim.opt.mouse = "nv"                 -- Mouse active in normal & visual
 vim.opt.cursorline = true
+vim.opt.history = 100
 
 -- Tabs
 vim.opt.cindent = true
@@ -151,6 +155,7 @@ require('Comments')
 require('AutoPair')
 
 require('IndentBlankLine')
+require('Marks')
 
 require('LuaLine')
 require('Hop')
@@ -163,6 +168,7 @@ require('Keybindings')
 -- −−−−−−−−−−−−−−−−−−−−−−−−−−
 require'nvim-tree'.setup {}
 require'colorizer'.setup()
+
 
 -- -- TEST -−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 -- local function blah()
