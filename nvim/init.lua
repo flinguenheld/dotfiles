@@ -23,6 +23,8 @@ require('packer').startup(function()
     use 'saadparwaiz1/cmp_luasnip'
     use 'onsails/lspkind-nvim'
 
+    use "rafamadriz/friendly-snippets"
+
     -- Telescope
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
@@ -39,7 +41,7 @@ require('packer').startup(function()
     use 'erietz/vim-terminator'
 
     use 'tversteeg/registers.nvim'
-    use  'preservim/tagbar'
+    use 'preservim/tagbar'
 
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
@@ -142,6 +144,17 @@ vim.api.nvim_exec(
 false
 )
 
+
+
+
+-- require("luasnip.loaders.from_vscode").lazy_load()
+-- require("luasnip.loaders.from_snipmate").lazy_load()
+-- require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/luasnip.lua"})
+
+
+
+
+
 require('TreeSitter')
 require('Telescope')
 require('LspInstaller')
@@ -151,6 +164,7 @@ require('AlphaStartup')
 require('AutoSave')
 require('IlluminateCursor') -- Be careful, it loads cmp defaults -_-'
 require('LspCmp')
+require('LuaSnip')
 require('Comments')
 require('AutoPair')
 
@@ -160,7 +174,6 @@ require('Marks')
 require('LuaLine')
 require('Hop')
 require('ColorScheme')
-require('Shade')
 
 require('Keybindings')
 

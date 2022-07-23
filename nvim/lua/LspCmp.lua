@@ -24,8 +24,8 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   }, {
@@ -83,8 +83,8 @@ require'lspconfig'.pylsp.setup{
                         configurationSources = { "flake8", "mypy", "pycodestyle" },
                         -- flake8 = { enabled = false},
                         mypy = { enabled = true },
-                        -- pycodestyle= {enabled = true,
-                        pycodestyle= {enabled = false,
+                        pycodestyle= {enabled = true,
+                        -- pycodestyle= {enabled = false,
                                       maxLineLength=118,
                                       ignore={'E127'},
                                       -- ignore={'E302', 'E127', 'E501'},

@@ -58,46 +58,27 @@ keymap('n', '<C-right>',	'<C-w>l<CR>', opt)
 
 -- TELESCOPE −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 -- Recherche dossier courant
-keymap('n', '<leader>ff',	'<cmd>lua FindFiles_Current()<CR>', opt)
-keymap('n', '<leader>fF',	'<cmd>lua FindFiles_1()<CR>', opt)
-keymap('n', '<leader>Ff',	'<cmd>lua FindFiles_2()<CR>', opt)
-keymap('n', '<leader>FF',	'<cmd>lua FindFiles_3()<CR>', opt)
+keymap('n', '<leader>ff',	'<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
+keymap('n', '<leader>fF',	'<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
 
--- Recherche home
-keymap('n', '<leader>fç',	'<cmd>lua FindFiles_Home(false)<CR>', opt)
-keymap('n', '<leader>fÇ',	'<cmd>lua FindFiles_Home(true)<CR>', opt)
+keymap('n', '<leader>fh',   '<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=os.getenv("HOME"), prompt_title="home/"})<CR>', opt)
+keymap('n', '<leader>fH',   '<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=os.getenv("HOME"), prompt_title="home/ (hidden files)"})<CR>', opt)
 
--- Old files
-keymap('n', '<leader>fo',   ':Telescope oldfiles <CR>', opt)
+-- keymap('n', '<leader>Ff',	'<cmd>lua FindFiles_2()<CR>', opt)
 
 -- Recherche dossier
-keymap('n', '<leader>fr',	'<cmd>lua require "telescope".extensions.file_browser.file_browser() <CR>', opt)
-keymap('n', '<leader>fR',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({hidden=true}) <CR>', opt)
+keymap('n', '<leader>fr',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
+keymap('n', '<leader>fR',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({hidden=true, cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
 
 -- Grep
-keymap('n', '<leader>fg',	'<cmd>lua require("telescope.builtin").live_grep() <CR>', opt)
-keymap('n', '<leader>fG',	'<cmd>lua liveGrep_Home() <CR>', opt)
-keymap('n', '<leader>fs',	'<cmd>lua require("telescope.builtin").grep_string() <CR>', opt)
+keymap('n', '<leader>fg',	'<cmd>lua require("telescope.builtin").live_grep({prompt_title = "find string in open buffers...", grep_open_files = true })<CR>', opt)
+keymap('n', '<leader>fG',	'<cmd>lua require("telescope.builtin").live_grep({cwd=require("telescope.utils").buffer_dir()})<CR>', opt)
+keymap('n', '<leader>Fg',	'<cmd>lua require("telescope.builtin").live_grep({cwd=os.getenv("HOME")})<CR>', opt)
 
 --
+keymap('n', '<leader>fo',   ':Telescope oldfiles <CR>', opt)
 keymap('n', '<leader>fb',	'<cmd>lua require("telescope.builtin").buffers() <CR>', opt)
-keymap('n', '<leader>fH',	'<cmd>lua require("telescope.builtin").help_tags() <CR>', opt)
-
---
-keymap('n', '<leader>fh',	'<cmd>lua require("telescope.builtin").highlights() <CR>', opt)
 keymap('n', '<leader>fm',	'<cmd>lua require("telescope.builtin").marks() <CR>', opt)
-
--- VIMUX −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-keymap('n', '<leader>vb',	':call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>', opt)
-keymap('n', '<leader>vp',	':VimuxPromptCommand<CR>', opt)
-keymap('n', '<leader>vl',	':VimuxRunLastCommand<CR>', opt)
-
-keymap('n', '<leader>vc',	':VimuxCloseRunner<CR>', opt)
-keymap('n', '<leader>vC',	':VimuxClearTerminalScreen<CR>', opt)
-keymap('n', '<leader>vx',	':VimuxInterruptRunner<CR>', opt)
-
-keymap('n', '<leader>vi',	':VimuxInspectRunner<CR>', opt)
-keymap('n', '<leader>vz',	':VimuxZoomRunner<CR>', opt)
 
 -- HOP −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 keymap('', '.',                 '<cmd>HopWord<CR>', opt)
