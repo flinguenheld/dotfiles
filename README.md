@@ -54,6 +54,3 @@ https://fedoramagazine.org/add-power-terminal-powerline/
 
 ##### Printer
     sudo system-config-printer
-
-##### Discord
-https://itsfoss.com/install-discord-linux/#traditional-method

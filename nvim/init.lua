@@ -45,7 +45,7 @@ require('packer').startup(function()
 
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
-    use 'Pocco81/AutoSave.nvim'
+    use 'Pocco81/auto-save.nvim'
     use 'iamcco/markdown-preview.nvim'		    -- :call mkdp#util#install()
     use 'preservim/vimux'
     use 'phaazon/hop.nvim'
