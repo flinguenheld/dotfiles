@@ -58,27 +58,29 @@ keymap('n', '<C-right>',	'<C-w>l<CR>', opt)
 
 -- TELESCOPE −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 -- Recherche dossier courant
-keymap('n', '<leader>ff',	'<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
-keymap('n', '<leader>fF',	'<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
+keymap('n', '<leader>tf',	'<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
+keymap('n', '<leader>tF',	'<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
 
-keymap('n', '<leader>fh',   '<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=os.getenv("HOME"), prompt_title="home/"})<CR>', opt)
-keymap('n', '<leader>fH',   '<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=os.getenv("HOME"), prompt_title="home/ (hidden files)"})<CR>', opt)
+keymap('n', '<leader>th',   '<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=os.getenv("HOME"), prompt_title="home/"})<CR>', opt)
+keymap('n', '<leader>tH',   '<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=os.getenv("HOME"), prompt_title="home/ (hidden files)"})<CR>', opt)
 
 -- keymap('n', '<leader>Ff',	'<cmd>lua FindFiles_2()<CR>', opt)
 
+
 -- Recherche dossier
-keymap('n', '<leader>fr',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
-keymap('n', '<leader>fR',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({hidden=true, cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
+keymap('n', '<leader>tr',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
+keymap('n', '<leader>tR',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({hidden=true, cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
 
 -- Grep
-keymap('n', '<leader>fg',	'<cmd>lua require("telescope.builtin").live_grep({prompt_title = "find string in open buffers...", grep_open_files = true })<CR>', opt)
-keymap('n', '<leader>fG',	'<cmd>lua require("telescope.builtin").live_grep({cwd=require("telescope.utils").buffer_dir()})<CR>', opt)
-keymap('n', '<leader>Fg',	'<cmd>lua require("telescope.builtin").live_grep({cwd=os.getenv("HOME")})<CR>', opt)
+keymap('n', '<leader>tg',	'<cmd>lua require("telescope.builtin").live_grep({prompt_title = "find string in open buffers...", grep_open_files = true })<CR>', opt)
+keymap('n', '<leader>tG',	'<cmd>lua require("telescope.builtin").live_grep({cwd=require("telescope.utils").buffer_dir()})<CR>', opt)
+keymap('n', '<leader>tg',	'<cmd>lua require("telescope.builtin").live_grep({cwd=os.getenv("HOME")})<CR>', opt)
 
 --
-keymap('n', '<leader>fo',   ':Telescope oldfiles <CR>', opt)
-keymap('n', '<leader>fb',	'<cmd>lua require("telescope.builtin").buffers() <CR>', opt)
-keymap('n', '<leader>fm',	'<cmd>lua require("telescope.builtin").marks() <CR>', opt)
+keymap('n', '<leader>ta',   ':Telescope help_tags <cr>', opt)
+keymap('n', '<leader>to',   ':Telescope oldfiles <cr>', opt)
+keymap('n', '<leader>tb',	':Telescope buffers <cr>', opt)
+keymap('n', '<leader>tm',	':Telescope marks <cr>', opt)
 
 -- HOP −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 keymap('', '.',                 '<cmd>HopWord<CR>', opt)
