@@ -1,4 +1,4 @@
--- :ackerSync to install
+-- Pouet
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
@@ -45,6 +45,8 @@ require('packer').startup(function()
 
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
+    use 'preservim/nerdcommenter'
+
     use 'Pocco81/auto-save.nvim'
     use 'iamcco/markdown-preview.nvim'		    -- :call mkdp#util#install()
     use 'preservim/vimux'
@@ -53,6 +55,8 @@ require('packer').startup(function()
     use "lukas-reineke/indent-blankline.nvim"   -- Affiche l'indentation
     use 'RRethy/vim-illuminate'                 -- Illumine le mot (A-n pour aller au suivant)
     use 'tpope/vim-surround'
+    use 'machakann/vim-sandwich'
+
     use 'windwp/nvim-autopairs'
 
     -- Theme and starter
@@ -66,11 +70,15 @@ require('packer').startup(function()
 
     -- use 'sunjon/shade.nvim'
     use 'norcalli/nvim-colorizer.lua'
+
+    --
+    use '/home/pousti/plugins/luacomment.nvim'
+
     end
 )
 
 -- Leader --
-vim.g.mapleader = ','
+vim.g.mapleader = ' '
 
 vim.o.termguicolors = true
 
@@ -183,8 +191,29 @@ require'nvim-tree'.setup {}
 require'colorizer'.setup()
 
 
+
+--------------------------------------------------
+-- Thanks Tj
+--------------------------------------------------
+P = function (v)
+    print(vim.inspect(v))
+    return v
+end
+
+RELOAD = function (...)
+    return require("plenary.reload").reload_module(...)
+end
+
+R = function (name)
+    RELOAD(name)
+    return require(name)
+end
+
+
+
 -- -- TEST -−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 -- local function blah()
 -- 	print "Hello world !\n"
 -- end
 -- -- TEST -−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+

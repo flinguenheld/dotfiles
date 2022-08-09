@@ -83,8 +83,8 @@ keymap('n', '<leader>fm',	'<cmd>lua require("telescope.builtin").marks() <CR>', 
 -- HOP −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 keymap('', '.',                 '<cmd>HopWord<CR>', opt)
 keymap('', '<leader>.',         '<cmd>HopChar1<CR>', opt)
-keymap('', '<space>',           '<cmd>HopLine<CR>', opt)
-keymap('', '<leader><space>',   '<cmd>HopLineStart<CR>', opt)
+keymap('', ',',                 '<cmd>HopLine<CR>', opt)
+keymap('', '<leader>,',         '<cmd>HopLineStart<CR>', opt)
 
 -- LSPCONFIG −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 keymap('n', 'gD',             '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)

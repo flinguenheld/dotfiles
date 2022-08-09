@@ -1,4 +1,4 @@
-# .bashrc
+# .bashrc pouet
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then

@@ -144,6 +144,11 @@ _G.packer_plugins = {
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  ["luacomment.nvim"] = {
+    loaded = true,
+    path = "/home/pousti/.local/share/nvim/site/pack/packer/start/luacomment.nvim",
+    url = "/home/pousti/plugins/luacomment.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -163,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/melange",
     url = "https://github.com/savq/melange"
+  },
+  nerdcommenter = {
+    loaded = true,
+    path = "/home/pousti/.local/share/nvim/site/pack/packer/start/nerdcommenter",
+    url = "https://github.com/preservim/nerdcommenter"
   },
   ["nightfox.nvim"] = {
     loaded = true,
@@ -258,6 +268,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/vim-illuminate",
     url = "https://github.com/RRethy/vim-illuminate"
+  },
+  ["vim-sandwich"] = {
+    loaded = true,
+    path = "/home/pousti/.local/share/nvim/site/pack/packer/start/vim-sandwich",
+    url = "https://github.com/machakann/vim-sandwich"
   },
   ["vim-surround"] = {
     loaded = true,
