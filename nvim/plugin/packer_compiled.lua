@@ -169,11 +169,6 @@ _G.packer_plugins = {
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/melange",
     url = "https://github.com/savq/melange"
   },
-  nerdcommenter = {
-    loaded = true,
-    path = "/home/pousti/.local/share/nvim/site/pack/packer/start/nerdcommenter",
-    url = "https://github.com/preservim/nerdcommenter"
-  },
   ["nightfox.nvim"] = {
     loaded = true,
     path = "/home/pousti/.local/share/nvim/site/pack/packer/start/nightfox.nvim",

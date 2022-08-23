@@ -1,22 +1,4 @@
--- AUTOSAVE −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 require('auto-save').setup({
-        -- enabled = true,
-        -- -- execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-        -- execution_message = "",
-        -- events = {"InsertLeave", "TextChanged"},
-        -- conditions = {
-        --     exists = true,
-        --     filename_is_not = {},
-        --     filetype_is_not = {},
-        --     modifiable = true
-        -- },
-        -- write_all_buffers = false,
-        -- on_off_commands = true,
-        -- clean_command_line_interval = 10,
-        -- debounce_delay = 135
-
-
-{
     enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
     execution_message = {
 		message = function() -- message to print on save
@@ -24,7 +6,8 @@ require('auto-save').setup({
 			return ("Saved")
 		end,
 		dim = 0.18, -- dim the color of `message`
-		cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+		-- cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+		cleaning_interval = 100, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
 	},
     trigger_events = {"InsertLeave", "TextChanged"}, -- vim events that trigger auto-save. See :h events
 	-- function that determines whether to save the current buffer or not
@@ -35,7 +18,7 @@ require('auto-save').setup({
 		local utils = require("auto-save.utils.data")
 
 		if
-			fn.getbufvar(buf, "&modifiable") == 1 or
+			fn.getbufvar(buf, "&modifiable") == 1 and
 			utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
 			return true -- met condition(s), can save
 		end
@@ -50,15 +33,4 @@ require('auto-save').setup({
 		before_saving = nil, -- ran before doing the actual save
 		after_saving = nil -- ran after doing the actual save
 	}
-}
-
-
-
-
-
-
-    }
-)
-
-
-
+})

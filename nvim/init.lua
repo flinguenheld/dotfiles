@@ -45,7 +45,7 @@ require('packer').startup(function()
 
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
-    use 'preservim/nerdcommenter'
+    -- use 'preservim/nerdcommenter'
 
     use 'Pocco81/auto-save.nvim'
     use 'iamcco/markdown-preview.nvim'		    -- :call mkdp#util#install()
