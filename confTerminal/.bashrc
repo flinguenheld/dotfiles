@@ -1,4 +1,4 @@
-# .bashrc pouet
+# .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -36,5 +36,6 @@ if [ -f `which powerline-daemon` ]; then
 fi
 
 
-# Alias --
+# Flo --
 alias vi='nvim'
+EDITOR=/usr/bin/vi
