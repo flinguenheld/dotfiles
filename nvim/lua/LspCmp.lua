@@ -106,5 +106,7 @@ require('lspconfig')['emmet_ls'].setup {
   require('lspconfig')['bashls'].setup {
     capabilities = capabilities
   }
-
+  -- require('lspconfig')['clangd'].setup {
+    -- capabilities = capabilities
+  -- }
 
