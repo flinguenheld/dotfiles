@@ -8,7 +8,7 @@
 [profiles]
   [[default]]
     cursor_color = "#aaaaaa"
-    font = Hack Nerd Font  12
+    font = Hack Nerd Font Mono 12
     scrollbar_position = hidden
     use_system_font = False
 [layouts]
