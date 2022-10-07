@@ -16,7 +16,12 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
 
+    -- Debug
     use 'folke/trouble.nvim'
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'mfussenegger/nvim-dap-python'
+    use 'theHamsta/nvim-dap-virtual-text'
 
     -- For luasnip users.
     use 'L3MON4D3/LuaSnip'
@@ -34,51 +39,49 @@ require('packer').startup(function()
     -- Marks
     use 'chentoast/marks.nvim'
 
-    -- Test tree
+    -- Tree
     use 'kyazdani42/nvim-tree.lua'
 
-    -- Terminator
-    use 'erietz/vim-terminator'
-
-    use 'tversteeg/registers.nvim'
-    use 'preservim/tagbar'
-
+    -- Yank
+    -- use  "tversteeg/registers.nvim"
+    use {
+        "tversteeg/registers.nvim",
+        config = function()
+            require("registers").setup()
+        end,
+    }
     -- Others
     use 'numToStr/Comment.nvim'                 -- gcc gbc
-    -- use 'preservim/nerdcommenter'
 
     use 'Pocco81/auto-save.nvim'
     use 'iamcco/markdown-preview.nvim'		    -- :call mkdp#util#install()
-    use 'preservim/vimux'
     use 'phaazon/hop.nvim'
 
     use "lukas-reineke/indent-blankline.nvim"   -- Affiche l'indentation
     use 'RRethy/vim-illuminate'                 -- Illumine le mot (A-n pour aller au suivant)
-    use 'tpope/vim-surround'
-    use 'machakann/vim-sandwich'
 
+    use 'machakann/vim-sandwich'
     use 'windwp/nvim-autopairs'
 
     -- Theme and starter
-    use "savq/melange"
-    use 'EdenEast/nightfox.nvim'
-    use 'goolord/alpha-nvim'
     use 'kyazdani42/nvim-web-devicons'      -- Need nerd font like hack
-    use 'nvim-lualine/lualine.nvim'
     use 'ryanoasis/vim-devicons'            -- Nécessaire ???
+    use 'goolord/alpha-nvim'
+    use 'nvim-lualine/lualine.nvim'
     use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
 
-    -- use 'sunjon/shade.nvim'
     use 'norcalli/nvim-colorizer.lua'
 
     --
     use '/home/pousti/plugins/luacomment.nvim'
+    use '/home/pousti/plugins/potpourri.nvim'
 
     end
 )
 
 -- Leader --
 vim.g.mapleader = ' '
+vim.g.timeoulen = 3000
 
 vim.o.termguicolors = true
 
@@ -167,6 +170,7 @@ require('TreeSitter')
 require('Telescope')
 require('LspInstaller')
 require('Trouble')
+require('Dap')
 
 require('AlphaStartup')
 require('AutoSave')

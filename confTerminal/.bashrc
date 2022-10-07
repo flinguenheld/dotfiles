@@ -37,5 +37,6 @@ fi
 
 
 # Flo --
+alias py='python'
 alias vi='nvim'
 EDITOR=/usr/bin/vi

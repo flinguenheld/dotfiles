@@ -101,7 +101,15 @@ require('lspconfig')['emmet_ls'].setup {
     filetypes = { "html", "htmldjango", "css", "typescriptreact", "javascriptreact" },
   }
   require('lspconfig')['sumneko_lua'].setup {
-    capabilities = capabilities
+      capabilities = capabilities,
+      settings = {
+          Lua = {
+              diagnostics = {
+                  -- Get the language server to recognize the `vim` global
+                  globals = {'vim', 'use'},
+              },
+          },
+      },
   }
   require('lspconfig')['bashls'].setup {
     capabilities = capabilities
