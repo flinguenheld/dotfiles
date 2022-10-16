@@ -1,5 +1,9 @@
 -- Setup nvim-cmp.
 local cmp = require'cmp'
+local lspkind = require'lspkind'
+local types = require 'cmp.types'
+local str = require "cmp.utils.str"
+
 
 cmp.setup({
   snippet = {
@@ -11,13 +15,9 @@ cmp.setup({
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
   mapping = cmp.mapping.preset.insert({
-    ['<C-f>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-F>'] = cmp.mapping.scroll_docs(4),
+    ['<C-i>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-c>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -29,10 +29,28 @@ cmp.setup({
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   }, {
-    { name = 'buffer' },
-  })
-})
+    { name = 'buffer',
+      option = {keyword_length = 2,
+          -- Search in all buffers !
+          get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+          end}
 
+    },
+    { name = 'path' },
+    { name = 'nvim_lua' },
+    { name = 'nvim_lsp_signature_help' },
+  }),
+
+  experimental = {
+    ghost_text = true,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+
+})
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
@@ -44,12 +62,21 @@ cmp.setup.filetype('gitcommit', {
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline('/', {
+  -- mapping = cmp.mapping.preset.cmdline(),
+  -- sources = {
+    -- { name = 'buffer' }
+  -- }
+-- })
 cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
     { name = 'buffer' }
-  }
+  })
 })
+
+
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {

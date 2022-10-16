@@ -15,13 +15,23 @@ local folders = {nvim='~/.config/nvim/',
 --------------------------------------------------
 -- Files
 for key, value in pairs(files) do
-    os.execute("rm " .. PATH_FILES .. key)
-    os.execute("cp " .. value .. key .. " " .. PATH_FILES .. key)
+    if arg[1] == 'install' then
+        os.execute("rm -f" .. value .. key)
+        os.execute("cp " .. PATH_FILES .. key .. " " .. value .. key)
+    else
+        os.execute("rm " .. PATH_FILES .. key)
+        os.execute("cp " .. value .. key .. " " .. PATH_FILES .. key)
+    end
 end
 
 --------------------------------------------------
 -- Folders
 for key, value in pairs(folders) do
-    os.execute("rm -rf " .. CURRENT_PATH .. key)
-    os.execute("cp -r " .. value .. " " .. CURRENT_PATH .. key)
+    if arg[1] == 'install' then
+        os.execute("rm -rf " .. value .. key)
+        os.execute("cp -r " .. CURRENT_PATH .. key " " .. value)
+    else
+        os.execute("rm -rf " .. CURRENT_PATH .. key)
+        os.execute("cp -r " .. value .. " " .. CURRENT_PATH .. key)
+    end
 end

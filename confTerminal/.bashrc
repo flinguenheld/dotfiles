@@ -37,6 +37,9 @@ fi
 
 
 # Flo --
-alias py='python'
+alias la='ls -la'
+alias senv='source env/bin/activate'
+
 alias vi='nvim'
+alias py='python'
 EDITOR=/usr/bin/vi

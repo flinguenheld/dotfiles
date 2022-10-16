@@ -1,3 +1,7 @@
+-- Recommended by nvim-tree :
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Pouet
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
@@ -15,6 +19,10 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
+
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    use 'hrsh7th/cmp-nvim-lsp-document-symbol' -- Doesn't work ;(
 
     -- Debug
     use 'folke/trouble.nvim'
@@ -93,9 +101,6 @@ vim.opt.wildoptions = "pum"
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- À confirmer
 vim.opt.shortmess:append "c"
 
--- vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- completion options (for deoplete)
--- vim.opt.completeopt = {'menu', 'longest', 'preview'}  -- completion options (for deoplete)
-
 -- Ignore compiled files
 vim.opt.wildignore = "__pycache__"
 vim.opt.wildignore = vim.opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
@@ -156,14 +161,9 @@ false
 )
 
 
-
-
 -- require("luasnip.loaders.from_vscode").lazy_load()
 -- require("luasnip.loaders.from_snipmate").lazy_load()
 -- require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/luasnip.lua"})
-
-
-
 
 
 require('TreeSitter')
@@ -174,7 +174,7 @@ require('Dap')
 
 require('AlphaStartup')
 require('AutoSave')
-require('IlluminateCursor') -- Be careful, it loads cmp defaults -_-'
+require('IlluminateCursor')
 require('LspCmp')
 require('LuaSnip')
 require('Comments')
@@ -183,6 +183,7 @@ require('AutoPair')
 require('IndentBlankLine')
 require('Marks')
 
+require('NvimTree')
 require('LuaLine')
 require('Hop')
 require('ColorScheme')
@@ -190,8 +191,7 @@ require('ColorScheme')
 require('Keybindings')
 
 
--- −−−−−−−−−−−−−−−−−−−−−−−−−−
-require'nvim-tree'.setup {}
+-- --------------------------
 require'colorizer'.setup()
 
 
@@ -215,9 +215,9 @@ end
 
 
 
--- -- TEST -−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+-- -- TEST -------------------------------------------------------------------------------------------------------
 -- local function blah()
 -- 	print "Hello world !\n"
 -- end
--- -- TEST -−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+-- -- TEST -------------------------------------------------------------------------------------------------------
 

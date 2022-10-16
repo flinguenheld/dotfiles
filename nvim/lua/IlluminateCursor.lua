@@ -1,24 +1,5 @@
--- ILLUMINATE −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
--- require'lspconfig'.pylsp.setup {
-    -- on_attach = function(client)
-        -- require 'illuminate'.on_attach(client)
-    -- end,
--- }
+-- ILLUMINATE ----------------------------------------------------------------------------------------------------
 
--- require'lspconfig'.emmet_ls.setup {
-    -- on_attach = function(client)
-        -- require 'illuminate'.on_attach(client)
-    -- end,
--- }
-
--- require'lspconfig'.sumneko_lua.setup {
-    -- on_attach = function(client)
-        -- require 'illuminate'.on_attach(client)
-    -- end,
--- }
-
--- vim.api.nvim_set_keymap('n', '<M-n>', '<cmd>lua require "illuminate".next_reference{wrap=true}<cr>', {noremap=true})
--- vim.api.nvim_set_keymap('n', '<M-p>', '<cmd>lua require "illuminate".next_reference{reverse=true,wrap=true}<cr>', {noremap=true})
 -- default configuration
 require('illuminate').configure({
     -- providers: provider used to get references in the buffer, ordered by priority

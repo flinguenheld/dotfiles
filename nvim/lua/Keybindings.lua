@@ -91,6 +91,12 @@ keymap('', '<leader>.',         '<cmd>HopChar1<CR>', opt)
 keymap('', ',',                 '<cmd>HopLine<CR>', opt)
 keymap('', '<leader>,',         '<cmd>HopLineStart<CR>', opt)
 
+-- NVIM-TREE --------------------------------------------------------------------------------------------------------
+keymap('n', '<leader>no',       ':NvimTreeToggle<CR>', opt)
+keymap('n', '<leader>nr',       ':NvimTreeRefresh<CR>', opt)
+keymap('n', '<leader>nc',       ':NvimTreeCollapse<CR>', opt)
+keymap('n', '<leader>ns',       ':NvimTreeResize 30<CR>', opt)
+
 -- LSPCONFIG --------------------------------------------------------------------------------------------------------
 keymap('n', 'gD',             '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 keymap('n', 'gd',             '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
