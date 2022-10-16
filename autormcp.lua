@@ -9,8 +9,8 @@ local files = {[".bashrc"]="~/",
 
 local folders = {nvim='~/.config/nvim/',
                  i3='~/.config/i3/',
-                 rofi='~/.config/rofi',
-                 terminator='~/.config/terminator'}
+                 rofi='~/.config/rofi/',
+                 terminator='~/.config/terminator/'}
 
 --------------------------------------------------
 -- Files
@@ -29,7 +29,7 @@ end
 for key, value in pairs(folders) do
     if arg[1] == 'install' then
         os.execute("rm -rf " .. value .. key)
-        os.execute("cp -r " .. CURRENT_PATH .. key " " .. value)
+        os.execute("cp -r " .. CURRENT_PATH .. key .. "/* " .. value)
     else
         os.execute("rm -rf " .. CURRENT_PATH .. key)
         os.execute("cp -r " .. value .. " " .. CURRENT_PATH .. key)

@@ -1,25 +1,31 @@
-dnf install -y rpmfusion-free-release-tainted
-dnf install -y rpmfusion-nonfree-release-tainted
+dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 dnf upgrade --refresh -y
 
 
 # --
-dnf install -y xrandr
+# dnf install -y xrandr
 dnf install -y arandr
 dnf install -y pipewire
 dnf install -y rofi
 dnf install -y terminator
 dnf install -y flameshot
 dnf install -y py3status
-
+dnf install -y lua
+dnf install -y git
 
 dnf install -y xfce4-power-manager
+dnf install -y xfte4-settings
 dnf install -y mediawriter
 
 # Fonts & Powerline
 dnf install -y fontawesome-fonts
 dnf install -y powerline powerline-fonts
+
+git clone https://github.com/ryanoasis/nerd-fonts ~/fonts/
+~/fonts/install.sh Hack
+~/fonts/install.sh JetBrainsMono
 
 # Neovim
     # Pip
@@ -42,12 +48,12 @@ dnf install -y fd-find
     # Clipboard
 dnf install -y xclip
 
-    # Packer
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
     # Nightly
 dnf copr enable agriffis/neovim-nightly
 dnf install -y neovim python3-neovim
+
+    # Packer
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 
 # Clock for py3status
@@ -59,16 +65,15 @@ pip install oauth2client
 pip install keyring
 
 # --
-dnf install -y firefox
 dnf install -y thunderbird
+dnf install -y pinta
+dnf install -y ristretto
+dnf install vlc
 
 # Vivaldi
 dnf install -y dnf-utils
 dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 dnf install -y vivaldi-stable
-
-# Pinta
-dnf install -y pinta
 
 # Pdf
 dnf install -y zathura
