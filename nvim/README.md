@@ -34,7 +34,7 @@
 |  Comp            |                           |
 |------------------|---------------------------|
 |`<C-f>`           |Scroll -4                  |
-|`<C-F>`           |Scroll +4                  |
+|`<C-i>`           |Scroll +4                  |
 |`<C-e>`           |Exit                       |
 |`<C-y> or enter`  |Confirm                    |
 

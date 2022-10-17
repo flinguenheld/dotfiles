@@ -16,7 +16,7 @@ dnf install -y lua
 dnf install -y git
 
 dnf install -y xfce4-power-manager
-dnf install -y xfte4-settings
+dnf install -y xfce4-settings
 dnf install -y mediawriter
 
 # Fonts & Powerline
@@ -77,3 +77,11 @@ dnf install -y vivaldi-stable
 
 # Pdf
 dnf install -y zathura
+
+# --
+mkdir ~/plugins/
+git clone https://github.com/FLinguenheld/potpourri.nvim ~/plugins/
+git clone https://github.com/FLinguenheld/luacomment.nvim ~/plugins/
+
+git clone https://github.com/qmk/qmk_firmware ~/
+git clone https://github.com/FLinguenheld/corne_keymap ~/qmk_firmware/keyboards/crkbd/keymaps/

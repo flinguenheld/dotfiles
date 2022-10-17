@@ -9,11 +9,13 @@
 Don't forget to allow all scripts
 
 ##### general
-- xrandr
+- arandr  
 - pipewire  
 - rofi  
 - terminator  
-- flameshot   (screenshot)  
+- flameshot  
+- xfce4-power-manager  
+- xfce4-settings
 
 ##### py3status
 https://py3status.readthedocs.io/en/latest/  
