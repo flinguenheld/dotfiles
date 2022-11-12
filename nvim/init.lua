@@ -11,7 +11,11 @@ require('packer').startup(function()
 
     -- Lsp
     use 'neovim/nvim-lspconfig'             -- Collection of configurations for the built-in LSP client
-    use 'williamboman/nvim-lsp-installer'   -- :LspInstall
+    use 'williamboman/mason.nvim'           -- New LspInstaller
+    use 'williamboman/mason-lspconfig.nvim'
+
+    -- Linter
+    use 'jose-elias-alvarez/null-ls.nvim'
 
     -- Completion
     use 'hrsh7th/nvim-cmp'
@@ -81,8 +85,8 @@ require('packer').startup(function()
     use 'norcalli/nvim-colorizer.lua'
 
     --
-    use '/home/pousti/plugins/luacomment.nvim'
-    use '/home/pousti/plugins/potpourri.nvim'
+    use '/home/flo/plugins/luacomment.nvim'
+    use '/home/flo/plugins/potpourri.nvim'
 
     end
 )
@@ -168,13 +172,14 @@ false
 
 require('TreeSitter')
 require('Telescope')
-require('LspInstaller')
 require('Trouble')
 require('Dap')
 
 require('AlphaStartup')
 require('AutoSave')
 require('IlluminateCursor')
+
+require('Mason')
 require('LspCmp')
 require('LuaSnip')
 require('Comments')

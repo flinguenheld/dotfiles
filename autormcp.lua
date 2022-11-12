@@ -1,11 +1,12 @@
 #! /bin/lua
 
 CURRENT_PATH = '~/.config/dotfiles/'
-PATH_FILES = CURRENT_PATH .. "confTerminal/"
+PATH_FILES = CURRENT_PATH .. "files/"
 
 --------------------------------------------------
 local files = {[".bashrc"]="~/",
-               [".profile"]="~/"}
+               [".profile"]="~/",
+               ["tox.ini"]="~/"}
 
 local folders = {nvim='~/.config/nvim/',
                  i3='~/.config/i3/',

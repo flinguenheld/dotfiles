@@ -15,6 +15,6 @@ require("nvim-tree").setup({
   },
   filters = {
     dotfiles = false,
-    custom = { "^.git$", "env", ".pytest_cache" }
+    custom = { "^.git$", "env", "__pycache__", ".pytest_cache" }
   },
 })
