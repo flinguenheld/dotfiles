@@ -19,6 +19,8 @@ dnf install -y xfce4-settings
 dnf install -y mediawriter
 dnf install -y libreoffice
 
+dnf install -y tldr
+
 # Fonts & Powerline
 dnf install -y fontawesome-fonts
 dnf install -y powerline powerline-fonts
@@ -71,3 +73,6 @@ dnf install -y vivaldi-stable
 
 # Pdf
 dnf install -y zathura
+
+# Scan
+dnf install -y xsane

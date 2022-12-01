@@ -254,11 +254,11 @@ bindsym $mod+p mode "$mode_power"
 
 mode --pango_markup "$mode_power"{
 
-    bindsym Control+l exec --no-startup-id ~/.config/i3/power.py -l, mode "default"
-    bindsym Control+e exec --no-startup-id ~/.config/i3/power.py -e, mode "default"
-    bindsym Control+s exec --no-startup-id ~/.config/i3/power.py -s, mode "default"
-    bindsym Control+r exec --no-startup-id ~/.config/i3/power.py -r, mode "default"
-    bindsym Control+o exec --no-startup-id ~/.config/i3/power.py -o, mode "default"
+    bindsym Control+l exec --no-startup-id ~/.config/i3/power.sh lock, mode "default"
+    bindsym Control+e exec --no-startup-id ~/.config/i3/power.sh logout, mode "default"
+    bindsym Control+s exec --no-startup-id ~/.config/i3/power.sh suspend, mode "default"
+    bindsym Control+r exec --no-startup-id ~/.config/i3/power.sh reboot, mode "default"
+    bindsym Control+o exec --no-startup-id ~/.config/i3/power.sh poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

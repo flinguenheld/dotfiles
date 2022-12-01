@@ -10,8 +10,8 @@ require('packer').startup(function()
     use 'nvim-treesitter/nvim-treesitter'
 
     -- Lsp
-    use 'neovim/nvim-lspconfig'             -- Collection of configurations for the built-in LSP client
-    use 'williamboman/mason.nvim'           -- New LspInstaller
+    use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
+    use 'williamboman/mason.nvim' -- New LspInstaller
     use 'williamboman/mason-lspconfig.nvim'
 
     -- Linter
@@ -63,21 +63,21 @@ require('packer').startup(function()
         end,
     }
     -- Others
-    use 'numToStr/Comment.nvim'                 -- gcc gbc
+    use 'numToStr/Comment.nvim' -- gcc gbc
 
     use 'Pocco81/auto-save.nvim'
-    use 'iamcco/markdown-preview.nvim'		    -- :call mkdp#util#install()
+    use 'iamcco/markdown-preview.nvim' -- :call mkdp#util#install()
     use 'phaazon/hop.nvim'
 
-    use "lukas-reineke/indent-blankline.nvim"   -- Affiche l'indentation
-    use 'RRethy/vim-illuminate'                 -- Illumine le mot (A-n pour aller au suivant)
+    use "lukas-reineke/indent-blankline.nvim" -- Affiche l'indentation
+    use 'RRethy/vim-illuminate' -- Illumine le mot (A-n pour aller au suivant)
 
     use 'machakann/vim-sandwich'
     use 'windwp/nvim-autopairs'
 
     -- Theme and starter
-    use 'kyazdani42/nvim-web-devicons'      -- Need nerd font like hack
-    use 'ryanoasis/vim-devicons'            -- Nécessaire ???
+    use 'kyazdani42/nvim-web-devicons' -- Need nerd font like hack
+    use 'ryanoasis/vim-devicons' -- Nécessaire ???
     use 'goolord/alpha-nvim'
     use 'nvim-lualine/lualine.nvim'
     use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
@@ -88,7 +88,7 @@ require('packer').startup(function()
     use '/home/flo/plugins/luacomment.nvim'
     use '/home/flo/plugins/potpourri.nvim'
 
-    end
+end
 )
 
 -- Leader --
@@ -110,7 +110,7 @@ vim.opt.wildignore = "__pycache__"
 vim.opt.wildignore = vim.opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
 
 -- Others
-vim.opt.joinspaces = false              -- no double spaces with join
+vim.opt.joinspaces = false -- no double spaces with join
 -- vim.opt.mouse = "nv"                 -- Mouse active in normal & visual
 vim.opt.cursorline = true
 vim.opt.history = 100
@@ -130,18 +130,18 @@ vim.wo.relativenumber = true
 vim.wo.number = true
 
 -- Window
-vim.opt.scrolloff = 10		    -- Make it so there are always ten lines below my cursor
-vim.opt.splitright = true	    -- Prefer windows splitting to the right
-vim.opt.splitbelow = true	    -- Prefer windows splitting to the bottom
-vim.opt.showmode = false	    -- Textes Insert/Visual en doublon avec powerline
-vim.opt.equalalways = true      -- I don't like my windows changing all the time
+vim.opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
+vim.opt.splitright = true -- Prefer windows splitting to the right
+vim.opt.splitbelow = true -- Prefer windows splitting to the bottom
+vim.opt.showmode = false -- Textes Insert/Visual en doublon avec powerline
+vim.opt.equalalways = true -- I don't like my windows changing all the time
 
 -- Pep8
 vim.wo.colorcolumn = '115'
 
 -- Text behaviour
-vim.cmd[[filetype plugin on]]
-vim.cmd[[autocmd FileType * setlocal formatoptions=cqrnj]]
+vim.cmd [[filetype plugin on]]
+vim.cmd [[autocmd FileType * setlocal formatoptions=cqrnj]]
 --  - "a" -- Auto formatting is BAD.
 --  - "t" -- Don't auto format my code. I got linters for that.
 --  + "c" -- In general, I like it when comments respect textwidth
@@ -161,7 +161,7 @@ vim.api.nvim_exec(
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=249 }
     augroup END
     ]],
-false
+    false
 )
 
 
@@ -197,23 +197,22 @@ require('Keybindings')
 
 
 -- --------------------------
-require'colorizer'.setup()
-
+require 'colorizer'.setup()
 
 
 --------------------------------------------------
 -- Thanks Tj
 --------------------------------------------------
-P = function (v)
+P = function(v)
     print(vim.inspect(v))
     return v
 end
 
-RELOAD = function (...)
+RELOAD = function(...)
     return require("plenary.reload").reload_module(...)
 end
 
-R = function (name)
+R = function(name)
     RELOAD(name)
     return require(name)
 end
@@ -225,4 +224,3 @@ end
 -- 	print "Hello world !\n"
 -- end
 -- -- TEST -------------------------------------------------------------------------------------------------------
-

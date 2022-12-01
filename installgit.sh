@@ -12,4 +12,4 @@ git clone https://github.com/FLinguenheld/potpourri.nvim ~/plugins/
 git clone https://github.com/FLinguenheld/luacomment.nvim ~/plugins/
 
 git clone https://github.com/qmk/qmk_firmware ~/
-git clone https://github.com/FLinguenheld/corne_keymap ~/qmk_firmware/keyboards/crkbd/keymaps/
+git clone https://github.com/FLinguenheld/corne_pie ~/qmk_firmware/keyboards/crkbd/keymaps/
