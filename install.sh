@@ -64,11 +64,11 @@ pip install keyring
 dnf install -y thunderbird
 dnf install -y pinta
 dnf install -y ristretto
-dnf install vlc
+dnf install -y vlc
 
 # Vivaldi
 dnf install -y dnf-utils
-# dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 dnf install -y vivaldi-stable
 
 # Pdf
