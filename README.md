@@ -24,7 +24,7 @@ https://py3status.readthedocs.io/en/latest/
 
 ##### google calendar
 https://py3status.readthedocs.io/en/latest/user-guide/modules/#google_calendar  
-Follow steps in the square  
+Follow steps in the square and check the i3status.conf  
 
     pip install oauth2client
 

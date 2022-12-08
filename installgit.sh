@@ -3,8 +3,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 
 # Fonts
 git clone https://github.com/ryanoasis/nerd-fonts ~/fonts/nerd-fonts
-~/fonts/install.sh Hack
-~/fonts/install.sh JetBrainsMono
+~/fonts/nerd-fonts/install.sh Hack
+~/fonts/nerd-fonts/install.sh JetBrainsMono
 
 # --
 mkdir ~/plugins/

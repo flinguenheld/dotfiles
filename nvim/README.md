@@ -31,36 +31,6 @@
 
 ***
 #### Keys
-|  Comp            |                           |
-|------------------|---------------------------|
-|`<C-f>`           |Scroll -4                  |
-|`<C-i>`           |Scroll +4                  |
-|`<C-e>`           |Exit                       |
-|`<C-y> or enter`  |Confirm                    |
-
-
-|  Comments      |                           |
-|----------------|---------------------------|
-|`gcc`           |Comment line               |
-|`gbc`           |Comment bloc line          |
-|`gcO`           |Comment above              |
-|`gco`           |Comment underneath         |
-|`gcA`           |Comment on right           |
-
-
-|  Surround      |                                   |
-|----------------|-----------------------------------|
-|`yss"`          | Add " - sentence                  |
-|`ysw"`          | Add " - cursor -> word            |
-|`ysW"`          | Add " - cursor -> end sentence    |
-|`ysE"`          | Add " - cursor -> end word        |
-|                |                                   |
-|`ds"`           | Remove "                          |
-|                |                                   |
-|`cs"'`          | Replace " by '                    |
-|`cs([`          | Replace ( by [ with space         |
-|`cs(]`          | Replace ( by [ without space      |
-
 
 |  Trouble            |                           |
 |---------------------|---------------------------|
@@ -87,5 +57,3 @@
 | `<C-f>/f`       | Toggle between file and folder browser                                        |
 | `<C-h>/h`       | Toggle hidden files/folders                                                   |
 | `<C-s>/s`       | Toggle all entries ignoring `./` and `../`                                    |
-
-

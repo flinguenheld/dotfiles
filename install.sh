@@ -72,7 +72,7 @@ dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.re
 dnf install -y vivaldi-stable
 
 # Pdf
-dnf install -y zathura
+dnf install -y okular
 
 # Scan
 dnf install -y xsane

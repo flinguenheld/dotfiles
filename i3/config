@@ -136,7 +136,7 @@ bindsym $mod+Control+x move workspace to output next
 # Floating −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 
 # toggle tiling / floating
-bindsym $mod+Control+m floating toggle
+bindsym $mod+Control+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+m focus mode_toggle
@@ -267,13 +267,15 @@ mode --pango_markup "$mode_power"{
 
 
 # Launcher -- useless ?
-set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[f]</b> firefox  -  <b>[n]</b> nautilus  -  <b>[t]</b> thunderbird
+set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[w]</b> wordreference  -  <b>[l]</b> larousse  -  <b>[f]</b> firefox  -  <b>[n]</b> nautilus  -  <b>[t]</b> thunderbird
 bindsym $mod+o mode "$mode_app"
 
 mode --pango_markup "$mode_app" {
 
     bindsym v exec vivaldi, mode default
     bindsym Control+v exec vivaldi --incognito, mode default
+    bindsym w exec vivaldi --new-window --homepage "https://www.wordreference.com", mode default
+    bindsym l exec vivaldi --new-window --homepage "https://www.larousse.fr", mode default
     bindsym f exec firefox, mode default
     bindsym n exec nautilus, mode default
     bindsym t exec thunderbird, mode default
