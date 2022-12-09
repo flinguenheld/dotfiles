@@ -38,7 +38,7 @@ fi
 
 
 # Flo --
-alias la='ls -la'
+alias la='ls -lA'
 alias senv='source env/bin/activate'
 
 alias vi='nvim'
