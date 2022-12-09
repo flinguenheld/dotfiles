@@ -1,5 +1,5 @@
 # 2022-05-30
-# Copy in '~/'
+# Folder : /home/
 # https://doc.ubuntu-fr.org/xrandr
 
 xrandr --newmode "3200x1800_60.00"  492.00  3200 3456 3800 4400  1800 1803 1808 1865 -hsync +vsync

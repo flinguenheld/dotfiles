@@ -1,4 +1,5 @@
 # .bashrc
+# Folder : /home/
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
