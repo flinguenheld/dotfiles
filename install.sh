@@ -13,6 +13,7 @@ dnf install -y nautilus
 dnf install -y py3status
 dnf install -y lua
 dnf install -y git
+dnf install -y fzf
 
 dnf install -y xfce4-power-manager
 dnf install -y xfce4-settings

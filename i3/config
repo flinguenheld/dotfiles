@@ -44,8 +44,8 @@ exec --no-startup-id nm-applet
 # ? --
 exec --no-startup-id xdg-user-dirs-update
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Sound −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Sound -----------------------------------------------------------------------------
 
 # Pipewire-pulse
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
@@ -62,14 +62,14 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Mouse −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Mouse -----------------------------------------------------------------------------
 
 mouse_warping output
 focus_follows_mouse yes
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -89,15 +89,15 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Control+q kill
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Start dmenu − program launcher − Rofi −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Start dmenu - program launcher - Rofi ---------------------------------------------
 
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
 bindsym $mod+Control+d exec "rofi -show run"
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 # change focus
 bindsym $mod+Left focus left
@@ -121,7 +121,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+o layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -132,8 +132,8 @@ bindsym $mod+Control+x move workspace to output next
 # workspace_auto_back_and_forth yes
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Floating −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Floating --------------------------------------------------------------------------
 
 # toggle tiling / floating
 bindsym $mod+Control+f floating toggle
@@ -148,8 +148,8 @@ bindsym $mod+a focus parent
 bindsym $mod+Control+a focus child
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Workspaces −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Workspaces ------------------------------------------------------------------------
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -213,8 +213,8 @@ bindsym $mod+Control+8 move container to workspace number $ws8
 bindsym $mod+Control+9 move container to workspace number $ws9
 bindsym $mod+Control+0 move container to workspace number $ws10
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Resize −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Resize ----------------------------------------------------------------------------
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -237,16 +237,16 @@ mode "resize" {
 }
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Screenshot −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Screenshot ------------------------------------------------------------------------
 
 # Install Flameshot !
 bindsym Print       exec flameshot full
 bindsym Shift+Print exec flameshot gui
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Menus −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Menus -----------------------------------------------------------------------------
 
 # Power --
 set $mode_power Menu power :   <b>Ctrl</b> +   <b>[l]</b> lock  -  <b>[e]</b> logout  -  <b>[s]</b> sleep  -  <b>[r]</b> reboot  -  <b>[o]</b> off
@@ -268,7 +268,8 @@ mode --pango_markup "$mode_power"{
 
 # Launcher -- useless ?
 set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[w]</b> wordreference  -  <b>[l]</b> larousse  -  <b>[f]</b> firefox  -  <b>[n]</b> nautilus  -  <b>[t]</b> thunderbird
-bindsym $mod+o mode "$mode_app"
+bindsym $mod+s mode "$mode_app"
+
 
 mode --pango_markup "$mode_app" {
 
@@ -285,8 +286,8 @@ mode --pango_markup "$mode_app" {
 }
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Colors −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Colors ----------------------------------------------------------------------------
 
 # class                 border  backgr. text    indicator child_border
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
@@ -299,8 +300,8 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 
-# −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-# Bars −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+# -----------------------------------------------------------------------------------
+# Bars ------------------------------------------------------------------------------
 bar {
     # font pango:Hack Nerd Font Complete Mono 13
     font pango:Hack Nerd Font Complete Mono 12
@@ -338,7 +339,8 @@ bar {
 bar {
     # font pango:Hack Nerd Font Complete Mono 13
     font pango:Hack Nerd Font Complete Mono 12
-    output nonprimary
+    # output nonprimary
+    output DisplayPort-1
 
     # separator_symbol "  -  "
     separator_symbol "    -    "

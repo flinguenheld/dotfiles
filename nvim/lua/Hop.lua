@@ -1,4 +1,4 @@
--- HOP -−--−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+-- HOP -----------------------------------------------------------------------------------------------------------
 require'hop'.setup {
 	-- branch = 'v1', -- optional but strongly recommended
 	-- keys = 'etovxqpdygfblzhckisuran',
@@ -9,4 +9,3 @@ require'hop'.setup {
     HopNextKey1 ='#54af4a',
     HopNextKey2 ='#f7wf38',
 }
-

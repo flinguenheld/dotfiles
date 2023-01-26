@@ -2,7 +2,6 @@
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Pouet
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
@@ -13,6 +12,8 @@ require('packer').startup(function()
     use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
     use 'williamboman/mason.nvim' -- New LspInstaller
     use 'williamboman/mason-lspconfig.nvim'
+    use 'j-hui/fidget.nvim' -- Useful status updates for LSP
+    use 'folke/neodev.nvim'-- Additional lua configuration, makes nvim stuff amazing
 
     -- Linter
     use 'jose-elias-alvarez/null-ls.nvim'
@@ -26,7 +27,7 @@ require('packer').startup(function()
 
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'hrsh7th/cmp-nvim-lsp-document-symbol' -- Doesn't work ;(
+    use 'hrsh7th/cmp-nvim-lsp-document-symbol'
 
     -- Debug
     use 'folke/trouble.nvim'
@@ -39,23 +40,27 @@ require('packer').startup(function()
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
     use 'onsails/lspkind-nvim'
-
     use "rafamadriz/friendly-snippets"
 
     -- Telescope
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
-    use 'nvim-telescope/telescope-fzy-native.nvim'
+      -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-    -- Marks
+    -- Git related plugins
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
+    use 'lewis6991/gitsigns.nvim'
+
+    -- Markshop
     use 'chentoast/marks.nvim'
 
     -- Tree
     use 'kyazdani42/nvim-tree.lua'
 
     -- Yank
-    -- use  "tversteeg/registers.nvim"
     use {
         "tversteeg/registers.nvim",
         config = function()
@@ -91,7 +96,7 @@ require('packer').startup(function()
 end
 )
 
--- Leader --
+-- Leader
 vim.g.mapleader = ' '
 vim.g.timeoulen = 3000
 
@@ -165,9 +170,9 @@ vim.api.nvim_exec(
 )
 
 
--- require("luasnip.loaders.from_vscode").lazy_load()
--- require("luasnip.loaders.from_snipmate").lazy_load()
--- require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/luasnip.lua"})
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/luasnip.lua"})
 
 
 require('TreeSitter')
@@ -180,8 +185,7 @@ require('AutoSave')
 require('IlluminateCursor')
 
 require('Mason')
-require('LspCmp')
-require('LuaSnip')
+require('LspCmp_LuaSnip')
 require('Comments')
 require('AutoPair')
 
@@ -216,7 +220,6 @@ R = function(name)
     RELOAD(name)
     return require(name)
 end
-
 
 
 -- -- TEST -------------------------------------------------------------------------------------------------------

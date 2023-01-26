@@ -1,47 +1,25 @@
--- TELESCOPE −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
-require("telescope").setup {
-
-
-defaults = { file_ignore_patterns = {"env", "__pycache__"} },
-  extensions = {
-
-    fzy_native = {
-                override_generic_sorter = false,
-                override_file_sorter = true,
-            },
-
-    file_browser = {
-          -- theme = "ivy",
-
-          mappings = {
-            ["i"] = {
-              -- your custom insert mode mappings
-            },
-            ["n"] = {
-              -- your custom normal mode mappings
-            },
-          },
+-- [[ Configure Telescope ]]
+-- See `:help telescope` and `:help telescope.setup()`
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+      },
     },
   },
 }
 
-require('telescope').load_extension('fzy_native')
-require("telescope").load_extension "file_browser"
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
+require("telescope").load_extension('file_browser')
 
-
-
--- Old attempts
--- function FindFiles_3()
---     require('telescope.builtin').find_files{
---         cwd =  vim.fn.expand('%:p:h:h:h:h'),
---         prompt_title = string.format("Recherche (-1): %s/", vim.fn.expand('%:p:h:h:h:h')),
---     }
--- end
-
--- function LiveGrep_Home()
-
---     require('telescope.builtin').live_grep{
---         search_dirs = {os.getenv("HOME")},
---         prompt_title = os.getenv("HOME"),
---     }
--- end
+-- See `:help telescope.builtin`
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
