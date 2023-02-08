@@ -121,9 +121,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+o layout stacking
+bindsym $mod+b layout stacking
+bindsym $mod+o layout toggle split
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
@@ -142,10 +142,10 @@ bindsym $mod+Control+f floating toggle
 bindsym $mod+m focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+e focus parent
 
 # focus the child container
-bindsym $mod+Control+a focus child
+bindsym $mod+Control+e focus child
 
 
 # -----------------------------------------------------------------------------------

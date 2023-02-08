@@ -16,14 +16,17 @@ local opts = { noremap=true, silent=true }
 keymap("v", "<", "<gv", opt)
 keymap("v", ">", ">gv", opt)
 
--- Miscellaneous ----------------------------------------------------------------------------------------------------
+-- Miscellaneous -------------------------------------------------------------------------------------------------
 keymap('n', '<leader>*', ':noh<CR>', opt)
 
--- Clipboard --------------------------------------------------------------------------------------------------------
-keymap('',  '<C-y>',		'"+y', opt)		-- Copy nvim to desk clipboard
-keymap('n', '<leader>y',	':Telescope registers<CR>', opt)
 
--- Window -----------------------------------------------------------------------------------------------------------
+-- Clipboard -----------------------------------------------------------------------------------------------------
+keymap('',  '<C-y>',		'"+y', opt)		-- Copy nvim to desk clipboard
+keymap('v', '<leader>y', '"zy<CR>', opt)
+keymap('v', '<leader>D', '"zd<CR>', opt)
+keymap('n', '<leader>p', '"zp', opt)
+
+-- Window --------------------------------------------------------------------------------------------------------
 keymap('n', '<S-left>',      ':vertical resize -2<CR>', opt)
 keymap('n', '<S-down>',      ':resize -2<CR>', opt)
 keymap('n', '<S-up>',        ':resize +2<CR>', opt)
@@ -34,13 +37,15 @@ keymap('n', '<C-down>',     '<C-w>j<CR>', opt)
 keymap('n', '<C-up>',       '<C-w>k<CR>', opt)
 keymap('n', '<C-right>',    '<C-w>l<CR>', opt)
 
--- TELESCOPE --------------------------------------------------------------------------------------------------------
+-- TELESCOPE -----------------------------------------------------------------------------------------------------
 -- Recherche dossier courant
 keymap('n', '<leader>tf',   '<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir()})<CR>', opt)
 keymap('n', '<leader>tF',   '<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=require("telescope.utils").buffer_dir(), prompt_title=require("telescope.utils").buffer_dir() .. " (hidden files)"})<CR>', opt)
 
 keymap('n', '<leader>th',   '<cmd>lua require("telescope.builtin").find_files({hidden=false, cwd=os.getenv("HOME"), prompt_title="home/"})<CR>', opt)
 keymap('n', '<leader>tH',   '<cmd>lua require("telescope.builtin").find_files({hidden=true, cwd=os.getenv("HOME"), prompt_title="home/ (hidden files)"})<CR>', opt)
+
+keymap('n', '<leader>tt', '<cmd>lua require("telescope.builtin").git_files()<CR>', opt)
 
 -- Recherche dossier
 keymap('n', '<leader>tr',	'<cmd>lua require "telescope".extensions.file_browser.file_browser({cwd=require("telescope.utils").buffer_dir()}) <CR>', opt)
@@ -56,17 +61,20 @@ keymap('n', '<leader>to',   ':Telescope oldfiles <cr>', opt)
 keymap('n', '<leader>tb',	':Telescope buffers <cr>', opt)
 keymap('n', '<leader>tm',	':Telescope marks <cr>', opt)
 
--- HOP --------------------------------------------------------------------------------------------------------------
+-- UnDoTree ------------------------------------------------------------------------------------------------------
+keymap('n', '<leader>u', ':UndotreeToggle <cr>', opt)
+
+-- HOP -----------------------------------------------------------------------------------------------------------
 keymap('', ',',                 '<cmd>HopWord<CR>', opt)
 keymap('', '<leader>,',         '<cmd>HopLine<CR>', opt)
 
--- NVIM-TREE --------------------------------------------------------------------------------------------------------
+-- NVIM-TREE -----------------------------------------------------------------------------------------------------
 keymap('n', '<leader>no',       ':NvimTreeToggle<CR>', opt)
 keymap('n', '<leader>nr',       ':NvimTreeRefresh<CR>', opt)
 keymap('n', '<leader>nc',       ':NvimTreeCollapse<CR>', opt)
 keymap('n', '<leader>ns',       ':NvimTreeResize 30<CR>', opt)
 
--- DIAGNOSTIC KEYMAPS -----------------------------------------------------------------------------------------------
+-- DIAGNOSTIC KEYMAPS --------------------------------------------------------------------------------------------
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 keymap('n', '<leader>e',           '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 keymap('n', '[d',                  '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)

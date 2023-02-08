@@ -40,6 +40,7 @@ fi
 # Flo --
 alias la='ls -lA'
 alias senv='source env/bin/activate'
+alias svenv='source venv/bin/activate'
 
 alias vi='nvim'
 alias py='python'

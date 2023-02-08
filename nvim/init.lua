@@ -70,6 +70,7 @@ require('packer').startup(function()
     -- Others
     use 'numToStr/Comment.nvim' -- gcc gbc
 
+    use 'mbbill/undotree'
     use 'Pocco81/auto-save.nvim'
     use 'iamcco/markdown-preview.nvim' -- :call mkdp#util#install()
     use 'phaazon/hop.nvim'
@@ -91,7 +92,7 @@ require('packer').startup(function()
 
     --
     use '/home/flo/plugins/luacomment.nvim'
-    use '/home/flo/plugins/potpourri.nvim'
+    -- use '/home/flo/plugins/potpourri.nvim'
 
 end
 )
