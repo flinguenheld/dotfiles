@@ -3,7 +3,6 @@ require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    -- theme = 'everforest',
     -- theme = 'catppuccin',
     -- theme = 'wombat',
     -- theme = 'material',

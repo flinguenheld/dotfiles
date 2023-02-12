@@ -39,6 +39,7 @@ fi
 
 # Flo --
 alias la='ls -lA'
+alias yk='xclip -r -selection clipboard'
 alias senv='source env/bin/activate'
 alias svenv='source venv/bin/activate'
 

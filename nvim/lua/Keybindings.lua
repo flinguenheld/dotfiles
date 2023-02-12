@@ -53,7 +53,8 @@ keymap('n', '<leader>tR',	'<cmd>lua require "telescope".extensions.file_browser.
 
 -- Grep
 keymap('n', '<leader>tg',	'<cmd>lua require("telescope.builtin").live_grep()<CR>', opt)
-keymap('n', '<leader>tG',	'<cmd>lua require("telescope.builtin").live_grep({cwd=os.getenv("HOME")}, prompt_title="Grep in Home")<CR>', opt)
+keymap('n', '<leader>tG',	'<cmd>lua require("telescope.builtin").live_grep({cwd=os.getenv("HOME"), prompt_title="Grep in Home"})<CR>', opt)
+-- keymap('n', '<leader>tG',   '<cmd>lua require("telescope.builtin").live_grep({hidden=true, cwd=os.getenv("HOME"), prompt_title="home/ (hidden files)"})<CR>', opt)
 
 --
 keymap('n', '<leader>ta',   ':Telescope help_tags <cr>', opt)
@@ -61,12 +62,14 @@ keymap('n', '<leader>to',   ':Telescope oldfiles <cr>', opt)
 keymap('n', '<leader>tb',	':Telescope buffers <cr>', opt)
 keymap('n', '<leader>tm',	':Telescope marks <cr>', opt)
 
+keymap('n', '<leader>tc',	':Telescope colorscheme <cr>', opt)
+
 -- UnDoTree ------------------------------------------------------------------------------------------------------
 keymap('n', '<leader>u', ':UndotreeToggle <cr>', opt)
 
 -- HOP -----------------------------------------------------------------------------------------------------------
-keymap('', ',',                 '<cmd>HopWord<CR>', opt)
-keymap('', '<leader>,',         '<cmd>HopLine<CR>', opt)
+keymap('', ',',                 ':lua require("hop").hint_words({multi_windows = true})<CR>', opt)
+keymap('', '<leader>,',         '<cmd>HopWord<CR>', opt)
 
 -- NVIM-TREE -----------------------------------------------------------------------------------------------------
 keymap('n', '<leader>no',       ':NvimTreeToggle<CR>', opt)

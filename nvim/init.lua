@@ -62,7 +62,7 @@ require('packer').startup(function()
 
     -- Yank
     use {
-        "tversteeg/registers.nvim",
+        'tversteeg/registers.nvim',
         config = function()
             require("registers").setup()
         end,
@@ -73,26 +73,28 @@ require('packer').startup(function()
     use 'mbbill/undotree'
     use 'Pocco81/auto-save.nvim'
     use 'iamcco/markdown-preview.nvim' -- :call mkdp#util#install()
-    use 'phaazon/hop.nvim'
+    use { 'phaazon/hop.nvim', branch= 'v2' }
 
-    use "lukas-reineke/indent-blankline.nvim" -- Affiche l'indentation
+    use 'lukas-reineke/indent-blankline.nvim' -- Affiche l'indentation
     use 'RRethy/vim-illuminate' -- Illumine le mot (A-n pour aller au suivant)
 
     use 'machakann/vim-sandwich'
     use 'windwp/nvim-autopairs'
 
+    use 'norcalli/nvim-colorizer.lua'
+
     -- Theme and starter
+    use { 'catppuccin/nvim', as = 'catppuccin' }
+
     use 'kyazdani42/nvim-web-devicons' -- Need nerd font like hack
     use 'ryanoasis/vim-devicons' -- Nécessaire ???
     use 'goolord/alpha-nvim'
     use 'nvim-lualine/lualine.nvim'
-    use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
-
-    use 'norcalli/nvim-colorizer.lua'
 
     --
     use '/home/flo/plugins/luacomment.nvim'
     -- use '/home/flo/plugins/potpourri.nvim'
+    -- use {'/home/flo/plugins/catppuccin-nvim', as = 'catppuccin' }
 
 end
 )
@@ -170,7 +172,6 @@ vim.api.nvim_exec(
     false
 )
 
-
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/luasnip.lua"})
@@ -194,9 +195,9 @@ require('IndentBlankLine')
 require('Marks')
 
 require('NvimTree')
-require('LuaLine')
 require('Hop')
 require('ColorScheme')
+require('LuaLine')
 
 require('Keybindings')
 
