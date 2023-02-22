@@ -46,7 +46,6 @@ exec --no-startup-id xdg-user-dirs-update
 
 # -----------------------------------------------------------------------------------
 # Sound -----------------------------------------------------------------------------
-
 # Pipewire-pulse
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioMute --release exec pkill -RTMIN+1 i3blocks
@@ -64,27 +63,22 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # -----------------------------------------------------------------------------------
 # Mouse -----------------------------------------------------------------------------
-
 mouse_warping output
 focus_follows_mouse yes
 
 # -----------------------------------------------------------------------------------
 # -----------------------------------------------------------------------------------
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
 
 # reload the configuration file
 bindsym $mod+Control+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Control+r restart
 
-
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec terminator
-
 
 # kill focused window
 bindsym $mod+Control+q kill
@@ -95,10 +89,18 @@ bindsym $mod+Control+q kill
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
 bindsym $mod+Control+d exec "rofi -show run"
 
+# -----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
+# Bind created to erase horrible default binds
+bindsym $mod+g exec "notify-send 'Mange ton chien'
+# bindsym $mod+Shift+Control+g exec --no-startup-id keyring get git token | xclip -r -selection secondary | xclip -o -selection secondary
+bindsym $mod+Shift+Control+g exec keyring get git token | xclip -r -selection clip
+
+# bindsym $mod+Shift+Control+g exec keyring get git token
+
 
 # -----------------------------------------------------------------------------------
 # -----------------------------------------------------------------------------------
-
 # change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -131,10 +133,8 @@ bindsym $mod+Control+x move workspace to output next
 # Come back on the previous workplace by switching the current workplace <- Eventually boring
 # workspace_auto_back_and_forth yes
 
-
 # -----------------------------------------------------------------------------------
 # Floating --------------------------------------------------------------------------
-
 # toggle tiling / floating
 bindsym $mod+Control+f floating toggle
 
@@ -147,10 +147,8 @@ bindsym $mod+e focus parent
 # focus the child container
 bindsym $mod+Control+e focus child
 
-
 # -----------------------------------------------------------------------------------
 # Workspaces ------------------------------------------------------------------------
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:<span font-size='230%'></span>"
@@ -165,32 +163,6 @@ set $ws9 "9:<span font-size='230%'></span>"
 set $ws10 "10:<span font-size='230%'></span>"
 # set $ws10 "10:<span size='xx-large'></span>"
 
-# switch to workspace (Bépo numbers are shift + num :| )
-bindsym $mod+Shift+1 workspace number $ws1
-bindsym $mod+Shift+2 workspace number $ws2
-bindsym $mod+Shift+3 workspace number $ws3
-bindsym $mod+Shift+4 workspace number $ws4
-bindsym $mod+Shift+5 workspace number $ws5
-bindsym $mod+Shift+6 workspace number $ws6
-bindsym $mod+Shift+7 workspace number $ws7
-bindsym $mod+Shift+8 workspace number $ws8
-bindsym $mod+Shift+9 workspace number $ws9
-bindsym $mod+Shift+0 workspace number $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+Control+1 move container to workspace number $ws1
-bindsym $mod+Shift+Control+2 move container to workspace number $ws2
-bindsym $mod+Shift+Control+3 move container to workspace number $ws3
-bindsym $mod+Shift+Control+4 move container to workspace number $ws4
-bindsym $mod+Shift+Control+5 move container to workspace number $ws5
-bindsym $mod+Shift+Control+6 move container to workspace number $ws6
-bindsym $mod+Shift+Control+7 move container to workspace number $ws7
-bindsym $mod+Shift+Control+8 move container to workspace number $ws8
-bindsym $mod+Shift+Control+9 move container to workspace number $ws9
-bindsym $mod+Shift+Control+0 move container to workspace number $ws10
-
-
-# Same for us keyboard without shift (I don't understand why bepo send a shifted number)
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -215,7 +187,6 @@ bindsym $mod+Control+0 move container to workspace number $ws10
 
 # -----------------------------------------------------------------------------------
 # Resize ----------------------------------------------------------------------------
-
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -236,18 +207,14 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-
 # -----------------------------------------------------------------------------------
 # Screenshot ------------------------------------------------------------------------
-
 # Install Flameshot !
 bindsym Print       exec flameshot full
 bindsym Shift+Print exec flameshot gui
 
-
 # -----------------------------------------------------------------------------------
 # Menus -----------------------------------------------------------------------------
-
 # Power --
 set $mode_power Menu power :   <b>Ctrl</b> +   <b>[l]</b> lock  -  <b>[e]</b> logout  -  <b>[s]</b> sleep  -  <b>[r]</b> reboot  -  <b>[o]</b> off
 bindsym $mod+p mode "$mode_power"
@@ -265,14 +232,12 @@ mode --pango_markup "$mode_power"{
     bindsym Escape mode "default"
 }
 
-
-# Launcher -- useless ?
+# Launcher
 set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[w]</b> wordreference  -  <b>[l]</b> larousse  -  <b>[f]</b> firefox  -  <b>[n]</b> nautilus  -  <b>[t]</b> thunderbird
 bindsym $mod+s mode "$mode_app"
 
 
 mode --pango_markup "$mode_app" {
-
     bindsym v exec vivaldi, mode default
     bindsym Control+v exec vivaldi --incognito, mode default
     bindsym w exec vivaldi --new-window --homepage "https://www.wordreference.com", mode default
@@ -285,19 +250,44 @@ mode --pango_markup "$mode_app" {
     bindsym Return mode "default"
 }
 
-
 # -----------------------------------------------------------------------------------
 # Colors ----------------------------------------------------------------------------
 
-# class                 border  backgr. text    indicator child_border
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused          #4c7899 #1cb0f6 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# Mocha
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
 
-client.background       #ffffff
+
+# target                 title     bg    text   indicator  border
+client.focused           $blue     $blue $base  $rosewater $blue
+client.focused_inactive  $base     $base $text  $rosewater $base
+client.unfocused         $base     $base $text  $rosewater $base
+client.urgent            $red      $red  $crust $overlay0  $red
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 
 # -----------------------------------------------------------------------------------
@@ -323,16 +313,16 @@ bar {
     tray_output nonprimary
 
     colors {
-        background #000000
+        background $crust
         statusline #F8F8F2
-        separator  #44475A
+        separator  $surface1
 
-                            # border          bg              txt         indicator
-        focused_workspace  #7ac70c          #1cb0f6         #000000
-        active_workspace   #282A36          #6f6f6f         #F8F8F8
-        inactive_workspace #282A36          #282A36         #7f7f7f
-        urgent_workspace   #FF5555          #FF5555         #F8F8F2
-        binding_mode       #bff199          #bff199         #000000
+                         # border             bg              txt
+        focused_workspace  $blue            $blue           $crust
+        active_workspace   $overlay0        $overlay0       $base 
+        inactive_workspace $surface0        $surface0       $subtext0
+        urgent_workspace   $red             $red            $crust
+        binding_mode       $sky             $sky            $crust
     }
 }
 
@@ -342,7 +332,6 @@ bar {
     # output nonprimary
     output DisplayPort-1
 
-    # separator_symbol "  -  "
     separator_symbol "    -    "
     position top
     i3bar_command i3bar
@@ -357,15 +346,15 @@ bar {
     tray_padding 2
 
     colors {
-        background #000000
+        background $crust
         statusline #F8F8F2
-        separator  #44475A
+        separator  $surface1
 
-                            # border          bg              txt         indicator
-        focused_workspace  #7ac70c          #1cb0f6         #000000
-        active_workspace   #282A36          #6f6f6f         #F8F8F8
-        inactive_workspace #282A36          #282A36         #7f7f7f
-        urgent_workspace   #FF5555          #FF5555         #F8F8F2
-        binding_mode       #bff199          #bff199         #000000
+                         # border             bg              txt
+        focused_workspace  $blue            $blue           $crust
+        active_workspace   $overlay0        $overlay0       $base
+        inactive_workspace $surface0        $surface0       $subtext0
+        urgent_workspace   $red             $red            $crust
+        binding_mode       $sky             $sky            $crust
     }
 }
