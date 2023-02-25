@@ -37,6 +37,7 @@ if [ -f `which powerline-daemon` ]; then
 fi
 
 
+
 # Flo --
 alias la='ls -lA'
 alias yk='xclip -r -selection clipboard'
@@ -45,4 +46,5 @@ alias svenv='source venv/bin/activate'
 
 alias vi='nvim'
 alias py='python'
+
 EDITOR=/usr/bin/vi
