@@ -47,7 +47,8 @@ do
                 (rm -r "$FOLDER" && cp -r "${HOME}/.config/${FOLDER:2:${#FOLDER}}" ./ && echo "$FOLDER OK") || echo "$FOLDER FAIL"
             ;;
             install)
-                (rm -r "${HOME}/.config/${FOLDER:2:${#FOLDER}}" && cp -r "$FOLDER" "${HOME}/.config/" && echo "$FOLDER OK") || echo "$FOLDER FAIL"
+                rm -rf "${HOME}/.config/${FOLDER:2:${#FOLDER}}"
+                (cp -r "$FOLDER" "${HOME}/.config/" && echo "$FOLDER OK") || echo "$FOLDER FAIL"
             ;;
         esac
     fi

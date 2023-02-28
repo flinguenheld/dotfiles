@@ -95,7 +95,8 @@ bindsym $mod+Control+d exec "rofi -show run"
 # Bind created to erase horrible default binds
 bindsym $mod+g exec "notify-send 'Mange ton chien'
 # bindsym $mod+Shift+Control+g exec --no-startup-id keyring get git token | xclip -r -selection secondary | xclip -o -selection secondary
-bindsym $mod+Shift+Control+g exec keyring get git token | xclip -r -selection clip
+bindsym $mod+Shift+Control+0 exec keyring get git token | xclip -r -selection clip
+bindsym $mod+Shift+Control+1 exec keyring get mail flo | xclip -r -selection clip
 
 # bindsym $mod+Shift+Control+g exec keyring get git token
 
