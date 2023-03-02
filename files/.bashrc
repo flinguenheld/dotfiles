@@ -34,6 +34,7 @@ if [ -f `which powerline-daemon` ]; then
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
   . /usr/share/powerline/bash/powerline.sh
+  # . /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
 
