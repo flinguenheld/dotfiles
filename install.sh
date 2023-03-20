@@ -1,83 +1,77 @@
-dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sed -i '/bullseye main/testing main/' /etc/apt/source.list
+sed -i '/bullseye-update/testing-update/' /etc/apt/source.list
+sed -i '/security.debian.ogr/d' /etc/apt/source.list
+apt update -y
 
-dnf upgrade --refresh -y
 # --
-dnf install -y lua
-dnf install -y git
-dnf install -y fzf
+apt install -y lua
+apt install -y python3
+apt install -y git
+apt install -y fzf
 
-dnf install -y locate
-dnf install -y tldr
+apt install -y locate
+apt install -y tldr
+tldr -u
 
 # Fonts & Powerline
-dnf install -y fontawesome-fonts
-dnf install -y powerline powerline-fonts
+apt install -y fontawesome-fonts
+apt install -y powerline powerline-fonts
 
 # Neovim
     # Pip
-dnf install -y python3-pip
+apt install -y python3-pip
 pip install --user --upgrade pynvim
 pip install neovim
 
     # Nodejs
-dnf install -y  nodejs
+apt install -y nodejs
 npm install -g neovim
 
     # Treesitter
-dnf groupinstall 'Development Tools' -y
-dnf install -y gcc-c++
+apt groupinstall 'Development Tools' -y
+apt install -y gcc-c++
 
     # Telescope
-dnf install -y ripgrep
-dnf install -y fd-find
+apt install -y ripgrep
+apt install -y fd-find
 
     # Clipboard
-dnf install -y xclip
+apt install -y xclip
 
+apt install -y neovim
     # Nightly
-dnf copr enable agriffis/neovim-nightly -y
-dnf install -y neovim python3-neovim
+# apt copr enable agriffis/neovim-nightly -y
+# apt install -y neovim python3-neovim
 
 
-if [ "$1" != "docker" ]
-then
+apt install -y arandr
+apt install -y pipewire
+apt install -y rofi
+apt install -y kitty
+apt install -y flameshot
+apt install -y py3status
 
-    dnf install -y arandr
-    dnf install -y pipewire
-    dnf install -y rofi
-    dnf install -y kitty
-    dnf install -y flameshot
-    dnf install -y nautilus
-    dnf install -y py3status
+# apt install -y xfce4-power-manager
+# apt install -y xfce4-settings
+# apt install -y mediawriter
 
-    dnf install -y xfce4-power-manager
-    dnf install -y xfce4-settings
-    dnf install -y mediawriter
+# Clock for py3status
+pip install pytz
+pip install tzlocal
 
-    # Clock for py3status
-    pip install pytz
-    pip install tzlocal
+# Mail & Google calendar
+pip install oauth2client
+pip install keyring
 
-    # Mail & Google calendar
-    pip install oauth2client
-    pip install keyring
+# --
+apt install -y thunderbird
+apt install -y pinta
+apt install -y ristretto
+apt install -y vlc
+apt install -y libreoffice
 
-    # --
-    dnf install -y thunderbird
-    dnf install -y pinta
-    dnf install -y ristretto
-    dnf install -y vlc
-    dnf install -y libreoffice
+# Pdf
+apt install -y okular
 
-    # Vivaldi
-    dnf install -y dnf-utils
-    dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
-    dnf install -y vivaldi-stable
-
-    # Pdf
-    dnf install -y okular
-
-    # Scan
-    dnf install -y xsane
-fi
+# Scan
+apt install -y xsane

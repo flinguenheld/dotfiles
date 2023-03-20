@@ -1,55 +1,79 @@
 #!/bin/bash
+# Florent Linguenheld 2022
 
-# Created to save or install easily my dotfiles
-# Each files to save have to be place in files/. They need a comment with their folder (e.g. # Folder : /home/)
-# Folders will be searched in ~/.config/. Complete the array IGNORE if needed
+usage() {
+    echo "Usage: $(basename "${0}") [-i] | [-h]"
+    echo "   Copy here, my dotfiles which are spreaded in the system's folders."
+    echo '      -i INSTALL   reverse the command, copy files/folder from here to their destination.'
+    echo '      -h HELP      display this message.'
+}
 
+MODE='save'
+while getopts iqh OPTION
+do
+    case ${OPTION} in
+        i)
+            MODE='install'
+        ;;
+        h)
+            echo "Easily save my dotfiles."
+            echo
+            echo '   Files have to be placed in files/'
+            echo '   They need a comment with their folder (e.g. # Folder : /home/) inside.'
+            echo
+            echo '   All folders here will be searched in ~/.config/ and copied/pasted'
+            echo "   To ignore some of them, you can complete the array 'IGNORE'."
+            echo
 
-MODE=$1 
+            usage
+            exit 0
+        ;;
+        ?)
+            echo
 
-if [ "$MODE" != "save" ] && [ "$MODE" != "install" ]
-then
-    echo "Usage: $0 { save | install }"
-    exit 2
-fi
+            usage 2>&1
+            exit 1
+        ;;
+    esac
+done
 
-echo
-echo "------------------------- Files -------------------------"
+echo '------------------------- Files -------------------------'
+
 for FILE in ./files/{,.}*
 do
     if [ -f "$FILE" ]; then
 
         FOLDER=$(grep "Folder : " "$FILE" | sed "s/. Folder : //" | sed "s|/home|${HOME}|")
 
-        case "$MODE" in
+        case "${MODE}" in
             save)
-                cp -fv "$FOLDER$(basename "$FILE")" ./files/
+                cp -fv "${FOLDER}$(basename "$FILE")" ./files/
             ;;
             install)
-                cp -fv "$FILE" "$FOLDER"
+                cp -fv "${FILE}" "${FOLDER}"
             ;;
         esac
     fi
 done
 
-echo
-echo "------------------------ Folders ------------------------"
+echo '------------------------ Folders ------------------------'
 IGNORE=("./files" "./fonts" "./save" "/sandbox")
 
 for FOLDER in ./*
 do
 
-    if [ -d "$FOLDER" ] && ! [[ ${IGNORE[*]} =~ $FOLDER ]]
+    if [ -d "${FOLDER}" ] && ! [[ ${IGNORE[*]} =~ ${FOLDER} ]]
     then
 
-        case "$MODE" in
+        case "${MODE}" in
             save)
-                (rm -r "$FOLDER" && cp -r "${HOME}/.config/${FOLDER:2:${#FOLDER}}" ./ && echo "$FOLDER OK") || echo "$FOLDER FAIL"
+                (rm -r "${FOLDER}" && cp -r "${HOME}/.config/${FOLDER:2:${#FOLDER}}" ./ && echo "${FOLDER} OK") || echo "${FOLDER} FAIL"
             ;;
             install)
                 rm -rf "${HOME}/.config/${FOLDER:2:${#FOLDER}}"
-                (cp -r "$FOLDER" "${HOME}/.config/" && echo "$FOLDER OK") || echo "$FOLDER FAIL"
+                (cp -r "${FOLDER}" "${HOME}/.config/" && echo "${FOLDER} OK") || echo "${FOLDER} FAIL"
             ;;
         esac
     fi
 done
+echo '---------------------------------------------------------'
