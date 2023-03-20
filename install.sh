@@ -1,6 +1,6 @@
-sed -i '/bullseye main/testing main/' /etc/apt/source.list
-sed -i '/bullseye-update/testing-update/' /etc/apt/source.list
-sed -i '/security.debian.ogr/d' /etc/apt/source.list
+sed -i 's/bullseye main/testing main/' /etc/apt/sources.list
+sed -i 's/bullseye-update/testing-update/' /etc/apt/sources.list
+sed -i '/security.debian.org/d' /etc/apt/sources.list
 apt update -y
 
 # --
@@ -46,6 +46,7 @@ apt install -y neovim
 
 apt install -y arandr
 apt install -y pipewire
+apt install -y i3
 apt install -y rofi
 apt install -y kitty
 apt install -y flameshot
