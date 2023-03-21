@@ -1,12 +1,9 @@
-sed -i 's/bullseye main/testing main/' /etc/apt/sources.list
-sed -i 's/bullseye-update/testing-update/' /etc/apt/sources.list
-sed -i '/security.debian.org/d' /etc/apt/sources.list
-apt update -y
+# sed -i 's/bullseye main/testing main/' /etc/apt/sources.list
+# apt update -y
+# apt upgrade -y
 
 # --
-apt install -y lua
-apt install -y python3
-apt install -y git
+apt install -y lua5.4
 apt install -y fzf
 
 apt install -y locate
@@ -14,22 +11,17 @@ apt install -y tldr
 tldr -u
 
 # Fonts & Powerline
-apt install -y fontawesome-fonts
-apt install -y powerline powerline-fonts
+apt install -y powerline
+apt install -y fonts-powerline
+
+
+apt install -y build-essential
+apt install -y manpages-dev
 
 # Neovim
-    # Pip
-apt install -y python3-pip
-pip install --user --upgrade pynvim
-pip install neovim
-
     # Nodejs
 apt install -y nodejs
 npm install -g neovim
-
-    # Treesitter
-apt groupinstall 'Development Tools' -y
-apt install -y gcc-c++
 
     # Telescope
 apt install -y ripgrep
@@ -39,12 +31,9 @@ apt install -y fd-find
 apt install -y xclip
 
 apt install -y neovim
-    # Nightly
-# apt copr enable agriffis/neovim-nightly -y
-# apt install -y neovim python3-neovim
 
 
-apt install -y arandr
+apt install -y x11-xserver-utils
 apt install -y pipewire
 apt install -y i3
 apt install -y rofi
