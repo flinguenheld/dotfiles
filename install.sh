@@ -6,21 +6,21 @@
 # Add privileges to user in /etc/sudoers
 #
 # Install intel/amd microcode
-# sudo apt-get install intel-microcode
-# sudo apt-get install amd64-microcode
+# apt install intel-microcode
+apt install amd64-microcode
 #
 # I3
-# sudo apt-get install i3 xorg suckless-tools
+apt install i3
 #
 # Display manager
-# sudo apt-get install lightdm
+apt install lightdm
 
 # --
 apt update -y
 # apt upgrade -y
 
 # Graphic amd
-apt install -y firmware-linux-nonfree firmware-amd-graphics libgl1-mesa-dri libglx-mesa0 mesa-vulkan-drivers xserver-xorg-video-all
+apt install -y firmware-amd-graphics libgl1-mesa-dri libglx-mesa0 mesa-vulkan-drivers xserver-xorg-video-all
 
 
 # --
@@ -50,8 +50,8 @@ apt install -y pavucontrol
 apt install -y rofi
 apt install -y kitty
 apt install -y flameshot
-# apt install -y py3status
-pip3 install py3status
+apt install -y py3status
+# pip3 install py3status
 
 apt install -y xfce4-power-manager
 apt install -y xfce4-settings
@@ -74,12 +74,15 @@ apt install -y xclip
 
 
 # Clock for py3status
-pip3 install pytz
-pip3 install tzlocal
+pip install pytz
+pip install tzlocal
 
 # Mail & Google calendar
-pip3 install oauth2client
-pip3 install keyring
+pip install oauth2client
+pip install keyring
+
+# Anglais
+pip install beautifulsoup4
 
 # --
 apt install -y firefox-esr

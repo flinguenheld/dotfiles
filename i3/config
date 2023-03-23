@@ -131,7 +131,7 @@ bindsym $mod+w layout tabbed
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
-bindsym $mod+Control+x move workspace to output next
+bindsym $mod+Control+x move workspace to output left
 # Come back on the previous workplace by switching the current workplace <- Eventually boring
 # workspace_auto_back_and_forth yes
 
@@ -153,16 +153,16 @@ bindsym $mod+Control+e focus child
 # Workspaces ------------------------------------------------------------------------
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:<span font-size='230%'></span>"
-set $ws2 "2:<span font-size='230%'></span>"
-set $ws3 "3:<span font-size='230%'></span>"
-set $ws4 "4:<span font-size='230%'></span>"
-set $ws5 "5:<span font-size='230%'></span>"
-set $ws6 "6:<span font-size='230%'></span>"
-set $ws7 "7:<span font-size='230%'></span>"
-set $ws8 "8:<span font-size='230%'></span>"
-set $ws9 "9:<span font-size='230%'></span>"
-set $ws10 "10:<span font-size='230%'></span>"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 # set $ws10 "10:<span size='xx-large'></span>"
 
 bindsym $mod+1 workspace number $ws1
