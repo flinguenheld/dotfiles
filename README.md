@@ -9,6 +9,7 @@ Don't forget to allow all scripts
 
 #### Install
 Up sources, [testing] contrib non-free  
+For debian 12 : contrib non-free-firmware  
 
     /etc/apt/sources.list
 

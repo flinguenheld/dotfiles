@@ -1,5 +1,6 @@
 # Edit /etc/apt/sources.list
 # Add contrib non-free
+# For debian 12 : contrib non-free-firmware
 # Update
 #
 # Install sudo
@@ -47,6 +48,8 @@ apt install -y manpages-dev
 #apt install -y x11-xserver-utils
 apt install -y pulseaudio-utils
 apt install -y pavucontrol
+apt install -y xrandr
+apt install -y arandr
 
 apt install -y rofi
 apt install -y kitty
@@ -74,18 +77,20 @@ apt install -y fd-find
 apt install -y xclip
     # Nodejs
 apt install -y nodejs
+apt install -y npm
 npm install -g neovim
 
 # Clock for py3status
-pip install pytz
-pip install tzlocal
+# New way for pip without a virtual env
+apt install -y python3-pytz
+apt install -y python3-tzlocal
 
 # Mail & Google calendar
-pip install oauth2client
-pip install keyring
+apt install -y python3-oauth2client
+apt install -y python3-keyring
 
 # Anglais
-pip install beautifulsoup4
+apt install -y python3-beautifulsoup4
 
 # --
 apt install -y firefox-esr

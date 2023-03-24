@@ -38,9 +38,19 @@ if [ -f `which powerline-daemon` ]; then
 fi
 
 
+# You may uncomment the following lines if you want `ls' to be colorized:
+# export LS_OPTIONS='--color=auto'
+# eval "$(dircolors)"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias la='ls $LS_OPTIONS -lA'
+#
+# Some more alias to avoid making mistakes:
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+
 # Flo --
-alias ls='ls --color'
-alias la='ls -lAshc'
 alias yk='xclip -r -selection clipboard'
 alias senv='source env/bin/activate'
 alias svenv='source venv/bin/activate'
