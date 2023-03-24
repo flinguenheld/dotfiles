@@ -155,28 +155,25 @@ class Py3status:
         # self.mail_count = NO_DATA_YET
 
         if self.mail_count is None:
-            full_text = f"<span color='{self.py3.COLOR_NONE}' font-size='100%'>Error mail (none)</span>"
+            full_text = f"<span color='{self.py3.COLOR_NONE}'>Error mail (none)</span>"
 
         elif self.mail_count == NO_DATA_YET:
-            full_text = f"<span color='{self.py3.COLOR_NO_DATA_YET}'><span font-size='110%'> </span>wait…</span>"
+            full_text = f"<span color='{self.py3.COLOR_NO_DATA_YET}'>  wait…</span>"
 
         elif self.mail_count == 0:
-            full_text = f"<span color='{self.py3.COLOR_EMPTY}'><span font-size='150%'></span>  " \
-                "<span font-size='110%'><b>0</b></span></span>"
+            full_text = f"<span color='{self.py3.COLOR_EMPTY}'><b>  0</b></span>"
 
         elif self.mail_count > 0:
-            full_text = f"<span color='{self.py3.COLOR_NEW_MAILS}'><span font-size='150%'></span>  " \
-                f"<span font-size='110%'><b>{self.mail_count}</b></span></span>"
+            full_text = f"<span color='{self.py3.COLOR_NEW_MAILS}'>" \
+                        f"<b>  {self.mail_count}</b></span>"
 
         if self.network_error is not None and self.degraded_when_stale:
-            full_text = f"<span color='{self.py3.COLOR_ERROR}' font-size='100%'>Error mail</span>"
+            full_text = f"<span color='{self.py3.COLOR_ERROR}'>Error mail</span>"
 
         return {
             'full_text': full_text,
             'cached_until': self.py3.time_in(5)
         }
-
-
 
 
     def _check_if_idle(self, connection):

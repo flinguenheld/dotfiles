@@ -5,22 +5,29 @@
 
 ****
 #### Requirements
-
 Don't forget to allow all scripts
+
+#### Install
+Up sources, [testing] contrib non-free  
+
+    /etc/apt/sources.list
+
+Install sudo and add privileges  
+
+    /etc/sudoers
 
 ##### general
 - arandr  
-- pipewire  
 - rofi  
 - terminator  
 - flameshot  
 - xfce4-power-manager  
-- xfce4-settings
+- xfce4-settings  
 
 ##### py3status
 https://py3status.readthedocs.io/en/latest/  
 
-    sudo dnf install py3status
+    sudo apt install py3status
 
 ##### google calendar
 https://py3status.readthedocs.io/en/latest/user-guide/modules/#google_calendar  
@@ -31,7 +38,7 @@ Follow steps in the square and check the i3status.conf
 ##### Fonts
 https://github.com/ryanoasis/nerd-fonts  
 
-    sudo dnf install fontawesome-fonts
+    sudo apt install fonts-font-awesome
 
     ./install.sh Hack
     ./install.sh JetBrainsMono
@@ -41,18 +48,14 @@ https://github.com/ryanoasis/nerd-fonts
     pip install tzlocal
 
 ##### Mail
-Use keyring to set the password :  
+Use keyring to set the password:  
 https://pypi.org/project/keyring/  
 
     import keyring  
     keyring.set_password("mail", "flo", "password")  
     keyring.get_password("mail", "flo")  
 
-
-##### Powerline
-https://fedoramagazine.org/add-power-terminal-powerline/  
-
-    sudo dnf install powerline powerline-fonts
-
 ##### Printer
-    sudo system-config-printer
+Printing Navigate there for printer configuration:  
+
+    http://localhost:631

@@ -393,13 +393,16 @@ class Py3status:
         # Add flo to display the current device :
         current_device_flo = "Unknow"
 
-        comp_process = subprocess.run(["pactl", "get-default-sink"], capture_output=True)
+        cmd = "pactl info|grep 'Default Sink'"
+        process = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        comp_process = process.communicate()[0]
         
-        if 'chat' in str(comp_process.stdout):
+        current_device_flo = str(comp_process)
+        if 'chat' in str(comp_process):
             current_device_flo = 'Chat'
-        elif 'game' in str(comp_process.stdout):
+        elif 'game' in str(comp_process):
             current_device_flo = 'Game'
-        elif 'analog-stereo' in str(comp_process.stdout):
+        elif 'analog-stereo' in str(comp_process):
             current_device_flo = 'Bose'
         # −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 

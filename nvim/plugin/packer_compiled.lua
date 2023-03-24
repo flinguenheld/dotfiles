@@ -172,7 +172,7 @@ _G.packer_plugins = {
   ["luacomment.nvim"] = {
     loaded = true,
     path = "/home/flo/.local/share/nvim/site/pack/packer/start/luacomment.nvim",
-    url = "/home/flo/plugins/luacomment.nvim"
+    url = "https://github.com//home/flo/plugins/luacomment.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,

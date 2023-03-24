@@ -12,4 +12,4 @@ git clone https://github.com/ryanoasis/nerd-fonts ~/fonts/nerd-fonts
 #git clone https://github.com/FLinguenheld/luacomment.nvim ~/plugins/luacomment.nvim
 
 git clone https://github.com/qmk/qmk_firmware ~/qmk_firmware
-#git clone https://github.com/FLinguenheld/corne_pie ~/qmk_firmware/keyboards/crkbd/keymaps/corne_pie
+git clone https://github.com/FLinguenheld/sweep_keymap ~/qmk_firmware/keyboards/splitkb/aurora/sweep/keymaps/sweep_keymap

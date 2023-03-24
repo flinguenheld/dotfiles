@@ -1,25 +1,22 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 
 
 class Py3status:
 
-    icon = "<span font-size='130%'></span>"
-
     def expressvpn(self):
-
         stream = os.popen('expressvpn status')
         output = stream.read()
 
-        text = f"<span foreground='#e53838'>{self.icon} </span><b>Impossible de lire le status d'expressvpn</b>"
+        text = f"<span foreground='#e53838'> <b>Impossible de lire le status d'expressvpn</b></span>"
         for line in output.split('\n'):
             if 'Connected to' in line:
-                text = f"<span foreground='#8ee000'>{self.icon} </span>{line[10:]}"
+                text = f"<span foreground='#8ee000'> {line[10:]}</span>"
                 break
 
             elif 'Not connected' in line:
-                text = f"<span foreground='#faa918'>{self.icon} {line}</span>"
+                text = f"<span foreground='#faa918'> {line}</span>"
                 break
 
         return {

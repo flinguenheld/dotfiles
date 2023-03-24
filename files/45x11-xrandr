@@ -1,5 +1,5 @@
 # 2022-05-30
-# Folder : /home/
+# Folder : /etc/X11/Xsession.d/
 # https://doc.ubuntu-fr.org/xrandr
 
 xrandr --newmode "2720x1530_60.00"  352.57  2720 2920 3216 3712  1530 1531 1534 1583  -HSync +Vsync

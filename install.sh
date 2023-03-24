@@ -7,20 +7,21 @@
 #
 # Install intel/amd microcode
 # apt install intel-microcode
-apt install amd64-microcode
+apt install -y amd64-microcode
+#
+# Graphic amd
+apt install -y firmware-amd-graphics libgl1-mesa-dri libglx-mesa0 mesa-vulkan-drivers xserver-xorg-video-all
 #
 # I3
-apt install i3
+apt install -y i3
 #
 # Display manager
-apt install lightdm
+apt install -y lightdm
 
 # --
 apt update -y
 # apt upgrade -y
 
-# Graphic amd
-apt install -y firmware-amd-graphics libgl1-mesa-dri libglx-mesa0 mesa-vulkan-drivers xserver-xorg-video-all
 
 
 # --
@@ -37,7 +38,7 @@ tldr -u
 # Fonts & Powerline
 apt install -y powerline
 apt install -y fonts-powerline
-
+apt install -y fonts-font-awesome
 
 apt install -y build-essential
 apt install -y manpages-dev
@@ -71,7 +72,9 @@ apt install -y ripgrep
 apt install -y fd-find
     # Clipboard
 apt install -y xclip
-
+    # Nodejs
+apt install -y nodejs
+npm install -g neovim
 
 # Clock for py3status
 pip install pytz
