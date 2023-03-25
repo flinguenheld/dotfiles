@@ -46,15 +46,9 @@ exec --no-startup-id xdg-user-dirs-update
 
 # -----------------------------------------------------------------------------------
 # Sound -----------------------------------------------------------------------------
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
-
-# gradular volume control
-bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+
-bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%-
-
-# mute
-bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # -----------------------------------------------------------------------------------
 # Light -----------------------------------------------------------------------------
@@ -94,11 +88,9 @@ bindsym $mod+Control+d exec "rofi -show run"
 # -----------------------------------------------------------------------------------
 # Bind created to erase horrible default binds
 bindsym $mod+g exec "notify-send 'Mange ton chien'
-# bindsym $mod+Shift+Control+g exec --no-startup-id keyring get git token | xclip -r -selection secondary | xclip -o -selection secondary
-bindsym $mod+Shift+Control+0 exec keyring get git token | xclip -r -selection clip
-bindsym $mod+Shift+Control+1 exec keyring get mail flo | xclip -r -selection clip
 
-# bindsym $mod+Shift+Control+g exec keyring get git token
+bindsym $mod+Shift+Control+0 exec keyring get git token | xclip -r -selection clipboard
+bindsym $mod+Shift+Control+1 exec keyring get mail flo | xclip -r -selection clipboard
 
 
 # -----------------------------------------------------------------------------------
@@ -152,10 +144,6 @@ bindsym $mod+Control+e focus child
 # -----------------------------------------------------------------------------------
 # Workspaces ------------------------------------------------------------------------
 # Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-#set $ws1 "1:<span style="font-size:230%;'>1</span>"
-# set $ws1 "1:**1**"
-# set $ws1 1 <b>a</b>
 # set $ws1 1 <span font-size='230%'></span>
 set $ws1 1<b>1</b>
 set $ws2 2<b>2</b>
@@ -167,7 +155,6 @@ set $ws7 7<b>7</b>
 set $ws8 8<b>8</b>
 set $ws9 9<b>9</b>
 set $ws10 10<b>0</b>
-# set $ws10 "10:<span size='xx-large'></span>"
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -226,7 +213,6 @@ set $mode_power Menu power :   <b>Ctrl</b> +   <b>[l]</b> lock  -  <b>[e]</b> lo
 bindsym $mod+p mode "$mode_power"
 
 mode --pango_markup "$mode_power"{
-
     bindsym Control+l exec --no-startup-id ~/.config/i3/power.sh lock, mode "default"
     bindsym Control+e exec --no-startup-id ~/.config/i3/power.sh logout, mode "default"
     bindsym Control+s exec --no-startup-id ~/.config/i3/power.sh suspend, mode "default"
@@ -239,7 +225,7 @@ mode --pango_markup "$mode_power"{
 }
 
 # Launcher
-set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[w]</b> wordreference  -  <b>[l]</b> larousse  -  <b>[f]</b> firefox  -  <b>[n]</b> nautilus  -  <b>[t]</b> thunderbird
+set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[w]</b> wordreference  -  <b>[l]</b> larousse  -  <b>[f]</b> firefox  -  <b>[n]</b> files  -  <b>[t]</b> thunderbird
 bindsym $mod+s mode "$mode_app"
 
 
@@ -249,7 +235,7 @@ mode --pango_markup "$mode_app" {
     bindsym w exec vivaldi --new-window --homepage "https://www.wordreference.com", mode default
     bindsym l exec vivaldi --new-window --homepage "https://www.larousse.fr", mode default
     bindsym f exec firefox, mode default
-    bindsym n exec nautilus, mode default
+    bindsym n exec pcmanfm, mode default
     bindsym t exec thunderbird, mode default
 
     bindsym Escape mode "default"

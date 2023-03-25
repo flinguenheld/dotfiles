@@ -24,17 +24,16 @@ apt update -y
 # apt upgrade -y
 
 
-
 # --
 apt install -y python3
 apt install -y python3-pip
+apt install -y py3status
 
 apt install -y lua5.4
 apt install -y fzf
 
 apt install -y locate
 apt install -y tldr
-tldr -u
 
 # Fonts & Powerline
 apt install -y powerline
@@ -54,8 +53,6 @@ apt install -y arandr
 apt install -y rofi
 apt install -y kitty
 apt install -y flameshot
-apt install -y py3status
-# pip3 install py3status
 
 apt install -y xfce4-power-manager
 apt install -y xfce4-settings
@@ -79,18 +76,6 @@ apt install -y xclip
 apt install -y nodejs
 apt install -y npm
 npm install -g neovim
-
-# Clock for py3status
-# New way for pip without a virtual env
-apt install -y python3-pytz
-apt install -y python3-tzlocal
-
-# Mail & Google calendar
-apt install -y python3-oauth2client
-apt install -y python3-keyring
-
-# Anglais
-apt install -y python3-beautifulsoup4
 
 # --
 apt install -y firefox-esr

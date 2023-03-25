@@ -1,3 +1,5 @@
+import subprocess
+
 """
 Volume control.
 Configuration parameters:
@@ -417,14 +419,15 @@ class Py3status:
     def on_click(self, event):
         button = event["button"]
         if button == self.button_up:
-            try:
-                self.backend.volume_up(self.volume_delta)
-            except TypeError:
-                pass
+            self.backend.volume_up(self.volume_delta)
         elif button == self.button_down:
             self.backend.volume_down(self.volume_delta)
         elif button == self.button_mute:
             self.backend.toggle_mute()
+        elif button == 3:
+            subprocess.run("~/.config/i3/i3status/next_audio_device.sh", shell=True)
+        elif button == 2:
+            subprocess.run("pavucontrol")
 
 
 if __name__ == "__main__":
