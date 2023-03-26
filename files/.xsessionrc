@@ -1,0 +1,4 @@
+# .xsessionrc
+# Folder : /home/
+
+setxkbmap us altgr-intl

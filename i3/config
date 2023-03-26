@@ -91,6 +91,7 @@ bindsym $mod+g exec "notify-send 'Mange ton chien'
 
 bindsym $mod+Shift+Control+0 exec keyring get git token | xclip -r -selection clipboard
 bindsym $mod+Shift+Control+1 exec keyring get mail flo | xclip -r -selection clipboard
+bindsym $mod+Shift+Control+2 exec ~/.config/i3/generate_password.sh -l 25 | xclip -r -selection clipboard
 
 
 # -----------------------------------------------------------------------------------
