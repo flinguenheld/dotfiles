@@ -1,0 +1,15 @@
+
+Download tar and extract
+
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
+
+./configure --enable-optimizations
+
+make -j `nproc`
+
+
+The default Python installation is /usr/bin.
+If you want to install Python under /usr/local/bin instead of overwriting the default, do this:
+sudo make altinstall
+
+Create a symlink and check if pip3.x works

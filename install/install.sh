@@ -72,10 +72,10 @@ apt install -y ripgrep
 apt install -y fd-find
     # Clipboard
 apt install -y xclip
-    # Nodejs
-apt install -y nodejs
-apt install -y npm
-npm install -g neovim
+    # Nodejs -> Install last version
+#apt install -y nodejs
+#apt install -y npm
+#npm install -g neovim
 
 # --
 apt install -y firefox-esr

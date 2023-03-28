@@ -55,7 +55,7 @@ alias yk='xclip -r -selection clipboard'
 alias senv='source env/bin/activate'
 alias svenv='source venv/bin/activate'
 
-alias vi='nvim'
-alias py='python3'
+# alias vi='nvim'
+# alias py='python3'
 
 EDITOR=/usr/bin/vi
