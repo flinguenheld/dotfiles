@@ -398,10 +398,10 @@ class Py3status:
             finally:
                 self.py3.update()  # to propagate mail_error
 
-    def on_click(self, event):
-        button = event["button"]
-        if button == 1 or button == 3:
-            subprocess.run("thunderbird")
+    # def on_click(self, event):
+    #     button = event["button"]
+    #     if button == 1 or button == 3:
+    #         subprocess.run("thunderbird")
 
 
 if __name__ == "__main__":

@@ -169,11 +169,6 @@ _G.packer_plugins = {
     path = "/home/flo/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
-  ["luacomment.nvim"] = {
-    loaded = true,
-    path = "/home/flo/.local/share/nvim/site/pack/packer/start/luacomment.nvim",
-    url = "https://github.com//home/flo/plugins/luacomment.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/flo/.local/share/nvim/site/pack/packer/start/lualine.nvim",

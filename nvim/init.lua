@@ -1,6 +1,11 @@
+-- Python3.11
+vim.g.python3_host_prog = '/usr/local/bin/python3.11'
+vim.g.pip3_host_prog = '/usr/local/bin/pip3.11'
+
 -- Recommended by nvim-tree :
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
+
 
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
@@ -92,7 +97,7 @@ require('packer').startup(function()
     use 'nvim-lualine/lualine.nvim'
 
     --
-    use '/home/flo/plugins/luacomment.nvim'
+    -- use '/home/flo/plugins/luacomment.nvim'
     -- use '/home/flo/plugins/potpourri.nvim'
     -- use {'/home/flo/plugins/catppuccin-nvim', as = 'catppuccin' }
 
@@ -171,6 +176,7 @@ vim.api.nvim_exec(
     ]],
     false
 )
+
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()

@@ -393,24 +393,24 @@ class Py3status:
 
         # −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
         # Add flo to display the current device :
-        current_device_flo = "Unknow"
+        current_device_mic_flo = "Unknow"
 
-        cmd = "pactl info|grep 'Default Sink'"
+        cmd = "pactl info | grep 'Default Source'"
         process = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
         comp_process = process.communicate()[0]
 
-        current_device_flo = str(comp_process)
+        current_device_mic_flo = str(comp_process)
         if 'chat' in str(comp_process):
-            current_device_flo = 'Chat'
+            current_device_mic_flo = 'Chat'
         elif 'game' in str(comp_process):
-            current_device_flo = 'Game'
-        elif 'analog-stereo' in str(comp_process):
-            current_device_flo = 'Bose'
-        elif 'hdmi-stere' in str(comp_process):
-            current_device_flo = 'Screen'
+            current_device_mic_flo = 'Game'
+        elif 'Webcam' in str(comp_process) and 'analog-stereo' in str(comp_process):
+            current_device_mic_flo = 'Web stereo'
+        elif 'Webcam' in str(comp_process) and 'stereo' in str(comp_process):
+            current_device_mic_flo = 'Web analog'
         # −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
 
-        volume_data = {"icon": icon, "percentage": perc, "current_device_flo": current_device_flo}
+        volume_data = {"icon": icon, "percentage": perc, "current_device_mic_flo": current_device_mic_flo}
 
         return {
             "cached_until": self.py3.time_in(self.cache_timeout),
@@ -426,10 +426,6 @@ class Py3status:
             self.backend.volume_down(self.volume_delta)
         elif button == self.button_mute:
             self.backend.toggle_mute()
-        # elif button == 3:
-        #     subprocess.run("~/.config/i3/i3status/next_audio_device.sh", shell=True)
-        # elif button == 2:
-        #     subprocess.run("pavucontrol")
 
 
 if __name__ == "__main__":

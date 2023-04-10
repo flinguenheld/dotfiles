@@ -7,10 +7,17 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
+# set PATH so it includes user's private bin if it exists
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
+
+if ! [[ "$PATH" =~ "/sbin:" ]]
+then
+    PATH="/sbin:$PATH"
+fi
+
 export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
@@ -27,7 +34,6 @@ fi
 
 unset rc
 
-
 # Powerline --
 if [ -f `which powerline-daemon` ]; then
   powerline-daemon -q
@@ -36,6 +42,11 @@ if [ -f `which powerline-daemon` ]; then
   # . /usr/share/powerline/bash/powerline.sh
   . /usr/share/powerline/bindings/bash/powerline.sh
 fi
+
+mkcd()
+{
+    mkdir -p "${1}" && cd "${1}"
+}
 
 
 # You may uncomment the following lines if you want `ls' to be colorized:
@@ -55,7 +66,4 @@ alias yk='xclip -r -selection clipboard'
 alias senv='source env/bin/activate'
 alias svenv='source venv/bin/activate'
 
-# alias vi='nvim'
-# alias py='python3'
-
-EDITOR=/usr/bin/vi
+EDITOR=/usr/bin/nvim

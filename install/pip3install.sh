@@ -7,7 +7,8 @@ pip install tzlocal
 
 # Mail & Google calendar
 #pip install oauth2client 
-#pip install keyring 
+
+pip install keyring 
 
 # Anglais
 pip install beautifulsoup4 
