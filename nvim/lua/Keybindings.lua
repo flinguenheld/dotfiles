@@ -63,6 +63,7 @@ keymap('n', '<leader>tb',	':Telescope buffers <cr>', opt)
 keymap('n', '<leader>tm',	':Telescope marks <cr>', opt)
 
 keymap('n', '<leader>tc',	':Telescope colorscheme <cr>', opt)
+keymap('n', '<leader>tk',	':Telescope keymaps <cr>', opt)
 
 -- UnDoTree ------------------------------------------------------------------------------------------------------
 keymap('n', '<leader>u', ':UndotreeToggle <cr>', opt)
