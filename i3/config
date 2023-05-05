@@ -72,8 +72,10 @@ bindsym $mod+Control+r restart
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec kitty
+# bindsym $mod+Return exec kitty
 # bindsym $mod+Return exec terminator
+bindsym $mod+Return exec st -t "Mange ton chien"
+
 
 # kill focused window
 bindsym $mod+Control+q kill

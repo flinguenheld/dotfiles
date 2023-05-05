@@ -9,8 +9,8 @@ dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
   command = '/home/flo/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+  -- command = '/home/flo/.local/share/nvim/mason/bin/OpenDebugAD7',
 }
-
 
 local dap = require('dap')
 dap.configurations.cpp = {
@@ -37,6 +37,12 @@ dap.configurations.cpp = {
     end,
   },
 }
+
+
+
+
+
+
 
 
 require("dapui").setup({
