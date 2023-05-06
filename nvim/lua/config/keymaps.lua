@@ -4,6 +4,13 @@
 
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("", "h", "<NOP>", opts)
+
+-- vim.keymap.set("n", "left", "h", { noremap = false })
+-- vim.keymap.set("n", "j", "down")
+-- vim.keymap.set("n", "k", "up")
+-- vim.keymap.set("n", "l", "right")
+
 -- Window --------------------------------------------------------------------------------------------------------
 vim.keymap.set("n", "<C-left>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-down>", "<C-w>j", opts)
