@@ -4,6 +4,3 @@
 
 vim.opt.clipboard = "unnamed"
 vim.opt.colorcolumn = "115"
-
--- Disable comment continuation
-vim.cmd([[autocmd FileType * setlocal formatoptions=cqrnj]])
