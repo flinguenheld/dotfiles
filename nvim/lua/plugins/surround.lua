@@ -5,6 +5,18 @@ return {
   config = function()
     require("nvim-surround").setup({
       -- Configuration here, or leave empty to use defaults
+      keymaps = {
+        insert = "<C-g>l",
+        insert_line = "<C-g>L",
+        normal = "la",
+        normal_cur = "laa",
+        normal_line = "lL",
+        normal_cur_line = "ll",
+        visual = "la",
+        visual_line = "ll",
+        delete = "ld",
+        change = "lc",
+      },
     })
   end,
 }

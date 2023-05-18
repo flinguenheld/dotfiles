@@ -4,3 +4,4 @@
 
 vim.opt.clipboard = "unnamed"
 vim.opt.colorcolumn = "115"
+vim.opt.wrap = false

@@ -5,6 +5,11 @@
 local opts = { noremap = true, silent = true }
 
 -- vim.keymap.set("", "h", "<NOP>", opts)
+vim.keymap.set({ "n", "v" }, "l", "<NOP>")
+vim.keymap.set({ "n", "v" }, "h", "<NOP>")
+
+vim.keymap.set("n", "x", "<NOP>")
+vim.keymap.set("n", "X", "<NOP>")
 
 -- Window --------------------------------------------------------------------------------------------------------
 vim.keymap.set("n", "<C-left>", "<C-w>h", opts)
@@ -17,7 +22,15 @@ vim.keymap.set("n", "<S-down>", ":resize -2<CR>", opts)
 vim.keymap.set("n", "<S-up>", ":resize +2<CR>", opts)
 vim.keymap.set("n", "<S-right>", ":vertical resize +2<CR>", opts)
 
+-- Lazy ----------------------------------------------------------------------------------------------------------
+vim.keymap.set("n", "<leader>L", ":Lazy<CR>", { noremap = true, silent = true, desc = "Lazy panel" })
+
+-- Tabpages ------------------------------------------------------------------------------------------------------
+vim.keymap.set("n", "<leader>l", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab page" })
+vim.keymap.set("n", "<leader>h", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab page" })
+
 -- Miscellaneous -------------------------------------------------------------------------------------------------
+vim.keymap.set({ "i", "n" }, "<esc>", "<esc>") -- Remove the lazy map
 vim.keymap.set("n", "<leader>*", ":noh<CR>", { noremap = true, silent = true, desc = "noh" })
 
 -- Clipboard -----------------------------------------------------------------------------------------------------
@@ -25,3 +38,6 @@ vim.keymap.set("", "<C-y>", '"+y', { noremap = true, silent = true, desc = "Copy
 vim.keymap.set("v", "<leader>y", '"zy<CR>', { noremap = true, silent = true, desc = "Copy into the 'z' register" })
 vim.keymap.set("v", "<leader>D", '"zd<CR>', { noremap = true, silent = true, desc = "Delete into the 'z' register" })
 vim.keymap.set("n", "<leader>p", '"zp', { noremap = true, silent = true, desc = "Copy from the 'z' register" })
+
+-- Clangd --------------------------------------------------------------------------------------------------------
+vim.keymap.set("n", "<leader>o", ":ClangdSwitchSourceHeader<CR>", opts)
