@@ -15,7 +15,7 @@ return {
         visual = "la",
         visual_line = "ll",
         delete = "ld",
-        change = "lc",
+        change = "lr",
       },
     })
   end,

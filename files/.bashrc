@@ -8,14 +8,12 @@ fi
 
 # User specific environment
 # set PATH so it includes user's private bin if it exists
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+	PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 
-if ! [[ "$PATH" =~ "/sbin:" ]]
-then
-    PATH="/sbin:$PATH"
+if ! [[ "$PATH" =~ "/sbin:" ]]; then
+	PATH="/sbin:$PATH"
 fi
 
 export PATH
@@ -36,27 +34,25 @@ unset rc
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
 
 # Powerline --
-if [ -f `which powerline-daemon` ]; then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  # . /usr/share/powerline/bash/powerline.sh
-  . /usr/share/powerline/bindings/bash/powerline.sh
+if [ -f $(which powerline-daemon) ]; then
+	powerline-daemon -q
+	POWERLINE_BASH_CONTINUATION=1
+	POWERLINE_BASH_SELECT=1
+	# . /usr/share/powerline/bash/powerline.sh
+	. /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-mkcd()
-{
-    mkdir -p "${1}" && cd "${1}"
+mkcd() {
+	mkdir -p "${1}" && cd "${1}"
 }
-
 
 # You may uncomment the following lines if you want `ls' to be colorized:
 export LS_OPTIONS='--color=auto'
@@ -74,5 +70,14 @@ alias mv='mv -i'
 alias yk='xclip -r -selection clipboard'
 alias senv='source env/bin/activate'
 alias svenv='source venv/bin/activate'
+alias fd='fdfind'
 
 EDITOR=/usr/bin/nvim
+
+# FZF --
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+v() { du -a ~/ | awk '{print $2}' | fzf | xargs -r $EDITOR; }

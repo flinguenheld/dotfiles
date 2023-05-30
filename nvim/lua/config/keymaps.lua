@@ -8,8 +8,8 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set({ "n", "v" }, "l", "<NOP>")
 vim.keymap.set({ "n", "v" }, "h", "<NOP>")
 
-vim.keymap.set("n", "x", "<NOP>")
-vim.keymap.set("n", "X", "<NOP>")
+-- vim.keymap.set("n", "x", "<NOP>")
+-- vim.keymap.set("n", "X", "<NOP>")
 
 -- Window --------------------------------------------------------------------------------------------------------
 vim.keymap.set("n", "<C-left>", "<C-w>h", opts)
@@ -41,3 +41,14 @@ vim.keymap.set("n", "<leader>p", '"zp', { noremap = true, silent = true, desc = 
 
 -- Clangd --------------------------------------------------------------------------------------------------------
 vim.keymap.set("n", "<leader>o", ":ClangdSwitchSourceHeader<CR>", opts)
+-- stylua: ignore
+
+-- Formatter -----------------------------------------------------------------------------------------------------
+vim.keymap.set( "n", "<leader>fco", "O// clang-format on<ESC><DOWN>",
+  { noremap = true, silent = true, desc = "Add // clang on above" } )
+-- stylua: ignore
+vim.keymap.set( "n", "<leader>fcf", "o// clang-format off<ESC><UP>",
+  { noremap = true, silent = true, desc = "Add // clang off under" } )
+-- stylua: ignore
+vim.keymap.set( "n", "<leader>flo", "O-- stylua: ignore<ESC><DOWN>",
+  { noremap = true, silent = true, desc = "Add -- stylua: ignore" } )
