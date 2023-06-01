@@ -17,6 +17,8 @@ return {
         delete = "ld",
         change = "lr",
       },
+
+      vim.cmd.highlight("default link NvimSurroundHighlight IncSearch"),
     })
   end,
 }
