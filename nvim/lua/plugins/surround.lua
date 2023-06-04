@@ -1,4 +1,5 @@
 return {
+
   "kylechui/nvim-surround",
   version = "*", -- Use for stability; omit to use `main` branch for the latest features
   event = "VeryLazy",
@@ -6,19 +7,22 @@ return {
     require("nvim-surround").setup({
       -- Configuration here, or leave empty to use defaults
       keymaps = {
-        insert = "<C-g>l",
-        insert_line = "<C-g>L",
-        normal = "la",
-        normal_cur = "laa",
-        normal_line = "lL",
-        normal_cur_line = "ll",
-        visual = "la",
-        visual_line = "ll",
-        delete = "ld",
-        change = "lr",
+        insert = "<C-g>h",
+        insert_line = "<C-g>h",
+
+        normal = "h",
+        normal_cur = "hh",
+        normal_line = "ho", -- Usefull ?
+        normal_cur_line = "hoh",
+        delete = "hd",
+        change = "hr",
+
+        visual = "h",
+        visual_line = "ho",
       },
 
       vim.cmd.highlight("default link NvimSurroundHighlight IncSearch"),
+      move_cursor = false, -- Move the cursor to the beginning after surrounding
     })
   end,
 }

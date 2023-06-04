@@ -23,7 +23,6 @@ apt install -y lightdm
 apt update -y
 # apt upgrade -y
 
-
 # --
 apt install -y python3
 apt install -y python3-pip
@@ -43,12 +42,14 @@ apt install -y fonts-font-awesome
 apt install -y build-essential
 apt install -y manpages-dev
 
-
 #apt install -y x11-xserver-utils
 apt install -y pulseaudio-utils
 apt install -y pavucontrol
 apt install -y xrandr
 apt install -y arandr
+
+# Hide mouse
+apt install unclutter-xfixes
 
 apt install -y rofi
 apt install -y kitty
@@ -65,14 +66,13 @@ apt install -y network-manager
 # Printing Navigate to http://localhost:631 for printer configuration
 apt install -y cups
 
-
 # Neovim
-    # Telescope
+# Telescope
 apt install -y ripgrep
 apt install -y fd-find
-    # Clipboard
+# Clipboard
 apt install -y xclip
-    # Nodejs -> Install last version
+# Nodejs -> Install last version
 #apt install -y nodejs
 #apt install -y npm
 #npm install -g neovim

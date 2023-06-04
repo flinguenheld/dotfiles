@@ -4,9 +4,8 @@
 
 local opts = { noremap = true, silent = true }
 
--- vim.keymap.set("", "h", "<NOP>", opts)
-vim.keymap.set({ "n", "v" }, "l", "<NOP>")
-vim.keymap.set({ "n", "v" }, "h", "<NOP>")
+-- vim.keymap.set({ "n", "v" }, "l", "<NOP>")
+-- vim.keymap.set({ "n", "v" }, "h", "<NOP>")
 
 -- vim.keymap.set("n", "x", "<NOP>")
 -- vim.keymap.set("n", "X", "<NOP>")
@@ -23,11 +22,18 @@ vim.keymap.set("n", "<S-up>", ":resize +2<CR>", opts)
 vim.keymap.set("n", "<S-right>", ":vertical resize +2<CR>", opts)
 
 -- Lazy ----------------------------------------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>L", ":Lazy<CR>", { noremap = true, silent = true, desc = "Lazy panel" })
+vim.keymap.set("n", "<leader>Z", ":Lazy<CR>", { noremap = true, silent = true, desc = "Lazy panel" })
+
+-- Surround ------------------------------------------------------------------------------------------------------
+vim.keymap.set("n", "H", "h$", { remap = true })
+
+-- Buffers -------------------------------------------------------------------------------------------------------
+vim.keymap.set("n", "l", ":BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "L", ":BufferLineCycleNext<cr>", { desc = "Next buffer" })
 
 -- Tabpages ------------------------------------------------------------------------------------------------------
 vim.keymap.set("n", "<leader>l", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab page" })
-vim.keymap.set("n", "<leader>h", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab page" })
+vim.keymap.set("n", "<leader>L", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab page" })
 
 -- Miscellaneous -------------------------------------------------------------------------------------------------
 vim.keymap.set({ "i", "n" }, "<esc>", "<esc>") -- Remove the lazy map
