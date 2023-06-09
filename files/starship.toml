@@ -5,79 +5,90 @@ palette = "catppuccin_macchiato"
 add_newline = false
 
 format = """
-[❱](surface0)[❱](surface1)\
 $username\
+[](bg:bg_ip bg_user)\
 $localip\
+[](bg:bg_dir bg_ip)\
 $directory\
+[](bg:bg_git bg_dir)\
 $git_branch\
 $git_status\
+[](bg:bg_code bg_git)\
 $c\
 $lua\
 $python\
+[](bg:bg_status bg_code)\
 $cmd_duration\
 $status\
-[ ❱](overlay0)[❱ ](overlay1)
+[ ](bg:base bg_status)\
 """
 
 
 [username]
 show_always = true
-style_user = "blue bold"
-style_root = "red bold"
-format = ' [$user]($style)'
+style_user = "bg:bg_user surface0 bold"
+style_root = "bg:red surface0 bold"
+format = '[ $user ]($style)'
 disabled = false
 
 [localip]
 ssh_only = true
-style = "red bold"
-format = ' [❱](surface1) [@$localipv4]($style)'
+style = "bg:bg_ip base bold"
+format = '[ @$localipv4 ]($style)'
 disabled = false
 
 [directory]
-style = "green bold"
-format = ' [❱](surface1) [$symbol($path)]($style)'
+style = "bg:bg_dir base"
+format = '[ $symbol($path) ]($style)'
 truncation_length = 4
 fish_style_pwd_dir_length = 1
 truncate_to_repo = false
 truncation_symbol = "…/"
 
 [git_branch]
-style = "peach bold"
+style = "bg:bg_git base"
 symbol = " "
-format = ' [❱](surface1) [$symbol$branch]($style)'
+format = '[ $symbol$branch ]($style)'
 
 [git_status]
-style = "peach bold"
-format = '([ \[$all_status$ahead_behind\]]($style))'
+style = "bg:bg_git base bold"
+format = '([\[$all_status$ahead_behind\] ]($style))'
 
 [c]
-style = "blue bold"
+style = "bg:bg_code blue"
 symbol = " "
-format = ' [❱](surface2) [$symbol($version(-$name))]($style)'
+format = '[ $symbol($version(-$name)) ]($style)'
 detect_extensions = ['c', 'h', 'cpp', 'cxx', 'cc']
 
 [lua]
-style = "blue bold"
+style = "bg:bg_code blue"
 symbol = " "
-format = ' [❱](surface2) [$symbol($version)]($style)'
+format = '[ $symbol($version) ]($style)'
 
 [python]
-style = "blue bold"
+style = "bg:bg_code blue"
 symbol = " "
-format = ' [❱](surface2) [$symbol${pyenv_prefix}(${version})[( \($virtualenv\))](yellow bold)]($style)'
+format = '[ $symbol${pyenv_prefix}(${version}) [(\($virtualenv\) )](bg:bg_code yellow bold)]($style)'
 detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py'] # Remove tox.ini
 
 [cmd_duration]
-style = "yellow bold"
-format = ' [❱](overlay0) [⏱ $duration]($style)'
+style = "bg:bg_status yellow"
+format = '[ ⏱ $duration ]($style)'
 
 [status]
 disabled = false
-style = "red bold"
-format = ' [❱](overlay0) [$symbol$status]($style)'
+style = "bg:bg_status red bold"
+format = '[ $symbol$status ]($style)'
 
 
 [palettes.catppuccin_macchiato]
+bg_user = "#8aadf4"
+bg_ip = "#91b6ff"
+bg_dir = "#a6da95"
+bg_git = "#eed49f"
+bg_code = "#494d64"
+bg_status = "#363a4f"
+
 rosewater = "#f4dbd6"
 flamingo = "#f0c6c6"
 pink = "#f5bde6"
