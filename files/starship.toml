@@ -1,104 +1,81 @@
 # starship.toml
-# Folder : ~/.config/
+# Folder : /home/.config/
 
-# palette = "catppuccin_frappe"
 palette = "catppuccin_macchiato"
+add_newline = false
 
 format = """
-$os\
+[❱](surface0)[❱](surface1)\
 $username\
-[](bg:green fg:sapphire)\
+$localip\
 $directory\
-[](bg:peach fg:green)\
 $git_branch\
 $git_status\
-[](bg:yellow fg:peach)\
 $c\
 $lua\
 $python\
-[](bg:lavender fg:yellow)\
+$cmd_duration\
 $status\
-[ ](fg:lavender)\
+[ ❱](overlay0)[❱ ](overlay1)
 """
 
-# Disable the blank line at the start of the prompt
-add_newline = false
 
 [username]
 show_always = true
-style_user = "bg:sapphire fg:surface2"
-style_root = "bg:sapphire fg:red bold"
-format = '[ $user ]($style)'
+style_user = "blue bold"
+style_root = "red bold"
+format = ' [$user]($style)'
+disabled = false
+
+[localip]
+ssh_only = true
+style = "red bold"
+format = ' [❱](surface1) [@$localipv4]($style)'
 disabled = false
 
 [directory]
-style = "bg:green fg:surface2"
-format = '[ $symbol($path) ]($style)'
-truncation_length = 6
+style = "green bold"
+format = ' [❱](surface1) [$symbol($path)]($style)'
+truncation_length = 4
+fish_style_pwd_dir_length = 1
 truncate_to_repo = false
 truncation_symbol = "…/"
 
 [git_branch]
-style = "bg:peach fg:surface2"
+style = "peach bold"
 symbol = " "
-format = '[ $symbol$branch ]($style)'
+format = ' [❱](surface1) [$symbol$branch]($style)'
 
 [git_status]
-style = "bg:peach fg:surface1 bold"
-format = '([\[$all_status$ahead_behind\] ]($style))'
+style = "peach bold"
+format = '([ \[$all_status$ahead_behind\]]($style))'
 
 [c]
-style = "bg:yellow fg:surface2"
+style = "blue bold"
 symbol = " "
-format = '[ $symbol($version(-$name)) ]($style)'
+format = ' [❱](surface2) [$symbol($version(-$name))]($style)'
+detect_extensions = ['c', 'h', 'cpp', 'cxx', 'cc']
 
 [lua]
-style = "bg:yellow fg:surface2"
+style = "blue bold"
 symbol = " "
-format = '[ $symbol($version) ]($style)'
+format = ' [❱](surface2) [$symbol($version)]($style)'
 
 [python]
-style = "bg:yellow fg:surface2"
+style = "blue bold"
 symbol = " "
-format = '[ $symbol${pyenv_prefix}(${version}) [(\($virtualenv\))](bg:yellow fg:surface1 bold) ]($style)'
+format = ' [❱](surface2) [$symbol${pyenv_prefix}(${version})[( \($virtualenv\))](yellow bold)]($style)'
+detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py'] # Remove tox.ini
+
+[cmd_duration]
+style = "yellow bold"
+format = ' [❱](overlay0) [⏱ $duration]($style)'
 
 [status]
-style = "bg:lavender fg:surface2"
-format = '[ $symbol$status ]($style)'
 disabled = false
+style = "red bold"
+format = ' [❱](overlay0) [$symbol$status]($style)'
 
-# [cmd_duration]
-# style = "bg:blue fg:surface2"
-# format = '[ ⏱ $duration ]($style)'
-
-
-[palettes.catppuccin_frappe]
-rosewater = "#f2d5cf"
-flamingo = "#eebebe"
-pink = "#f4b8e4"
-mauve = "#ca9ee6"
-red = "#e78284"
-maroon = "#ea999c"
-peach = "#ef9f76"
-yellow = "#e5c890"
-green = "#a6d189"
-teal = "#81c8be"
-sky = "#99d1db"
-sapphire = "#85c1dc"
-blue = "#8caaee"
-lavender = "#babbf1"
-text = "#c6d0f5"
-subtext1 = "#b5bfe2"
-subtext0 = "#a5adce"
-overlay2 = "#949cbb"
-overlay1 = "#838ba7"
-overlay0 = "#737994"
-surface2 = "#626880"
-surface1 = "#51576d"
-surface0 = "#414559"
-base = "#303446"
-mantle = "#292c3c"
-crust = "#232634"
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
