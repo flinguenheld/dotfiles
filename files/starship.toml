@@ -13,6 +13,7 @@ $directory\
 [](bg:bg_git bg_dir)\
 $git_branch\
 $git_status\
+$git_metrics\
 [](bg:bg_code bg_git)\
 $c\
 $lua\
@@ -53,6 +54,12 @@ format = '[ $symbol$branch ]($style)'
 [git_status]
 style = "bg:bg_git base bold"
 format = '([\[$all_status$ahead_behind\] ]($style))'
+
+[git_metrics]
+added_style = "base bg:bg_git"
+deleted_style = "base bg:bg_git"
+format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
+disabled = false
 
 [c]
 style = "bg:bg_code blue"
