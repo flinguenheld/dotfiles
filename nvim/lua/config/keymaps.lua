@@ -28,8 +28,8 @@ vim.keymap.set("n", "<leader>Z", ":Lazy<CR>", { noremap = true, silent = true, d
 vim.keymap.set("n", "H", "h$", { remap = true })
 
 -- Buffers -------------------------------------------------------------------------------------------------------
-vim.keymap.set("n", "l", ":BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "L", ":BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "l", ":BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "L", ":BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 
 -- Tabpages ------------------------------------------------------------------------------------------------------
 vim.keymap.set("n", "<leader>l", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab page" })
