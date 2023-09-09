@@ -147,16 +147,16 @@ bindsym $mod+Control+e focus child
 # Workspaces ------------------------------------------------------------------------
 # Define names for default workspaces for which we configure key bindings later on.
 # set $ws1 1 <span font-size='230%'></span>
-set $ws1 1<b>1</b>
-set $ws2 2<b>2</b>
-set $ws3 3<b>3</b>
-set $ws4 4<b>4</b>
-set $ws5 5<b>5</b>
-set $ws6 6<b>6</b>
-set $ws7 7<b>7</b>
-set $ws8 8<b>8</b>
-set $ws9 9<b>9</b>
-set $ws10 10<b>0</b>
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 0
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -207,7 +207,7 @@ bindsym Shift+Print exec flameshot gui
 # -----------------------------------------------------------------------------------
 # Menus -----------------------------------------------------------------------------
 # Power --
-set $mode_power Menu power :   <b>Ctrl</b> +   <b>[l]</b> lock  -  <b>[e]</b> logout  -  <b>[s]</b> sleep  -  <b>[r]</b> reboot  -  <b>[o]</b> off
+set $mode_power Power : Ctrl + [l]ock  [e]logout  [s]leep  [r]eboot  [o]ff
 bindsym $mod+p mode "$mode_power"
 
 mode --pango_markup "$mode_power"{
@@ -223,7 +223,7 @@ mode --pango_markup "$mode_power"{
 }
 
 # Launcher
-set $mode_app Applications :    <b>[v]</b> vivaldi  -  <b>[Ctrl v]</b> vivaldi incognito  -  <b>[w]</b> wordreference  -  <b>[l]</b> larousse  -  <b>[f]</b> firefox  -  <b>[n]</b> files  -  <b>[t]</b> thunderbird
+set $mode_app [v]ivaldi  [C-v]ivaldi incognito  [w]ordreference  [l]arousse  [f]irefox  [n]iles  [t]hunderbird
 bindsym $mod+s mode "$mode_app"
 
 
@@ -231,7 +231,7 @@ mode --pango_markup "$mode_app" {
     bindsym v exec vivaldi, mode default
     bindsym Control+v exec vivaldi --incognito, mode default
     bindsym w exec vivaldi --new-window --homepage "https://www.wordreference.com", mode default
-    bindsym l exec vivaldi --new-window --homepage "https://www.larousse.fr", mode default
+    bindsym l exec vivaldi --new-window --homepage "https://www.lerobert.com", mode default
     bindsym f exec firefox, mode default
     bindsym n exec pcmanfm, mode default
     bindsym t exec thunderbird, mode default
@@ -242,6 +242,7 @@ mode --pango_markup "$mode_app" {
 
 # -----------------------------------------------------------------------------------
 # Autostart -------------------------------------------------------------------------
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 
@@ -283,73 +284,3 @@ client.unfocused         $base     $base $text  $rosewater $base
 client.urgent            $red      $red  $crust $overlay0  $red
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
-
-
-# -----------------------------------------------------------------------------------
-# Bars ------------------------------------------------------------------------------
-bar {
-    # font pango:Hack Nerd Font Complete Mono 13
-    font pango:Hack Nerd Font Complete Mono 12
-    output primary
-
-    # separator_symbol "  -  "
-    separator_symbol "    -    "
-    position top
-    # status_command py3status
-    i3bar_command i3bar
-    status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config_primary.conf
-    # status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config_laptop_primary.conf
-
-    strip_workspace_numbers yes
-    # strip_workspace_name yes
-    workspace_min_width 70
-
-    # display in the second (I know it is strange to write this here)
-    tray_output nonprimary
-
-    colors {
-        background $crust
-        statusline #F8F8F2
-        separator  $surface1
-
-                         # border             bg              txt
-        focused_workspace  $blue            $blue           $crust
-        active_workspace   $overlay0        $overlay0       $base 
-        inactive_workspace $surface0        $surface0       $subtext0
-        urgent_workspace   $red             $red            $crust
-        binding_mode       $sky             $sky            $crust
-    }
-}
-
-bar {
-    # font pango:Hack Nerd Font Complete Mono 13
-    font pango:Hack Nerd Font Complete Mono 12
-    # output nonprimary
-    output DisplayPort-1
-
-    separator_symbol "    -    "
-    position top
-    i3bar_command i3bar
-    status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config_secondary.conf
-    # status_command py3status --include ~/.config/i3/i3status/ -c ~/.config/i3/i3status/config_laptop_secondary.conf
-
-    strip_workspace_numbers yes
-    # strip_workspace_name yes
-    # workspace_min_width 80
-    workspace_min_width 70
-
-    tray_padding 2
-
-    colors {
-        background $crust
-        statusline #F8F8F2
-        separator  $surface1
-
-                         # border             bg              txt
-        focused_workspace  $blue            $blue           $crust
-        active_workspace   $overlay0        $overlay0       $base
-        inactive_workspace $surface0        $surface0       $subtext0
-        urgent_workspace   $red             $red            $crust
-        binding_mode       $sky             $sky            $crust
-    }
-}

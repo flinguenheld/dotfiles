@@ -8,9 +8,7 @@ format = """
 $username\
 [](bg:bg_ip bg_user)\
 $localip\
-[](bg:bg_dir bg_ip)\
-$directory\
-[](bg:bg_git bg_dir)\
+[](bg:bg_git bg_ip)\
 $git_branch\
 $git_status\
 $git_metrics\
@@ -18,7 +16,9 @@ $git_metrics\
 $c\
 $lua\
 $python\
-[](bg:bg_status bg_code)\
+[](bg:bg_dir bg_code)\
+$directory\
+[](bg:bg_status bg_dir)\
 $cmd_duration\
 $status\
 [ ](bg:base bg_status)\
