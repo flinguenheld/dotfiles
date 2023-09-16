@@ -24,19 +24,14 @@ apt update -y
 # apt upgrade -y
 
 # --
-apt install -y python3
-apt install -y python3-pip
-apt install -y py3status
-
-apt install -y lua5.4
-apt install -y fzf
+# apt install -y lua5.4
+# apt install -y fzf
+apt install -y curl
 
 apt install -y locate
 apt install -y tldr
 
-# Fonts & Powerline
-apt install -y powerline
-apt install -y fonts-powerline
+# Fonts
 apt install -y fonts-font-awesome
 
 apt install -y build-essential
@@ -49,9 +44,10 @@ apt install -y xrandr
 apt install -y arandr
 
 # Hide mouse
-apt install unclutter-xfixes
+apt install -y unclutter-xfixes
 
 apt install -y rofi
+apt install -y polybar
 apt install -y kitty
 apt install -y flameshot
 

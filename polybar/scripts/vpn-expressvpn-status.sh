@@ -14,7 +14,7 @@ expressvpn_status() {
 	if [ "$STATUS" != 'Not connected' ]; then
 		echo "$STATUS" | head -n1 | cut -d'-' -f2
 	else
-		echo 'not connected'
+		echo ' not connected'
 	fi
 }
 
