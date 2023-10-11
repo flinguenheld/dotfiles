@@ -85,3 +85,10 @@ v() { du -a ~/ | awk '{print $2}' | fzf | xargs -r $EDITOR; }
 # Starship
 eval "$(starship init bash)"
 # . "$HOME/.cargo/env"
+
+# -----------------------------------------------------
+# PFETCH
+# -----------------------------------------------------
+echo ""
+pfetch
+# neofetch
