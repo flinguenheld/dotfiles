@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
 import imaplib
 import keyring
@@ -10,7 +10,6 @@ obj.login('florent@linguenheld.fr', password if password else '')
 obj.select()
 number = len(obj.search(None, 'UnSeen')[1][0].split())
 if number>0:
-    print(number)
+    print(str(number) + ' 🖂')
 else:
     print('')
-
