@@ -3,8 +3,9 @@
 * {
   font-family: "JetBrainsMono NFM:style=Bold", "Noto Sans", "Roboto Condensed",
     sans-serif;
+
   font-size: 15px;
-  /* color: #3A3B3C; */
+  color: @base;
 }
 
 window#waybar {
@@ -12,11 +13,7 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
 }
-
-/* window#waybar.hidden { */
-/*   opacity: 0.5; */
-/* } */
-
+/* ----------------------------------------------------- */
 #backlight,
 #battery,
 #clock,
@@ -29,47 +26,41 @@ window#waybar {
 #custom-power,
 #custom-cycle_wall,
 #custom-expressvpn,
-#custom-mail,
-#network {
-  margin: 0px 2px;
-  padding: 2px 8px;
-
-  border-radius: 5px;
-  color: @base;
+#custom-mail {
+  padding: 0em 0.8em;
+  border-radius: 0.3em;
 }
 /* ----------------------------------------------------- */
 #workspaces {
   background-color: transparent;
-  /* border-radius: 35px; */
+  margin: 0em 1em 0em 0em;
 }
-#workspaces button {
+#workspaces button,
+#workspaces button.active {
   background-color: @overlay0;
   color: @base;
-
   font-weight: bold;
-  border-radius: 5px;
+
+  margin-right: 0.1em;
+  min-width: 2em;
+  border-radius: 0.3em;
+
   transition: all 0.2s ease-in-out;
 }
 #workspaces button.active {
   background-color: @blue;
-  min-width: 40px;
-
-  border-radius: 5px;
-  transition: all 0.2s ease-in-out;
+  min-width: 3.5em;
 }
-
 /* ----------------------------------------------------- */
 #submap {
   background-color: @maroon;
-  padding: 0px 20px;
-
   font-weight: bold;
+  padding: 0em 2em;
   transition: all 0.5s ease-in-out;
 }
 #language {
   background-color: @teal;
 }
-
 /* ----------------------------------------------------- */
 #clock {
   background-color: @sky;
@@ -78,6 +69,7 @@ window#waybar {
 #pulseaudio {
   background-color: @peach;
   color: @base;
+  margin-right: 0.3em;
 }
 #pulseaudio.muted {
   background-color: @surface1;
@@ -91,27 +83,26 @@ window#waybar {
   background-color: @surface1;
   color: @text;
 }
-
 /* ----------------------------------------------------- */
 #custom-power {
   background-color: @base;
   color: @text;
-  margin-right: 10px;
-  padding: 0px 6px 0px 10px;
+  padding: 0em 0.5em 0em 0.9em;
 }
-
 /* ----------------------------------------------------- */
 #custom-cycle_wall {
   background-color: @sapphire;
+  padding: 0em 1em 0em 0.5em;
 }
-
 /* ----------------------------------------------------- */
 #cpu {
   background-color: @teal;
+  padding-right: 1.1em;
+  margin-right: 0.3em;
 }
 #memory {
   background-color: @yellow;
-  padding-right: 15px;
+  padding-right: 1.2em;
 }
 /* ----------------------------------------------------- */
 #custom-expressvpn {
@@ -122,4 +113,8 @@ window#waybar {
 }
 #custom-agenda {
   background-color: @yellow;
+}
+/* ----------------------------------------------------- */
+#tray {
+  background-color: transparent;
 }

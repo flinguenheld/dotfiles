@@ -2,17 +2,36 @@
   "include": "~/.config/hypr/waybar/modules.json",
   "layer": "top",
   "output": ["*"],
+
   //"mode": "dock",
   "exclusive": true,
   "passthrough": false,
   "position": "top",
-  "spacing": 5,
+  "spacing": 12,
   "fixed-center": true,
   "ipc": true,
-  "margin-left": 0,
-  "margin-right": 0,
 
-  "modules-left": ["wlr/workspaces", "hyprland/submap", "cpu", "memory"],
+  "margin-left": 5,
+  "margin-right": 5,
+
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+    ]
+  },
+  "group/sound": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio#mic",
+    ]
+  },
+
+ 
+  "modules-left": ["wlr/workspaces", "hyprland/submap", "group/hardware"],
   "modules-center": ["clock", "custom/mail"],
-  "modules-right": ["pulseaudio", "pulseaudio#mic", "custom/expressvpn", "custom/cycle_wall", "hyprland/language", "tray", "custom/power"],
+  "modules-right": ["group/sound", "custom/expressvpn", "custom/cycle_wall", "hyprland/language", "tray", "custom/power"],
 }
