@@ -51,6 +51,9 @@ window#waybar {
   background-color: @blue;
   min-width: 3.5em;
 }
+#workspaces button.urgent {
+  background-color: @red;
+}
 /* ----------------------------------------------------- */
 #submap {
   background-color: @maroon;
@@ -88,11 +91,6 @@ window#waybar {
   background-color: @base;
   color: @text;
   padding: 0em 0.5em 0em 0.9em;
-}
-/* ----------------------------------------------------- */
-#custom-cycle_wall {
-  background-color: @sapphire;
-  padding: 0em 1em 0em 0.5em;
 }
 /* ----------------------------------------------------- */
 #cpu {

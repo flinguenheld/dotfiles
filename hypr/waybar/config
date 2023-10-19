@@ -13,6 +13,7 @@
 
   "margin-left": 5,
   "margin-right": 5,
+  "margin-bottom": 1,
 
 
   "group/hardware": {
@@ -30,8 +31,7 @@
     ]
   },
 
- 
-  "modules-left": ["wlr/workspaces", "hyprland/submap", "group/hardware"],
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "group/hardware"],
   "modules-center": ["clock", "custom/mail"],
-  "modules-right": ["group/sound", "custom/expressvpn", "custom/cycle_wall", "hyprland/language", "tray", "custom/power"],
+  "modules-right": ["group/sound", "custom/expressvpn", "hyprland/language", "tray", "custom/power"],
 }

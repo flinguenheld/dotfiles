@@ -15,16 +15,16 @@ for _prs in "${_ps[@]}"; do
 done
 
 # Apply themes
-${SCRIPTSDIR}/gtkthemes &
+${SCRIPTSDIR}/gtkthemes.sh &
 
 # Lauch notification daemon (mako)
-${SCRIPTSDIR}/notifications &
+${SCRIPTSDIR}/notifications.sh &
 
 # Lauch statusbar (waybar)
-${SCRIPTSDIR}/statusbar &
+${SCRIPTSDIR}/statusbar.sh &
 
 # Xauthority
-${SCRIPTSDIR}/xauthority &
+${SCRIPTSDIR}/xauthority.sh &
 
 dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
 
