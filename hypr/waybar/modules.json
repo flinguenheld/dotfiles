@@ -54,7 +54,7 @@
   },
   "pulseaudio#mic": {
     "format": "{format_source}",
-    "format-source": " {volume}",
+    "format-source": "  {volume}",
     "format-source-muted": "",
     "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-click-right": "pavucontrol",
@@ -92,7 +92,7 @@
   },
 
   "custom/mail": {
-    "interval": 3,
+    "interval": 10,
     "format": {},
     "exec": "~/.config/hypr/scripts/mail.py",
     "on-click": "thunderbird"

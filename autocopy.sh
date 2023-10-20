@@ -55,7 +55,7 @@ for FILE in ./files/{,.}*; do
 done
 
 echo '------------------------ Folders ------------------------'
-IGNORE=("./files" "./fonts" "./save" "./sandbox" "./install")
+IGNORE=("./files" "./sandbox")
 
 for FOLDER in ./*; do
 
