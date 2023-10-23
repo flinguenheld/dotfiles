@@ -20,3 +20,9 @@ https://aur.archlinux.org/packages?K=nerd-fonts-&outdated=off
 
 Use keyring to set the password:  
 https://pypi.org/project/keyring/
+
+##### Printers
+
+Network printers are automatically detected by cups.  
+If there is a problem, try to edit the file `/etc/nsswitch.conf` and update the line **hosts**:  
+hosts: … `mdns_minimal [NOTFOUND=return]` resolve [!UNAVAIL=return] dns …

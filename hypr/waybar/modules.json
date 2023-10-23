@@ -45,7 +45,7 @@
   },
 
   "pulseaudio": {
-    "format": "󰕾  {volume}",
+    "format": "󰕾 {volume}",
     "format-muted": "󰖁",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
@@ -54,7 +54,7 @@
   },
   "pulseaudio#mic": {
     "format": "{format_source}",
-    "format-source": "  {volume}",
+    "format-source": " {volume}",
     "format-source-muted": "",
     "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-click-right": "pavucontrol",
@@ -66,12 +66,6 @@
     "format": "⏻ ",
     "tooltip": false,
     "on-click": "archlinux-logout"
-  },
-
-  "custom/cycle_wall": {
-    "format": "",
-    "on-click": "~/.config/hypr/scripts/changeWallpaper.sh",
-    "tooltip-format": "Change wallpaper"
   },
 
   "cpu": {

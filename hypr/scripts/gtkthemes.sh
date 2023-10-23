@@ -4,8 +4,11 @@
 
 THEME='Arc-Dark'
 ICONS='a-candy-beauty-icon-theme'
-FONT='Noto Sans 11'
 CURSOR='Bibata-Modern-Ice'
+
+# FONT='Noto Sans 11'
+FONT='Noto Sans 10'
+# FONT='CaskaydiaCove 10'
 
 SCHEMA='gsettings set org.gnome.desktop.interface'
 
