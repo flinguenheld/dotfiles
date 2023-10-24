@@ -7,7 +7,8 @@
 
 ##### general
 
-    tldr nodejs npm starship pfetch python-pip thunderbird vlc pinta cliphist
+    tldr nodejs npm starship pfetch python-pip thunderbird vlc pinta
+    wofi wl-clipboard cliphist hyprpicker
 
 ##### Fonts
 

@@ -28,7 +28,7 @@ window#waybar {
   color: @base;
 
   padding: 0em 0.9em;
-  border-radius: 1em;
+  border-radius: 0.6em;
 }
 /* ----------------------------------------------------- */
 #workspaces {
@@ -42,7 +42,7 @@ window#waybar {
   /* background-color: @base; */
   padding: 0em 1em 0em 1em;
   margin: 0em 2.5em 0em 0em;
-  border-radius: 1em;
+  border-radius: 0.6em;
 }
 #workspaces button,
 #workspaces button.active {
@@ -52,7 +52,7 @@ window#waybar {
 
   margin-right: 0.3em;
   min-width: 1.7em;
-  border-radius: 0.5em;
+  border-radius: 0.6em;
 
   transition: all 0.2s ease-in-out;
 }
@@ -62,7 +62,7 @@ window#waybar {
   color: @base;
 
   min-width: 2.7em;
-  border-radius: 0.7em;
+  /* border-radius: 0.7em; */
 }
 #workspaces button.urgent {
   background-color: @red;
@@ -85,15 +85,15 @@ window#waybar {
   border-radius: 0.5em;
 }
 #language {
-  background-color: @teal;
+  background-color: @mauve;
 }
 /* ----------------------------------------------------- */
 #clock {
-  background-color: @sky;
+  background-color: @peach;
 }
 /* ----------------------------------------------------- */
 #pulseaudio {
-  background-color: @peach;
+  background-color: @green;
   color: @base;
   margin-right: 0.3em;
 }
@@ -102,7 +102,7 @@ window#waybar {
   color: @text;
 }
 #pulseaudio.mic {
-  background-color: @peach;
+  background-color: @teal;
   color: @base;
 }
 #pulseaudio.mic.source-muted {
