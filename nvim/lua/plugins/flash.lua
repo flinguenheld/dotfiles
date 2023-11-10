@@ -3,6 +3,7 @@ return {
   opts = {
     -- labels = "asdfghjklqwertyuiopzxcvbnm",
     -- labels = "seturinalbhxdogqpwcyvfm",
-    labels = "seturinalbhxdogqpwcyvfm",
+    -- labels = "seturinalbhxdogqpwcyvfm",
+    labels = "tsrnueiapdlwobcghyqx",
   },
 }

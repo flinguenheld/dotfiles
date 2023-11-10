@@ -9,6 +9,8 @@
 
     tldr nodejs npm starship pfetch python-pip thunderbird vlc pinta
     wofi wl-clipboard cliphist hyprpicker
+    sane xsane
+    thunar thunar-volman
 
 ##### Fonts
 

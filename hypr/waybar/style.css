@@ -16,6 +16,7 @@ window#waybar {
 #memory,
 #tray,
 #pulseaudio,
+#privacy,
 #submap,
 #language,
 #custom-power,
@@ -135,4 +136,13 @@ window#waybar {
 /* ----------------------------------------------------- */
 #tray {
   background-color: transparent;
+}
+/* ----------------------------------------------------- */
+/* CONFIRM - doesn't work on 2023-11-06 */
+#privacy,
+#privacy-item,
+#privacy-item.audio-out,
+#privacy-item.audio-in,
+#privacy-item.screenshare {
+  background-color: @blue;
 }

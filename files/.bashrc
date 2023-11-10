@@ -92,3 +92,19 @@ eval "$(starship init bash)"
 echo ""
 pfetch
 # neofetch
+
+# -----------------------------------------------------
+# EXERCISM
+# -----------------------------------------------------
+exercism() {
+	local out
+	readarray -t out < <(command exercism "$@")
+	printf '%s\n' "${out[@]}"
+	if [[ $1 == "download" && -d "${out[-1]}" ]]; then
+		cd "${out[-1]}" || return 1
+	fi
+}
+
+batsall() {
+	BATS_RUN_SKIPPED=true command bats *.bats
+}
