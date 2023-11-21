@@ -135,7 +135,8 @@ window#waybar {
 }
 /* ----------------------------------------------------- */
 #tray {
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: @surface0;
 }
 /* ----------------------------------------------------- */
 /* CONFIRM - doesn't work on 2023-11-06 */

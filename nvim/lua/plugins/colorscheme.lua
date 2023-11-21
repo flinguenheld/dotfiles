@@ -4,7 +4,7 @@ return {
     priority = 1000,
     opts = function()
       return {
-        -- style = "moon",
+        style = "moon",
         -- transparent = true,
         -- styles = {
         --   sidebars = "transparent",
@@ -12,6 +12,7 @@ return {
         -- },
         on_highlights = function(hl, c)
           -- hl.Substitute = { fg = c.orange, bold = true }
+          -- hl.Comment = { fg = c.fg_dark }
 
           -- hl.FlashBackdrop = { fg = c.comment }
           -- hl.FlashMatch = { fg = c.search }
