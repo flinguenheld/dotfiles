@@ -2,7 +2,8 @@
 # Folder : /home/
 
 # ---------------------------------------------------------------------------------------------------- Exports ---
-export PATH=/home/flo/bin/:$PATH
+export PATH=/home/$USER/bin/:$PATH
+export PATH=/home/$USER/.local/bin/:$PATH
 
 ### Added by Zinit's installer ------------------------------------------------------------------------- Zinit ---
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
