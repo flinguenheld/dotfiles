@@ -1,6 +1,8 @@
 # .zshrc
 # Folder : /home/
 
+# https://zsh.sourceforge.io/Doc/Release/index.html#Top
+
 # ---------------------------------------------------------------------------------------------------- Exports ---
 export PATH=/home/$USER/bin/:$PATH
 export PATH=/home/$USER/.local/bin/:$PATH
@@ -18,6 +20,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# ------------------------------------------------------------------------------------------------- Completion ---
+autoload -U compinit; compinit
+
 # ---------------------------------------------------------------------------------------------------- Plugins ---
 zinit light jeffreytse/zsh-vi-mode
 
@@ -26,26 +31,22 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light agkozak/zsh-z
 
+zinit pack for fzf
+
 # ---------------------------------------------------------------------------------------------------- History ---
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 
-# Append history to the history file (no overwriting)
-setopt appendhistory
-# Share history across terminals
-setopt sharehistory
-# Immediately append to the history file, not just when a term is killed
-setopt incappendhistory
-# Remove superfluous blanks from each command line being added to the history list
-setopt histreduceblanks
-# Remove command lines from the history list when the first character on the
-# line is a space, or when one of the expanded aliases contains a leading space
-setopt histignorespace
-# Do not enter command lines into the history list if they are duplicates of the previous event.
-setopt histignorealldups
-# Add a bit more data (timestamp in unix epoch time and elapsed time of the command)
-# setopt extended_history
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
 # ------------------------------------------------------------------------------------------------------ Alias ---
 alias ls='ls --color=auto'
@@ -75,8 +76,10 @@ mkcd() {
 # --------------------------------------------------------------------------------------------------- Exercism ---
 exercism() {
 	local out=$(command exercism "$@")
-  echo "$out, have fun!"
-  cd $out
+  if  echo "$out" | grep -q "$USER/exercism/" && echo "$out" | grep -qv "error"; then
+    echo "cd $out... Have fun!"
+    cd $out
+  fi
 }
 
 # batsall() {
@@ -85,7 +88,6 @@ ba() {
 }
 
 # --------------------------------------------------------------------------------------------- Starship & fzf ---
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
 
 # ------------------------------------------------------------------------------------------------------ Start ---
