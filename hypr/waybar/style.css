@@ -46,7 +46,8 @@ window#waybar {
   border-radius: 0.6em;
 }
 #workspaces button,
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.visible {
   background-color: @surface1;
   border-color: @surface1;
   color: @text;
@@ -57,12 +58,22 @@ window#waybar {
 
   transition: all 0.2s ease-in-out;
 }
+
+#workspaces button.visible {
+  /* background-color: @surface0; */
+  /* border-color: @surface0; */
+  color: @blue;
+
+  /* min-width: 1.9em; */
+  min-width: 2.2em;
+}
+
 #workspaces button.active {
   background-color: @blue;
   border-color: @blue;
   color: @base;
 
-  min-width: 2.7em;
+  min-width: 3em;
   /* border-radius: 0.7em; */
 }
 #workspaces button.urgent {
