@@ -13,6 +13,7 @@ $git_branch\
 $git_status\
 $git_metrics\
 [](bg:bg_code bg_git)\
+$rust\
 $c\
 $lua\
 $python\
@@ -21,9 +22,9 @@ $directory\
 [](bg:bg_status bg_dir)\
 $cmd_duration\
 $status\
-[ ](bg:base bg_status)\
+$jobs\
+[ ](bg:bg_tranparent bg_status)\
 """
-
 
 [username]
 show_always = true
@@ -61,6 +62,11 @@ deleted_style = "base bg:bg_git"
 format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
 disabled = false
 
+[rust]
+style = "bg:bg_code red"
+symbol = '⚙️ '
+format = '[ $symbol($version) ]($style)'
+
 [c]
 style = "bg:bg_code blue"
 symbol = " "
@@ -76,7 +82,14 @@ format = '[ $symbol($version) ]($style)'
 style = "bg:bg_code blue"
 symbol = " "
 format = '[ $symbol${pyenv_prefix}(${version}) [(\($virtualenv\) )](bg:bg_code yellow bold)]($style)'
-detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py'] # Remove tox.ini
+detect_files = [
+  '.python-version',
+  'Pipfile',
+  '__init__.py',
+  'pyproject.toml',
+  'requirements.txt',
+  'setup.py',
+] # Remove tox.ini
 
 [cmd_duration]
 style = "bg:bg_status yellow"
@@ -87,6 +100,10 @@ disabled = false
 style = "bg:bg_status red bold"
 format = '[ $symbol$status ]($style)'
 
+[jobs]
+style = "bg:bg_status peach bold"
+format = '[ $symbol $number ]($style)'
+
 
 [palettes.catppuccin_macchiato]
 bg_user = "#8aadf4"
@@ -95,6 +112,7 @@ bg_dir = "#a6da95"
 bg_git = "#eed49f"
 bg_code = "#494d64"
 bg_status = "#363a4f"
+bg_tranparent = "#FF000000"
 
 rosewater = "#f4dbd6"
 flamingo = "#f0c6c6"

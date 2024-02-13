@@ -24,7 +24,7 @@ autoload -Uz _zinit
 autoload -U compinit; compinit
 
 # ---------------------------------------------------------------------------------------------------- Plugins ---
-zinit light jeffreytse/zsh-vi-mode
+# zinit light jeffreytse/zsh-vi-mode
 
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-autosuggestions
