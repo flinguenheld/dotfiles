@@ -73,6 +73,22 @@ mkcd() {
 	mkdir -p "${1}" && cd "${1}"
 }
 
+# --------------------------------------------------------------------------------------------------- Bindkeys ---
+# To know the code of a key, execute cat, press enter, press the key.
+bindkey "^[b" backward-word 
+bindkey "^[w" forward-word
+bindkey "^[\^" beginning-of-line
+bindkey "^[\$" end-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[u" undo
+bindkey "^[r" redo
+bindkey "^[\~" up-case-word
+bindkey "^[\`" down-case-word
+bindkey "^[c" kill-line  
+bindkey "^[[3~" delete-char
+
+
 # --------------------------------------------------------------------------------------------------- Exercism ---
 exercism() {
 	local out=$(command exercism "$@")

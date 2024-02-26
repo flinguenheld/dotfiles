@@ -11,6 +11,7 @@ config.color_scheme = 'Catppuccin Frappe'
 -- config.color_scheme = 'Catppuccin Latte'
 
 config.font = wezterm.font 'JetBrains Mono'
+config.font_size = 11.0
 -- Deactivate ligatures
 -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
@@ -37,6 +38,9 @@ config.keys = {
 
   { key = "c",     mods = "CTRL|SHIFT", action = act({ CopyTo = "Clipboard" }) },
   { key = "v",     mods = "CTRL|SHIFT", action = act({ PasteFrom = "Clipboard" }) },
+
+
+
 }
 
 
@@ -55,6 +59,12 @@ config.window_padding = {
   top = 0,
   bottom = 0,
 }
+
+-- Blinking is not recommanded by the doc
+config.default_cursor_style = 'BlinkingBlock'
+-- config.default_cursor_style = 'SteadyBar'
+-- config.default_cursor_style = 'BlinkingBar'
+config.cursor_blink_rate = 1200
 
 
 
