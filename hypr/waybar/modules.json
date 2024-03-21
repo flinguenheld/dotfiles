@@ -42,7 +42,15 @@
       "on-scroll-down": "shift_down"
     }
   },
-
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
   "pulseaudio": {
     "format": "󰕾 {volume}",
     "format-muted": "󰖁",
@@ -60,13 +68,11 @@
     "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
     "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%"
   },
-
   "custom/power": {
     "format": "⏻ ",
     "tooltip": false,
     "on-click": "archlinux-logout"
   },
-
   "cpu": {
     "interval": 1,
     "format": "{usage:>2}% "
@@ -75,7 +81,6 @@
     "interval": 5,
     "format": "{percentage}% "
   },
-
   "custom/expressvpn": {
     "interval": 3,
     "format": "{}",
@@ -83,14 +88,12 @@
     "on-click": "expressvpn connect",
     "on-click-right": "expressvpn disconnect"
   },
-
   "custom/mail": {
     "interval": 10,
     "format": {},
     "exec": "~/.config/hypr/scripts/mail.py",
     "on-click": "thunderbird"
   },
-
   "tray": {
     "icon-size": 21,
     "spacing": 10

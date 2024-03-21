@@ -15,6 +15,9 @@ config.font_size = 11.0
 -- Deactivate ligatures
 -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
+config.enable_wayland = false
+config.font_size = 17
+
 
 local act = wezterm.action
 config.keys = {

@@ -34,5 +34,5 @@
 
   "modules-left": ["hyprland/workspaces", "hyprland/submap", "group/hardware"],
   "modules-center": ["clock", "custom/mail"],
-  "modules-right": ["privacy", "group/sound", "custom/expressvpn", "hyprland/language", "tray", "custom/power"],
+  "modules-right": [ "group/sound", "bluetooth", "custom/expressvpn", "hyprland/language", "tray", "custom/power"],
 }

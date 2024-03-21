@@ -8,9 +8,11 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
 }
+
 /* ----------------------------------------------------- */
 #backlight,
 #battery,
+#bluetooth,
 #clock,
 #cpu,
 #memory,
@@ -31,6 +33,7 @@ window#waybar {
   padding: 0em 0.9em;
   border-radius: 0.6em;
 }
+
 /* ----------------------------------------------------- */
 #workspaces {
   /* font-family: "BigBlueTerm437 Nerd Font Mono", "Noto Sans", "Roboto Condensed"; */
@@ -45,6 +48,7 @@ window#waybar {
   margin: 0em 2.5em 0em 0em;
   border-radius: 0.6em;
 }
+
 #workspaces button,
 #workspaces button.active,
 #workspaces button.visible {
@@ -76,6 +80,7 @@ window#waybar {
   min-width: 3em;
   /* border-radius: 0.7em; */
 }
+
 #workspaces button.urgent {
   background-color: @red;
   border-color: @red;
@@ -83,6 +88,7 @@ window#waybar {
 
   min-width: 2.7em;
 }
+
 /* ----------------------------------------------------- */
 #submap {
   font-size: 1.3em;
@@ -96,59 +102,77 @@ window#waybar {
   border-style: dotted;
   border-radius: 0.5em;
 }
+
 #language {
   background-color: @mauve;
 }
+
+/* ----------------------------------------------------- */
+#bluetooth {
+  background-color: @blue;
+}
+
 /* ----------------------------------------------------- */
 #clock {
   background-color: @peach;
 }
+
 /* ----------------------------------------------------- */
 #pulseaudio {
   background-color: @green;
   color: @base;
   margin-right: 0.3em;
 }
+
 #pulseaudio.muted {
   background-color: @surface1;
   color: @text;
 }
+
 #pulseaudio.mic {
   background-color: @teal;
   color: @base;
 }
+
 #pulseaudio.mic.source-muted {
   background-color: @surface1;
   color: @text;
 }
+
 /* ----------------------------------------------------- */
 #custom-power {
   background-color: @base;
   color: @text;
   padding: 0em 0.5em 0em 0.9em;
 }
+
 /* ----------------------------------------------------- */
 #cpu {
   background-color: @teal;
   padding-right: 1.1em;
   margin-right: 0.3em;
 }
+
 #memory {
   background-color: @yellow;
   padding-right: 1.2em;
 }
+
 /* ----------------------------------------------------- */
 #custom-expressvpn {
-  background-color: @blue;
+  background-color: @lavender;
 }
+
 #custom-mail {
   background-color: @yellow;
 }
+
 /* ----------------------------------------------------- */
 #tray {
   /* background-color: transparent; */
   background-color: @surface0;
 }
+
 /* ----------------------------------------------------- */
 /* CONFIRM - doesn't work on 2023-11-06 */
 #privacy,
