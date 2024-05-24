@@ -11,7 +11,7 @@ config.color_scheme = 'Catppuccin Frappe'
 -- config.color_scheme = 'Catppuccin Latte'
 
 config.font = wezterm.font 'JetBrains Mono'
-config.font_size = 11.0
+config.font_size = 17.0
 -- Deactivate ligatures
 -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
@@ -28,6 +28,9 @@ config.keys = {
   --   mods = 'CMD',
   --   action = wezterm.action.DisableDefaultAssignment,
   -- },
+
+  -- { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
+  
   { key = "Enter", mods = "CTRL|SHIFT", action = act.SpawnWindow },
 
   { key = "h",     mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
@@ -39,9 +42,8 @@ config.keys = {
   { key = 'f',     mods = 'SHIFT|CTRL', action = act.Search 'CurrentSelectionOrEmptyString' },
   { key = 's',     mods = 'SHIFT|CTRL', action = act.ActivateCopyMode },
 
-  { key = "c",     mods = "CTRL|SHIFT", action = act({ CopyTo = "Clipboard" }) },
-  { key = "v",     mods = "CTRL|SHIFT", action = act({ PasteFrom = "Clipboard" }) },
-
+  { key = "c",     mods = 'CTRL|SHIFT', action = act.CopyTo 'Clipboard' },
+  { key = "v",     mods = 'CTRL|SHIFT', action = act.PasteFrom 'PrimarySelection' },
 
 
 }

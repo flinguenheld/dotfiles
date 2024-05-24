@@ -4,9 +4,13 @@
 # https://zsh.sourceforge.io/Doc/Release/index.html#Top
 
 # ---------------------------------------------------------------------------------------------------- Exports ---
-export PATH=/home/$USER/bin/:$PATH
+# export PATH=/home/$USER/bin/:$PATH
+export PATH=~/bin/:$PATH
 export PATH=/home/$USER/.local/bin/:$PATH
 export PATH=$PATH:/home/flo/.cargo/bin
+
+# Exercism
+export fpath=(~/.zsh/functions $fpath)
 
 ### Added by Zinit's installer ------------------------------------------------------------------------- Zinit ---
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -109,3 +113,5 @@ eval "$(starship init zsh)"
 
 # ------------------------------------------------------------------------------------------------------ Start ---
 pfetch
+
+source /home/flo/.config/broot/launcher/bash/br

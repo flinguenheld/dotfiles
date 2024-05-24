@@ -99,3 +99,5 @@ exercism() {
 batsall() {
 	BATS_RUN_SKIPPED=true command bats *.bats
 }
+
+source /home/flo/.config/broot/launcher/bash/br

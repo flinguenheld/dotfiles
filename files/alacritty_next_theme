@@ -1,0 +1,65 @@
+#!/bin/sh
+# Folder : /home/bin/
+# Florent Linguenheld 2024
+
+FOLDER="${HOME}/.config/alacritty/"
+FOLDER_THEMES="${FOLDER}themes"
+ALACRITTY_FILE="${FOLDER}alacritty.toml"
+
+usage() {
+  echo
+  echo "Usage: $(basename "${0}") [-p] | [-h]"
+  echo "    Update the theme name in the '${ALACRITTY_FILE} file"
+  echo "    with the next theme file name."
+  echo "    Themes files have to be put here: '${FOLDER_THEMES}/'"
+  echo
+  echo "       -p PREVIOUS:    to set the previous theme."
+  echo "       -h HELP:        display this message."
+}
+
+MODE="next"
+while getopts ph OPTION; do
+
+  case ${OPTION} in
+
+    p)
+      MODE="previous"
+    ;;
+    h)
+      usage
+      exit 0
+    ;;
+    ?)
+      usage
+      exit 1
+    ;;
+  esac
+done
+
+# ------
+
+CURRENT=$(grep "themes" "${ALACRITTY_FILE}"  | tr -d '"' | cut -d '/' -f 5)
+
+if [[ $MODE == "next" ]]; then
+
+  NEW=$(ls "$FOLDER_THEMES" | paste -s | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
+  if [[ -z $NEW ]]; then
+    NEW=$(ls -1 "$FOLDER_THEMES" | head -1)
+  fi
+
+else
+
+  NEW=$(ls "$FOLDER_THEMES" | paste -s | awk -F "${CURRENT}" '{print $1}' | awk '{print $NF}')
+  if [[ -z $NEW ]]; then
+    NEW=$(ls -1 "$FOLDER_THEMES" | tail -1)
+  fi
+
+fi
+
+echo "From '${CURRENT%.toml}' to '${NEW%.toml}'"
+notify-send "From '${CURRENT%.toml}' to '${NEW%.toml}'"
+
+sed -i "s/${CURRENT}/${NEW}/" "${ALACRITTY_FILE}"
+
+# echo $CURRENT
+# echo $NEW

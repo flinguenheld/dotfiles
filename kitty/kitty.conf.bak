@@ -100,6 +100,6 @@ map ctrl+shift+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# One Half Dark
+# One Dark
 include current-theme.conf
 # END_KITTY_THEME

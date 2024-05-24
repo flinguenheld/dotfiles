@@ -49,7 +49,7 @@ language-servers = ["scls"]
 name = "toml"
 language-servers = ["scls", "typos"]
 formatter = { command = "taplo", args = ["fmt", "-"] }
-auto-format = true
+auto-format = false
 
 [[language]]
 name = "markdown"
