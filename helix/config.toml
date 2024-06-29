@@ -73,6 +73,7 @@ s = "select_mode"
 v = "select_regex"
 V = "split_selection"
 
+A-a = ":config-reload"
 
 # o = "extend_to_line_start"
 # "^" = "extend_to_first_nonwhitespace"
@@ -87,20 +88,20 @@ V = "split_selection"
 [keys.normal.space]
 # b.b = "buffer_picker"
 B = "buffer_picker"
-b.d = ":buffer-close"
-b.D = ":buffer-close-all"
+b.c = ":buffer-close"
+b.C = ":buffer-close-all"
 w = "no_op"
 
 [keys.normal.g]
-n = "goto_first_nonwhitespace"
+p = "goto_first_nonwhitespace"
 # t = "goto_line_start"
-p = "goto_line_end"
+n = "goto_line_end"
 # l = "goto_window_center"
 
 [keys.select.g]
-n = "goto_first_nonwhitespace"
+p = "goto_first_nonwhitespace"
 # t = "goto_line_start"
-p = "goto_line_end"
+n = "goto_line_end"
 # l = "goto_window_center"
 
 [keys.normal."C-w"]

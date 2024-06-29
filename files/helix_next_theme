@@ -1,0 +1,64 @@
+#!/bin/sh
+# Folder : /home/bin/
+# Florent Linguenheld 2024
+
+THEMES="onedark onelight everforest_light zenburn"
+HELIX_FILE="${HOME}/.config/helix/config.toml"
+
+usage() {
+  echo
+  echo "Usage: $(basename "${0}") [-p]"
+  echo "    Update the theme name in the '${HELIX_FILE} file"
+  echo "    with the next theme in the list."
+  echo
+  echo "       -l LIST:        display the theme list."
+  echo "       -p PREVIOUS:    to set the previous theme."
+  echo "       -h HELP:        display this message."
+}
+
+MODE="next"
+while getopts plh OPTION; do
+
+  case ${OPTION} in
+
+    l)
+      MODE="list"
+    ;;
+    p)
+      MODE="previous"
+    ;;
+    h)
+      usage
+      exit 0
+    ;;
+    ?)
+      usage
+      exit 1
+    ;;
+  esac
+done
+
+# --
+CURRENT=$(grep 'theme = ' $HELIX_FILE | cut -d '"' -f2)
+
+if [[ $MODE == "list" ]]; then
+  echo "Themes: ${THEMES}"
+  echo "Current: ${CURRENT}"
+  exit
+fi
+
+if [[ $MODE == "previous" ]]; then
+  THEMES=$(echo $THEMES  | tr ' '  '\n' | tac | paste -s -d ' ')
+fi
+
+# --
+NEW=$(echo $THEMES | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
+
+if [[ -z $NEW ]]; then
+  NEW=$(echo $THEMES | cut -d ' ' -f 1)
+fi
+
+NEW=$(echo $NEW | sed "s/ //g")
+
+sed -i "s/theme = .*/theme = \"${NEW}\"/" $HELIX_FILE
+notify-send "✨ Helix ${NEW} ✨"

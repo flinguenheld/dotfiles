@@ -3,25 +3,29 @@
 # Florent Linguenheld 2024
 
 FOLDER="${HOME}/.config/alacritty/"
-FOLDER_THEMES="${FOLDER}themes"
+FOLDER_THEMES="${FOLDER}themes/"
 ALACRITTY_FILE="${FOLDER}alacritty.toml"
 
 usage() {
   echo
-  echo "Usage: $(basename "${0}") [-p] | [-h]"
+  echo "Usage: $(basename "${0}") [-m] | [-p] | [-h]"
   echo "    Update the theme name in the '${ALACRITTY_FILE} file"
   echo "    with the next theme file name."
-  echo "    Themes files have to be put here: '${FOLDER_THEMES}/'"
+  echo "    Themes files have to be put here: '${FOLDER_THEMES}'"
   echo
+  echo "       -m MENU:        select the new theme with rofi."
   echo "       -p PREVIOUS:    to set the previous theme."
   echo "       -h HELP:        display this message."
 }
 
 MODE="next"
-while getopts ph OPTION; do
+while getopts phm OPTION; do
 
   case ${OPTION} in
 
+    m)
+      MODE="menu"
+    ;;
     p)
       MODE="previous"
     ;;
@@ -47,17 +51,27 @@ if [[ $MODE == "next" ]]; then
     NEW=$(ls -1 "$FOLDER_THEMES" | head -1)
   fi
 
-else
+elif [[ $MODE == "previous" ]]; then
 
   NEW=$(ls "$FOLDER_THEMES" | paste -s | awk -F "${CURRENT}" '{print $1}' | awk '{print $NF}')
   if [[ -z $NEW ]]; then
     NEW=$(ls -1 "$FOLDER_THEMES" | tail -1)
   fi
 
+else
+
+    NEW=$(ls "$FOLDER_THEMES" | awk -F '.toml' '{print $1}' | sed "s/^${CURRENT%.toml}$/   >>> ${CURRENT%.toml} <<<  /" | rofi -dmenu -p "Select the new alacritty theme ")
+    NEW="${NEW}.toml"
+
+    if [[ ! -e "${FOLDER_THEMES}${NEW}" ]]; then
+      exit 0
+    fi
+
 fi
 
 echo "From '${CURRENT%.toml}' to '${NEW%.toml}'"
-notify-send "From '${CURRENT%.toml}' to '${NEW%.toml}'"
+notify-send "✨ Alacritty new theme ✨
+From '${CURRENT%.toml}' to '${NEW%.toml}'"
 
 sed -i "s/${CURRENT}/${NEW}/" "${ALACRITTY_FILE}"
 
