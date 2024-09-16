@@ -42,18 +42,18 @@ done
 
 # ------
 
-CURRENT=$(grep "themes" "${ALACRITTY_FILE}"  | tr -d '"' | cut -d '/' -f 5)
+CURRENT=$(grep "themes" "${ALACRITTY_FILE}"  | awk -F '[/|"]' '{print $6}')
 
 if [[ $MODE == "next" ]]; then
 
-  NEW=$(ls "$FOLDER_THEMES" | paste -s | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
+  NEW=$(ls "$FOLDER_THEMES"  | paste -s | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
   if [[ -z $NEW ]]; then
     NEW=$(ls -1 "$FOLDER_THEMES" | head -1)
   fi
 
 elif [[ $MODE == "previous" ]]; then
 
-  NEW=$(ls "$FOLDER_THEMES" | paste -s | awk -F "${CURRENT}" '{print $1}' | awk '{print $NF}')
+  NEW=$(ls "$FOLDER_THEMES"  | paste -s | awk -F "${CURRENT}" '{print $1}' | awk '{print $NF}')
   if [[ -z $NEW ]]; then
     NEW=$(ls -1 "$FOLDER_THEMES" | tail -1)
   fi
@@ -70,9 +70,7 @@ else
 fi
 
 echo "From '${CURRENT%.toml}' to '${NEW%.toml}'"
-notify-send "✨ Alacritty new theme ✨
-From '${CURRENT%.toml}' to '${NEW%.toml}'"
-
+notify-send "✨ Alacritty: ${NEW%.toml} ✨ "
 sed -i "s/${CURRENT}/${NEW}/" "${ALACRITTY_FILE}"
 
 # echo $CURRENT

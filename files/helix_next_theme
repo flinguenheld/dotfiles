@@ -2,7 +2,7 @@
 # Folder : /home/bin/
 # Florent Linguenheld 2024
 
-THEMES="onedark onelight everforest_light zenburn"
+THEMES="onedark,onedarker,onelight,everforest_light,snazzy,emacs,pop-dark"
 HELIX_FILE="${HOME}/.config/helix/config.toml"
 
 usage() {
@@ -42,23 +42,25 @@ done
 CURRENT=$(grep 'theme = ' $HELIX_FILE | cut -d '"' -f2)
 
 if [[ $MODE == "list" ]]; then
-  echo "Themes: ${THEMES}"
+  echo "Themes: ${THEMES//,/ }"
   echo "Current: ${CURRENT}"
   exit
 fi
 
 if [[ $MODE == "previous" ]]; then
-  THEMES=$(echo $THEMES  | tr ' '  '\n' | tac | paste -s -d ' ')
+  THEMES=$(echo $THEMES  | tr ','  '\n' | tac | paste -s -d ',')
 fi
 
+echo $THEMES
+
 # --
-NEW=$(echo $THEMES | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
+NEW=$(echo $THEMES | awk -F "${CURRENT}," '{print $2}' | awk -F ','  '{print $1}')
 
 if [[ -z $NEW ]]; then
-  NEW=$(echo $THEMES | cut -d ' ' -f 1)
+  NEW=$(echo $THEMES | cut -d ',' -f 1)
 fi
 
 NEW=$(echo $NEW | sed "s/ //g")
 
 sed -i "s/theme = .*/theme = \"${NEW}\"/" $HELIX_FILE
-notify-send "✨ Helix ${NEW} ✨"
+notify-send "✨ Helix: ${NEW} ✨"
