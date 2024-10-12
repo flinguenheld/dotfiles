@@ -1,20 +1,6 @@
-# pouet
-[language-server.scls]
-command = "simple-completion-language-server"
-
-[language-server.scls.config]
-max_completion_items = 20    # set max completion results len for each group: words, snippets, unicode-input
-snippets_first = true        # completions will return before snippets by default
-feature_words = true         # enable completion by word
-feature_snippets = true      # enable snippets
-feature_unicode_input = true # enable "unicode input"
-
-[language-server.typos]
-command = "typos-lsp"
-
 [[language]]
 name = "rust"
-language-servers = ["scls", "rust-analyzer", "snippets-ls", "typos"]
+language-servers = ["rust-analyzer"]
 auto-format = true
 
 [language-server.rust-analyzer]
@@ -22,34 +8,6 @@ command = "rust-analyzer"
 
 [language-server.rust-analyzer.config]
 inlayHints.maxLength = 90
-
-
-[language-server.snippets-ls]
-command = "snippets-ls"
-# [language-server.rust-analyzer.config.check]
-# command = "clippy"
-
-# Ugly, read the doc, clean and add :
-# Buffer completion (multiple buffers if possible) -> Active on all file types
-# Spelling check -> As vim would be great otherwise test to see if it's handy or not
-# Clang / Cmake ...
-# Bash
-
-# introduce a new language to enable completion on any doc by forcing set language with :set-language stub
-[[language]]
-name = "stub"
-scope = "text.stub"
-file-types = []
-shebangs = []
-roots = []
-auto-format = false
-language-servers = ["scls"]
-
-[[language]]
-name = "toml"
-language-servers = ["scls", "typos"]
-formatter = { command = "taplo", args = ["fmt", "-"] }
-auto-format = false
 
 [[language]]
 name = "markdown"
@@ -61,3 +19,12 @@ text-width = 80
 [[language]]
 name = "lua"
 auto-format = true
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+auto-format = true
+
+[[language]]
+name = "json"
+auto-format = false

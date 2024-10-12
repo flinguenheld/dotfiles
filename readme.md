@@ -19,11 +19,6 @@ https://aur.archlinux.org/packages?K=nerd-fonts-&outdated=off
 
     yay nerd-fonts-git
 
-##### Mail
-
-Use keyring to set the password:  
-https://pypi.org/project/keyring/
-
 ##### Printers
 
 Network printers are automatically detected by cups.  

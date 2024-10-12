@@ -2,7 +2,7 @@
 # Folder : /home/bin/
 # Florent Linguenheld 2024
 
-THEMES="onedark,onedarker,onelight,everforest_light,snazzy,emacs,pop-dark"
+THEMES="onedark,onedarker,onelight,everforest_light,pop-dark"
 HELIX_FILE="${HOME}/.config/helix/config.toml"
 
 usage() {

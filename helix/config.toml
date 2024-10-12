@@ -1,52 +1,65 @@
-theme = "pop-dark"
+theme = "onelight"
 
 [editor]
 line-number = "relative"
 mouse = false
 rulers = [90]
-shell = ["zsh"]
-
 true-color = true
 color-modes = true
-
 bufferline = "multiple"
 auto-format = true
-
 cursorline = true
 # cursorcolumn = true
 
-[editor.statusline]
-left = ["mode", "separator", "file-name"]
-center = ["spinner"]
-right = ["diagnostics", "selections", "position", "file-encoding"]
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
 
+[editor.statusline]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
-
 separator = "  "
+left = [
+  "mode",
+  "spacer",
+  "version-control",
+  "spacer",
+  "spinner",
+  "workspace-diagnostics",
+  "diagnostics"
+  ]
+center = [
+  "file-name",
+  "read-only-indicator",
+  "file-modification-indicator"
+  ]
+right = [
+  "workspace-diagnostics",
+  "diagnostics",
+  "selections",
+  "register",
+  "position",
+  "total-line-numbers",
+  ]
 
-
-[editor.cursor-shape]
-insert = "bar"
-# normal = "block"
-select = "underline"
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
 
 [editor.file-picker]
 hidden = false
 
-
-# or control each character
 [editor.whitespace.render]
-# space = "all"
 tab = "all"
 newline = "all"
+# space = "all"
 
 [editor.whitespace.characters]
 tab = "→"
 newline = "↵"
 tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
-
 
 [keys.normal]
 h = "goto_next_buffer"
