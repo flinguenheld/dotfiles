@@ -1,3 +1,5 @@
+## Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
+##
 ## Wofi Config
 
 ## General
@@ -5,12 +7,11 @@ show=drun
 prompt=Apps
 normal_window=true
 layer=top
-term=kitty
-columns=2
+term=foot
 
 ## Geometry
-width=700px
-height=500px
+width=600px
+height=340px
 location=0
 orientation=vertical
 halign=fill

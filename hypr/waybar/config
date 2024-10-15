@@ -1,38 +1,25 @@
+// Waybar config file
 {
-  "include": "~/.config/hypr/waybar/modules.json",
-  "layer": "top",
-  "output": ["*"],
+    "include": "~/.config/hypr/waybar/modules.json",
+    "name": "main-bar",
+    "id": "main-bar",
+    "layer": "top",
+    //"mode": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "position": "top",
+    "height": 32,
+    "width": "",
+    "spacing": 6,
+    "margin": 0,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "fixed-center": true,
+    "ipc": true,
 
-  //"mode": "dock",
-  "exclusive": true,
-  "passthrough": false,
-  "position": "top",
-  "spacing": 12,
-  "fixed-center": true,
-  "ipc": true,
-
-  "margin-left": 5,
-  "margin-right": 5,
-  "margin-bottom": 1,
-  "margin-top": 1,
-
-
-  "group/hardware": {
-    "orientation": "horizontal",
-    "modules": [
-      "cpu",
-      "memory",
-    ]
-  },
-  "group/sound": {
-    "orientation": "horizontal",
-    "modules": [
-      "pulseaudio",
-      "pulseaudio#mic",
-    ]
-  },
-
-  "modules-left": ["hyprland/workspaces", "hyprland/submap", "group/hardware"],
-  "modules-center": ["clock", "custom/mail"],
-  "modules-right": [ "group/sound", "bluetooth", "custom/expressvpn", "hyprland/language", "tray", "custom/power"],
+    "modules-left": ["hyprland/workspaces", "cpu", "memory", "idle_inhibitor", "hyprland/submap"],
+    "modules-center": ["mpd", "clock#time", "clock#date", "tray"],
+    "modules-right": ["custom/themes", "pulseaudio#speaker", "pulseaudio#mic", "backlight", "bluetooth", "network", "custom/expressvpn", "battery", "custom/power"],
 }

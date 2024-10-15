@@ -1,52 +1,71 @@
+/* 
+ * Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
+*/
+
+/** ********** Colors ********** **/
+@define-color background      #121212;
+@define-color background-alt1 #1f1f1f;
+@define-color background-alt2 #2c2c2c;
+@define-color foreground      #e2e3e3;
+@define-color selected        #C19862;
+@define-color black           #121212;
+@define-color red             #D17805;
+@define-color green           #F39004;
+@define-color yellow          #F39C13;
+@define-color blue            #C19862;
+@define-color magenta         #798284;
+@define-color cyan            #A2A29F;
+@define-color white           #e2e3e3;
+
+/** ********** Fonts ********** **/
 * {
-  font-family: "JetBrainsMono";
-  font-size: 14px;
+    font-family: "JetBrains Mono", "Iosevka Nerd Font", archcraft, sans-serif;
+    font-size: 12px;
 }
 
 #window {
-  background-color: --wofi-color0;
-  color: --wofi-color2;
-  border: 2px solid --wofi-color1;
-  border-radius: 0px;
+	background-color: @background;
+	color: @foreground;
+	border: 0px solid @background-alt1;
+	border-radius: 0px;
 }
 
 #outer-box {
-  padding: 20px;
+	padding: 10px;
 }
 
 #input {
-  background-color: --wofi-color1;
-  border: 0px solid --wofi-color3;
-  padding: 8px 12px;
+	background-color: @background-alt1;
+	border: 0px solid @background-alt2;
+	padding: 4px 12px;
 }
 
 #scroll {
-  margin-top: 20px;
-  margin-bottom: 20px;
+	margin-top: 10px;
 }
 
 #inner-box {
 }
 
 #img {
-  padding-right: 8px;
+	padding-right: 8px;
 }
 
 #text {
-  color: --wofi-color2;
+	color: @foreground;
 }
 
 #text:selected {
-  color: --wofi-color0;
+	color: @background;
 }
 
 #entry {
-  padding: 6px;
+	padding: 6px;
 }
 
 #entry:selected {
-  background-color: --wofi-color3;
-  color: --wofi-color0;
+	background-color: @selected;
+	color: @background;
 }
 
 #unselected {
@@ -55,7 +74,6 @@
 #selected {
 }
 
-#input,
-#entry:selected {
-  border-radius: 4px;
+#input, #entry:selected {
+	border-radius: 12px;
 }

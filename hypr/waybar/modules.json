@@ -1,101 +1,260 @@
 {
+  "backlight": {
+    "interval": 2,
+    "align": 0,
+    "rotate": 0,
+    //"device": "amdgpu_bl0",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      ""
+    ],
+
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
+    "on-update": "",
+    "on-scroll-up": "light -A 5%",
+    "on-scroll-down": "light -U 5%",
+    "smooth-scrolling-threshold": 1,
+  },
+
+  "battery": {
+    "interval": 60,
+    "align": 0,
+    "rotate": 0,
+    //"bat": "BAT1",
+    //"adapter": "ACAD",
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "{icon} Full",
+    //"format-good": "",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "format-time": "{H}h {M}min",
+    "tooltip": true,
+  },
+
+  "bluetooth": {
+    //"controller": "controller1",
+    //"format-device-preference": "",
+    "format": " {status}",
+    "format-on": " {status}",
+    "format-off": " {status}",
+    "format-disabled": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias}, {device_battery_percentage}%",
+    "tooltip": true,
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "~/.config/hypr/scripts/rofi_bluetooth",
+    "on-click-right": "blueman-manager"
+  },
+
+  "clock#date": {
+    "interval": 60,
+    "align": 0,
+    "rotate": 0,
+    "timezone": "France/Paris",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": " {:%a %b %d, %G}",
+
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+         "months":     "<span color='#ffead3'><b>{}</b></span>",
+         "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+         "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+         "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+         "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+       }
+     },
+     "actions": {
+       "on-click-right": "mode",
+       "on-click-forward": "tz_up",
+       "on-click-backward": "tz_down",
+       "on-scroll-up": "shift_up",
+       "on-scroll-down": "shift_down"
+    }
+  },
+
+  "clock#time": {
+    "interval": 1,
+    "align": 0,
+    "rotate": 0,
+    "timezone": "France/Paris",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": " {:%I:%M %p}",
+    "format-alt": " {:%I:%M:%S %p}",
+    // "format-alt": " {:%a %b %d, %G}"
+  },
+
+  "custom/themes": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "$HOME/.config/hypr/theme/theme.sh --pywal",
+    "on-click-right": "$HOME/.config/hypr/theme/theme.sh --default"
+  },
+
+  "custom/power": {
+    "format": "襤",
+    "tooltip": false,
+    "on-click": "$HOME/.config/hypr/scripts/rofi_powermenu"
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": " {usage}%"
+  },
+
+  "disk": {
+    "interval": 30,
+    "format": " FREE: {free}"
+  },
+
+  "memory": {
+    "interval": 10,
+    "format": " {used:0.1f}G"
+  },
+  
+  "custom/spotify": {
+    "exec": "$HOME/.config/hypr/waybar/spotify",
+    "interval": 1,
+    "format": "{}",
+    "tooltip": true,
+    "max-length": 40,
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "on-scroll-up": "playerctl position 05+",
+    "on-scroll-down": "playerctl position 05-",
+    "smooth-scrolling-threshold": 1
+  },
+
+  "mpd": {
+    "interval": 2,
+    "unknown-tag": "N/A",
+    "format": "{stateIcon} {artist} - {title}",
+    "format-disconnected": " Disconnected",
+    "format-paused": "{stateIcon} {artist} - {title}",
+    "format-stopped": "Stopped ",
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)",
+
+    "on-click": "mpc toggle",
+    "on-click-middle": "mpc prev",
+    "on-click-right": "mpc next",
+    "on-update": "",
+    "on-scroll-up": "mpc seek +00:00:01",
+    "on-scroll-down": "mpc seek -00:00:01",
+    "smooth-scrolling-threshold": 1
+  },
+
+  "network": {
+    "interval": 5,
+    //"interface": "wlan*", // (Optional) To force the use of this interface, set it for netspeed to work
+    "format-wifi": " {essid}",
+    "format-ethernet": " {ipaddr}/{cidr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "睊 Disconnected",
+    "format-disabled": "睊 Disabled",
+    "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
+    "tooltip-format": " {ifname} via {gwaddr}"
+  },
+
+  "custom/expressvpn": {
+    "interval": 5,
+    "format": "{}",
+    "exec": "~/.config/hypr/scripts/expressvpn",
+    "on-click": "expressvpn connect",
+    "on-click-right": "expressvpn disconnect"
+  },
+
+  "pulseaudio#speaker": {
+    // "format": "{volume}% {icon} {format_source}",
+    "format": "{icon} {volume}%",
+    "format-muted": " Mute",
+    "format-bluetooth": " {volume}% {format_source}",
+    "format-bluetooth-muted": " Mute",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      // "headphone": "",
+      // "hands-free": "",
+      // "headset": "",
+      // "phone": "",
+      // "portable": "",
+      // "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol -t 3",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Mute",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click-right": "pavucontrol -t 4",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "timeout": 30
+  },
+
   "hyprland/workspaces": {
     "format": "{name}",
-    "on-click": "activate",
-    "all-outputs": false,
     "sort-by-number": true,
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1"
+    "active-only": false,
+    "all-outputs": false,
+    "on-click": "activate"
   },
   "hyprland/submap": {
     "format": "- {} -",
     "max-length": 100,
     "tooltip": true
   },
-  "hyprland/language": {
-    "format": "{}",
-    "format-en": "us"
-  },
-  "clock": {
-    "interval": 30,
-    "format": "{:%A, %B %d - %R}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#f5e0dc'><b>{}</b></span>",
-        "days": "<span color='#cdd6f4'><b>{}</b></span>",
-        "weeks": "<span color='#a6e3a1'><b>W{}</b></span>",
-        "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
-        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
-  },
-  "bluetooth": {
-    "format": " {status}",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
-  },
-  "pulseaudio": {
-    "format": "󰕾 {volume}",
-    "format-muted": "󰖁",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-  },
-  "pulseaudio#mic": {
-    "format": "{format_source}",
-    "format-source": " {volume}",
-    "format-source-muted": "",
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-    "on-click-right": "pavucontrol",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
-    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%"
-  },
-  "custom/power": {
-    "format": "⏻ ",
-    "tooltip": false,
-    "on-click": "archlinux-logout"
-  },
-  "cpu": {
-    "interval": 1,
-    "format": "{usage:>2}% "
-  },
-  "memory": {
-    "interval": 5,
-    "format": "{percentage}% "
-  },
-  "custom/expressvpn": {
-    "interval": 3,
-    "format": "{}",
-    "exec": "~/.config/hypr/scripts/expressvpn.sh",
-    "on-click": "expressvpn connect",
-    "on-click-right": "expressvpn disconnect"
-  },
-  "custom/mail": {
-    "interval": 10,
-    "format": {},
-    "exec": "~/.config/hypr/scripts/mail.py",
-    "on-click": "thunderbird"
-  },
+
   "tray": {
-    "icon-size": 21,
+    "icon-size": 16,
     "spacing": 10
   }
 }
