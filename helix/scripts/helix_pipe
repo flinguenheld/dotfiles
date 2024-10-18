@@ -1,0 +1,86 @@
+#!/bin/bash
+# Florent Linguenheld 2024
+
+WORDS="./pipe_words.txt"
+
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+usage() {
+  echo
+  echo "Usage: $(basename "${0}") [-p]"
+  echo "    Search the piped word given in the pipe_words file."
+  echo "    If found, return the next one with the same case."
+  echo
+  echo "       -l LIST:        List words."
+  echo "       -p PREVIOUS:    Take the previous word."
+  echo "       -h HELP:        display this message."
+}
+
+MODE="next"
+while getopts phl OPTION; do
+
+  case ${OPTION} in
+
+    p)
+      MODE="previous"
+    ;;
+    l)
+      MODE="list"
+    ;;
+    h)
+      usage
+      exit 0
+    ;;
+    ?)
+      usage
+      exit 1
+    ;;
+  esac
+done
+
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+if [[ $MODE == "list" ]]; then
+  cat $WORDS | sed 's/,/, /g'
+
+else
+  read -r PIPED
+  if [[ ${#PIPED} -lt 20  ]]; then
+
+    NEXT_WORD=""
+    while read -r LINE; do
+
+      if [[ $MODE == "previous" ]]; then
+        LINE=$(echo "$LINE" | tr ',' '\n' | tac)
+      else
+        LINE=$(echo "$LINE" | tr ',' '\n')
+      fi
+
+      while read -r WORD; do
+
+        if [[ -n $NEXT_WORD ]]; then
+
+          case $PIPED in
+            "${PIPED^^}")
+              echo "${WORD^^}"
+            ;;
+            "${PIPED^}")
+              echo "${WORD^}"
+            ;;
+            *)
+              echo "${WORD}"
+            ;;
+          esac
+
+          exit 0
+        fi
+
+      if [[ "${PIPED,,}" == "$WORD" ]]; then
+        NEXT_WORD="true"
+      fi
+
+      done <<< "$LINE"
+    done < $WORDS
+
+  fi
+fi

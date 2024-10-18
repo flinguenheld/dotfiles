@@ -1,6 +1,7 @@
 theme = "pop-dark"
 
 [editor]
+scrolloff = 999
 line-number = "relative"
 mouse = false
 rulers = [90]
@@ -78,9 +79,9 @@ s = "select_mode"
 v = "select_regex"
 V = "split_selection"
 
-A-a = ":config-reload"
-A-b = [":sh ~/bin/helix_next_theme", ":config-reload"]
-A-e = ["select_mode", "goto_line_end"]
+A-r = ":config-reload"
+A-a = ":pipe ~/.config/helix/scripts/helix_pipe"
+A-x = ":pipe ~/.config/helix/scripts/helix_pipe -p"
 
 [keys.select]
 s = "select_mode"

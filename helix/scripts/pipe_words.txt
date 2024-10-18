@@ -1,0 +1,3 @@
+true,false,true
+left,right,left
+zero,one,two,three,four,five,six,seven,eight,ten,one,zero
