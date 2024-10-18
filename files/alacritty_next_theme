@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Folder : /home/bin/
 # Florent Linguenheld 2024
 
@@ -6,6 +6,7 @@ FOLDER="${HOME}/.config/alacritty/"
 FOLDER_THEMES="${FOLDER}themes/"
 ALACRITTY_FILE="${FOLDER}alacritty.toml"
 
+# ---------------------------------------------------------------------------------------
 usage() {
   echo
   echo "Usage: $(basename "${0}") [-m] | [-p] | [-h]"
@@ -40,38 +41,32 @@ while getopts phm OPTION; do
   esac
 done
 
-# ------
+# ---------------------------------------------------------------------------------------
+CURRENT=$(grep "themes" "${ALACRITTY_FILE}"  | awk -F '[/|"]' '{print $6}' | sed 's/.toml//')
+THEMES=$(find "${FOLDER_THEMES}" -name "*.toml" -printf "%f\n" | sed 's/.toml//')
 
-CURRENT=$(grep "themes" "${ALACRITTY_FILE}"  | awk -F '[/|"]' '{print $6}')
-
-if [[ $MODE == "next" ]]; then
-
-  NEW=$(ls "$FOLDER_THEMES"  | paste -s | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
-  if [[ -z $NEW ]]; then
-    NEW=$(ls -1 "$FOLDER_THEMES" | head -1)
-  fi
-
-elif [[ $MODE == "previous" ]]; then
-
-  NEW=$(ls "$FOLDER_THEMES"  | paste -s | awk -F "${CURRENT}" '{print $1}' | awk '{print $NF}')
-  if [[ -z $NEW ]]; then
-    NEW=$(ls -1 "$FOLDER_THEMES" | tail -1)
-  fi
-
+if [[ $MODE == "previous" ]]; then
+  THEMES=$(echo -e "${THEMES}" | sort --reverse)
 else
+  THEMES=$(echo -e "${THEMES}" | sort)
+fi
 
-    NEW=$(ls "$FOLDER_THEMES" | awk -F '.toml' '{print $1}' | sed "s/^${CURRENT%.toml}$/   >>> ${CURRENT%.toml} <<<  /" | rofi -dmenu -p "Select the new alacritty theme ")
-    NEW="${NEW}.toml"
-
-    if [[ ! -e "${FOLDER_THEMES}${NEW}" ]]; then
+if [[ $MODE == "menu" ]]; then
+    NEW=$(rofi_menu "${THEMES}" "${CURRENT}" "Alacritty new theme")
+    if [[ -z $NEW ]]; then
       exit 0
     fi
 
+else
+  NEW=$(echo -e "${THEMES}" | paste -s | awk -F "${CURRENT}" '{print $2}' | awk '{print $1}')
+  if [[ -z $NEW ]]; then
+    NEW=$(echo -e "${THEMES}" | head -1)
+  fi
+  notify-send "✨ Alacritty: ${NEW} ✨ "
 fi
 
+# ---------------------------------------------------------------------------------------
 echo "From '${CURRENT%.toml}' to '${NEW%.toml}'"
-notify-send "✨ Alacritty: ${NEW%.toml} ✨ "
-sed -i "s/${CURRENT}/${NEW}/" "${ALACRITTY_FILE}"
+sed -i "s/${CURRENT}.toml/${NEW}.toml/" "${ALACRITTY_FILE}"
 
-# echo $CURRENT
-# echo $NEW
+exit 0

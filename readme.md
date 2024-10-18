@@ -12,13 +12,6 @@
     sane xsane
     thunar thunar-volman
 
-##### Fonts
-
-https://github.com/ryanoasis/nerd-fonts  
-https://aur.archlinux.org/packages?K=nerd-fonts-&outdated=off
-
-    yay nerd-fonts-git
-
 ##### Printers
 
 Network printers are automatically detected by cups.  

@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 # Folder : /home/bin/
 # Florent Linguenheld 2024
 
-THEMES="onedark,onedarker,onelight,everforest_light,pop-dark"
+THEMES="onedark,onedarker,onelight,everforest_light,pop-dark,"
 HELIX_FILE="${HOME}/.config/helix/config.toml"
 
+# ---------------------------------------------------------------------------------------
 usage() {
   echo
   echo "Usage: $(basename "${0}") [-p]"
@@ -12,15 +13,19 @@ usage() {
   echo "    with the next theme in the list."
   echo
   echo "       -l LIST:        display the theme list."
+  echo "       -m MENU:        Use rofi to select the next theme."
   echo "       -p PREVIOUS:    to set the previous theme."
   echo "       -h HELP:        display this message."
 }
 
 MODE="next"
-while getopts plh OPTION; do
+while getopts plhm OPTION; do
 
   case ${OPTION} in
 
+    m)
+      MODE="menu"
+    ;;
     l)
       MODE="list"
     ;;
@@ -38,29 +43,49 @@ while getopts plh OPTION; do
   esac
 done
 
-# --
-CURRENT=$(grep 'theme = ' $HELIX_FILE | cut -d '"' -f2)
+# ---------------------------------------------------------------------------------------
+CURRENT=$(grep '^theme = ' "${HELIX_FILE}" | cut -d '"' -f2)
 
 if [[ $MODE == "list" ]]; then
-  echo "Themes: ${THEMES//,/ }"
+  echo "Themes: ${THEMES//,/, }"
   echo "Current: ${CURRENT}"
   exit
 fi
 
 if [[ $MODE == "previous" ]]; then
-  THEMES=$(echo $THEMES  | tr ','  '\n' | tac | paste -s -d ',')
+  THEMES=$(echo -e $THEMES | tac --separator , )
 fi
 
-echo $THEMES
+if [[ $MODE == "previous" || $MODE == "next" ]]; then
+  NEW=$(echo -e "${THEMES}" | awk -F "${CURRENT}," '{print $2}' | awk -F ','  '{print $1}')
 
-# --
-NEW=$(echo $THEMES | awk -F "${CURRENT}," '{print $2}' | awk -F ','  '{print $1}')
+  # Take the first if current was the last
+  if [[ -z $NEW ]]; then
+    NEW=$(echo -e "${THEMES}" | cut -d ',' -f 1)
+  fi
 
-if [[ -z $NEW ]]; then
-  NEW=$(echo $THEMES | cut -d ',' -f 1)
+  notify-send "✨ Helix: ${NEW} ✨"
+
+elif [[ $MODE == "menu" ]]; then
+  NEW=$(rofi_menu "${THEMES//,/\\n}" "$CURRENT" "Helix new theme")
+
+  if [[ -z $NEW ]]; then
+    exit 0
+  else
+    NEW="${NEW//[> <]/}"
+  fi
 fi
 
-NEW=$(echo $NEW | sed "s/ //g")
+# ---------------------------------------------------------------------------------------
+echo "From '${CURRENT}' to '${NEW}'"
+if [[ -z $CURRENT ]]; then
+  sed -i "1itheme = \"${NEW}\"" "${HELIX_FILE}"
+else
+  sed -i "s/theme = .*/theme = \"${NEW}\"/" "${HELIX_FILE}"
+fi
 
-sed -i "s/theme = .*/theme = \"${NEW}\"/" $HELIX_FILE
-notify-send "✨ Helix: ${NEW} ✨"
+# ---------------------------------------------------------------------------------------
+# pkill -USR1 helix 2> /dev/null
+pkill -USR1 hx 2> /dev/null
+
+exit 0

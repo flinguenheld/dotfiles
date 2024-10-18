@@ -184,7 +184,9 @@
     "format-disconnected": "睊 Disconnected",
     "format-disabled": "睊 Disabled",
     "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
-    "tooltip-format": " {ifname} via {gwaddr}"
+    "tooltip-format": " {ifname} via {gwaddr}",
+
+    "on-click-right": "~/.config/hypr/scripts/rofi_network"
   },
 
   "custom/expressvpn": {

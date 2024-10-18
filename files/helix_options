@@ -1,0 +1,98 @@
+#!/bin/bash
+# Folder : /home/bin/
+# Florent Linguenheld 2024
+
+HELIX_FILE="${HOME}/.config/helix/config.toml"
+
+# ---------------------------------------------------------------------------------------
+# -------------------------------------------------------------------- SEARCH CURRENT ---
+# Search a line in the helix config and return: number,value_to_find,real_value
+search_line() {
+  SECTION_NAME=$1
+  LINES_TO_FIND="$2"
+
+  LINE_NUM="0"
+  SECTION_OK=""
+  while read -r LINE; do
+
+    LINE_NUM=$((LINE_NUM + 1))
+    if [[ $LINE =~ ^\[ ]]; then
+      if [[ $LINE =~ $SECTION_NAME ]]; then 
+        SECTION_OK="true"
+      else 
+        SECTION_OK=""
+      fi
+    fi
+
+    if [[ -n $SECTION_OK ]]; then
+
+      while read -r TO_FIND; do
+        if [[ $LINE =~ $TO_FIND ]]; then
+          echo "${LINE_NUM},${TO_FIND},${LINE}"
+          exit 0
+        fi
+      done <<< "$(echo -e "$LINES_TO_FIND")"
+    fi
+
+  done < "$HELIX_FILE"
+  exit 1
+}
+
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+usage() {
+  echo
+  echo "Usage: $(basename "${0}") [-p]"
+  echo "    Update the theme name in the '${HELIX_FILE} file"
+  echo "    with the next theme in the list."
+  echo
+  echo "       --file-name:    up the file name option in the statusline."
+  echo "       -h HELP:        display this message."
+}
+
+FILE_NAME=""
+
+while [ $# -gt 0 ]; do
+
+  case "$1" in
+
+    "--file-name")
+      FILE_NAME="TRUE"
+    ;;
+    "-h"|"--help")
+      usage
+      exit 0
+    ;;
+    ?)
+      usage
+      exit 1
+    ;;
+  esac
+  shift
+done
+
+
+
+# ---------------------------------------------------------------------------------------
+# ------------------------------------------------------------ STATUS BAR - FILE NAME ---
+if [[ -n $FILE_NAME ]]; then
+
+  OPTIONS="file-absolute-path\nfile-base-name\nfile-name"
+  RESULT=$(search_line "statusline" "${OPTIONS}")
+
+    if [[ $? == 0 ]]; then
+      LINE=$(echo -e "$RESULT" | cut -d ',' -f 1 )
+      CURRENT=$(echo -e "$RESULT" | cut -d ',' -f 2 )
+
+      NEW=$(rofi_menu "${OPTIONS}" "${CURRENT}" "Helix - Status bar file name")
+      if [[ -n $NEW && ! $NEW =~ '<' ]]; then
+        sed -i "${LINE}s/${CURRENT}/${NEW}/" "${HELIX_FILE}"
+      fi
+      
+    fi
+fi
+
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------- RELOAD HELIX ---
+# pkill -USR1 helix 2> /dev/null
+pkill -USR1 hx 2> /dev/null

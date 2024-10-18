@@ -4,6 +4,6 @@
 ##
 ## Set Wallpaper in Hyprland
 
-WALLPAPER='/home/flo/Pictures/wallpapers/wallpaper_5.jpg'
+WALLPAPER='/home/flo/.config/hypr/wallpapers/wallpaper.png'
 
 swaybg --output '*' --mode fill --image "$WALLPAPER"

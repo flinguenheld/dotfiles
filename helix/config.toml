@@ -28,13 +28,13 @@ left = [
   "spacer",
   "spinner",
   "workspace-diagnostics",
-  "diagnostics"
-  ]
+  "diagnostics",
+]
 center = [
-  "file-name",
+  "file-absolute-path",
   "read-only-indicator",
-  "file-modification-indicator"
-  ]
+  "file-modification-indicator",
+]
 right = [
   "workspace-diagnostics",
   "diagnostics",
@@ -42,7 +42,7 @@ right = [
   "register",
   "position",
   "total-line-numbers",
-  ]
+]
 
 [editor.lsp]
 display-messages = true
@@ -79,6 +79,8 @@ v = "select_regex"
 V = "split_selection"
 
 A-a = ":config-reload"
+A-b = [":sh ~/bin/helix_next_theme", ":config-reload"]
+A-e = ["select_mode", "goto_line_end"]
 
 [keys.select]
 s = "select_mode"
@@ -89,7 +91,7 @@ V = "split_selection"
 B = "buffer_picker"
 b.q = ":buffer-close"
 b.Q = ":buffer-close-all"
-w = "no_op" # Only access with Ctrl+w
+w = "no_op"               # Only access with Ctrl+w
 
 [keys.normal.g]
 p = "goto_first_nonwhitespace"
@@ -131,4 +133,3 @@ pageup = "no_op"
 pagedown = "no_op"
 home = "no_op"
 end = "no_op"
-
