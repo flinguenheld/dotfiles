@@ -6,9 +6,9 @@
 configuration {
 	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
-    display-drun:               "";
-    display-run:                "";
-    display-filebrowser:        "";
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
 	drun-display-format:        "{name}";
 }
 
@@ -70,7 +70,7 @@ textbox-prompt-colon {
     enabled:                     true;
     padding:                     0px;
     expand:                      false;
-    str:                         "";
+    str:                         "";
     background-color:            inherit;
     text-color:                  inherit;
 }

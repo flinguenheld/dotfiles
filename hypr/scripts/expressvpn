@@ -4,12 +4,12 @@ TXT=$(expressvpn status | grep --fixed-strings "Not connected")
 
 if [[ -z $TXT ]]
 then
-  TXT=$(expressvpn status | grep --fixed-strings "Connected to" | cut --delimiter="m" --field=2-5)
+  TXT=$(expressvpn status | grep --fixed-strings "Connected to" | cut --delimiter=" " --field=3-5)
 fi
 
 if [[ -z $TXT ]]
 then
-  TXT="Wait ..."
+  TXT="VPN ..."
 fi
 
-echo $TXT
+echo "$TXT"

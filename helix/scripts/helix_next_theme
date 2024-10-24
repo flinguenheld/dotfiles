@@ -1,6 +1,5 @@
 #!/bin/bash
-# Folder : /home/bin/
-# Florent Linguenheld 2024
+# florent@linguenheld.fr 2024
 
 THEMES="onedark,onedarker,onelight,everforest_light,pop-dark,"
 HELIX_FILE="${HOME}/.config/helix/config.toml"

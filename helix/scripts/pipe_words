@@ -1,7 +1,7 @@
 #!/bin/bash
-# Florent Linguenheld 2024
+# florent@linguenheld.fr 2024
 
-WORDS="./pipe_words.txt"
+WORDS="${HOME}/.config/helix/scripts/pipe_words.txt"
 
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -10,6 +10,7 @@ usage() {
   echo "Usage: $(basename "${0}") [-p]"
   echo "    Search the piped word given in the pipe_words file."
   echo "    If found, return the next one with the same case."
+  echo "    Otherwise, return the given word."
   echo
   echo "       -l LIST:        List words."
   echo "       -p PREVIOUS:    Take the previous word."
@@ -41,7 +42,7 @@ done
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
 if [[ $MODE == "list" ]]; then
-  cat $WORDS | sed 's/,/, /g'
+  sed 's/,/, /g' < "$WORDS"
 
 else
   read -r PIPED
@@ -50,37 +51,49 @@ else
     NEXT_WORD=""
     while read -r LINE; do
 
-      if [[ $MODE == "previous" ]]; then
-        LINE=$(echo "$LINE" | tr ',' '\n' | tac)
-      else
-        LINE=$(echo "$LINE" | tr ',' '\n')
-      fi
+      if [[ "${LINE:0:2}" != "//" ]]; then
 
-      while read -r WORD; do
-
+        # Exit with the asked word if the found one was the last
         if [[ -n $NEXT_WORD ]]; then
-
-          case $PIPED in
-            "${PIPED^^}")
-              echo "${WORD^^}"
-            ;;
-            "${PIPED^}")
-              echo "${WORD^}"
-            ;;
-            *)
-              echo "${WORD}"
-            ;;
-          esac
-
+          echo "$PIPED"
           exit 0
         fi
 
-      if [[ "${PIPED,,}" == "$WORD" ]]; then
-        NEXT_WORD="true"
-      fi
+        if [[ $MODE == "previous" ]]; then
+          LINE=$(echo "$LINE" | tr ',' '\n' | tac)
+        else
+          LINE=$(echo "$LINE" | tr ',' '\n')
+        fi
 
-      done <<< "$LINE"
-    done < $WORDS
+        while read -r WORD; do
+
+          if [[ -n $NEXT_WORD ]]; then
+
+            case $PIPED in
+              "${PIPED^^}")
+                echo "${WORD^^}"
+              ;;
+              "${PIPED^}")
+                echo "${WORD^}"
+              ;;
+              *)
+                echo "${WORD}"
+              ;;
+            esac
+
+            exit 0
+          fi
+
+        if [[ "${PIPED,,}" == "$WORD" ]]; then
+          NEXT_WORD="true"
+        fi
+
+        done <<< "$LINE"
+      fi
+    done < "$WORDS"
 
   fi
 fi
+
+# Not found
+echo "$PIPED"
