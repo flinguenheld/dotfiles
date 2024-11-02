@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Florent Linguenheld 2022
 
 usage() {
