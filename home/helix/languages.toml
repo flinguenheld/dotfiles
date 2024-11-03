@@ -3,11 +3,16 @@ name = "rust"
 language-servers = ["rust-analyzer"]
 auto-format = true
 
-[language-server.rust-analyzer]
-command = "rust-analyzer"
-
 [language-server.rust-analyzer.config]
+checkOnSave = { command = "clippy" }
 inlayHints.maxLength = 90
+
+[language-server.hyprls]
+command = "hyprls"
+
+[[language]]
+name = "hyprlang"
+language-servers = [ "hyprls" ]
 
 [[language]]
 name = "markdown"
@@ -16,19 +21,10 @@ auto-format = true
 rulers = [20]
 text-width = 80
 
-[[language]]
-name = "lua"
-auto-format = true
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
 
 [[language]]
-name = "toml"
-formatter = { command = "taplo", args = ["fmt", "-"] }
-auto-format = true
-
-[[language]]
-name = "json"
-auto-format = false
-
-[[language]]
-name = "nix"
-formatter = { command = "nixpkgs-fmt" }
+name = "html"
+language-servers = [ "emmet-lsp", "vscode-html-language-server" ]

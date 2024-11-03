@@ -19,11 +19,26 @@
           modules = [
             ./configuration.nix
 
+            ./bootloader.nix
             ./display-manager.nix
+            ./networking.nix
+
+            ./users.nix
+            ./environment-variables.nix
+            ./services.nix
+
             ./hyprland.nix
             ./fonts.nix
 
             ./terminal-utils.nix
+
+            ./sound.nix
+            ./bluetooth.nix
+
+            ./screen.nix
+
+            ./programming-languages.nix
+            ./lsp.nix
 
            ];
         };

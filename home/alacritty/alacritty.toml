@@ -1,3 +1,4 @@
+[general]
 import = [
   # "~/.config/hypr/alacritty/colors.toml",
   "~/.config/alacritty/fonts.toml",

@@ -20,11 +20,6 @@
     mako
 
 
-    cool-retro-term
-
-    alacritty
-    starship
-    helix
 
     # qutebrowser
     # zathura
