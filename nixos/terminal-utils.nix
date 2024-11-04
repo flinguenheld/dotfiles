@@ -11,7 +11,6 @@
     git
 
     neofetch
-    sqlite  # Required by neofetch
     tldr
     bat
     bc

@@ -29,6 +29,7 @@
 
             ./hyprland.nix
             ./fonts.nix
+            ./theme.nix
 
             ./terminal-utils.nix
 
@@ -39,7 +40,6 @@
 
             ./programming-languages.nix
             ./lsp.nix
-
            ];
         };
       };

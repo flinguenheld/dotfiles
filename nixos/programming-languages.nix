@@ -7,24 +7,8 @@
     nodePackages_latest.pnpm
     lua
 
-    rustup
-    taplo #toml formatter & lsp
-    cargo-watch
-    cargo-deny
-    cargo-audit
-    cargo-update
-    cargo-edit
-    cargo-outdated
-    cargo-license
-    cargo-tarpaulin
-    cargo-cross
-    cargo-zigbuild
-    cargo-nextest
-    cargo-spellcheck
-    cargo-modules
-    cargo-bloat
-    cargo-unused-features
-    bacon
-    evcxr #rust repl
+    cargo
+    rustc
+    taplo
   ];
 }

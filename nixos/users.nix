@@ -6,16 +6,20 @@
     isNormalUser = true;
     description = "flo";
     extraGroups = [ "networkmanager" "wheel" ];
+
     shell = fish;
+
     packages = [
-      firefox
-      thunderbird
       vesktop
       expressvpn
       vlc
+      pinta
 
       qmk
       exercism
     ];
   };
+
+  programs.firefox.enable = true;
+  programs.thunderbird.enable = true;
 }
