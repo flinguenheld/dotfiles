@@ -4,35 +4,24 @@
 DIR="$HOME/.config/hypr"
 RASI="$DIR/rofi/powermenu.rasi"
 
-# Theme Elements
-prompt="`hostname` (`echo $DESKTOP_SESSION`)"
-mesg="Uptime : `uptime -p | sed -e 's/up //g'`"
+mesg="${USER} : $(uptime | awk '{print $3}' | awk -F ',' '{print $1}' | sed 's/:/ h /')"
 
 # Options
 layout=`cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2`
-if [[ "$layout" == 'NO' ]]; then
-	option_1=" Lock"
-	option_2=" Shutdown"
-	option_3=" Reboot"
-	option_4=" Logout"
-	option_5=" Suspend"
-	option_6=" Hibernate"
-else
-	option_1=""
-	option_2=""
-	option_3=""
-	option_4=""
-	option_5=""
-	option_6=""
-fi
+	option_1="󰌾 <b>(L)</b>ock"
+	option_2="⏻ <b>(P)</b>ower off"
+	option_3=" <b>(R)</b>eboot"
+	option_4="󰍃 Log<b>(O)</b>ut"
+	option_5="󰒲 <b>(S)</b>uspend"
+	option_6=" <b>(H)</b>ibernate"
 
 rofi_cmd() {
   rofi -dmenu \
-  -p "$prompt" \
   -mesg "$mesg" \
   -markup-rows \
   -theme ${RASI} \
-  -kb-row-up '' \
+  -i \
+  -kb-row-up 'Up' \
   -kb-mode-complete '' \
   -kb-row-select '' \
   -kb-mode-complete '' \

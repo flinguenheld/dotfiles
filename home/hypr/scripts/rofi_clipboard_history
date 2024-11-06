@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Import Current Theme
+DIR="$HOME/.config/hypr"
+RASI="$DIR/rofi/clipboard_history.rasi"
+
+rofi_cmd() {
+  rofi -dmenu \
+  -mesg "Clipboard history" \
+  -markup-rows \
+  -theme "${RASI}" \
+  -i
+}
+
+cliphist list | rofi_cmd | cliphist decode | wl-copy
+

@@ -13,13 +13,19 @@
     hyprlock
     hypridle
     hyprpaper
+    hyprsunset
+    hyprutils
+    hyprlang
 
+    wl-screenrec
+    wl-clipboard
+    wl-clip-persist
+    cliphist
 
     waybar
-    rofi
+    rofi-wayland
     mako
-
-
+    libnotify
 
     # qutebrowser
     # zathura

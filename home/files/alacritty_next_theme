@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Folder : /home/bin/
 # Florent Linguenheld 2024
 
@@ -52,7 +52,7 @@ else
 fi
 
 if [[ $MODE == "menu" ]]; then
-    NEW=$(rofi_menu "${THEMES}" "${CURRENT}" "Alacritty new theme")
+    NEW=$(~/bin/rofi_menu "${THEMES}" "${CURRENT}" "Alacritty new theme")
     if [[ -z $NEW ]]; then
       exit 0
     fi

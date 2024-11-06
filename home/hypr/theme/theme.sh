@@ -11,7 +11,6 @@ DIR="$HOME/.config/hypr"
 PATH_MAKO="$DIR/mako"
 PATH_ROFI="$DIR/rofi"
 PATH_WAYB="$DIR/waybar"
-PATH_WOFI="$DIR/wofi"
 
 ## Source Theme File ------------------------
 CURRENT_THEME="$DIR/theme/current.bash"
@@ -151,25 +150,6 @@ apply_waybar() {
 	pkill waybar && bash ${DIR}/scripts/statusbar &
 }
 
-## Wofi --------------------------------------
-apply_wofi() {
-	# wofi : colors	
-	sed -i ${PATH_WOFI}/style.css \
-		-e "s/@define-color background .*/@define-color background      ${background};/g" \
-		-e "s/@define-color background-alt1 .*/@define-color background-alt1 ${modbackground[1]};/g" \
-		-e "s/@define-color background-alt2 .*/@define-color background-alt2 ${modbackground[2]};/g" \
-		-e "s/@define-color foreground .*/@define-color foreground      ${foreground};/g" \
-		-e "s/@define-color selected .*/@define-color selected        ${accent};/g" \
-		-e "s/@define-color black .*/@define-color black           ${color0};/g" \
-		-e "s/@define-color red .*/@define-color red             ${color1};/g" \
-		-e "s/@define-color green .*/@define-color green           ${color2};/g" \
-		-e "s/@define-color yellow .*/@define-color yellow          ${color3};/g" \
-		-e "s/@define-color blue .*/@define-color blue            ${color4};/g" \
-		-e "s/@define-color magenta .*/@define-color magenta         ${color5};/g" \
-		-e "s/@define-color cyan .*/@define-color cyan            ${color6};/g" \
-		-e "s/@define-color white .*/@define-color white           ${color7};/g"
-}
-
 ## Hyprland --------------------------------------
 apply_hypr() {
 	# hyprland : theme
@@ -200,5 +180,4 @@ apply_wallpaper
 apply_mako
 apply_rofi
 apply_waybar
-apply_wofi
 apply_hypr

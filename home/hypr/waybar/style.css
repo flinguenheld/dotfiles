@@ -1,21 +1,115 @@
 @import "./colors.css";
 
-* {
-  font-family: "JetBrains Mono", "Iosevka Nerd Font", archcraft, sans-serif;
-  font-size: 12px;
+/** *********************************************************************************************** **/
+/** *************************************************************************************** All *** **/
+#backlight,
+#battery,
+#clock.date,
+#clock.time,
+#cpu,
+#disk,
+#mode,
+#memory,
+#mpd,
+#custom-spotify,
+#idle_inhibitor,
+#tray,
+#pulseaudio,
+#network,
+#custom-expressvpn,
+#bluetooth {
+
+  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
+  /* font-family: "MartianMono NF", sans-serif; */
+  font-family: "JetBrainsMono NF", sans-serif;
+  /* font-family: "RecMonoCasual Nerd Font"; */
+  font-size: 13px;
+
+  border-radius: 10px;
+  margin: 5px 0px;
+  padding: 2px 10px;
 }
 
 window#waybar {
   background-color: @background;
   color: @background;
   border-bottom: 0px solid @background-alt1;
-  border-radius: 0px 0px 20px 20px;
+  /* border-radius: 0px 0px 20px 20px; */
   transition-property: background-color;
   transition-duration: .5s;
 }
 
 window#waybar.hidden {
   opacity: 0.5;
+}
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************** Hyprland *** **/
+#workspaces {
+  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
+  /* font-family: "JetBrainsMono NF", sans-serif; */
+  font-family: "MartianMono NF", sans-serif;
+  font-size: 14px;
+
+  background-color: @background;
+  margin-right: 20px;
+}
+
+#workspaces button {
+  color: @foreground;
+}
+
+#workspaces button.active {
+  background-color: @selected;
+  color: @black;
+}
+
+#workspaces button.visible {
+  border: 2px solid @selected;
+}
+
+#workspaces button.urgent {
+  border: 2px solid @selected;
+  color: @red;
+}
+
+#workspaces button:hover {
+  color: @black;
+}
+
+/** *********************************************************************************************** **/
+/** ************************************************************************************ Submap *** **/
+#submap {
+  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
+  /* font-family: "JetBrainsMono NF", sans-serif; */
+  font-family: "MartianMono NF", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+
+  padding: 0px 20px;
+  margin: 2px 5px;
+  border-radius: 5px;
+  /* background-color: @yellow; */
+  background-color: @red;
+}
+
+/** *********************************************************************************************** **/
+/** ************************************************************************************ Custom *** **/
+#custom-themes,
+#custom-power {
+  border-radius: 8px;
+  margin: 5px 0px;
+  padding: 0px 10px 0px 9px;
+}
+
+#custom-themes {
+  background-color: @selected;
+  padding: 2px 8px 2px 10px;
+}
+
+#custom-power {
+  background-color: @red;
+  margin-right: 6px;
 }
 
 /** *********************************************************************************************** **/
@@ -85,7 +179,7 @@ window#waybar.hidden {
 }
 
 /** *********************************************************************************************** **/
-/** ************************************************************************************* Tray *** **/
+/** ************************************************************************************** Tray *** **/
 #tray {
   background-color: @background-alt2;
 }
@@ -231,82 +325,3 @@ window#waybar.hidden {
 #bluetooth.discovering {}
 
 #bluetooth.pairable {}
-
-/** *********************************************************************************************** **/
-/** ********************************************************************************** Hyprland *** **/
-#workspaces {
-  background-color: @background;
-}
-
-#workspaces button {
-  color: @foreground;
-}
-
-#workspaces button.active {
-  background-color: @selected;
-  color: @black;
-}
-
-#workspaces button.visible {
-  border: 2px solid @selected;
-  font-weight: bold;
-}
-
-#workspaces button.urgent {
-  border: 2px solid @selected;
-  color: @red;
-}
-
-#workspaces button.hidden {
-  color: @yellow;
-}
-
-#submap {
-  font-weight: bold;
-  background-color: @yellow;
-}
-
-/** *********************************************************************************************** **/
-/** ************************************************************************************ Custom *** **/
-#custom-themes,
-#custom-power {
-  border-radius: 12px;
-  margin: 6px 0px;
-  padding: 2px 10px;
-}
-
-#custom-themes {
-  background-color: @selected;
-  padding: 2px 8px;
-}
-
-#custom-power {
-  background-color: @red;
-  margin-right: 6px;
-  padding: 2px 8px;
-  font-size: 16px;
-}
-
-/** *********************************************************************************************** **/
-/** *************************************************************************************** All *** **/
-#submap,
-#backlight,
-#battery,
-#clock.date,
-#clock.time,
-#cpu,
-#disk,
-#mode,
-#memory,
-#mpd,
-#custom-spotify,
-#idle_inhibitor,
-#tray,
-#pulseaudio,
-#network,
-#custom-expressvpn,
-#bluetooth {
-  border-radius: 12px;
-  margin: 6px 0px;
-  padding: 2px 10px;
-}

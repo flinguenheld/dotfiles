@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Folder : /home/bin/
 
 LIST=$1

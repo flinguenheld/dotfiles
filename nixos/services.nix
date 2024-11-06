@@ -3,10 +3,13 @@
 {
   # Enable Services
   # programs.direnv.enable = true;
-  programs.fish.enable = true;
   services.mpd.enable = true;
   services.fwupd.enable = true;
   services.auto-cpufreq.enable = true;
+  services.dbus = {
+    enable = true;
+    implementation = "broker";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
