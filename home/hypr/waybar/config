@@ -8,18 +8,60 @@
     "exclusive": true,
     "passthrough": false,
     "position": "top",
-    "height": 32,
+    // "height": 32,
     "width": "",
     "spacing": 6,
     "margin": 0,
     "margin-top": 0,
-    "margin-bottom": 0,
+    "margin-bottom": 2,
     "margin-left": 0,
     "margin-right": 0,
     "fixed-center": true,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces", "cpu", "memory", "idle_inhibitor", "hyprland/submap"],
-    "modules-center": ["mpd", "clock#time", "clock#date", "tray"],
-    "modules-right": ["custom/themes", "pulseaudio#speaker", "pulseaudio#mic", "backlight", "bluetooth", "network", "custom/expressvpn", "battery", "custom/power"],
+    "group/hardware": {
+    "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "battery"
+        ]
+    },
+
+    "group/web": {
+    "orientation": "horizontal",
+        "modules": [
+            "network",
+            "custom/expressvpn",
+        ]
+    },
+
+    "group/hour": {
+    "orientation": "horizontal",
+        "modules": [
+            "clock#date",
+            "clock#time",
+        ]
+    },
+
+    "group/sound": {
+    "orientation": "horizontal",
+        "modules": [
+            "pulseaudio#speaker",
+            "pulseaudio#mic"
+        ]
+    },
+
+    "group/commands": {
+    "orientation": "horizontal",
+        "modules": [
+            "custom/themes",
+            "idle_inhibitor",
+            "custom/power"
+        ]
+    },
+
+    "modules-left": [ "group/hour", "group/hardware", "tray" ],
+    "modules-center": [ "hyprland/submap", "hyprland/workspaces", "hyprland/submap" ],
+    "modules-right": [ "group/sound", "bluetooth", "backlight", "group/web", "group/commands" ],
 }

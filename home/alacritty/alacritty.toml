@@ -2,7 +2,7 @@
 import = [
   # "~/.config/hypr/alacritty/colors.toml",
   "~/.config/alacritty/fonts.toml",
-  "~/.config/alacritty/themes/catppuccin_frappe.toml",
+  "~/.config/alacritty/themes/onelight.toml",
 ]
 
 [keyboard]

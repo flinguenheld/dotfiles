@@ -1,5 +1,5 @@
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
+@import                          "themes/onelight.rasi"
 
 /*****----- Main Window -----*****/
 window {

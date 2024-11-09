@@ -1,8 +1,0 @@
-/* Text Font */
-
-* {
-   font: "JetBrainsMono NF 10";
-   // font: "RecMonoCasual Nerd Font 9";
-   // font: "MartianMono NF 9";
-   // font: "RecMonoCasual Nerd Font 9";
-}

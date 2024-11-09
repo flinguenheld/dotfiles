@@ -38,7 +38,7 @@ chosen="$(echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$optio
 case ${chosen} in
     $option_1)
       notify-send 'lock'
-      "$DIR"/scripts/lockscreen
+      hyprlock
       ;;
     $option_2)
       notify-send 'Shutdown'
@@ -54,7 +54,7 @@ case ${chosen} in
       ;;
     $option_5)
       notify-send 'Suspend'
-      mpc -q pause && pulsemixer --mute && $DIR/scripts/lockscreen && systemctl suspend
+      pactl set-sink-mute @DEFAULT_SINK@ toggle && systemctl suspend && hyprlock
       ;;
     $option_6)
       notify-send 'Hibernate'

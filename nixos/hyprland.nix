@@ -13,9 +13,9 @@
     hyprlock
     hypridle
     hyprpaper
-    hyprsunset
     hyprutils
     hyprlang
+    hyprpaper
 
     wl-screenrec
     wl-clipboard
@@ -26,6 +26,9 @@
     rofi-wayland
     mako
     libnotify
+
+    slurp
+    grim
 
     # qutebrowser
     # zathura

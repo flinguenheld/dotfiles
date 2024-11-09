@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "catppuccin_macchiato"
+palette = "onelight"
 add_newline = false
 
 format = """
@@ -28,19 +28,19 @@ $jobs\
 
 [username]
 show_always = true
-style_user = "bg:bg_user surface0 bold"
-style_root = "bg:red surface0 bold"
+style_user = "bg:bg_user fg_user bold"
+style_root = "bg:red fg_user bold"
 format = '[ $user ]($style)'
 disabled = false
 
 [localip]
 ssh_only = true
-style = "bg:bg_ip base bold"
+style = "bg:bg_ip fg_ip bold"
 format = '[ @$localipv4 ]($style)'
 disabled = false
 
 [directory]
-style = "bg:bg_dir base"
+style = "bg:bg_dir fg_dir"
 format = '[ $symbol($path) ]($style)'
 truncation_length = 4
 fish_style_pwd_dir_length = 1
@@ -48,38 +48,38 @@ truncate_to_repo = false
 truncation_symbol = "…/"
 
 [git_branch]
-style = "bg:bg_git base"
+style = "bg:bg_git fg_git"
 symbol = " "
 format = '[ $symbol$branch ]($style)'
 
 [git_status]
-style = "bg:bg_git base bold"
+style = "bg:bg_git fg_git bold"
 format = '([\[$all_status$ahead_behind\] ]($style))'
 
 [git_metrics]
-added_style = "base bg:bg_git"
-deleted_style = "base bg:bg_git"
+added_style = "bg:bg_git bg:bg_git fg_git"
+deleted_style = "bg:bg_gitase bg:bg_git fg_git"
 format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
 disabled = false
 
 [rust]
-style = "bg:bg_code red"
-symbol = '⚙️ '
+style = "bg:bg_code fg_rust"
+symbol = '󱘗 '
 format = '[ $symbol($version) ]($style)'
 
 [c]
-style = "bg:bg_code blue"
+style = "bg:bg_code fg_c"
 symbol = " "
 format = '[ $symbol($version(-$name)) ]($style)'
 detect_extensions = ['c', 'h', 'cpp', 'cxx', 'cc']
 
 [lua]
-style = "bg:bg_code blue"
+style = "bg:bg_code fg_lua"
 symbol = " "
 format = '[ $symbol($version) ]($style)'
 
 [python]
-style = "bg:bg_code blue"
+style = "bg:bg_code fg_python"
 symbol = " "
 format = '[ $symbol${pyenv_prefix}(${version}) [(\($virtualenv\) )](bg:bg_code yellow bold)]($style)'
 detect_files = [
@@ -92,51 +92,54 @@ detect_files = [
 ] # Remove tox.ini
 
 [cmd_duration]
-style = "bg:bg_status yellow"
-format = '[ ⏱ $duration ]($style)'
+style = "bg:bg_status fg_duration"
+format = '[ 󰔛 $duration ]($style)'
 
 [status]
 disabled = false
-style = "bg:bg_status red bold"
+style = "bg:bg_status fg_status bold"
 format = '[ $symbol$status ]($style)'
 
 [jobs]
-style = "bg:bg_status peach bold"
+style = "bg:bg_status fg_job bold"
 format = '[ $symbol $number ]($style)'
 
-
-[palettes.catppuccin_macchiato]
-bg_user = "#8aadf4"
-bg_ip = "#91b6ff"
-bg_dir = "#a6da95"
-bg_git = "#eed49f"
-bg_code = "#494d64"
-bg_status = "#363a4f"
+[palettes.onedark]
+bg_user = "#62AEEF"
+bg_ip = "#55B6C2"
+bg_dir = "#98C379"
+bg_git = "#E5C07A"
+bg_code = "#282C33"
+bg_status = "#282C33"
 bg_tranparent = "#FF000000"
 
-rosewater = "#f4dbd6"
-flamingo = "#f0c6c6"
-pink = "#f5bde6"
-mauve = "#c6a0f6"
-red = "#ed8796"
-maroon = "#ee99a0"
-peach = "#f5a97f"
-yellow = "#eed49f"
-green = "#a6da95"
-teal = "#8bd5ca"
-sky = "#91d7e3"
-sapphire = "#7dc4e4"
-blue = "#8aadf4"
-lavender = "#b7bdf8"
-text = "#cad3f5"
-subtext1 = "#b8c0e0"
-subtext0 = "#a5adcb"
-overlay2 = "#939ab7"
-overlay1 = "#8087a2"
-overlay0 = "#6e738d"
-surface2 = "#5b6078"
-surface1 = "#494d64"
-surface0 = "#363a4f"
-base = "#24273a"
-mantle = "#1e2030"
-crust = "#181926"
+fg_user = "#282C33"
+fg_ip = "#282C33"
+fg_dir = "#282C33"
+fg_git = "#282C33"
+fg_rust = "#E06B74"
+fg_c = "#62AEEF"
+fg_lua = "#62AEEF"
+fg_python = "#E5C07A"
+fg_duration = "#E5C07A"
+fg_status = "#E06B74"
+
+[palettes.onelight]
+bg_user = "#4078F1"
+bg_ip = "#E4564A"
+bg_dir = "#51A04F"
+bg_git = "#E5C07A"
+bg_code = "#FAFAFA"
+bg_status = "#FAFAFA"
+bg_tranparent = "#FF000000"
+
+fg_user = "#FAFAFA"
+fg_ip = "#FAFAFA"
+fg_dir = "#FAFAFA"
+fg_git = "#FAFAFA"
+fg_rust = "#CA1343"
+fg_c = "#4078F1"
+fg_lua = "#4078F1"
+fg_python = "#C08400"
+fg_duration = "#C08400"
+fg_status = "#CA1343"

@@ -51,11 +51,11 @@
   "bluetooth": {
     //"controller": "controller1",
     //"format-device-preference": "",
-    "format": " {status}",
-    "format-on": "󰂰 {status}",
-    "format-off": "󰂲 {status}",
-    "format-disabled": "󰂲 {status}",
-    "format-connected": "󰂰 {device_alias}",
+    "format": "  {status} ",
+    "format-on": " 󰂰 {status} ",
+    "format-off": " 󰂲 {status} ",
+    "format-disabled": " 󰂲 {status} ",
+    "format-connected": " 󰂰 {device_alias} ",
     "format-connected-battery": "󰥂 {device_alias}, {device_battery_percentage}%",
     "tooltip": true,
     "tooltip-format": "{controller_alias}\t{controller_address}",
@@ -99,18 +99,18 @@
     "rotate": 0,
     "timezone": "France/Paris",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "  {:%I:%M %p}",
-    "format-alt": "󱑑  {:%I:%M:%S %p}",
+    "format": "󰥔  {:%I:%M %p}",
+    "format-alt": "󱑑 {:%I:%M:%S %p}",
     // "format-alt": " {:%a %b %d, %G}"
   },
   "custom/themes": {
-    "format": " ",
+    "format": "   ",
     "tooltip": false,
-    "on-click": "$HOME/.config/hypr/theme/theme.sh --pywal",
-    "on-click-right": "$HOME/.config/hypr/theme/theme.sh --default"
+    // "on-click": "$HOME/.config/hypr/theme/theme.sh --pywal",
+    // "on-click-right": "$HOME/.config/hypr/theme/theme.sh --default"
   },
   "custom/power": {
-    "format": "󰐥",
+    "format": "⏻",
     "tooltip": false,
     "on-click": "$HOME/.config/hypr/scripts/rofi_powermenu"
   },
@@ -118,47 +118,13 @@
     "interval": 5,
     "format": "  {usage}%"
   },
-  "disk": {
-    "interval": 30,
-    "format": "  {free}"
-  },
   "memory": {
     "interval": 5,
     "format": "  {percentage}%"
   },
-  "custom/spotify": {
-    "exec": "$HOME/.config/hypr/waybar/spotify",
-    "interval": 1,
-    "format": "{}",
-    "tooltip": true,
-    "max-length": 40,
-    "on-click": "playerctl play-pause",
-    "on-click-middle": "playerctl previous",
-    "on-click-right": "playerctl next",
-    "on-scroll-up": "playerctl position 05+",
-    "on-scroll-down": "playerctl position 05-",
-    "smooth-scrolling-threshold": 1
-  },
-  "mpd": {
-    "interval": 2,
-    "unknown-tag": "N/A",
-    "format": "{stateIcon} {artist} - {title}",
-    "format-disconnected": " Disconnected",
-    "format-paused": "{stateIcon} {artist} - {title}",
-    "format-stopped": "Stopped  ",
-    "state-icons": {
-      "paused": " ",
-      "playing": " "
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)",
-    "on-click": "mpc toggle",
-    "on-click-middle": "mpc prev",
-    "on-click-right": "mpc next",
-    "on-update": "",
-    "on-scroll-up": "mpc seek +00:00:01",
-    "on-scroll-down": "mpc seek -00:00:01",
-    "smooth-scrolling-threshold": 1
+  "disk": {
+    "interval": 30,
+    "format": "  {free}"
   },
   "network": {
     "interval": 5,
@@ -215,7 +181,7 @@
     "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%"
   },
   "idle_inhibitor": {
-    "format": "{icon} ",
+    "format": " {icon}  ",
     "format-icons": {
       "activated": "",
       "deactivated": ""
@@ -230,7 +196,7 @@
     "on-click": "activate"
   },
   "hyprland/submap": {
-    "format": "- {} -",
+    "format": " {} ",
     "max-length": 100,
     "tooltip": true
   },

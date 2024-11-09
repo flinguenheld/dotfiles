@@ -10,8 +10,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
-@import                          "shared/fonts.rasi"
+@import                          "themes/onelight.rasi"
+@import                          "fonts/fonts.rasi"
 
 /*****----- Main Window -----*****/
 window {

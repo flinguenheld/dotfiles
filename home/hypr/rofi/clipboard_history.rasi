@@ -1,5 +1,5 @@
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
+@import                          "themes/onelight.rasi"
 
 * {
     // font:                        "JetBrainsMono NF 9";
@@ -48,7 +48,7 @@ inputbar {
     padding:                     10px;
     border-radius:               8px;
     background-color:            @background-alt;
-    text-color:                  @foreground;
+    text-color:                  @foreground-inputbar;
     children:                    [ "textbox-prompt-colon", "entry" ];
 }
 
