@@ -10,7 +10,7 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "themes/onelight.rasi"
+@import                          "themes/onedark.rasi"
 @import                          "fonts/fonts.rasi"
 
 /*****----- Main Window -----*****/

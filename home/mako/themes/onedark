@@ -12,9 +12,9 @@ on-touch=dismiss
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 
 # STYLE OPTIONS
-font=JetBrains Mono 11
+font=JetBrains Mono 12
 width=400
-height=600
+height=700
 margin=20
 padding=15
 border-size=4
@@ -26,27 +26,25 @@ markup=1
 actions=1
 history=1
 text-alignment=left
-default-timeout=5000
+default-timeout=7000
 ignore-timeout=0
 max-visible=5
 layer=overlay
 anchor=top-right
 
 # Mako_Colors
-background-color=#E5C07A
+border-color=#252932
 text-color=#252932
-border-color=#61AFEF
-progress-color=over #99C379
+# progress-color=over #99C379
 
 [urgency=low]
-border-color=#61AFEF
+background-color=#99C379
 default-timeout=2000
 
 [urgency=normal]
-border-color=#99C379
+background-color=#61AFEF
 default-timeout=5000
 
 [urgency=high]
-border-color=#E06C75
-text-color=#252932
+background-color=#E06C75
 default-timeout=0

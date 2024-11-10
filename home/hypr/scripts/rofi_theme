@@ -22,24 +22,19 @@ HELIX_REG="theme = \".*\""
 STARSHIP_FILE="$HOME/.config/starship.toml"
 STARSHIP_REG="palette = \".*\""
 
-LIST="catppuccin\none dark\none light"
-
 # Menu
-CHOICE=$(~/.config/hypr/scripts/rofi_menu "$LIST" "" "New theme")
-# CHOICE="one dark"
-case "$CHOICE" in
+LIST="one dark\none light"
+case $(~/.config/hypr/scripts/rofi_menu "$LIST" "" "New theme") in
 
-  "catppuccin")
-    NEW="catppuccin"
-    echo "catppuccin"
-  ;;
   "one dark")
     NEW="onedark"
-    echo "one_dark"
+    NEW_HELIX="onedark"
+    NEW_ALACRITTY="onedark"
   ;;
   "one light")
     NEW="onelight"
-    echo "one_light"
+    NEW_HELIX="onelight"
+    NEW_ALACRITTY="onelight"
   ;;
   *)
     echo "wrong"
@@ -53,6 +48,6 @@ sed -i "s#${HYPRLAND_REG}#source = ~/\.config/hypr/themes/${NEW}\.conf#" "${HYPR
 sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}" && "${HYPRLAND_FOLDER}/scripts/startup"
 find "${ROFI_FILES}" -name "*.rasi" -exec sed -i "s#${ROFI_REG}#themes/${NEW}\.rasi#" {} \;
 cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
-sed -i "s#${ALACRITTY_REG}#themes/${NEW}.toml#" "${ALACRITTY_FILE}"
-sed -i "s#${HELIX_REG}#theme = \"${NEW}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
+sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
+sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
 sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"

@@ -63,7 +63,7 @@ window#waybar.hidden {
 #tray,
 #bluetooth {
 
-  /* border: 2px solid; */
+  border: 2px solid;
   border-radius: 15px;
 
   background-color: @background;
@@ -78,7 +78,7 @@ window#waybar.hidden {
 #memory,
 #pulseaudio.mic,
 #custom-expressvpn {
-  border-radius: 12px;
+  border-radius: 8px;
   margin: 2px 0px;
 }
 
@@ -86,33 +86,29 @@ window#waybar.hidden {
 /** *********************************************************************************************** **/
 /** ************************************************************************************* Clock *** **/
 #hour {
-  background-color: @time;
+  border-color: @time;
 }
 
 #clock.date {
-  color: @text;
-  background-color: @time;
+  color: @time;
 }
 
 #clock.time {
-  color: @time;
-  background-color: @text;
+  background-color: @time;
 }
 
 /** *********************************************************************************************** **/
 /** ********************************************************************************** Hardware *** **/
 #hardware {
-  background-color: @hardware;
+  border-color: @hardware;
 }
 
 #cpu {
-  color: @text;
-  background-color: @hardware;
+  color: @hardware;
 }
 
 #memory {
-  color: @hardware;
-  background-color: @text;
+  background-color: @hardware;
 }
 
 #disk {
@@ -122,8 +118,7 @@ window#waybar.hidden {
 /** *********************************************************************************************** **/
 /** ********************************************************************************** Commands *** **/
 #commands {
-  border: 2px solid @commands;
-  background-color: @text;
+  border-color: @commands;
 }
 
 #custom-themes {
@@ -133,20 +128,18 @@ window#waybar.hidden {
 #custom-power {
   color: @commands;
 
-  font-size: 16px;
-  padding: 0px 10px;
+  font-size: 17px;
+  padding: 0px 12px;
 }
 
 #idle_inhibitor {
-  color: @commands;
-  background-color: @text;
-
-  font-size: 16px;
-  padding: 0px 2px;
+  background-color: @commands;
+  color: @text;
 }
 
 #idle_inhibitor.deactivated {
-  color: @disabled;
+  background-color: @disabled;
+  color: @text;
 }
 
 /** *********************************************************************************************** **/
@@ -236,25 +229,28 @@ window#waybar.hidden {
 /** *********************************************************************************************** **/
 /** ******************************************************************************** Pulseaudio *** **/
 #sound {
-  background-color: @sound;
-  color: @text;
+  border-color: @sound;
 }
 
 #pulseaudio.speaker {
-  background-color: @sound;
-  color: @text;
-}
-
-#pulseaudio.mic {
   color: @sound;
 }
 
+#pulseaudio.mic {
+  background-color: @sound;
+}
+
 #pulseaudio.speaker.muted {
-  color: @disabled-dark;
+  background-color: @text;
+  color: @disabled;
 }
 
 #pulseaudio.mic.source-muted {
-  color: @disabled;
+  background-color: @disabled;
+  color: @text;
+
+  border-radius: 8px;
+  margin: 2px 0px;
 }
 
 /* #pulseaudio.bluetooth { */
@@ -264,14 +260,14 @@ window#waybar.hidden {
 /** *********************************************************************************************** **/
 /** ********************************************************************************* Bluetooth *** **/
 #bluetooth {
-  background-color: @bluetooth;
-  color: @text;
+  border-color: @bluetooth;
+  color: @bluetooth;
 }
 
 #bluetooth.disabled,
 #bluetooth.off {
-  background-color: @disabled;
-  color: @text;
+  border-color: @disabled;
+  color: @disabled;
 }
 
 #bluetooth.on {}
@@ -287,17 +283,17 @@ window#waybar.hidden {
 /** *********************************************************************************************** **/
 /** *********************************************************************************** Network *** **/
 #web {
-  background-color: @web;
+  border-color: @web;
 }
 
 #network {
-  background-color: @web;
-  color: @text;
+  /* border-color: @red; */
+  color: @web;
 }
 
 #network.disconnected,
 #network.disabled {
-  color: @disabled-dark;
+  color: @disabled;
 }
 
 #network.linked {}
@@ -307,8 +303,7 @@ window#waybar.hidden {
 #network.wifi {}
 
 #custom-expressvpn {
-  background-color: @text;
-  color: @web;
+  background-color: @web;
 }
 
 /** *********************************************************************************************** **/

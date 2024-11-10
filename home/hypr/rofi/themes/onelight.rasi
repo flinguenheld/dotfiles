@@ -1,9 +1,9 @@
 * {
     background:           #FAFAFA;
-    background-alt:       #4078F1;
+    background-alt:       #A726A4;
     foreground:           #373A41;
     foreground-inputbar:  #FAFAFA;
-    selected:             #4078F1;
-    active:               #FAFAFA;
+    selected:             #A726A4;
+    active:               #A726A4;
     urgent:               #CA1343;
 }
