@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # florent@linguenheld.fr 2024
 
 THEMES="onedark,onedarker,onelight,everforest_light,pop-dark,"
@@ -66,7 +66,7 @@ if [[ $MODE == "previous" || $MODE == "next" ]]; then
   notify-send "✨ Helix: ${NEW} ✨"
 
 elif [[ $MODE == "menu" ]]; then
-  NEW=$(rofi_menu "${THEMES//,/\\n}" "$CURRENT" "Helix new theme")
+  NEW=$("$HOME/.config/helix/scripts/rofi_menu" "${THEMES//,/\\n}" "$CURRENT" "Helix new theme")
 
   if [[ -z $NEW ]]; then
     exit 0

@@ -1,0 +1,127 @@
+@import            "themes/onedark.rasi"
+
+* {
+    font:                        "JetBrainsMono NF 12";
+    // font:                        "MartianMono NF 9";
+    // font:                        "RecMonoCasual Nerd Font 20";
+    // font:                        "DaddyTimeMono Nerd Font Mono 20";
+}
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------- Window ---
+window {
+    /* properties for window widget */
+    transparency:                "real";
+    width:                       900px;
+
+    /* properties for all widgets */
+    margin:                      10px;
+    padding:                     10px;
+    border:                      6px solid;
+    border-radius:               12px;
+    border-color:                @background-alt;
+    background-color:            @background;
+}
+
+// ----------------------------------------------------------------------
+// ------------------------------------------------------------- Main ---
+mainbox {
+    spacing:                     20px;
+    padding:                     20px;
+    background-color:            transparent;
+}
+mainbox {
+    children:                    [ "message", "inputbar", "listview" ];
+}
+
+// ----------------------------------------------------------------------
+// ---------------------------------------------------------- Message ---
+message {
+    font:                        "MartianMono NF 11";
+    border-radius:               12px;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+textbox {
+    background-color:            transparent;
+    text-color:                  @selected;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    placeholder-color:           @foreground;
+}
+error-message {
+    padding:                     20px;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+
+// ----------------------------------------------------------------------
+// --------------------------------------------------------- Inputbar ---
+inputbar {
+    spacing:                     10px;
+    padding:                     6px 20px;
+    border-radius:               12px;
+    background-color:            @background-inputbar;
+    text-color:                  @foreground-inputbar;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    expand:                      false;
+    str:                         "   ";
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+entry {
+    cursor:                      text;
+    placeholder:                 "...";
+    placeholder-color:           inherit;
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+
+// ----------------------------------------------------------------------
+// --------------------------------------------------------- Listview ---
+listview {
+    columns:                     1;
+    lines:                       15;
+    spacing:                     5px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    scrollbar:                   true;
+}
+scrollbar {
+    handle-width:                5px;
+    handle-color:                @selected;
+    border-radius:               10px;
+    background-color:            @background;
+}
+
+// ----------------------------------------------------------------------
+// --------------------------------------------------------- Elements ---
+element {
+    padding:                     4px;
+    border-radius:               12px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+element normal.normal {
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  @background;
+}
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        30px;
+    padding:                     0px 20px 0px 0px;
+}

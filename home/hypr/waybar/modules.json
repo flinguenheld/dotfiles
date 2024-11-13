@@ -99,15 +99,16 @@
     "rotate": 0,
     "timezone": "France/Paris",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "󰥔  {:%I:%M %p}",
-    "format-alt": "󱑑 {:%I:%M:%S %p}",
+    // "format": "󰥔  {:%I:%M %p}",
+    "format": "󰥔  {:%I:%M} ",
+    "format-alt": "󱑆  {:%I:%M:%S} ",
+    // "format-alt": "󱑑  {:%I:%M:%S %p}",
     // "format-alt": " {:%a %b %d, %G}"
   },
   "custom/themes": {
     "format": "   ",
     "tooltip": false,
-    // "on-click": "$HOME/.config/hypr/theme/theme.sh --pywal",
-    // "on-click-right": "$HOME/.config/hypr/theme/theme.sh --default"
+    "on-click": "$HOME/.config/hypr/scripts/rofi_theme",
   },
   "custom/power": {
     "format": "⏻",
@@ -136,7 +137,7 @@
     "format-disabled": " Disabled",
     "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
     "tooltip-format": "  {ifname} via {gwaddr}",
-    "on-click-right": "~/.config/hypr/scripts/rofi_network"
+    // "on-click-right": "~/.config/hypr/scripts/rofi_network"
   },
   "custom/expressvpn": {
     "interval": 5,

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # florent@linguenheld.fr 2024
 
 WORDS="${HOME}/.config/helix/scripts/pipe_words.txt"

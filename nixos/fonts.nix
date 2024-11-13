@@ -6,7 +6,7 @@
     # https://github.com/googlefonts/noto-emoji?tab=readme-ov-file
     noto-fonts-color-emoji
 
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "MartianMono" "Recursive" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "MartianMono" "Recursive" "BigBlueTerminal" ]; })
   ];
 
 

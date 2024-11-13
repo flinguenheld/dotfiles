@@ -4,10 +4,10 @@ LIST=$1
 CURRENT=$2
 TITLE=$3
 
-CONFIG="${HOME}/.config/hypr/rofi/flo.rasi"
-
-if [[ -f "$CONFIG" ]]; then
-  echo -e "${LIST%\\n}" | sed "s/^${CURRENT}$/   >>> ${CURRENT} <<<  /" | rofi -dmenu -theme "$CONFIG" -no-custom -mesg "${TITLE}"
+if [[ -n $4 ]]; then
+  THEME="${HOME}/.config/hypr/rofi/${4}.rasi"
 else
-  echo -e "${LIST%\\n}" | sed "s/^${CURRENT}$/   >>> ${CURRENT} <<<  /" | rofi -dmenu -no-custom -mesg "${TITLE}"
+  THEME="${HOME}/.config/hypr/rofi/base.rasi"
 fi
+
+echo -e "${LIST%\\n}" | sed "s/^${CURRENT}$/   >>> ${CURRENT} <<<  /" | rofi -dmenu -theme "$THEME" -no-custom -mesg "${TITLE}"

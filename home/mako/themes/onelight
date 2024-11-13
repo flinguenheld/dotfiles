@@ -35,6 +35,7 @@ anchor=top-right
 # Mako_Colors
 border-color=#FAFAFA
 text-color=#FAFAFA
+background-color=#51A04F
 # progress-color=over #99C379
 
 [urgency=low]

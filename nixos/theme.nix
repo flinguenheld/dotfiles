@@ -10,9 +10,6 @@
 
     numix-icon-theme-circle
     colloid-icon-theme
-
-    xsettingsd
-    themechanger
   ];
 
     # catppuccin.enable = true;

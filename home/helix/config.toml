@@ -80,8 +80,8 @@ v = "select_regex"
 V = "split_selection"
 
 A-r = ":config-reload"
-A-a = ":pipe ~/bin/helix-scripts/pipe_words"
-A-x = ":pipe ~/bin/helix-scripts/pipe_words -p"
+A-a = ":pipe ~/.config/helix/scripts/pipe_words"
+A-x = ":pipe ~/.config/helix/scripts/pipe_words -p"
 
 [keys.select]
 s = "select_mode"

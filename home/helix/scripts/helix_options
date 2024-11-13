@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # florent@linguenheld.fr 2024
 
 HELIX_FILE="${HOME}/.config/helix/config.toml"
@@ -81,7 +81,7 @@ if [[ -n $FILE_NAME ]]; then
       LINE=$(echo -e "$RESULT" | cut -d ',' -f 1 )
       CURRENT=$(echo -e "$RESULT" | cut -d ',' -f 2 )
 
-      NEW=$(rofi_menu "${OPTIONS}" "${CURRENT}" "Helix - Status bar file name")
+      NEW=$("$HOME/.config/helix/scripts/rofi_menu" "${OPTIONS}" "${CURRENT}" "Helix - Status bar file name")
       if [[ -n $NEW && ! $NEW =~ '<' ]]; then
         sed -i "${LINE}s/${CURRENT}/${NEW}/" "${HELIX_FILE}"
       fi

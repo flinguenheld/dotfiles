@@ -3,6 +3,8 @@
 HYPRLAND_FOLDER="$HOME/.config/hypr"
 HYPRLAND_FILE="$HYPRLAND_FOLDER/hyprland.conf"
 HYPRLAND_REG="source = ~/\.config/hypr/themes/.*\.conf"
+HYPRPAPER_FILE="$HYPRLAND_FOLDER/hyprpaper.conf"
+HYPRPAPER_REG="wallpaper = .*"
 
 WAYBAR_FILE="$HYPRLAND_FOLDER/waybar/style.css"
 WAYBAR_REG="@import .*\.css\";"
@@ -23,11 +25,16 @@ STARSHIP_FILE="$HOME/.config/starship.toml"
 STARSHIP_REG="palette = \".*\""
 
 # Menu
-LIST="one dark\none light"
-case $(~/.config/hypr/scripts/rofi_menu "$LIST" "" "New theme") in
+LIST="one dark\none yellow\none light"
+case $(~/.config/hypr/scripts/rofi_menu "$LIST" "" "New theme" "theme_selection") in
 
   "one dark")
     NEW="onedark"
+    NEW_HELIX="onedark"
+    NEW_ALACRITTY="onedark"
+  ;;
+  "one yellow")
+    NEW="oneyellow"
     NEW_HELIX="onedark"
     NEW_ALACRITTY="onedark"
   ;;
@@ -51,3 +58,7 @@ cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
 sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
 sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
 sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
+
+hyprctl hyprpaper wallpaper ",~/.config/hypr/wallpapers/${NEW}.jpg"
+sed -i "s#${HYPRPAPER_REG}#wallpaper = ,~/.config/hypr/wallpapers/${NEW}\.jpg#" "${HYPRPAPER_FILE}"
+

@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "onedark"
+palette = "oneyellow"
 add_newline = false
 
 format = """
@@ -109,8 +109,28 @@ bg_user = "#62AEEF"
 bg_ip = "#55B6C2"
 bg_dir = "#98C379"
 bg_git = "#E5C07A"
-bg_code = "#282C33"
-bg_status = "#282C33"
+bg_code = "#1D2025"
+bg_status = "#1D2025"
+bg_tranparent = "#FF000000"
+
+fg_user = "#282C33"
+fg_ip = "#282C33"
+fg_dir = "#282C33"
+fg_git = "#282C33"
+fg_rust = "#E06B74"
+fg_c = "#62AEEF"
+fg_lua = "#62AEEF"
+fg_python = "#E5C07A"
+fg_duration = "#E5C07A"
+fg_status = "#E06B74"
+
+[palettes.oneyellow]
+bg_user = "#F47644"
+bg_ip = "#F4B043"
+bg_dir = "#F6C745"
+bg_git = "#F5DC44"
+bg_code = "#1D2025"
+bg_status = "#1D2025"
 bg_tranparent = "#FF000000"
 
 fg_user = "#282C33"

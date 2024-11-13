@@ -1,7 +1,5 @@
 ### Config NixOS / Hyprland
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-
 ---
 
 ##### Links
@@ -17,5 +15,5 @@
 if command not found isn't found:  
 ``` sudo nix-channel --update ```
 
-cursor trouble (as mention [here](https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/#important-notes)):
+cursor trouble (as mention [here](https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/#important-notes)):  
 ``` dconf write /org/gnome/desktop/interface/cursor-theme "'Quintom_Snow'" ```

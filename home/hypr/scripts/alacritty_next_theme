@@ -4,6 +4,7 @@
 FOLDER="${HOME}/.config/alacritty/"
 FOLDER_THEMES="${FOLDER}themes/"
 ALACRITTY_FILE="${FOLDER}alacritty.toml"
+ROFI_MENU="${HOME}/.config/hypr/scripts/rofi_menu"
 
 # ---------------------------------------------------------------------------------------
 usage() {
@@ -51,7 +52,7 @@ else
 fi
 
 if [[ $MODE == "menu" ]]; then
-    NEW=$(~/bin/rofi_menu "${THEMES}" "${CURRENT}" "Alacritty new theme")
+    NEW=$("${ROFI_MENU}" "${THEMES}" "${CURRENT}" "Alacritty new theme")
     if [[ -z $NEW ]]; then
       exit 0
     fi

@@ -1,6 +1,9 @@
 // Add the first word to the end to create a loop
 true,false,true
 left,right,left
+on,off,on
+height,width,height
+row,column,row
 zero,one,two,three,four,five,six,seven,eight,ten
 a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a
 aaa,bbb,ccc,ddd,eee,fff,ggg,hhh,iii,jjj,kkk,lll,mmm,nnn,ooo,ppp,qqq,rrr,sss,ttt,uuu,vvv,www,xxx,yyy,zzz,aaa

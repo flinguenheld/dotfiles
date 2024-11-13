@@ -12,9 +12,10 @@
     starship
 
     helix
-
     git
+    ranger
 
+    htop
     neofetch
     tldr
     bat
