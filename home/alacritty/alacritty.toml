@@ -2,15 +2,15 @@
 import = [
   # "~/.config/hypr/alacritty/colors.toml",
   "~/.config/alacritty/fonts.toml",
-  "~/.config/alacritty/themes/onedark.toml",
+  "~/.config/alacritty/themes/gruvbox.toml",
 ]
 
 [keyboard]
 bindings = [
   { key = "Enter", mods = "Control|Shift", action = "CreateNewWindow" },
-  { key = "y", mods = "Control|Shift", action = "IncreaseFontSize" },
-  { key = "i", mods = "Control|Shift", action = "DecreaseFontSize" },
-  { key = "j", mods = "Control|Shift", action = "ResetFontSize" },
+  { key = "+", mods = "Control|Shift", action = "IncreaseFontSize" },
+  { key = "-", mods = "Control|Shift", action = "DecreaseFontSize" },
+  { key = "=", mods = "Control", action = "ResetFontSize" },
 
   { key = "s", mods = "Control|Shift", action = "ToggleViMode" },
   { key = "Escape", mode = "Vi|~Search", action = "ToggleViMode" },

@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "oneyellow"
+palette = "gruvbox"
 add_newline = false
 
 format = """
@@ -104,6 +104,46 @@ format = '[ $symbol$status ]($style)'
 style = "bg:bg_status fg_job bold"
 format = '[ $symbol $number ]($style)'
 
+[palettes.gruvbox]
+bg_user = "#458588"
+bg_ip = "#83A598"
+bg_dir = "#689D6A"
+bg_git = "#D79921"
+bg_code = "#1D2021"
+bg_status = "#1D2021"
+bg_tranparent = "#FF000000"
+
+fg_user = "#282828"
+fg_ip = "#282828"
+fg_dir = "#282828"
+fg_git = "#282828"
+fg_rust = "#CC241D"
+fg_c = "#458588"
+fg_lua = "#458588"
+fg_python = "#D79921"
+fg_duration = "#EBDBB2"
+fg_status = "#CC241D"
+
+[palettes.gruvbox_light]
+bg_user = "#458588"
+bg_ip = "#83A598"
+bg_dir = "#689D6A"
+bg_git = "#D79921"
+bg_code = "#EBDBB2"
+bg_status = "#EBDBB2"
+bg_tranparent = "#FF000000"
+
+fg_user = "#3C3836"
+fg_ip = "#3C3836"
+fg_dir = "#3C3836"
+fg_git = "#3C3836"
+fg_rust = "#CC241D"
+fg_c = "#458588"
+fg_lua = "#458588"
+fg_python = "#D79921"
+fg_duration = "#3C3836"
+fg_status = "#CC241D"
+
 [palettes.onedark]
 bg_user = "#62AEEF"
 bg_ip = "#55B6C2"
@@ -149,8 +189,8 @@ bg_user = "#4078F1"
 bg_ip = "#E4564A"
 bg_dir = "#51A04F"
 bg_git = "#E5C07A"
-bg_code = "#FAFAFA"
-bg_status = "#FAFAFA"
+bg_code = "#EEEEEE"
+bg_status = "#EEEEEE"
 bg_tranparent = "#FF000000"
 
 fg_user = "#FAFAFA"

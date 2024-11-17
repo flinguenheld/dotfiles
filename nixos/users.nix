@@ -13,6 +13,7 @@
       vesktop
       expressvpn
       vlc
+      qimgv   # Image viewer
       pinta
       libreoffice-qt6-still
 

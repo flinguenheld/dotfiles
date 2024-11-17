@@ -5,7 +5,9 @@ auto-format = true
 
 [language-server.rust-analyzer.config]
 checkOnSave = { command = "clippy" }
-inlayHints.maxLength = 90
+# inlayHints.typeHints = false
+# inlayHints.parameterHints= false
+# inlayHints.maxLength = 90
 
 [language-server.hyprls]
 command = "hyprls"

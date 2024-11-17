@@ -2,7 +2,7 @@
 # Florent Linguenheld 2024
 HYPRLAND_FOLDER="$HOME/.config/hypr"
 HYPRLAND_FILE="$HYPRLAND_FOLDER/hyprland.conf"
-HYPRLAND_REG="source = ~/\.config/hypr/themes/.*\.conf"
+HYPRLAND_REG="source = ~/\.config/hypr/themes/[^(elements)].*\.conf"
 HYPRPAPER_FILE="$HYPRLAND_FOLDER/hyprpaper.conf"
 HYPRPAPER_REG="wallpaper = .*"
 
@@ -25,7 +25,7 @@ STARSHIP_FILE="$HOME/.config/starship.toml"
 STARSHIP_REG="palette = \".*\""
 
 # Menu
-LIST="one dark\none yellow\none light"
+LIST="gruvbox\ngruvbox light\none dark\none yellow\none light"
 case $(~/.config/hypr/scripts/rofi_menu "$LIST" "" "New theme" "theme_selection") in
 
   "one dark")
@@ -42,6 +42,16 @@ case $(~/.config/hypr/scripts/rofi_menu "$LIST" "" "New theme" "theme_selection"
     NEW="onelight"
     NEW_HELIX="onelight"
     NEW_ALACRITTY="onelight"
+  ;;
+  "gruvbox")
+    NEW="gruvbox"
+    NEW_HELIX="gruvbox"
+    NEW_ALACRITTY="gruvbox"
+  ;;
+  "gruvbox light")
+    NEW="gruvbox_light"
+    NEW_HELIX="gruvbox_light"
+    NEW_ALACRITTY="gruvbox_light"
   ;;
   *)
     echo "wrong"

@@ -40,7 +40,7 @@ background-color=#99C379
 
 [urgency=low]
 background-color=#99C379
-default-timeout=2000
+default-timeout=5000
 
 [urgency=normal]
 background-color=#61AFEF

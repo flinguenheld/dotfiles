@@ -1,4 +1,4 @@
-theme = "onedark"
+theme = "gruvbox"
 
 [editor]
 scrolloff = 999
@@ -37,7 +37,7 @@ center = [
   "file-modification-indicator",
 ]
 right = [
-  "workspace-diagnostics",
+  "diagnostics",
   "diagnostics",
   "selections",
   "register",
@@ -47,7 +47,7 @@ right = [
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
+# display-inlay-hints = true
 
 [editor.file-picker]
 hidden = false
