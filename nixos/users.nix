@@ -19,6 +19,7 @@
 
       qmk
       exercism
+      codecrafters-cli
     ];
   };
 
