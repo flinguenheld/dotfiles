@@ -1,4 +1,4 @@
-@import "./themes/gruvbox.css";
+@import "./themes/onelight.css";
 
 * {
   min-height: 0;
@@ -253,7 +253,7 @@ window#waybar.hidden {
 }
 
 #pulseaudio.speaker.muted {
-  color: @disabled-dark;
+  color: @disabled-speaker;
 }
 
 #pulseaudio.mic.source-muted {

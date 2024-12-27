@@ -10,4 +10,3 @@ foo.*
 data
 
 lazy-lock.json
-hardware-configuration.nix

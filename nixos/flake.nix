@@ -4,9 +4,10 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, ...}:
+  outputs = { self, nixpkgs, ...} @ inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -16,6 +17,7 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
 

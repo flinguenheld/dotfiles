@@ -1,4 +1,4 @@
-@import            "themes/gruvbox.rasi"
+@import            "themes/onelight.rasi"
 
 * {
     font:                        "JetBrainsMono NF 12";

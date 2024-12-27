@@ -22,6 +22,7 @@
     fd
     bc
     killall
+    usbutils
   ];
 
   programs.fish.enable = true;
