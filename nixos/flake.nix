@@ -1,24 +1,17 @@
 {
-
   description = "Pouet";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay";
+    helix.url = "github:helix-editor/helix";
   };
 
-  outputs = { self, nixpkgs, ...} @ inputs:
-    let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-
-      nixosConfigurations = {
-        nixos = lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
+  outputs = { nixpkgs, ... } @ inputs:
+  {
+    nixosConfigurations.flopc = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
             ./configuration.nix
 
             ./bootloader.nix
@@ -29,7 +22,8 @@
             ./environment-variables.nix
             ./services.nix
 
-            ./hyprland.nix
+            # ./hyprland.nix
+            ./niri.nix
             ./fonts.nix
             ./theme.nix
 
@@ -43,7 +37,6 @@
             ./programming-languages.nix
             ./lsp.nix
            ];
-        };
       };
     };
 }

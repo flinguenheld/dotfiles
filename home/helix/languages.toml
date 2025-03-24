@@ -1,6 +1,7 @@
 [[language]]
 name = "rust"
 language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
 auto-format = true
 
 [language-server.rust-analyzer.config]
@@ -11,10 +12,6 @@ checkOnSave = { command = "clippy" }
 
 [language-server.hyprls]
 command = "hyprls"
-
-[[language]]
-name = "hyprlang"
-language-servers = [ "hyprls" ]
 
 [[language]]
 name = "markdown"
@@ -29,4 +26,5 @@ args = ["--stdio"]
 
 [[language]]
 name = "html"
+auto-format = true
 language-servers = [ "emmet-lsp", "vscode-html-language-server" ]

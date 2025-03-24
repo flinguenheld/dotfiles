@@ -5,7 +5,7 @@
   environment = with pkgs; {
     shells = [ bash fish ];
     variables = {
-      EDITOR = "helix";
+      EDITOR = "hx";
     };
   };
 }

@@ -11,6 +11,10 @@
 
 [XNM1 dotfiles](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles)  
 
+##### Commands
+
+``` sudo nixos-rebuild switch --flake .#flopc ```
+
 ##### Miscellaneous
 if command not found isn't found:  
 ``` sudo nix-channel --update ```

@@ -27,7 +27,7 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 [window]
 position = "None"
 dynamic_padding = true
-decorations = "full"
+decorations = "none"
 opacity = 1.0
 blur = false
 startup_mode = "Windowed"

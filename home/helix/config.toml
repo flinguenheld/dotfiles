@@ -11,7 +11,16 @@ color-modes = true
 bufferline = "multiple"
 auto-format = true
 cursorline = true
+continue-comments = false
 # cursorcolumn = true
+ 
+# Minimum severity to show a diagnostic after the end of a line:
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+# other-lines = "warning"
+max-wrap = 15
 
 [editor.cursor-shape]
 insert = "bar"

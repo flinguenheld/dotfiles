@@ -1,0 +1,31 @@
+// ░░░░░   █▀ ▀█▀ ▄▀█ █▀█ ▀█▀ █░█ █▀█   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ░░░░░   ▄█ ░█░ █▀█ █▀▄ ░█░ █▄█ █▀▀   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+// Add lines like this to spawn processes at startup.
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+// spawn-at-startup "alacritty" "-e" "fish"
+
+spawn-at-startup "xwayland-satellite"
+environment {
+    DISPLAY ":0"
+}
+
+// spawn-at-startup "$NIRI_CONFIG/scripts/startup"
+spawn-at-startup "~/.config/niri/scripts/statusbar"
+spawn-at-startup "mako"
+
+// Uncomment this line to ask the clients to omit their client-side decorations if possible.
+// If the client will specifically ask for CSD, the request will be honored.
+// Additionally, clients will be informed that they are tiled, removing some rounded corners.
+// prefer-no-csd
+
+// You can change the path where screenshots are saved.
+// A ~ at the front will be expanded to the home directory.
+// The path is formatted with strftime(3) to give you the screenshot date and time.
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// You can also set this to null to disable saving screenshots to disk.
+// screenshot-path null
+

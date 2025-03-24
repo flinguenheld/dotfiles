@@ -1,0 +1,67 @@
+// Waybar config file
+{
+    "include": "~/.config/hypr/waybar/modules.json",
+    "name": "main-bar",
+    "id": "main-bar",
+    "layer": "top",
+    //"mode": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "position": "top",
+    // "height": 32,
+    "width": "",
+    "spacing": 6,
+    "margin": 0,
+    "margin-top": 0,
+    "margin-bottom": 1,
+    "margin-left": 0,
+    "margin-right": 0,
+    "fixed-center": true,
+    "ipc": true,
+
+    "group/hardware": {
+    "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "battery"
+        ]
+    },
+
+    "group/web": {
+    "orientation": "horizontal",
+        "modules": [
+            "network",
+            "custom/expressvpn",
+        ]
+    },
+
+    "group/hour": {
+    "orientation": "horizontal",
+        "modules": [
+            "clock#date",
+            "clock#time",
+        ]
+    },
+
+    "group/sound": {
+    "orientation": "horizontal",
+        "modules": [
+            "pulseaudio#speaker",
+            "pulseaudio#mic"
+        ]
+    },
+
+    "group/commands": {
+    "orientation": "horizontal",
+        "modules": [
+            "custom/themes",
+            "idle_inhibitor",
+            "custom/power"
+        ]
+    },
+
+    "modules-left": [ "group/hour", "group/hardware", "tray" ],
+    "modules-center": [ "hyprland/submap", "niri/workspaces" ],
+    "modules-right": [ "group/sound", "bluetooth", "backlight", "group/web", "group/commands" ],
+}

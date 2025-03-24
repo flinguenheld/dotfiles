@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -7,7 +7,7 @@
     description = "flo";
     extraGroups = [ "networkmanager" "wheel" ];
 
-    shell = fish;
+    # shell = fish;
 
     packages = [
       vesktop
@@ -20,6 +20,8 @@
       qmk
       exercism
       codecrafters-cli
+
+      kicad
     ];
   };
 

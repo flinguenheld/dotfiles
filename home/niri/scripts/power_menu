@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+lock() {
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && swaylock --color 282828 --show-failed-attempts
+}
+
+UPTIME="$(uptime | awk '{print $3}' | awk -F ',' '{print $1}' | sed 's/:/ h /')"
+
+OPTION_0=" 󰌾    Lock"
+OPTION_1=" 󰒲    Suspend"
+OPTION_2=" ⏻    Power off"
+OPTION_3="     Reboot"
+OPTION_4=" 󰍃    LogOut"
+OPTION_5="     Hibernate"
+
+case "$(echo -e "$OPTION_0\n$OPTION_1\n$OPTION_2\n$OPTION_3\n$OPTION_4\n$OPTION_5" | \
+          fuzzel --dmenu \
+                 --placeholder " power menu - ${UPTIME}" \
+                 --lines 6 \
+                 --config "$HOME/.config/fuzzel/short_selection.ini" )" in
+
+    "$OPTION_0")
+        notify-send 'lock'
+        lock
+    ;;
+    "$OPTION_1")
+        notify-send 'Suspend'
+        systemctl suspend && lock
+    ;;
+    "$OPTION_2")
+        notify-send 'Shutdown'
+        systemctl poweroff
+    ;;
+    "$OPTION_3")
+        notify-send 'Reboot'
+        systemctl reboot
+    ;;
+    "$OPTION_4")
+        notify-send 'Logout'
+        loginctl terminate-user "$USER"
+    ;;
+    "$OPTION_5")
+        notify-send 'Hibernate'
+        systemctl hibernate && lock
+    ;;
+esac

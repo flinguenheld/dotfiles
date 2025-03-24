@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cat "$HOME"/.config/niri/config/*.kdl > "$HOME"/.config/niri/config.kdl

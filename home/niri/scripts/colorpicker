@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "hex" ]]; then
+  COLOR=$(hyprpicker --format="${1}" | sed "s/#//")
+  wl-copy "$COLOR"
+else
+  COLOR=$(hyprpicker --autocopy --format="${1}")
+fi
+
+notify-send -t 8000 "${COLOR}, copied."

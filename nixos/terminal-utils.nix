@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   environment.systemPackages = with pkgs; [
@@ -11,7 +11,8 @@
 
     starship
 
-    helix
+    # helix
+    inputs.helix.packages.${pkgs.system}.default
     git
     ranger
 
@@ -19,10 +20,18 @@
     neofetch
     tldr
     bat
+    ripgrep
     fd
     bc
     killall
     usbutils
+
+    gnutar
+    zip
+    unzip
+
+    minicom
+    wev # xev for wayland
   ];
 
   programs.fish.enable = true;

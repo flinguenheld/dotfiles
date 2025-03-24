@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+OPTION_0=" Calendar"
+OPTION_1=" Figaro"
+OPTION_2=" Github"
+OPTION_3=" Meteo"
+OPTION_4=" Niri"
+OPTION_5=" Robert"
+OPTION_6=" Rust"
+OPTION_7=" Wordreference"
+OPTION_8=" Youtube"
+
+
+case "$(echo -e "$OPTION_0\n$OPTION_1\n$OPTION_2\n$OPTION_3\n$OPTION_4\n$OPTION_5\n$OPTION_6\n$OPTION_7\n$OPTION_8" | \
+          fuzzel --dmenu \
+                 --placeholder " Firefox launcher" \
+                 --lines 9 \
+                 --config "$HOME/.config/fuzzel/short_selection.ini" )" in
+
+    "$OPTION_0")
+        niri msg action spawn -- firefox https://calendar.google.com/calendar/u/0/r
+    ;;
+    "$OPTION_1")
+        niri msg action spawn -- firefox https://www.lefigaro.fr/
+    ;;
+    "$OPTION_2")
+        niri msg action spawn -- firefox https://github.com/
+    ;;
+    "$OPTION_3")
+        niri msg action spawn -- firefox https://meteofrance.com/previsions-meteo-france/tours/37000
+    ;;
+    "$OPTION_4")
+        niri msg action spawn -- firefox https://github.com/YaLTeR/niri/wiki/Getting-Started
+    ;;
+    "$OPTION_5")
+        niri msg action spawn -- firefox https://dictionnaire.lerobert.com/definition/bonjour
+    ;;
+    "$OPTION_6")
+        niri msg action spawn -- firefox https://doc.rust-lang.org/std/
+    ;;
+    "$OPTION_7")
+        niri msg action spawn -- firefox www.wordreference.com/fren
+    ;;
+    "$OPTION_8")
+        niri msg action spawn -- firefox --private-window https://www.youtube.com/
+    ;;
+esac

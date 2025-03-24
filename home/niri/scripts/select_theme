@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# Florent Linguenheld 2025
+
+HYPRLAND_FOLDER="$HOME/.config/hypr"
+HYPRLAND_FILE="$HYPRLAND_FOLDER/hyprland.conf"
+HYPRLAND_REG="source = ~/\.config/hypr/themes/[^(elements)].*\.conf"
+HYPRPAPER_FILE="$HYPRLAND_FOLDER/hyprpaper.conf"
+HYPRPAPER_REG="wallpaper = .*"
+
+WAYBAR_FILE="$HYPRLAND_FOLDER/waybar/style.css"
+WAYBAR_REG="@import .*\.css\";"
+
+ROFI_FILES="$HYPRLAND_FOLDER/rofi/"
+ROFI_REG="themes/.*\.rasi"
+
+MAKO_FOLDER="$HOME/.config/mako/"
+MAKO_FOLDER_THEMES="$MAKO_FOLDER/themes/"
+
+ALACRITTY_FILE="$HOME/.config/alacritty/alacritty.toml"
+ALACRITTY_REG="themes/.*\.toml"
+
+HELIX_FILE="$HOME/.config/helix/config.toml"
+HELIX_REG="theme = \".*\""
+
+STARSHIP_FILE="$HOME/.config/starship.toml"
+STARSHIP_REG="palette = \".*\""
+
+FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
+FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
+
+# Menu
+case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzzel --dmenu \
+                                                                                  --font "JetBrains Mono:size=25" \
+                                                                                  --lines 5 \
+                                                                                  --width 25 \
+                                                                                  --line-height 50 \
+                                                                                  --inner-pad 50 \
+                                                                                  --placeholder " Theme selection") in
+
+  "one dark")
+    NEW="onedark"
+    NEW_HELIX="onedark"
+    NEW_ALACRITTY="onedark"
+  ;;
+  "one yellow")
+    NEW="oneyellow"
+    NEW_HELIX="onedark"
+    NEW_ALACRITTY="onedark"
+  ;;
+  "one light")
+    NEW="onelight"
+    NEW_HELIX="onelight"
+    NEW_ALACRITTY="onelight"
+  ;;
+  "gruvbox")
+    NEW="gruvbox"
+    NEW_HELIX="gruvbox"
+    NEW_ALACRITTY="gruvbox"
+  ;;
+  "gruvbox light")
+    NEW="gruvbox_light"
+    NEW_HELIX="gruvbox_light"
+    NEW_ALACRITTY="gruvbox_light"
+  ;;
+  *)
+    echo "wrong"
+    exit 0
+  ;;
+
+esac
+
+# Apply
+sed -i "s#${HYPRLAND_REG}#source = ~/\.config/hypr/themes/${NEW}\.conf#" "${HYPRLAND_FILE}"
+sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}" && "${HYPRLAND_FOLDER}/scripts/startup"
+find "${ROFI_FILES}" -name "*.rasi" -exec sed -i "s#${ROFI_REG}#themes/${NEW}\.rasi#" {} \;
+cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
+sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
+sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${NEW}.ini#" "${FUZZEL_FILE}"
+sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
+sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
+
+hyprctl hyprpaper wallpaper ",~/.config/hypr/wallpapers/${NEW}.jpg"
+sed -i "s#${HYPRPAPER_REG}#wallpaper = ,~/.config/hypr/wallpapers/${NEW}\.jpg#" "${HYPRPAPER_FILE}"
+

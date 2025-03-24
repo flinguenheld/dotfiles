@@ -1,0 +1,347 @@
+@import "./themes/gruvbox.css";
+
+* {
+  min-height: 0;
+}
+
+/** *********************************************************************************************** **/
+/** *************************************************************************************** Bar *** **/
+window#waybar {
+  background-color: transparent;
+
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.5;
+}
+
+/** *********************************************************************************************** **/
+/** *************************************************************************************** All *** **/
+#backlight,
+#battery,
+#clock.date,
+#clock.time,
+#cpu,
+#disk,
+#mode,
+#memory,
+#mpd,
+#custom-spotify,
+#idle_inhibitor,
+#tray,
+#pulseaudio,
+#network,
+#custom-expressvpn,
+#bluetooth {
+
+  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
+  /* font-family: "MartianMono NF", sans-serif; */
+  font-family: "JetBrainsMono NF", sans-serif;
+
+  /* font-family: "MartianMono NFP Cond", sans-serif; */
+  /* font-family: "MartianMono NFP Cond Med", sans-serif; */
+  /* font-family: "MartianMono NFP Med", sans-serif; */
+
+  /* font-family: "RecMonoCasual Nerd Font"; */
+  font-size: 13px;
+
+  background-color: @background;
+  color: @text;
+
+  margin: 0px 2px;
+  padding: 0px 10px;
+}
+
+/* #workplaces, */
+#hardware,
+#commands,
+#web,
+#hour,
+#sound,
+#tray,
+#bluetooth {
+
+  /* border: 2px solid; */
+  border-radius: 15px;
+
+  background-color: @background;
+  color: @text;
+
+  padding: 0px 8px;
+  margin: 0px 4px;
+}
+
+#idle_inhibitor,
+#clock.time,
+#memory,
+#pulseaudio.mic,
+#custom-expressvpn {
+  border-radius: 12px;
+  margin: 2px 0px;
+}
+
+/** *********************************************************************************************** **/
+/** ************************************************************************************* Clock *** **/
+#hour {
+  background-color: @time;
+}
+
+#clock.date {
+  color: @text;
+
+  background-color: @time;
+}
+
+#clock.time {
+  color: @time;
+  background-color: @text;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************** Hardware *** **/
+#hardware {
+  background-color: @hardware;
+}
+
+#cpu {
+  color: @text;
+  background-color: @hardware;
+}
+
+#memory {
+  color: @hardware;
+  background-color: @text;
+}
+
+#disk {
+  /* color: @blue; */
+}
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************** Commands *** **/
+#commands {
+  border: 2px solid @commands;
+  background-color: @text;
+}
+
+#custom-themes {
+  color: @commands;
+}
+
+#custom-power {
+  color: @commands;
+
+  font-size: 16px;
+  padding: 0px 10px;
+}
+
+#idle_inhibitor {
+  color: @commands;
+  background-color: @text;
+
+  font-size: 16px;
+  padding: 0px 2px;
+}
+
+#idle_inhibitor.deactivated {
+  color: @disabled;
+}
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************** Hyprland *** **/
+#workspaces {
+  background-color: @background;
+
+  border-radius: 15px;
+  border: 2px solid @workspaces;
+  margin: 0px 20px;
+  padding: 0px 15px;
+
+  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
+  font-family: "MartianMono NF", sans-serif;
+  /* font-family: "JetBrainsMono NF", sans-serif; */
+
+  /* font-family: "MartianMono NFP Cond", sans-serif; */
+  /* font-family: "MartianMono NFP Cond Med", sans-serif; */
+  /* font-family: "MartianMono NFP Med", sans-serif; */
+
+  /* font-family: "RecMonoCasual Nerd Font"; */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#workspaces button {
+  color: @workspace_visible;
+  margin: 2px;
+  border-radius: 12px;
+  padding: 0px 15px;
+}
+
+#workspaces button.visible {
+  background-color: @workspace_visible;
+  padding: 0px 27px;
+  color: @text;
+}
+
+#workspaces button.active {
+  background-color: @workspaces;
+  padding: 0px 27px;
+  color: @text;
+}
+
+#workspaces button.urgent {
+  background-color: @workspace_urgent;
+  color: @text;
+}
+
+#workspaces button:hover {
+  background-color: transparent;
+  color: @text;
+}
+
+/** *********************************************************************************************** **/
+/** ************************************************************************************ Submap *** **/
+#submap {
+  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
+  /* font-family: "JetBrainsMono NF", sans-serif; */
+  font-family: "MartianMono NF", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+
+  padding: 0px 20px;
+  border-radius: 7px;
+  background-color: @submap;
+  color: @text;
+}
+
+/** *********************************************************************************************** **/
+/** ************************************************************************************** Tray *** **/
+#tray {
+  border-color: @tray;
+  padding: 0px 15px;
+}
+
+#tray>.passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+#tray>.active {}
+
+/** *********************************************************************************************** **/
+/** ******************************************************************************** Pulseaudio *** **/
+#sound {
+  background-color: @sound;
+  color: @text;
+}
+
+#pulseaudio.speaker {
+  background-color: @sound;
+  color: @text;
+}
+
+#pulseaudio.mic {
+  color: @sound;
+}
+
+#pulseaudio.speaker.muted {
+  color: @disabled-speaker;
+}
+
+#pulseaudio.mic.source-muted {
+  color: @disabled;
+}
+
+/* #pulseaudio.bluetooth { */
+/* background-color: @yellow; */
+/* } */
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************* Bluetooth *** **/
+#bluetooth {
+  background-color: @bluetooth;
+  color: @text;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+  background-color: @disabled;
+  color: @text;
+}
+
+#bluetooth.on {}
+
+#bluetooth.connected {}
+
+#bluetooth.discoverable {}
+
+#bluetooth.discovering {}
+
+#bluetooth.pairable {}
+
+/** *********************************************************************************************** **/
+/** *********************************************************************************** Network *** **/
+#web {
+  background-color: @web;
+}
+
+#network {
+  background-color: @web;
+  color: @text;
+}
+
+#network.disconnected,
+#network.disabled {
+  color: @disabled-dark;
+}
+
+#network.linked {}
+
+#network.ethernet {}
+
+#network.wifi {}
+
+#custom-expressvpn {
+  background-color: @text;
+  color: @web;
+}
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************* Backlight *** **/
+#backlight {
+  background-color: @backlight;
+}
+
+/** *********************************************************************************************** **/
+/** ********************************************************************************** Battery *** **/
+#battery {
+  background-color: @battery;
+}
+
+#battery.charging {}
+
+#battery.plugged {}
+
+@keyframes blink {
+  to {
+    color: @battery;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

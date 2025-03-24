@@ -4,6 +4,7 @@ italic_font      JetBrains Mono Italic
 bold_italic_font JetBrains Mono Bold Italic
 font_size        12
 
+allow_remote_control yes
 confirm_os_window_close 0
 
 map ctrl+shift+plus        change_font_size all +2.0
@@ -100,6 +101,6 @@ map ctrl+shift+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# One Dark
+# Arthur
 include current-theme.conf
 # END_KITTY_THEME

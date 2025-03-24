@@ -1,16 +1,10 @@
 { pkgs, ... }:
 
 {
-  # Fonts
   fonts.packages = with pkgs; [
-    # https://github.com/googlefonts/noto-emoji?tab=readme-ov-file
+    nerd-font-patcher
     noto-fonts-color-emoji
 
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "MartianMono" "Recursive" "BigBlueTerminal" ]; })
+    jetbrains-mono
   ];
-
-
-#   fonts.packages = with pkgs; [
-#   (nerdfonts.override { fonts = [ "Iosevka" "JetBrainsMono" ]; })
-# ];
 }

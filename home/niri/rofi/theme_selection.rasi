@@ -1,0 +1,30 @@
+@import            "base.rasi"
+
+window {
+    width:                       800px;
+    height:                      500px;
+}
+
+mainbox {
+    children:                    [ "message", "listview" ];
+}
+textbox {
+    font:                        "BigBlueTerm437 Nerd Font Propo 29";
+}
+
+message {
+    margin:                      0px 0px 40px 0px;
+}
+
+listview {
+    lines:                       3;
+    spacing:                     3px;
+    scrollbar:                   false;
+}
+
+listview {
+    spacing:                     20px;
+}
+element-text {
+    font:                        "BigBlueTerm437 Nerd Font Propo 24";
+}
