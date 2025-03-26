@@ -2,10 +2,14 @@
   description = "Pouet";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     rust-overlay.url = "github:oxalica/rust-overlay";
-    helix.url = "github:helix-editor/helix";
+
+    # niri.url = "github:sodiboo/niri-flake";
+    # helix.url = "github:helix-editor/helix";
   };
+
 
   outputs = { nixpkgs, ... } @ inputs:
   {
@@ -22,11 +26,6 @@
             ./environment-variables.nix
             ./services.nix
 
-            # ./hyprland.nix
-            ./niri.nix
-            ./fonts.nix
-            ./theme.nix
-
             ./terminal-utils.nix
 
             ./sound.nix
@@ -36,6 +35,11 @@
 
             ./programming-languages.nix
             ./lsp.nix
+
+            # ./hyprland.nix
+            ./niri.nix
+            ./fonts.nix
+            ./theme.nix
            ];
       };
     };

@@ -44,10 +44,10 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-// cursor {
-//     xcursor-theme "breeze_cursors"
-//     xcursor-size 100
+cursor {
+    xcursor-theme "breeze_cursors"
+    xcursor-size 50
 
-//     hide-after-inactive-ms 2000
-// }
+    hide-after-inactive-ms 1000
+}
 

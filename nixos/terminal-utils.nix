@@ -11,8 +11,8 @@
 
     starship
 
-    # helix
-    inputs.helix.packages.${pkgs.system}.default
+    helix
+    # inputs.helix.packages.${pkgs.system}.default
     git
     ranger
 

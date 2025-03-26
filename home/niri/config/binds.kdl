@@ -27,6 +27,8 @@ binds {
     Mod+P       { spawn "~/.config/niri/scripts/power_menu"; }
     Mod+T       { spawn "~/.config/niri/scripts/select_theme"; }
 
+    Mod+Ctrl+Alt+R { spawn "bash" "-c" "notify-send 'Up niri config & waybar   󱍢' && ~/.config/niri/scripts/combine_niri_config && ~/.config/niri/scripts/startup &"; }
+
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }

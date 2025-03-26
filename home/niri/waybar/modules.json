@@ -70,7 +70,7 @@
     "rotate": 0,
     "timezone": "France/Paris",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "  {:%a %b %d, %G}",
+    "format": "󰥔  {:%a %b %d, %G}",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
@@ -100,8 +100,8 @@
     "timezone": "France/Paris",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
     // "format": "󰥔  {:%I:%M %p}",
-    "format": "󰥔  {:%I:%M} ",
-    "format-alt": "󱑆  {:%I:%M:%S} ",
+    "format": " {:%I:%M} ",
+    "format-alt": " {:%I:%M:%S} ",
     // "format-alt": "󱑑  {:%I:%M:%S %p}",
     // "format-alt": " {:%a %b %d, %G}"
   },
@@ -189,21 +189,9 @@
     },
     "timeout": 30
   },
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "sort-by-number": true,
-    "active-only": false,
-    "all-outputs": false,
-    "on-click": "activate"
-  },
-  "hyprland/submap": {
-    "format": " {} ",
-    "max-length": 100,
-    "tooltip": true
-  },
   "niri/workspaces": {
-    "all-output": false,
-    "current-only": true
+    "current-only": true,
+    "format": "{value}"
   },
   "tray": {
     "icon-size": 16,

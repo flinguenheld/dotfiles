@@ -1,21 +1,25 @@
 { inputs, pkgs, ... }:
 {
+  imports = [ inputs.niri.nixosModules.niri ];
   programs.niri.enable = true;
 
   environment.systemPackages = with pkgs; [
 
     # niri
-    swaylock
-    swayidle
-    swaybg
-    xwayland-satellite
+    # swaylock
+    # swayidle
+    # xwayland-satellite
 
-    wayland-utils
+    # wayland-utils
 
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
-    gnome-keyring
+    # dbus
+    # xdg-desktop-portal-kde
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gnome
+    # gnome-keyring
     
+
+    # wl-screenrec
     wl-clipboard-rs
     wl-clip-persist
 

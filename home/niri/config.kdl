@@ -27,6 +27,8 @@ binds {
     Mod+P       { spawn "~/.config/niri/scripts/power_menu"; }
     Mod+T       { spawn "~/.config/niri/scripts/select_theme"; }
 
+    Mod+Ctrl+Alt+R { spawn "bash" "-c" "notify-send 'Up niri config & waybar   󱍢' && ~/.config/niri/scripts/combine_niri_config && ~/.config/niri/scripts/startup &"; }
+
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
@@ -262,12 +264,12 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-// cursor {
-//     xcursor-theme "breeze_cursors"
-//     xcursor-size 100
+cursor {
+    xcursor-theme "breeze_cursors"
+    xcursor-size 50
 
-//     hide-after-inactive-ms 2000
-// }
+    hide-after-inactive-ms 1000
+}
 
 // ░░░░░   █▀█ █░█ ▀█▀ █▀█ █░█ ▀█▀   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ░░░░░   █▄█ █▄█ ░█░ █▀▀ █▄█ ░█░   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -278,35 +280,21 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
+/-output "HDMI-A-1" {
     // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    mode "3840x2160"
+    scale 1.5
     transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1280 y=0
+    position x=0 y=0
+    background-color "#282828"
+}
+/-output "HDMI-A-2" {
+    // off
+    mode "3840x2160"
+    scale 1.5
+    transform "normal"
+    position x=2560 y=0
+    background-color "#282828"
 }
 
 // ░░░░░   █▀ ▀█▀ ▄▀█ █▀█ ▀█▀ █░█ █▀█   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -323,9 +311,11 @@ environment {
     DISPLAY ":0"
 }
 
-// spawn-at-startup "$NIRI_CONFIG/scripts/startup"
-spawn-at-startup "~/.config/niri/scripts/statusbar"
+spawn-at-startup "~/.config/niri/scripts/startup"
+// spawn-at-startup "~/.config/niri/scripts/swayidle"
+// spawn-at-startup "~/.config/niri/scripts/waybar"
 spawn-at-startup "mako"
+
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -471,14 +461,9 @@ animations {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    geometry-corner-radius 8
+    clip-to-geometry true
 }
 
 // Example: block out two password managers from screen capture.

@@ -28,3 +28,7 @@ args = ["--stdio"]
 name = "html"
 auto-format = true
 language-servers = [ "emmet-lsp", "vscode-html-language-server" ]
+
+[[language]]
+name = "kdl"
+indent = { tab-width = 4, unit = "    " }

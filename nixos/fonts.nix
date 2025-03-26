@@ -2,9 +2,9 @@
 
 {
   fonts.packages = with pkgs; [
-    nerd-font-patcher
-    noto-fonts-color-emoji
-
-    jetbrains-mono
+  (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    # jetbrains-mono
+    font-awesome
+    noto-fonts-emoji
   ];
 }

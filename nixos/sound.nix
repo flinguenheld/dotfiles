@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
 {
+    # Disable pulseaudio in order to use pipewire
+  hardware.pulseaudio.enable = false;
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -21,6 +22,6 @@
   environment.systemPackages = with pkgs; [
     pamixer
     pavucontrol
-    pulseaudio
+    # pulseaudio
   ];
 }

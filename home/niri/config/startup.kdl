@@ -12,9 +12,11 @@ environment {
     DISPLAY ":0"
 }
 
-// spawn-at-startup "$NIRI_CONFIG/scripts/startup"
-spawn-at-startup "~/.config/niri/scripts/statusbar"
+spawn-at-startup "~/.config/niri/scripts/startup"
+// spawn-at-startup "~/.config/niri/scripts/swayidle"
+// spawn-at-startup "~/.config/niri/scripts/waybar"
 spawn-at-startup "mako"
+
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.

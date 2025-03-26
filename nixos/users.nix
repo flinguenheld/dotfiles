@@ -7,10 +7,11 @@
     description = "flo";
     extraGroups = [ "networkmanager" "wheel" ];
 
-    # shell = fish;
+    shell = fish;
 
     packages = [
       vesktop
+      fractal # Matrix
       expressvpn
       vlc
       qimgv   # Image viewer

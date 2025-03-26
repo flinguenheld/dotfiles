@@ -2,14 +2,22 @@
 
 {
   # Enable Services
-  # programs.direnv.enable = true;
+  programs.direnv.enable = true;
   services.mpd.enable = true;
   services.fwupd.enable = true;
-  services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.enable = true;
+  programs.dconf.enable = true;
   services.dbus = {
     enable = true;
     implementation = "broker";
+    packages = with pkgs; [
+      xfce.xfconf
+      gnome2.GConf
+    ];
   };
+
+  # services.gnome.core-shell.enable = true;
+  # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

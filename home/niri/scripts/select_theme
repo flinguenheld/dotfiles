@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 # Florent Linguenheld 2025
 
-HYPRLAND_FOLDER="$HOME/.config/hypr"
-HYPRLAND_FILE="$HYPRLAND_FOLDER/hyprland.conf"
+NIRI_FOLDER="$HOME/.config/niri"
+HYPRLAND_FILE="$NIRI_FOLDER/hyprland.conf"
 HYPRLAND_REG="source = ~/\.config/hypr/themes/[^(elements)].*\.conf"
-HYPRPAPER_FILE="$HYPRLAND_FOLDER/hyprpaper.conf"
-HYPRPAPER_REG="wallpaper = .*"
+SWAYBG_FILE="$NIRI_FOLDER/scripts/startup"
+SWAYBG_REG="papers/.*\.jpg"
 
-WAYBAR_FILE="$HYPRLAND_FOLDER/waybar/style.css"
+WAYBAR_FILE="$NIRI_FOLDER/waybar/style.css"
 WAYBAR_REG="@import .*\.css\";"
-
-ROFI_FILES="$HYPRLAND_FOLDER/rofi/"
-ROFI_REG="themes/.*\.rasi"
 
 MAKO_FOLDER="$HOME/.config/mako/"
 MAKO_FOLDER_THEMES="$MAKO_FOLDER/themes/"
@@ -70,15 +67,13 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
 esac
 
 # Apply
-sed -i "s#${HYPRLAND_REG}#source = ~/\.config/hypr/themes/${NEW}\.conf#" "${HYPRLAND_FILE}"
-sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}" && "${HYPRLAND_FOLDER}/scripts/startup"
-find "${ROFI_FILES}" -name "*.rasi" -exec sed -i "s#${ROFI_REG}#themes/${NEW}\.rasi#" {} \;
+# sed -i "s#${HYPRLAND_REG}#source = ~/\.config/hypr/themes/${NEW}\.conf#" "${HYPRLAND_FILE}"
+sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}"
 cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
 sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
 sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${NEW}.ini#" "${FUZZEL_FILE}"
 sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
 sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
+sed -i "s#${SWAYBG_REG}#\papers/${NEW}.jpg#" "${SWAYBG_FILE}"
 
-hyprctl hyprpaper wallpaper ",~/.config/hypr/wallpapers/${NEW}.jpg"
-sed -i "s#${HYPRPAPER_REG}#wallpaper = ,~/.config/hypr/wallpapers/${NEW}\.jpg#" "${HYPRPAPER_FILE}"
-
+"${NIRI_FOLDER}/scripts/startup" &

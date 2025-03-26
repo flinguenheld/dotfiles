@@ -1,6 +1,7 @@
 // Waybar config file
 {
-    "include": "~/.config/hypr/waybar/modules.json",
+    // "output": "HDMI-A-1",
+    "include": "~/.config/niri/waybar/modules.json",
     "name": "main-bar",
     "id": "main-bar",
     "layer": "top",
@@ -61,7 +62,7 @@
         ]
     },
 
-    "modules-left": [ "group/hour", "group/hardware", "tray" ],
-    "modules-center": [ "hyprland/submap", "niri/workspaces" ],
+    "modules-left": [ "group/hardware", "tray", "niri/workspaces" ],
+    "modules-center": [ "group/hour" ],
     "modules-right": [ "group/sound", "bluetooth", "backlight", "group/web", "group/commands" ],
 }
