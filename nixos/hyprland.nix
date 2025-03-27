@@ -16,8 +16,6 @@
     hyprutils
     hyprlang
     hyprpaper
-    hyprlandPlugins.hyprscroller
-    
 
     wl-screenrec
     wl-clipboard

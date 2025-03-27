@@ -45,8 +45,9 @@ input {
 }
 
 cursor {
-    xcursor-theme "breeze_cursors"
-    xcursor-size 50
+    // 16 20 22 24 28 32 40 48 56 64 72 80 88 96
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 32
 
     hide-after-inactive-ms 1000
 }

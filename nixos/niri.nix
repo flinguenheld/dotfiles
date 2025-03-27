@@ -26,6 +26,7 @@
 
     slurp
     grim
+    imagemagick # Color picker command
 
     # qutebrowser
     # zathura

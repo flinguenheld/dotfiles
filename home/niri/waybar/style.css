@@ -149,7 +149,6 @@ window#waybar.hidden {
 /** ********************************************************************************** Hyprland *** **/
 #workspaces {
   background-color: @workspaces;
-  color: @text;
 
   border-radius: 15px;
   /* border: 2px solid @workspaces; */
@@ -161,10 +160,7 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-  /* background-color: @workspaces; */
-  /* color: @text; */
-  /* border-radius: 12px; */
-  /* padding: 0px 15px; */
+  color: @background;
 }
 
 /* #workspaces button.visible { */

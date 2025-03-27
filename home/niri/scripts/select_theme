@@ -2,8 +2,10 @@
 # Florent Linguenheld 2025
 
 NIRI_FOLDER="$HOME/.config/niri"
-HYPRLAND_FILE="$NIRI_FOLDER/hyprland.conf"
-HYPRLAND_REG="source = ~/\.config/hypr/themes/[^(elements)].*\.conf"
+NIRI_STYLE_FILE="$NIRI_FOLDER/config/style.kdl"
+NIRI_REG_ACTIVE=" active-gradient .*"
+NIRI_REG_INACTIVE=" inactive-gradient .*"
+
 SWAYBG_FILE="$NIRI_FOLDER/scripts/startup"
 SWAYBG_REG="papers/.*\.jpg"
 
@@ -38,26 +40,36 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW="onedark"
     NEW_HELIX="onedark"
     NEW_ALACRITTY="onedark"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#61AFEF\" to=\"#528BFF\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
   ;;
   "one yellow")
     NEW="oneyellow"
     NEW_HELIX="onedark"
     NEW_ALACRITTY="onedark"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#EAA32F\" to=\"#EB642F\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
   ;;
   "one light")
     NEW="onelight"
     NEW_HELIX="onelight"
     NEW_ALACRITTY="onelight"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#4078F1\" to=\"#0184BC\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#A1A1A1\" to=\"#CFD0D2\""
   ;;
   "gruvbox")
     NEW="gruvbox"
     NEW_HELIX="gruvbox"
     NEW_ALACRITTY="gruvbox"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
   ;;
   "gruvbox light")
     NEW="gruvbox_light"
     NEW_HELIX="gruvbox_light"
     NEW_ALACRITTY="gruvbox_light"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
   ;;
   *)
     echo "wrong"
@@ -67,7 +79,9 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
 esac
 
 # Apply
-# sed -i "s#${HYPRLAND_REG}#source = ~/\.config/hypr/themes/${NEW}\.conf#" "${HYPRLAND_FILE}"
+sed -i "s%${NIRI_REG_ACTIVE}%${NEW_NIRI_ACTIVE}%" "${NIRI_STYLE_FILE}"
+sed -i "s%${NIRI_REG_INACTIVE}%${NEW_NIRI_INACTIVE}%" "${NIRI_STYLE_FILE}"
+
 sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}"
 cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
 sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
@@ -76,4 +90,5 @@ sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1
 sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
 sed -i "s#${SWAYBG_REG}#\papers/${NEW}.jpg#" "${SWAYBG_FILE}"
 
+"${NIRI_FOLDER}/scripts/combine_niri_config"
 "${NIRI_FOLDER}/scripts/startup" &
