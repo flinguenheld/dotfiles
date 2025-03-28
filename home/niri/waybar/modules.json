@@ -108,12 +108,12 @@
   "custom/themes": {
     "format": "   ",
     "tooltip": false,
-    "on-click": "$HOME/.config/hypr/scripts/rofi_theme",
+    "on-click": "$HOME/.config/niri/scripts/select_theme",
   },
   "custom/power": {
     "format": "⏻",
     "tooltip": false,
-    "on-click": "$HOME/.config/hypr/scripts/rofi_powermenu"
+    "on-click": "$HOME/.config/niri/scripts/power_menu"
   },
   "cpu": {
     "interval": 5,
@@ -167,19 +167,19 @@
         " "
       ]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol -t 3",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 5%+"
   },
   "pulseaudio#mic": {
     "format": "{format_source}",
     "format-source": " {volume}%",
     "format-source-muted": "  Mute",
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
     "on-click-right": "pavucontrol -t 4",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
-    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%"
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+"
   },
   "idle_inhibitor": {
     "format": " {icon}  ",

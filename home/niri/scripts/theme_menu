@@ -54,7 +54,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW="onelight"
     NEW_HELIX="onelight"
     NEW_ALACRITTY="onelight"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#4078F1\" to=\"#0184BC\""
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#A626A4\" to=\"#4078F2\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#A1A1A1\" to=\"#CFD0D2\""
   ;;
   "gruvbox")

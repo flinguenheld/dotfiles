@@ -50,6 +50,8 @@
         "modules": [
             "pulseaudio#speaker",
             "pulseaudio#mic"
+            // "wireplumber#speaker",
+            // "wireplumber#mic"
         ]
     },
 

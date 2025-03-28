@@ -20,4 +20,5 @@ if command not found isn't found:
 ``` sudo nix-channel --update ```
 
 cursor trouble (as mention [here](https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/#important-notes)):  
-``` dconf write /org/gnome/desktop/interface/cursor-theme "'Quintom_Snow'" ```
+``` dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Modern-Ice'" ```
+``` dconf write /org/gnome/desktop/interface/cursor-size 35 ```

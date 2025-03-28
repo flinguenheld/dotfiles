@@ -13,9 +13,9 @@ environment {
 }
 
 spawn-at-startup "~/.config/niri/scripts/startup"
-// spawn-at-startup "~/.config/niri/scripts/swayidle"
-// spawn-at-startup "~/.config/niri/scripts/waybar"
 spawn-at-startup "mako"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
+// spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

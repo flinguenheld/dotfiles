@@ -12,12 +12,13 @@
 
     wayland-utils
 
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gtk
     xdg-desktop-portal-gnome
     gnome-keyring
-    
-    wl-clipboard-rs
+
+    wl-clipboard
     wl-clip-persist
+    cliphist
 
     waybar
     fuzzel
@@ -27,6 +28,8 @@
     slurp
     grim
     imagemagick # Color picker command
+
+    # gnome-tweaks
 
     # qutebrowser
     # zathura

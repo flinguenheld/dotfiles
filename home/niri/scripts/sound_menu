@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+OPTION_0=" Mute Speaker"
+OPTION_1=" Speaker 20"
+OPTION_2=" Speaker 40"
+OPTION_3=" Speaker 60"
+OPTION_4=" Speaker 80"
+OPTION_5=" Speaker 100"
+OPTION_6=" Mute Mic"
+OPTION_7=" Mic 20"
+OPTION_8=" Mic 40"
+OPTION_9=" Mic 60"
+OPTION_10=" Mic 80"
+OPTION_11=" Mic 100"
+
+
+
+case "$(echo -e "$OPTION_0\n$OPTION_6\n$OPTION_5\n$OPTION_4\n$OPTION_3\n$OPTION_2\n$OPTION_1\n$OPTION_11\n$OPTION_10\n$OPTION_9\n$OPTION_8\n$OPTION_7" | \
+          fuzzel --dmenu \
+                 --placeholder " Sound menu" \
+                 --lines 12 \
+                 --config "$HOME/.config/fuzzel/short_selection.ini" )" in
+
+    "$OPTION_0")
+        wpctl set-mute @DEFAULT_SINK@ toggle
+    ;;
+    "$OPTION_1")
+        wpctl set-volume @DEFAULT_SINK@ 20%
+    ;;
+    "$OPTION_2")
+        wpctl set-volume @DEFAULT_SINK@ 40%
+    ;;
+    "$OPTION_3")
+        wpctl set-volume @DEFAULT_SINK@ 60%
+    ;;
+    "$OPTION_4")
+        wpctl set-volume @DEFAULT_SINK@ 80%
+    ;;
+    "$OPTION_5")
+        wpctl set-volume @DEFAULT_SINK@ 100%
+    ;;
+    "$OPTION_6")
+        wpctl set-mute @DEFAULT_SOURCE@ toggle
+    ;;
+    "$OPTION_7")
+        wpctl set-volume @DEFAULT_SOURCE@ 20%
+    ;;
+    "$OPTION_8")
+        wpctl set-volume @DEFAULT_SOURCE@ 40%
+    ;;
+    "$OPTION_9")
+        wpctl set-volume @DEFAULT_SOURCE@ 60%
+    ;;
+    "$OPTION_10")
+        wpctl set-volume @DEFAULT_SOURCE@ 80%
+    ;;
+    "$OPTION_11")
+        wpctl set-volume @DEFAULT_SOURCE@ 100%
+    ;;
+esac

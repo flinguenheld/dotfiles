@@ -1,4 +1,4 @@
-@import "./themes/gruvbox.css";
+@import "./themes/oneyellow.css";
 
 * {
   min-height: 0;
@@ -152,7 +152,7 @@ window#waybar.hidden {
 
   border-radius: 15px;
   /* border: 2px solid @workspaces; */
-  margin: 0px;
+  margin: 0px 4px;
   padding: 0px 20px;
 
   font-size: 18px;

@@ -19,17 +19,18 @@ binds {
     Mod+Return     hotkey-overlay-title="Open terminal"                          { spawn "alacritty"; }
     Mod+B          hotkey-overlay-title="Open browser"                           { spawn "firefox"; }
     Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "firefox" "--private-window"; }
-    Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox"; }
+    Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
     Mod+D          hotkey-overlay-title="Drun (fuzzer)"                          { spawn "fuzzel"; }
     Mod+P          hotkey-overlay-title="Power menu"                             { spawn "~/.config/niri/scripts/power_menu"; }
-    Mod+T          hotkey-overlay-title="Select theme"                           { spawn "~/.config/niri/scripts/select_theme"; }
+    Mod+T          hotkey-overlay-title="Select theme"                           { spawn "~/.config/niri/scripts/theme_menu"; }
 
-    Mod+Ctrl+Alt+R hotkey-overlay-title="Refresh config & restart bar, idle, bg" { spawn "bash" "-c" "notify-send 'Up niri config & waybar   󱍢' && ~/.config/niri/scripts/combine_niri_config && ~/.config/niri/scripts/startup &"; }
+    Mod+Ctrl+Alt+Shift+R hotkey-overlay-title="Refresh config & restart bar, idle, bg" { spawn "bash" "-c" "notify-send 'Up niri config & waybar   󱍢' && ~/.config/niri/scripts/combine_niri_config && ~/.config/niri/scripts/startup &"; }
 
-    Mod+S                                                   { screenshot; }
-    Mod+Ctrl+S     hotkey-overlay-title="Select theme"      { spawn "~/.config/niri/scripts/colorpicker"; }
+    Mod+S          hotkey-overlay-title="Sound menu"        { spawn "~/.config/niri/scripts/sound_menu"; }
+    Mod+Ctrl+S     hotkey-overlay-title="Screenshot"        { screenshot; }
+    Mod+Alt+S      hotkey-overlay-title="Color picker"      { spawn "~/.config/niri/scripts/colorpicker"; }
     // Mod+Ctrl+S { screenshot-screen; }
     // Alt+Print { screenshot-window; }
     
@@ -51,16 +52,15 @@ binds {
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
     Mod+Right { focus-column-right; }
+    Mod+Home  { focus-column-first; }
+    Mod+End   { focus-column-last; }
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
     Mod+Ctrl+Up    { move-window-up; }
     Mod+Ctrl+Right { move-column-right; }
-
-    Mod+Home      { focus-column-first; }
-    Mod+End       { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    Mod+Ctrl+Home  { move-column-to-first; }
+    Mod+Ctrl+End   { move-column-to-last; }
 
     Mod+Shift+Left  { focus-monitor-left; }
     Mod+Shift+Down  { focus-monitor-down; }
@@ -86,12 +86,10 @@ binds {
     Mod+Ctrl+Page_Up   { move-column-to-workspace-down; }
 
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
+    Mod+Alt+Ctrl+Page_Down { move-workspace-up; }
+    Mod+Alt+Ctrl+Page_Up   { move-workspace-down; }
 
-    Mod+Shift+Ctrl+Page_Down { move-workspace-up; }
-    Mod+Shift+Ctrl+Page_Up   { move-workspace-down; }
-
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
+    // --
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -116,35 +114,28 @@ binds {
     // Mod+E       { consume-window-into-column; }
     // Mod+Shift+E { expel-window-from-column; }
 
-
     // There are also commands that consume or expel a single window to the side.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    // Mod+BracketLeft  { consume-or-expel-window-left; }
+    // Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Shift+9  { consume-or-expel-window-left; } // (
     Mod+Shift+0 { consume-or-expel-window-right; } // )
 
-    Mod+R       { switch-preset-column-width; }
-    Mod+Ctrl+R  { switch-preset-window-height; }
-    Mod+Alt+R   { reset-window-height; }
+    Mod+R          { switch-preset-column-width; }
+    Mod+Ctrl+R     { set-column-width "50%"; }
+    Mod+Alt+R      { switch-preset-window-height; }
+    Mod+Alt+Ctrl+R { set-window-height "100%"; }
+
+    Mod+Equal       { set-column-width "50%"; }
+    Mod+Shift+Equal { set-column-width "+10%"; }
+    Mod+Minus       { set-column-width "-10%"; }
+
+    Mod+Alt+Equal       { set-window-height "50%"; }
+    Mod+Alt+Minus       { set-window-height "+10%"; }
+    Mod+Alt+Shift+Equal { set-window-height "-10%"; }
 
     Mod+F       { maximize-column; }
     Mod+Alt+F   { fullscreen-window; }
     Mod+C       { center-column; }
-
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Shift+Equal { set-column-width "+10%"; }
-
-    Mod+Ctrl+Minus { set-window-height "-10%"; }
-    Mod+Ctrl+Shift+Equal { set-window-height "+10%"; }
-
-    // Actions to switch layouts.
-    // Note: if you uncomment these, make sure you do NOT have
-    // a matching layout switch hotkey configured in xkb options above.
-    // Having both at once on the same hotkey will break the switching,
-    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
-
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     // Mod+Shift+E { quit; }
@@ -230,7 +221,7 @@ cursor {
     mode "3840x2160"
     scale 1.5
     transform "normal"
-    position x=2560 y=0
+    position x=2160 y=0
     background-color "#282828"
 }
 
@@ -249,9 +240,10 @@ environment {
 }
 
 spawn-at-startup "~/.config/niri/scripts/startup"
-// spawn-at-startup "~/.config/niri/scripts/swayidle"
-// spawn-at-startup "~/.config/niri/scripts/waybar"
 spawn-at-startup "mako"
+// spawn-at-startup "clipse" "-listen"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
+// spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -271,7 +263,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // ░░░░░   ▄█ ░█░ ░█░ █▄▄ ██▄   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 layout {
-    gaps 12
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -286,22 +278,29 @@ layout {
     always-center-single-column
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    default-column-width { proportion 0.5; }
     preset-column-widths {
+        proportion 0.2
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.8
     }
-
-    default-column-width { proportion 0.5; }
-
+    preset-window-heights {
+        proportion 0.2
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.8
+    }
 
     focus-ring {
         // off
         width 8
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#458588" to="#689D6A"
-        inactive-gradient from="#928374" to="#282828"
+        active-gradient from="#EAA32F" to="#EB642F"
+        inactive-gradient from="#252932" to="#1D2025"
     }
 
     border {
@@ -309,13 +308,13 @@ layout {
         width 8
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#458588" to="#689D6A"
-        inactive-gradient from="#928374" to="#282828"
+        active-gradient from="#EAA32F" to="#EB642F"
+        inactive-gradient from="#252932" to="#1D2025"
     }
 
     struts {
-        left 10
-        right 10
+        left 0
+        right 0
         top 0
         bottom 0
     }

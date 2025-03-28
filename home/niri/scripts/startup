@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 kill -9 "$(pgrep swaybg)"
-swaybg -i "$HOME/.config/niri/wallpapers/gruvbox.jpg" &
+swaybg -i "$HOME/.config/niri/wallpapers/oneyellow.jpg" &
 
 kill -9 "$(pgrep swayidle)"
 swayidle -w timeout 601 'niri msg action power-off-monitors' timeout 600 'swaylock -f -c 282828' before-sleep 'swaylock -f -c 282828' &

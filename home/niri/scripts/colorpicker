@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# if [[ "$1" == "hex" ]]; then
-#   COLOR=$(hyprpicker --format="${1}" | sed "s/#//")
-#   wl-copy "$COLOR"
-# else
-#   COLOR=$(hyprpicker --autocopy --format="${1}")
-# fi
+COLOR=$(grim -g "$(slurp -p)" -t ppm - | magick - -format '%[pixel:p{0,0}]' txt:- | awk -F ' ' 'NR==2 {print $3}')
 
- COLOR=$(grim -g "$(slurp -p)" -t ppm - | magick - -format '%[pixel:p{0,0}]' txt:- | awk -F ' ' 'NR==2 {print $3}')
-
+wl-copy "${COLOR#\#}"
 echo "$COLOR"
 notify-send -t 8000 "${COLOR} copied."

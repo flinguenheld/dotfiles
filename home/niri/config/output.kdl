@@ -20,7 +20,7 @@
     mode "3840x2160"
     scale 1.5
     transform "normal"
-    position x=2560 y=0
+    position x=2160 y=0
     background-color "#282828"
 }
 
