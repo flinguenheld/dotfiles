@@ -28,13 +28,13 @@ FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
 FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
 
 # Menu
-case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzzel --dmenu \
-                                                                                  --font "JetBrains Mono:size=25" \
-                                                                                  --lines 5 \
-                                                                                  --width 25 \
-                                                                                  --line-height 50 \
-                                                                                  --inner-pad 50 \
-                                                                                  --placeholder " Theme selection") in
+case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuccin latte\ncatppuccin mocha" | fuzzel --dmenu \
+                                                                                                                      --font "JetBrains Mono:size=25" \
+                                                                                                                      --lines 7 \
+                                                                                                                      --width 25 \
+                                                                                                                      --line-height 50 \
+                                                                                                                      --inner-pad 50 \
+                                                                                                                      --placeholder " Theme selection") in
 
   "one dark")
     NEW="onedark"
@@ -75,6 +75,22 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
     darkman set light
+  ;;
+  "catppuccin latte")
+    NEW="catppuccin_latte"
+    NEW_HELIX="catppuccin_latte"
+    NEW_ALACRITTY="catppuccin_latte"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#1e66f5\" to=\"#04a5e5\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#7c7f93\" to=\"#9ca0b0\""
+    darkman set light
+  ;;
+  "catppuccin mocha")
+    NEW="catppuccin_mocha"
+    NEW_HELIX="catppuccin_mocha"
+    NEW_ALACRITTY="catppuccin_mocha"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#89b4fa\" to=\"#89dceb\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#9399b2\" to=\"#6c7086\""
+    darkman set dark
   ;;
   *)
     echo "wrong"

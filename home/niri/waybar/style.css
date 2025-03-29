@@ -1,4 +1,4 @@
-@import "./themes/onelight.css";
+@import "./themes/onedark.css";
 
 * {
   min-height: 0;
@@ -153,50 +153,35 @@ window#waybar.hidden {
   border-radius: 15px;
   /* border: 2px solid @workspaces; */
   margin: 0px 4px;
-  padding: 0px 20px;
+  padding: 0px 10px;
 
   font-size: 18px;
   font-weight: bold;
 }
 
 #workspaces button {
-  color: @background;
+  color: @text;
+  padding: 0px 5px;
+  margin: 0px 3px;
 }
 
-/* #workspaces button.visible { */
-/* background-color: @workspace_visible; */
-/* padding: 0px 27px; */
-/* color: @text; */
-/* } */
-
-/* #workspaces button.active { */
-/* background-color: @workspace_urgent; */
-/* padding: 0px 27px; */
-/* color: @workspace_urgent; */
-/* } */
+#workspaces button.active {
+  background: @text;
+  color: @workspaces;
+  padding: 0px 20px;
+  margin: 2px 0px;
+  border-radius: 18px;
+}
 
 #workspaces button.urgent {
-  background-color: @workspace_urgent;
+  background: @workspace_urgent;
   color: @text;
 }
 
 #workspaces button:hover {
-  border-radius: 18px;
-}
-
-/** *********************************************************************************************** **/
-/** ************************************************************************************ Submap *** **/
-#submap {
-  /* font-family: "DaddyTimeMono Nerd Font Mono", sans-serif; */
-  /* font-family: "JetBrainsMono NF", sans-serif; */
-  font-family: "MartianMono NF", sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-
-  padding: 0px 20px;
-  border-radius: 7px;
-  background-color: @submap;
+  background: @commands;
   color: @text;
+  border-radius: 5px;
 }
 
 /** *********************************************************************************************** **/

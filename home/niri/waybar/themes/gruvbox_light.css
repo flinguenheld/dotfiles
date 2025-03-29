@@ -3,7 +3,7 @@
 @define-color tray #282828;
 @define-color submap #D79921;
 @define-color workspaces #458588;
-@define-color workspace_visible #A89984;
+@define-color workspace_active #A89984;
 @define-color workspace_urgent #CC241D;
 @define-color sound #D65D0E;
 @define-color bluetooth #458588;

@@ -1,9 +1,8 @@
 @define-color time #99C379;
-@define-color hardware #62AEEF;
+@define-color hardware #E5C07A;
 @define-color tray #62AEEF;
-@define-color submap #E5C07A;
 @define-color workspaces #62AEEF;
-@define-color workspace_visible #ABB2BF;
+@define-color workspace_active #ABB2BF;
 @define-color workspace_urgent #E06C75;
 @define-color sound #99C379;
 @define-color bluetooth #61AFEF;
