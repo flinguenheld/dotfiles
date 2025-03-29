@@ -38,8 +38,8 @@ layout {
         width 8
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#EAA32F" to="#EB642F"
-        inactive-gradient from="#252932" to="#1D2025"
+        active-gradient from="#A626A4" to="#4078F2"
+        inactive-gradient from="#A1A1A1" to="#CFD0D2"
     }
 
     border {
@@ -47,8 +47,8 @@ layout {
         width 8
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#EAA32F" to="#EB642F"
-        inactive-gradient from="#252932" to="#1D2025"
+        active-gradient from="#A626A4" to="#4078F2"
+        inactive-gradient from="#A1A1A1" to="#CFD0D2"
     }
 
     struts {

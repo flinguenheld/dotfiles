@@ -129,9 +129,9 @@ binds {
     Mod+Shift+Equal { set-column-width "+10%"; }
     Mod+Minus       { set-column-width "-10%"; }
 
-    Mod+Alt+Equal       { set-window-height "50%"; }
-    Mod+Alt+Minus       { set-window-height "+10%"; }
-    Mod+Alt+Shift+Equal { set-window-height "-10%"; }
+    Mod+Alt+Equal       { set-window-height "100%"; }
+    Mod+Alt+Shift+Equal { set-window-height "+10%"; }
+    Mod+Alt+Minus       { set-window-height "-10%"; }
 
     Mod+F       { maximize-column; }
     Mod+Alt+F   { fullscreen-window; }

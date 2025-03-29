@@ -14,6 +14,7 @@ environment {
 
 spawn-at-startup "~/.config/niri/scripts/startup"
 spawn-at-startup "mako"
+spawn-at-startup "darkman"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
 // spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 

@@ -129,9 +129,9 @@ binds {
     Mod+Shift+Equal { set-column-width "+10%"; }
     Mod+Minus       { set-column-width "-10%"; }
 
-    Mod+Alt+Equal       { set-window-height "50%"; }
-    Mod+Alt+Minus       { set-window-height "+10%"; }
-    Mod+Alt+Shift+Equal { set-window-height "-10%"; }
+    Mod+Alt+Equal       { set-window-height "100%"; }
+    Mod+Alt+Shift+Equal { set-window-height "+10%"; }
+    Mod+Alt+Minus       { set-window-height "-10%"; }
 
     Mod+F       { maximize-column; }
     Mod+Alt+F   { fullscreen-window; }
@@ -241,7 +241,7 @@ environment {
 
 spawn-at-startup "~/.config/niri/scripts/startup"
 spawn-at-startup "mako"
-// spawn-at-startup "clipse" "-listen"
+spawn-at-startup "darkman"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
 // spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 
@@ -299,8 +299,8 @@ layout {
         width 8
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#EAA32F" to="#EB642F"
-        inactive-gradient from="#252932" to="#1D2025"
+        active-gradient from="#A626A4" to="#4078F2"
+        inactive-gradient from="#A1A1A1" to="#CFD0D2"
     }
 
     border {
@@ -308,8 +308,8 @@ layout {
         width 8
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#EAA32F" to="#EB642F"
-        inactive-gradient from="#252932" to="#1D2025"
+        active-gradient from="#A626A4" to="#4078F2"
+        inactive-gradient from="#A1A1A1" to="#CFD0D2"
     }
 
     struts {

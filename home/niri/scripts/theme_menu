@@ -42,6 +42,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW_ALACRITTY="onedark"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#61AFEF\" to=\"#528BFF\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
+    darkman set dark
   ;;
   "one yellow")
     NEW="oneyellow"
@@ -49,6 +50,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW_ALACRITTY="onedark"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#EAA32F\" to=\"#EB642F\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
+    darkman set dark
   ;;
   "one light")
     NEW="onelight"
@@ -56,6 +58,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW_ALACRITTY="onelight"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#A626A4\" to=\"#4078F2\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#A1A1A1\" to=\"#CFD0D2\""
+    darkman set light
   ;;
   "gruvbox")
     NEW="gruvbox"
@@ -63,6 +66,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW_ALACRITTY="gruvbox"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
+    darkman set dark
   ;;
   "gruvbox light")
     NEW="gruvbox_light"
@@ -70,6 +74,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light" | fuzze
     NEW_ALACRITTY="gruvbox_light"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
+    darkman set light
   ;;
   *)
     echo "wrong"
