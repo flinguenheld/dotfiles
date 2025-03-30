@@ -28,15 +28,37 @@ FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
 FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
 
 # Menu
-case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuccin latte\ncatppuccin mocha" | fuzzel --dmenu \
-                                                                                                                      --font "JetBrains Mono:size=25" \
-                                                                                                                      --lines 7 \
-                                                                                                                      --width 25 \
-                                                                                                                      --line-height 50 \
-                                                                                                                      --inner-pad 50 \
-                                                                                                                      --placeholder " Theme selection") in
+case $(echo -e "Catppuccin\nGruvbox\nOne" | fuzzel --dmenu \
+                                                   --font "JetBrains Mono:size=25" \
+                                                   --lines 3 \
+                                                   --width 25 \
+                                                   --line-height 50 \
+                                                   --inner-pad 50 \
+                                                   --placeholder " Theme selection") in
+  "Catppuccin")
+    CHOICE="Latte\nFrappe\nMacchiato\nMocha\n"
+  ;;
+  "Gruvbox")
+    CHOICE="Gruv Dark\nGruv Light\n"
+  ;;
+  "One")
+    CHOICE="One Dark\nOne Light\nOne Yellow\n"
+  ;;
+  *)
+    exit 0
+  ;;
+esac
 
-  "one dark")
+# Flavours
+case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
+                                       --font "JetBrains Mono:size=25" \
+                                       --lines "$(echo -e "$CHOICE" | wc -l)" \
+                                       --width 25 \
+                                       --line-height 50 \
+                                       --inner-pad 50 \
+                                       --placeholder " Flavour") in
+
+  "One Dark")
     NEW="onedark"
     NEW_HELIX="onedark"
     NEW_ALACRITTY="onedark"
@@ -44,7 +66,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
     darkman set dark
   ;;
-  "one yellow")
+  "One Yellow")
     NEW="oneyellow"
     NEW_HELIX="onedark"
     NEW_ALACRITTY="onedark"
@@ -52,7 +74,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
     darkman set dark
   ;;
-  "one light")
+  "One Light")
     NEW="onelight"
     NEW_HELIX="onelight"
     NEW_ALACRITTY="onelight"
@@ -60,7 +82,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#A1A1A1\" to=\"#CFD0D2\""
     darkman set light
   ;;
-  "gruvbox")
+  "Gruv Dark")
     NEW="gruvbox"
     NEW_HELIX="gruvbox"
     NEW_ALACRITTY="gruvbox"
@@ -68,7 +90,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
     darkman set dark
   ;;
-  "gruvbox light")
+  "Gruv Light")
     NEW="gruvbox_light"
     NEW_HELIX="gruvbox_light"
     NEW_ALACRITTY="gruvbox_light"
@@ -76,7 +98,7 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
     darkman set light
   ;;
-  "catppuccin latte")
+  "Latte")
     NEW="catppuccin_latte"
     NEW_HELIX="catppuccin_latte"
     NEW_ALACRITTY="catppuccin_latte"
@@ -84,7 +106,23 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#7c7f93\" to=\"#9ca0b0\""
     darkman set light
   ;;
-  "catppuccin mocha")
+  "Frappe")
+    NEW="catppuccin_frappe"
+    NEW_HELIX="catppuccin_frappe"
+    NEW_ALACRITTY="catppuccin_frappe"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#ef9f76\" to=\"#e78284\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#838ba7\" to=\"#51576d\""
+    darkman set dark
+  ;;
+  "Macchiato")
+    NEW="catppuccin_macchiato"
+    NEW_HELIX="catppuccin_macchiato"
+    NEW_ALACRITTY="catppuccin_macchiato"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#a6da95\" to=\"#91d7e3\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#8087a2\" to=\"#494d64\""
+    darkman set dark
+  ;;
+  "Mocha")
     NEW="catppuccin_mocha"
     NEW_HELIX="catppuccin_mocha"
     NEW_ALACRITTY="catppuccin_mocha"
@@ -92,24 +130,26 @@ case $(echo -e "gruvbox\ngruvbox light\none dark\none yellow\none light\ncatppuc
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#9399b2\" to=\"#6c7086\""
     darkman set dark
   ;;
+  "  󱞦")
+    ~/.config/niri/scripts/theme_menu
+  ;;
   *)
-    echo "wrong"
     exit 0
   ;;
-
 esac
 
-# Apply
-sed -i "s%${NIRI_REG_ACTIVE}%${NEW_NIRI_ACTIVE}%" "${NIRI_STYLE_FILE}"
-sed -i "s%${NIRI_REG_INACTIVE}%${NEW_NIRI_INACTIVE}%" "${NIRI_STYLE_FILE}"
+if [[ -n $NEW ]]; then
+  sed -i "s%${NIRI_REG_ACTIVE}%${NEW_NIRI_ACTIVE}%" "${NIRI_STYLE_FILE}"
+  sed -i "s%${NIRI_REG_INACTIVE}%${NEW_NIRI_INACTIVE}%" "${NIRI_STYLE_FILE}"
 
-sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}"
-cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
-sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
-sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${NEW}.ini#" "${FUZZEL_FILE}"
-sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
-sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
-sed -i "s#${SWAYBG_REG}#\papers/${NEW}.jpg#" "${SWAYBG_FILE}"
+  sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}"
+  cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
+  sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
+  sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${NEW}.ini#" "${FUZZEL_FILE}"
+  sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
+  sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
+  sed -i "s#${SWAYBG_REG}#\papers/${NEW}.jpg#" "${SWAYBG_FILE}"
 
-"${NIRI_FOLDER}/scripts/combine_niri_config"
-"${NIRI_FOLDER}/scripts/startup" &
+  "${NIRI_FOLDER}/scripts/combine_niri_config"
+  "${NIRI_FOLDER}/scripts/startup" &
+fi

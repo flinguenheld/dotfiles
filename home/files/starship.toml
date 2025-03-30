@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "onedark"
+palette = "oneyellow"
 add_newline = false
 
 format = """
@@ -185,7 +185,7 @@ fg_duration = "#E5C07A"
 fg_status = "#E06B74"
 
 [palettes.onelight]
-bg_user = "#4078F1"
+bg_user = "#A626A4"
 bg_ip = "#E4564A"
 bg_dir = "#51A04F"
 bg_git = "#E5C07A"
@@ -223,6 +223,46 @@ fg_lua = "#ea76cb"
 fg_python = "#fe640b"
 fg_duration = "#fe640b"
 fg_status = "#d20f39"
+
+[palettes.catppuccin_frappe]
+bg_user = "#ef9f76"
+bg_ip = "#e78284"
+bg_dir = "#a6d189"
+bg_git = "#e5c890"
+bg_code = "#232634"
+bg_status = "#232634"
+bg_tranparent = "#FF000000"
+
+fg_user = "#303446"
+fg_ip = "#303446"
+fg_dir = "#303446"
+fg_git = "#303446"
+fg_rust = "#e78284"
+fg_c = "#8caaee"
+fg_lua = "#8caaee"
+fg_python = "#e5c890"
+fg_duration = "#e5c890"
+fg_status = "#ea999c"
+
+[palettes.catppuccin_macchiato]
+bg_user = "#a6da95"
+bg_ip = "#8bd5ca"
+bg_dir = "#f5a97f"
+bg_git = "#eed49f"
+bg_code = "#181926"
+bg_status = "#181926"
+bg_tranparent = "#FF000000"
+
+fg_user = "#24273a"
+fg_ip = "#24273a"
+fg_dir = "#24273a"
+fg_git = "#24273a"
+fg_rust = "#ed8796"
+fg_c = "#8aadf4"
+fg_lua = "#8aadf4"
+fg_python = "#eed49f"
+fg_duration = "#eed49f"
+fg_status = "#ee99a0"
 
 [palettes.catppuccin_mocha]
 bg_user = "#89b4fa"
