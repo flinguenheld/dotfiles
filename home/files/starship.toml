@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "oneyellow"
+palette = "catppuccin_frappe"
 add_newline = false
 
 format = """

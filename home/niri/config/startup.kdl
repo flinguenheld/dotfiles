@@ -17,6 +17,9 @@ spawn-at-startup "mako"
 spawn-at-startup "darkman"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
 // spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=sway"
+
 
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

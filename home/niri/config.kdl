@@ -244,6 +244,9 @@ spawn-at-startup "mako"
 spawn-at-startup "darkman"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
 // spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=sway"
+
 
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -299,8 +302,8 @@ layout {
         width 8
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#EAA32F" to="#EB642F"
-        inactive-gradient from="#252932" to="#1D2025"
+        active-gradient from="#ef9f76" to="#e78284"
+        inactive-gradient from="#838ba7" to="#51576d"
        
     }
 
@@ -309,8 +312,8 @@ layout {
         width 8
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#EAA32F" to="#EB642F"
-        inactive-gradient from="#252932" to="#1D2025"
+        active-gradient from="#ef9f76" to="#e78284"
+        inactive-gradient from="#838ba7" to="#51576d"
        
     }
 
