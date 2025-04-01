@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Florent Linguenheld 2025
+# florent@linguenheld.fr 2025
 
 NIRI_FOLDER="$HOME/.config/niri"
 NIRI_STYLE_FILE="$NIRI_FOLDER/config/style.kdl"

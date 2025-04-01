@@ -23,8 +23,15 @@ binds {
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
     Mod+D          hotkey-overlay-title="Drun (fuzzer)"                          { spawn "fuzzel"; }
-    Mod+P          hotkey-overlay-title="Power menu"                             { spawn "~/.config/niri/scripts/power_menu"; }
     Mod+T          hotkey-overlay-title="Select theme"                           { spawn "~/.config/niri/scripts/theme_menu"; }
+    Mod+Ctrl+P     hotkey-overlay-title="Power menu"                             { spawn "~/.config/niri/scripts/power_menu"; }
+
+    Mod+P          hotkey-overlay-title="Focus the previous focussed windows"    { focus-window-previous; }
+    Mod+Alt+W      hotkey-overlay-title="Focus WordReference"                    { spawn "~/.config/niri/scripts/focus_window" "wordreference" "firefox"; }
+    Mod+Alt+T      hotkey-overlay-title="Focus Thunderbird"                      { spawn "~/.config/niri/scripts/focus_window" "thunderbird" "thunderbird"; }
+    Mod+Alt+D      hotkey-overlay-title="Focus Discord"                          { spawn "~/.config/niri/scripts/focus_window" "discord" "vesktop"; }
+    Mod+Alt+Y      hotkey-overlay-title="Focus Youtube"                          { spawn "~/.config/niri/scripts/focus_window" "youtube" "firefox"; }
+    Mod+Alt+H      hotkey-overlay-title="Focus Helix"                            { spawn "~/.config/niri/scripts/focus_window" "hx " "alacritty"; }
 
     Mod+Ctrl+Alt+Shift+R hotkey-overlay-title="Refresh config & restart bar, idle, bg" { spawn "bash" "-c" "notify-send 'Up niri config & waybar   󱍢' && ~/.config/niri/scripts/combine_niri_config && ~/.config/niri/scripts/startup &"; }
 
@@ -33,11 +40,6 @@ binds {
     Mod+Alt+S      hotkey-overlay-title="Color picker"      { spawn "~/.config/niri/scripts/colorpicker"; }
     // Mod+Ctrl+S { screenshot-screen; }
     // Alt+Print { screenshot-window; }
-    
-
-    // You can also use a shell. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument in the end.
-    // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -143,6 +145,9 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    // Mod+N { toggle-window-floating; }
+    // Mod+Shift+N { switch-focus-between-floating-and-tiling; }
 }
 
 // ░░░░░   █ █▄░█ █▀█ █░█ ▀█▀   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -196,7 +201,7 @@ cursor {
     xcursor-theme "Bibata-Modern-Ice"
     xcursor-size 32
 
-    hide-after-inactive-ms 1000
+    hide-after-inactive-ms 2000
 }
 
 // ░░░░░   █▀█ █░█ ▀█▀ █▀█ █░█ ▀█▀   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -266,7 +271,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // ░░░░░   ▄█ ░█░ ░█░ █▄▄ ██▄   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 layout {
-    gaps 8
+    gaps 10
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -299,7 +304,7 @@ layout {
 
     focus-ring {
         // off
-        width 8
+        width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
         active-gradient from="#ef9f76" to="#e78284"

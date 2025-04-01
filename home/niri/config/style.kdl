@@ -2,7 +2,7 @@
 // ░░░░░   ▄█ ░█░ ░█░ █▄▄ ██▄   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 layout {
-    gaps 8
+    gaps 10
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -35,7 +35,7 @@ layout {
 
     focus-ring {
         // off
-        width 8
+        width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
         active-gradient from="#ef9f76" to="#e78284"
