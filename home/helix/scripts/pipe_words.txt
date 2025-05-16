@@ -3,7 +3,8 @@ true,false,true
 left,right,left
 on,off,on
 height,width,height
-row,column,row
+row,col,row
+-,+,-
 north,east,south,west,north
 zero,one,two,three,four,five,six,seven,eight,ten
 a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a

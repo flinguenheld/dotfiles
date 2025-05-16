@@ -1,0 +1,18 @@
+@define-color time #0087af;
+@define-color hardware #5f8700;
+@define-color tray #d70000;
+@define-color workspaces #d70000;
+@define-color workspace_active #bcbcbc;
+@define-color workspace_urgent #d70000;
+@define-color sound #008700;
+@define-color bluetooth #005f87;
+@define-color backlight #8700af;
+@define-color battery #af0000;
+@define-color web #d75f00;
+@define-color commands #005f87;
+
+@define-color background #eeeeee;
+@define-color text #eeeeee;
+@define-color disabled #bcbcbc;
+@define-color disabled-dark #444444;
+@define-color disabled-speaker #afd700;

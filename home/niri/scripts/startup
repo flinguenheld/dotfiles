@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 kill -9 "$(pgrep swaybg)"
-swaybg -i "$HOME/.config/niri/wallpapers/catppuccin_frappe.jpg" &
+swaybg -i "$HOME/.config/niri/wallpapers/papercolor_dark.jpg" &
 
 kill -9 "$(pgrep swayidle)"
-swayidle -w timeout 601 'niri msg action power-off-monitors' timeout 600 'swaylock -f -c 282828' before-sleep 'swaylock -f -c 282828' &
+swayidle -w timeout 901 'niri msg action power-off-monitors' timeout 900 'swaylock -f -c 7e7e7e' before-sleep 'swaylock -f -c a9a9a9' &
 # swayidle -w timeout 31 'niri msg action power-off-monitors' timeout 30 'swaylock -f -c 282828' before-sleep 'swaylock -f -c 282828'
 
 CONFIG="$HOME/.config/niri/waybar/config"

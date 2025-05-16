@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "catppuccin_frappe"
+palette = "papercolor_dark"
 add_newline = false
 
 format = """
@@ -283,3 +283,43 @@ fg_lua = "#f5c2e7"
 fg_python = "#fab387"
 fg_duration = "#fab387"
 fg_status = "#f38ba8"
+
+[palettes.papercolor_dark]
+bg_user = "#afd700"
+bg_ip = "#5faf5f"
+bg_dir = "#5fafd7"
+bg_git = "#ffaf00"
+bg_code = "#585858"
+bg_status = "#585858"
+bg_tranparent = "#FF000000"
+
+fg_user = "#1c1c1c"
+fg_ip = "#1c1c1c"
+fg_dir = "#1c1c1c"
+fg_git = "#1c1c1c"
+fg_rust = "#af005f"
+fg_c = "#5fafd7"
+fg_lua = "#5fafd7"
+fg_python = "#ffaf00"
+fg_duration = "#ffaf00"
+fg_status = "#ff5faf"
+
+[palettes.papercolor_light]
+bg_user = "#d70000"
+bg_ip = "#af0000"
+bg_dir = "#0087af"
+bg_git = "#d75f00"
+bg_code = "#bcbcbc"
+bg_status = "#bcbcbc"
+bg_tranparent = "#FF000000"
+
+fg_user = "#eeeeee"
+fg_ip = "#eeeeee"
+fg_dir = "#eeeeee"
+fg_git = "#eeeeee"
+fg_rust = "#af0000"
+fg_c = "#005faf"
+fg_lua = "#005faf"
+fg_python = "#d75f00"
+fg_duration = "#005faf"
+fg_status = "#d70000"

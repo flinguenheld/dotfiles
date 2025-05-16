@@ -4,6 +4,7 @@
 
   # Apply the overlay to the package set
   nixpkgs.overlays = [
+    # inputs.rust-overlay.overlays.default
     inputs.rust-overlay.overlays.default
   ];
 
@@ -17,6 +18,7 @@
     go
 
           (rust-bin.stable.latest.default.override {
+          # (rust-bin.nightly.latest.default.override {
                 # extensions = [ "rust-src" ];
                 targets = [ "thumbv6m-none-eabi" ];
               })
@@ -26,12 +28,13 @@
     #                 targets = [ "thumbv6m-none-eabi" ];
     # })
 
-    rustc
+    # rustc
     cargo
     rustfmt
     rust-analyzer
     clippy
     taplo
+    cargo-outdated
 
     # Convert ELF files to UF2 for USB Flashing Bootloaders
     elf2uf2-rs

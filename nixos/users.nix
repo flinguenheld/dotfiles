@@ -23,6 +23,8 @@
       codecrafters-cli
 
       kicad
+
+      # ungoogled-chromium
     ];
   };
 

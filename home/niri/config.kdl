@@ -119,8 +119,10 @@ binds {
     // There are also commands that consume or expel a single window to the side.
     // Mod+BracketLeft  { consume-or-expel-window-left; }
     // Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+Shift+9  { consume-or-expel-window-left; } // (
-    Mod+Shift+0 { consume-or-expel-window-right; } // )
+    // Mod+Shift+9  { consume-or-expel-window-left; } // (
+    // Mod+Shift+0 { consume-or-expel-window-right; } // )
+    Mod+Alt+Ctrl+Left  { consume-or-expel-window-left; } // (
+    Mod+Alt+Ctrl+Right { consume-or-expel-window-right; } // )
 
     Mod+R          { switch-preset-column-width; }
     Mod+Ctrl+R     { set-column-width "50%"; }
@@ -271,7 +273,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // ░░░░░   ▄█ ░█░ ░█░ █▄▄ ██▄   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 layout {
-    gaps 10
+    gaps 13
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -304,11 +306,11 @@ layout {
 
     focus-ring {
         // off
-        width 10
+        width 11
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#ef9f76" to="#e78284"
-        inactive-gradient from="#838ba7" to="#51576d"
+        active-gradient from="#afd700" to="#5faf5f"
+        inactive-gradient from="#d0d0d0" to="#808080"
        
     }
 
@@ -317,16 +319,16 @@ layout {
         width 8
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#ef9f76" to="#e78284"
-        inactive-gradient from="#838ba7" to="#51576d"
+        active-gradient from="#afd700" to="#5faf5f"
+        inactive-gradient from="#d0d0d0" to="#808080"
        
     }
 
     struts {
-        left 0
-        right 0
-        top 0
-        bottom 0
+        left -2
+        right -2
+        top -3
+        bottom -1
     }
 
 }

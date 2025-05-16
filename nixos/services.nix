@@ -23,10 +23,10 @@
   services.printing.enable = true;
   # Enable autodiscovery of network printers
   services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  enable = true;
+  nssmdns4 = true;
+  openFirewall = true;
+};
 
   # Thunar
   programs.thunar.enable = true;

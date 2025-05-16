@@ -119,8 +119,10 @@ binds {
     // There are also commands that consume or expel a single window to the side.
     // Mod+BracketLeft  { consume-or-expel-window-left; }
     // Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+Shift+9  { consume-or-expel-window-left; } // (
-    Mod+Shift+0 { consume-or-expel-window-right; } // )
+    // Mod+Shift+9  { consume-or-expel-window-left; } // (
+    // Mod+Shift+0 { consume-or-expel-window-right; } // )
+    Mod+Alt+Ctrl+Left  { consume-or-expel-window-left; } // (
+    Mod+Alt+Ctrl+Right { consume-or-expel-window-right; } // )
 
     Mod+R          { switch-preset-column-width; }
     Mod+Ctrl+R     { set-column-width "50%"; }

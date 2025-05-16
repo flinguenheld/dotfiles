@@ -28,13 +28,13 @@ FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
 FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
 
 # Menu
-case $(echo -e "Catppuccin\nGruvbox\nOne" | fuzzel --dmenu \
-                                                   --font "JetBrains Mono:size=25" \
-                                                   --lines 3 \
-                                                   --width 25 \
-                                                   --line-height 50 \
-                                                   --inner-pad 50 \
-                                                   --placeholder " Theme selection") in
+case $(echo -e "Catppuccin\nGruvbox\nOne\nPaper" | fuzzel --dmenu \
+                                                          --font "JetBrains Mono:size=25" \
+                                                          --lines 4 \
+                                                          --width 25 \
+                                                          --line-height 50 \
+                                                          --inner-pad 50 \
+                                                          --placeholder " Theme selection") in
   "Catppuccin")
     CHOICE="Latte\nFrappe\nMacchiato\nMocha\n"
   ;;
@@ -43,6 +43,9 @@ case $(echo -e "Catppuccin\nGruvbox\nOne" | fuzzel --dmenu \
   ;;
   "One")
     CHOICE="One Dark\nOne Light\nOne Yellow\n"
+  ;;
+  "Paper")
+    CHOICE="Paper Dark\nPaper Light\n"
   ;;
   *)
     exit 0
@@ -129,6 +132,22 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
     NEW_NIRI_ACTIVE=" active-gradient from=\"#89b4fa\" to=\"#89dceb\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#9399b2\" to=\"#6c7086\""
     darkman set dark
+  ;;
+  "Paper Dark")
+    NEW="papercolor_dark"
+    NEW_HELIX="papercolor-dark"
+    NEW_ALACRITTY="papercolor_dark"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#afd700\" to=\"#5faf5f\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#d0d0d0\" to=\"#808080\""
+    darkman set dark
+  ;;
+  "Paper Light")
+    NEW="papercolor_light"
+    NEW_HELIX="papercolor-light"
+    NEW_ALACRITTY="papercolor_light"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#d70000\" to=\"#af0000\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#bcbcbc\" to=\"#878787\""
+    darkman set light
   ;;
   "  󱞦")
     ~/.config/niri/scripts/theme_menu

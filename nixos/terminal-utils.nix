@@ -30,8 +30,11 @@
     zip
     unzip
 
+    picocom
     minicom
     wev # xev for wayland
+
+    eza # ls
   ];
 
   programs.fish.enable = true;
