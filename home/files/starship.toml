@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "papercolor_dark"
+palette = "catppuccin_frappe"
 add_newline = false
 
 format = """
@@ -289,7 +289,7 @@ bg_user = "#afd700"
 bg_ip = "#5faf5f"
 bg_dir = "#5fafd7"
 bg_git = "#ffaf00"
-bg_code = "#585858"
+bg_code = "#1c1c1c"
 bg_status = "#585858"
 bg_tranparent = "#FF000000"
 

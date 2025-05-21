@@ -48,8 +48,6 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    Mod+Ctrl+Q { close-window; }
-
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -137,8 +135,13 @@ binds {
     Mod+Alt+Shift+Equal { set-window-height "+10%"; }
     Mod+Alt+Minus       { set-window-height "-10%"; }
 
+    // --
+    Mod+O { toggle-overview; }
+    Mod+Ctrl+Q { close-window; }
+
     Mod+F       { maximize-column; }
     Mod+Alt+F   { fullscreen-window; }
+    Mod+Ctrl+F  { toggle-windowed-fullscreen; }
     Mod+C       { center-column; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.

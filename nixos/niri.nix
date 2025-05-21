@@ -27,12 +27,6 @@
     mako
     libnotify
 
-    slurp
-    grim
-    imagemagick # Color picker command
-
-    # gnome-tweaks
-
     # qutebrowser
     # zathura
     # mpv
