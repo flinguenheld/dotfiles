@@ -25,6 +25,7 @@
             ./users.nix
             ./environment-variables.nix
             ./services.nix
+            ./printer.nix
 
             ./terminal-utils.nix
 

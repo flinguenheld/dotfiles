@@ -35,6 +35,7 @@
     clippy
     taplo
     cargo-outdated
+    bacon
 
     # Convert ELF files to UF2 for USB Flashing Bootloaders
     elf2uf2-rs

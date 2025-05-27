@@ -130,11 +130,12 @@
   "network": {
     "interval": 5,
     "format-wifi": " {essid}",
-    "format-ethernet": "󰖟 {ipaddr}/{cidr}",
+    "format-alt": "󰖟 {ipaddr}/{cidr}",
+    "format-ethernet": " {bandwidthUpBits} |  {bandwidthDownBits}",
     "format-linked": " {ifname} (No IP)",
     "format-disconnected": "󰌙 Disconnected",
     "format-disabled": " Disabled",
-    "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
+    // "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
     "tooltip-format": "  {ifname} via {gwaddr}",
     "on-click-right": "alacritty -e nmtui"
   },

@@ -23,3 +23,9 @@ if command not found isn't found:
 cursor trouble (as mention [here](https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/#important-notes)):  
 ``` dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Modern-Ice'" ```   
 ``` dconf write /org/gnome/desktop/interface/cursor-size 35 ```
+
+Printer:  
+
+Add it with cups [http://localhost:631](http://localhost:631)  
+And use `lpstats` to check jobs.  
+
