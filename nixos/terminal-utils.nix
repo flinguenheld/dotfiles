@@ -12,10 +12,13 @@
     starship
 
     helix
+    vim
+    emacs
     # inputs.helix.packages.${pkgs.system}.default
     git
     ranger
 
+    fzf
     htop
     neofetch
     tldr

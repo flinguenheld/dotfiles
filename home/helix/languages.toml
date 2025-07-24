@@ -1,6 +1,12 @@
+[language-server.harper-ls]
+args = ["--stdio"]
+command = "harper-ls"
+# notice the key:
+config = { harper-ls = { diagnosticSeverity = "error", linters = { long_sentences = false } } }
+
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer"]
+language-servers = ["rust-analyzer", "harper-ls"]
 formatter = { command = "rustfmt" }
 auto-format = true
 

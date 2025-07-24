@@ -12,8 +12,9 @@
 
     wayland-utils
 
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gnome
+    xdg-desktop-portal-wlr
     gnome-keyring
 
     wl-clipboard

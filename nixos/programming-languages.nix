@@ -42,6 +42,12 @@
     probe-rs-tools
     flip-link
 
-    
+    # --
+    php
+    symfony-cli
+    docker
+    docker-compose
+
+    gnumake
   ];
 }

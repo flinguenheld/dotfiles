@@ -1,7 +1,7 @@
 # starship.toml
 # Folder : /home/.config/
 
-palette = "catppuccin_frappe"
+palette = "catppuccin_latte"
 add_newline = false
 
 format = """
