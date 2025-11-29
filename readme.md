@@ -29,3 +29,11 @@ Printer:
 Add it with cups [http://localhost:631](http://localhost:631)  
 And use `lpstats` to check jobs.  
 
+##### Bootloader
+
+After install:
+
+ - Copy config-hardware
+ - `sudo nixos-rebuild switch`
+ - `sudo bootctl install`
+ - `sudo nixos-rebuild boot --blake .#flopc`

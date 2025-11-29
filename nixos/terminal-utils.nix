@@ -7,16 +7,16 @@
 
     alacritty
     kitty
-    cool-retro-term
+    # cool-retro-term
 
     starship
 
     helix
     vim
-    emacs
+    # emacs
     # inputs.helix.packages.${pkgs.system}.default
     git
-    ranger
+    # ranger
 
     fzf
     htop

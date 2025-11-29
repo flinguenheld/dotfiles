@@ -11,21 +11,21 @@
 
     packages = [
       vesktop
-      fractal # Matrix
-      expressvpn
+      # fractal # Matrix
+      # expressvpn
       vlc
       qimgv   # Image viewer
-      pinta
-      libreoffice-qt6-still
+      # pinta
+      # libreoffice-qt6-still
 
-      qmk
+      # qmk
       exercism
-      codecrafters-cli
+      # codecrafters-cli
 
-      kicad
+      # kicad
 
-      brave
-      bitwarden
+      # brave
+      bitwarden-desktop
     ];
   };
 
