@@ -136,7 +136,7 @@ binds {
     Mod+Alt+Minus       { set-window-height "-10%"; }
 
     // --
-    Mod+O { toggle-overview; }
+    Mod+Ctrl+D { toggle-overview; }
     Mod+Ctrl+Q { close-window; }
 
     Mod+F       { maximize-column; }
@@ -309,21 +309,21 @@ layout {
 
     focus-ring {
         // off
-        width 11
+        width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#1e66f5" to="#04a5e5"
-        inactive-gradient from="#7c7f93" to="#9ca0b0"
+        active-gradient from="#ef9f76" to="#e78284"
+        inactive-gradient from="#838ba7" to="#51576d"
        
     }
 
     border {
         off
-        width 8
+        width 5
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#1e66f5" to="#04a5e5"
-        inactive-gradient from="#7c7f93" to="#9ca0b0"
+        active-gradient from="#ef9f76" to="#e78284"
+        inactive-gradient from="#838ba7" to="#51576d"
        
     }
 

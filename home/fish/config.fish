@@ -1,3 +1,5 @@
+set -x PATH $PATH ~/bin/
+
 alias la="ls -la"
 alias ea="eza -la"
 

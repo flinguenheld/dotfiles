@@ -1,9 +1,3 @@
-[language-server.harper-ls]
-args = ["--stdio"]
-command = "harper-ls"
-# notice the key:
-config = { harper-ls = { diagnosticSeverity = "error", linters = { long_sentences = false } } }
-
 [[language]]
 name = "rust"
 language-servers = ["rust-analyzer", "harper-ls"]
@@ -16,8 +10,11 @@ checkOnSave = { command = "clippy" }
 # inlayHints.parameterHints= false
 # inlayHints.maxLength = 90
 
-[language-server.hyprls]
-command = "hyprls"
+[[language]]
+name = "c"
+file-types = ["h", "c"]
+indent = { tab-width = 4, unit = "t" }
+language-servers = [ "clangd" ]
 
 [[language]]
 name = "markdown"
@@ -25,15 +22,6 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 auto-format = true
 rulers = [20]
 text-width = 80
-
-[language-server.emmet-lsp]
-command = "emmet-language-server"
-args = ["--stdio"]
-
-[[language]]
-name = "html"
-auto-format = true
-language-servers = [ "emmet-lsp", "vscode-html-language-server" ]
 
 [[language]]
 name = "kdl"

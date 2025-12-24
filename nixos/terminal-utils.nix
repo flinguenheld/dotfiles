@@ -21,7 +21,8 @@
     fzf
     htop
     neofetch
-    tldr
+    tealdeer # tldr
+    eza # ls
     bat
     ripgrep
     fd
@@ -37,7 +38,6 @@
     minicom
     wev # xev for wayland
 
-    eza # ls
   ];
 
   programs.fish.enable = true;

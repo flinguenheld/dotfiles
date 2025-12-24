@@ -1,11 +1,11 @@
-theme = "catppuccin_latte"
+theme = "catppuccin_frappe"
 
 [editor]
 # scrolloff = 999
 scrolloff = 10
 line-number = "relative"
 mouse = false
-rulers = [90]
+rulers = [80]
 true-color = true
 color-modes = true
 bufferline = "multiple"
@@ -103,9 +103,9 @@ V = "split_selection"
 G = "goto_file_end"
 
 [keys.normal.space]
-B = "buffer_picker"
-b.q = ":buffer-close"
-b.Q = ":buffer-close-all"
+b = "buffer_picker"
+B.q = ":buffer-close"
+B.Q = ":buffer-close-all"
 w = "no_op"               # Only access with Ctrl+w
 
 [keys.normal.g]

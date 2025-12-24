@@ -10,7 +10,16 @@
 
   environment.systemPackages = with pkgs; [
     gcc
+    clang-tools
+    gnumake
+    # gdb
+    # valgrind
+
+    norminette
     clang
+
+    python3
+    
     nodePackages_latest.nodejs
     nodePackages_latest.pnpm
     lua
@@ -22,12 +31,6 @@
                 targets = [ "thumbv6m-none-eabi" ];
               })
 
-    # rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
-    #   extensions = [ "rust-src" ];
-    #                 targets = [ "thumbv6m-none-eabi" ];
-    # })
-
-    # rustc
     cargo
     rustfmt
     rust-analyzer
@@ -42,11 +45,7 @@
     flip-link
 
     # --
-    php
-    symfony-cli
     docker
     docker-compose
-
-    gnumake
   ];
 }

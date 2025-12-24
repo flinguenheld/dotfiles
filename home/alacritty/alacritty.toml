@@ -2,8 +2,11 @@
 import = [
   # "~/.config/hypr/alacritty/colors.toml",
   "~/.config/alacritty/fonts.toml",
-  "~/.config/alacritty/themes/catppuccin_latte.toml",
+  "~/.config/alacritty/themes/catppuccin_frappe.toml",
 ]
+
+[selection]
+save_to_clipboard = true
 
 [keyboard]
 bindings = [

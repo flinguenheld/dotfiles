@@ -136,7 +136,7 @@ binds {
     Mod+Alt+Minus       { set-window-height "-10%"; }
 
     // --
-    Mod+O { toggle-overview; }
+    Mod+Ctrl+D { toggle-overview; }
     Mod+Ctrl+Q { close-window; }
 
     Mod+F       { maximize-column; }
