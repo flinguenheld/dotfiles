@@ -16,4 +16,6 @@
       XCURSOR_SIZE = "32";
     };
   };
+
+  security.sudo.package = pkgs.sudo.override { withInsults = true; };
 }

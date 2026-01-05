@@ -10,7 +10,8 @@
     shell = fish;
 
     packages = [
-      vesktop
+      # vesktop
+      discord
       # fractal # Matrix
       # expressvpn
       vlc

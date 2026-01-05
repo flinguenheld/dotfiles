@@ -1,4 +1,4 @@
-### Config NixOS / Hyprland
+### Config NixOS / Niri
 
 ---
 
@@ -13,12 +13,16 @@
 
 ##### Commands
 
-``` sudo nixos-rebuild switch --flake .#flopc ```
+``` Bash
+sudo nixos-rebuild switch --impure --flake .#flopc
+```
 
 ##### Miscellaneous
 
 if command not found isn't found:  
-``` sudo nix-channel --update ```
+``` Bash
+sudo nix-channel --update
+```
 
 cursor trouble (as mention [here](https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/#important-notes)):  
 ``` dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Modern-Ice'" ```   
@@ -36,4 +40,4 @@ After install:
  - Copy config-hardware
  - `sudo nixos-rebuild switch`
  - `sudo bootctl install`
- - `sudo nixos-rebuild boot --blake .#flopc`
+ - `sudo nixos-rebuild boot --flake .#flopc`
