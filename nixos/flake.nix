@@ -35,7 +35,7 @@
             ./screen.nix
 
             ./programming-languages.nix
-            ./lsp.nix
+            # ./lsp.nix
 
             # ./hyprland.nix
             ./niri.nix

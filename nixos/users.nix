@@ -13,10 +13,10 @@
       # vesktop
       discord
       # fractal # Matrix
-      # expressvpn
+      expressvpn
       vlc
       qimgv   # Image viewer
-      # pinta
+      pinta
       # libreoffice-qt6-still
 
       # qmk

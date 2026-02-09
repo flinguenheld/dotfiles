@@ -5,9 +5,13 @@
 
     fishPlugins.fzf-fish
 
+    wezterm
     alacritty
-    kitty
+    # kitty
     # cool-retro-term
+
+    tmux
+    rio
 
     starship
 

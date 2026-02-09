@@ -11,6 +11,7 @@ color-modes = true
 bufferline = "multiple"
 auto-format = true
 cursorline = true
+# cursorcolumn = true
 continue-comments = false
 # cursorcolumn = true
  

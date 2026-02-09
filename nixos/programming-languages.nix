@@ -10,14 +10,17 @@
     gcc
     clang-tools
     gnumake
-    # gdb
-    # valgrind
+    gdb
+    valgrind
 
     norminette
     clang
 
-    python3
-    
+    python313
+    python313Packages.pytest
+    python313Packages.flake8
+    pyright
+
     nodePackages_latest.nodejs
     nodePackages_latest.pnpm
     lua

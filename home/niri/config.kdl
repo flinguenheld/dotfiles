@@ -16,7 +16,7 @@ binds {
     Mod+Shift+slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return     hotkey-overlay-title="Open terminal"                          { spawn "alacritty"; }
+    Mod+Return     hotkey-overlay-title="Open terminal"                          { spawn "wezterm"; }
     Mod+B          hotkey-overlay-title="Open browser"                           { spawn "firefox"; }
     Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "firefox" "--private-window"; }
     Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
@@ -89,16 +89,16 @@ binds {
     Mod+Alt+Ctrl+Page_Down { move-workspace-up; }
     Mod+Alt+Ctrl+Page_Up   { move-workspace-down; }
 
-    // --
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
+    // // --
+    // Mod+1 { focus-workspace 1; }
+    // Mod+2 { focus-workspace 2; }
+    // Mod+3 { focus-workspace 3; }
+    // Mod+4 { focus-workspace 4; }
+    // Mod+5 { focus-workspace 5; }
+    // Mod+6 { focus-workspace 6; }
+    // Mod+7 { focus-workspace 7; }
+    // Mod+8 { focus-workspace 8; }
+    // Mod+9 { focus-workspace 9; }
 
     Mod+Ctrl+1 { move-column-to-workspace 1; }
     Mod+Ctrl+2 { move-column-to-workspace 2; }

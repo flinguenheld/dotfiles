@@ -6,26 +6,34 @@ NIRI_STYLE_FILE="$NIRI_FOLDER/config/style.kdl"
 NIRI_REG_ACTIVE=" active-gradient .*"
 NIRI_REG_INACTIVE=" inactive-gradient .*"
 
+ALACRITTY_FILE="$HOME/.config/alacritty/alacritty.toml"
+ALACRITTY_REG="themes/.*\.toml"
+
+FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
+FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
+
+HELIX_FILE="$HOME/.config/helix/config.toml"
+HELIX_REG="theme = \".*\""
+
+MAKO_FOLDER="$HOME/.config/mako/"
+MAKO_FOLDER_THEMES="$MAKO_FOLDER/themes/"
+
+STARSHIP_FILE="$HOME/.config/starship.toml"
+STARSHIP_REG="palette = \".*\""
+
 SWAYBG_FILE="$NIRI_FOLDER/scripts/startup"
 SWAYBG_REG="papers/.*\.jpg"
 
 WAYBAR_FILE="$NIRI_FOLDER/waybar/style.css"
 WAYBAR_REG="@import .*\.css\";"
 
-MAKO_FOLDER="$HOME/.config/mako/"
-MAKO_FOLDER_THEMES="$MAKO_FOLDER/themes/"
+WEZTERM_FILE="$HOME/.wezterm.lua"
+WEZTERM_REG="config\.color_scheme = '.*'"
 
-ALACRITTY_FILE="$HOME/.config/alacritty/alacritty.toml"
-ALACRITTY_REG="themes/.*\.toml"
-
-HELIX_FILE="$HOME/.config/helix/config.toml"
-HELIX_REG="theme = \".*\""
-
-STARSHIP_FILE="$HOME/.config/starship.toml"
-STARSHIP_REG="palette = \".*\""
-
-FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
-FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
+THEMES=(   'catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'onedark'     'onedark'         'onelight'         'papercolor_dark'        'papercolor_light')
+THEMES_HX=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'onedark'     'onedark'         'onelight'         'papercolor-dark'        'papercolor-light')
+THEMES_ST=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'oneyellow'   'onedark'         'onelight'         'papercolor_dark'        'papercolor_light')
+THEMES_WZ=('Catppuccin Frappe' 'Catppuccin Latte' 'Catppuccin Macchiato' 'Catppuccin Mocha' 'Gruvbox Dark (Gogh)' 'Gruvbox (Gogh)' 'OneHalfDark' 'One Dark (Gogh)' 'One Light (Gogh)' 'Papercolor Dark (Gogh)' 'Papercolor Light (Gogh)')
 
 # Menu
 case $(echo -e "Catppuccin\nGruvbox\nOne\nPaper" | fuzzel --dmenu \
@@ -61,90 +69,68 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
                                        --inner-pad 50 \
                                        --placeholder " Flavour") in
 
-  "One Dark")
-    NEW="onedark"
-    NEW_HELIX="onedark"
-    NEW_ALACRITTY="onedark"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#61AFEF\" to=\"#528BFF\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
-    darkman set dark
-  ;;
-  "One Yellow")
-    NEW="oneyellow"
-    NEW_HELIX="onedark"
-    NEW_ALACRITTY="onedark"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#EAA32F\" to=\"#EB642F\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
-    darkman set dark
-  ;;
-  "One Light")
-    NEW="onelight"
-    NEW_HELIX="onelight"
-    NEW_ALACRITTY="onelight"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#A626A4\" to=\"#4078F2\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#A1A1A1\" to=\"#CFD0D2\""
-    darkman set light
-  ;;
-  "Gruv Dark")
-    NEW="gruvbox"
-    NEW_HELIX="gruvbox"
-    NEW_ALACRITTY="gruvbox"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
-    darkman set dark
-  ;;
-  "Gruv Light")
-    NEW="gruvbox_light"
-    NEW_HELIX="gruvbox_light"
-    NEW_ALACRITTY="gruvbox_light"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
-    darkman set light
-  ;;
-  "Latte")
-    NEW="catppuccin_latte"
-    NEW_HELIX="catppuccin_latte"
-    NEW_ALACRITTY="catppuccin_latte"
-    NEW_NIRI_ACTIVE=" active-gradient from=\"#1e66f5\" to=\"#04a5e5\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#7c7f93\" to=\"#9ca0b0\""
-    darkman set light
-  ;;
   "Frappe")
-    NEW="catppuccin_frappe"
-    NEW_HELIX="catppuccin_frappe"
-    NEW_ALACRITTY="catppuccin_frappe"
+    INDEX="0"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#ef9f76\" to=\"#e78284\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#838ba7\" to=\"#51576d\""
     darkman set dark
   ;;
+  "Latte")
+    INDEX="1"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#1e66f5\" to=\"#04a5e5\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#7c7f93\" to=\"#9ca0b0\""
+    darkman set light
+  ;;
   "Macchiato")
-    NEW="catppuccin_macchiato"
-    NEW_HELIX="catppuccin_macchiato"
-    NEW_ALACRITTY="catppuccin_macchiato"
+    INDEX="2"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#a6da95\" to=\"#91d7e3\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#8087a2\" to=\"#494d64\""
     darkman set dark
   ;;
   "Mocha")
-    NEW="catppuccin_mocha"
-    NEW_HELIX="catppuccin_mocha"
-    NEW_ALACRITTY="catppuccin_mocha"
+    INDEX="3"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#89b4fa\" to=\"#89dceb\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#9399b2\" to=\"#6c7086\""
     darkman set dark
   ;;
+  "Gruv Dark")
+    INDEX="4"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
+    darkman set dark
+  ;;
+  "Gruv Light")
+    INDEX="5"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
+    darkman set light
+  ;;
+  "One Yellow")
+    INDEX="6"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#EAA32F\" to=\"#EB642F\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
+    darkman set dark
+  ;;
+  "One Dark")
+    INDEX="7"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#61AFEF\" to=\"#528BFF\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#252932\" to=\"#1D2025\""
+    darkman set dark
+  ;;
+  "One Light")
+    INDEX="8"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#A626A4\" to=\"#4078F2\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#A1A1A1\" to=\"#CFD0D2\""
+    darkman set light
+  ;;
   "Paper Dark")
-    NEW="papercolor_dark"
-    NEW_HELIX="papercolor-dark"
-    NEW_ALACRITTY="papercolor_dark"
+    INDEX="9"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#afd700\" to=\"#5faf5f\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#d0d0d0\" to=\"#808080\""
     darkman set dark
   ;;
   "Paper Light")
-    NEW="papercolor_light"
-    NEW_HELIX="papercolor-light"
-    NEW_ALACRITTY="papercolor_light"
+    INDEX="10"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#d70000\" to=\"#af0000\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#bcbcbc\" to=\"#878787\""
     darkman set light
@@ -157,17 +143,17 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
   ;;
 esac
 
-if [[ -n $NEW ]]; then
+if [[ -n $INDEX ]]; then
   sed -i "s%${NIRI_REG_ACTIVE}%${NEW_NIRI_ACTIVE}%" "${NIRI_STYLE_FILE}"
   sed -i "s%${NIRI_REG_INACTIVE}%${NEW_NIRI_INACTIVE}%" "${NIRI_STYLE_FILE}"
 
-  sed -i "s#${WAYBAR_REG}#@import \".\/themes/${NEW}.css\";#" "${WAYBAR_FILE}"
-  cp "${MAKO_FOLDER_THEMES}${NEW}" "${MAKO_FOLDER}config" && makoctl reload
-  sed -i "s#${ALACRITTY_REG}#themes/${NEW_ALACRITTY}.toml#" "${ALACRITTY_FILE}"
-  sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${NEW}.ini#" "${FUZZEL_FILE}"
-  sed -i "s#${HELIX_REG}#theme = \"${NEW_HELIX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
-  sed -i "s#${STARSHIP_REG}#palette = \"${NEW}\"#" "${STARSHIP_FILE}"
-  sed -i "s#${SWAYBG_REG}#\papers/${NEW}.jpg#" "${SWAYBG_FILE}"
+  cp "${MAKO_FOLDER_THEMES}${THEMES[$INDEX]}" "${MAKO_FOLDER}config" && makoctl reload
+  sed -i "s#${ALACRITTY_REG}#themes/${THEMES[$INDEX]}.toml#" "${ALACRITTY_FILE}"
+  sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEMES_WZ[$INDEX]}'#" "${WEZTERM_FILE}"
+  sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${THEMES[$INDEX]}.ini#" "${FUZZEL_FILE}"
+  sed -i "s#${HELIX_REG}#theme = \"${THEMES_HX[$INDEX]}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
+  sed -i "s#${STARSHIP_REG}#palette = \"${THEMES_ST[$INDEX]}\"#" "${STARSHIP_FILE}"
+  sed -i "s#${SWAYBG_REG}#\papers/${THEMES[$INDEX]}.jpg#" "${SWAYBG_FILE}"
 
   "${NIRI_FOLDER}/scripts/combine_niri_config"
   "${NIRI_FOLDER}/scripts/startup" &
