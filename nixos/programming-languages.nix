@@ -16,9 +16,15 @@
     norminette
     clang
 
-    python313
-    python313Packages.pytest
-    python313Packages.flake8
+    (python3.withPackages (python-pkgs: with python-pkgs; [
+      pytest
+      flake8
+      ruff
+      # mypy
+      # pyls-mypy
+      # python-lsp-server
+      # python-lsp-ruff
+    ]))
     pyright
 
     nodePackages_latest.nodejs
