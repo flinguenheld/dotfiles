@@ -25,10 +25,11 @@
       # python-lsp-server
       # python-lsp-ruff
     ]))
-    pyright
+    ty
+    uv
 
-    nodePackages_latest.nodejs
-    nodePackages_latest.pnpm
+    # nodePackages_latest.nodejs
+    # nodePackages_latest.pnpm
     lua
     go
 

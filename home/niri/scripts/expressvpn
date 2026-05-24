@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-TXT=$(expressvpn status | grep --fixed-strings "Not connected")
-
-if [[ -z $TXT ]]
-then
+if [[ -n $(expressvpn status | grep "Connecting...") ]]; then
+  TXT="Connecting..."
+elif [[ -z $(expressvpn status | grep --fixed-strings "Not connected") ]]; then
   TXT=$(expressvpn status | grep --fixed-strings "Connected to" | cut --delimiter=" " --field=3-5)
 else
   TXT=""
 fi
 
-echo "  $TXT"
+echo "  $TXT"

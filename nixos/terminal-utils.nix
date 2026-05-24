@@ -9,6 +9,7 @@
     alacritty
     # kitty
     # cool-retro-term
+    lazygit
 
     tmux
     rio
@@ -24,7 +25,8 @@
 
     fzf
     htop
-    neofetch
+    # neofetch
+    fastfetch
     tealdeer # tldr
     eza # ls
     bat

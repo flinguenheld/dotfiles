@@ -129,9 +129,9 @@
   },
   "network": {
     "interval": 5,
-    "format-wifi": " {essid}",
-    "format-alt": "󰖟 {ipaddr}/{cidr}",
-    "format-ethernet": " {bandwidthUpBits} |  {bandwidthDownBits}",
+    "format-wifi": "  {essid}",
+    "format-alt": "󰖟  {ipaddr}/{cidr}",
+    "format-ethernet": "  {bandwidthUpBits} |  {bandwidthDownBits}",
     "format-linked": " {ifname} (No IP)",
     "format-disconnected": "󰌙 Disconnected",
     "format-disabled": " Disabled",
@@ -141,8 +141,7 @@
   },
   "custom/expressvpn": {
     "interval": 5,
-    "format": "  {}",
-    "exec": "~/.config/hypr/scripts/expressvpn",
+    "exec": "~/.config/niri/scripts/expressvpn",
     "on-click": "expressvpn connect",
     "on-click-right": "expressvpn disconnect"
   },
