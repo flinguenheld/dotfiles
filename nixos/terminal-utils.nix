@@ -25,6 +25,7 @@
 
     fzf
     htop
+    ncdu
     # neofetch
     fastfetch
     tealdeer # tldr

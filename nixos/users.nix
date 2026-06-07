@@ -26,6 +26,9 @@
 
       # kicad
 
+      # Screen record
+      obs-studio
+
       # brave
       bitwarden-desktop
     ];

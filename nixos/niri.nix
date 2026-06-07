@@ -17,6 +17,7 @@
     xdg-desktop-portal-wlr
     gnome-keyring
 
+    wl-screenrec
     wl-clipboard
     wl-clip-persist
     cliphist
