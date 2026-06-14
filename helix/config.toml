@@ -1,0 +1,151 @@
+theme = "gruvbox"
+
+[editor]
+# scrolloff = 999
+scrolloff = 10
+line-number = "relative"
+mouse = false
+rulers = [80]
+true-color = true
+color-modes = true
+bufferline = "multiple"
+auto-format = true
+cursorline = true
+# cursorcolumn = true
+continue-comments = false
+# cursorcolumn = true
+ 
+# Minimum severity to show a diagnostic after the end of a line:
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+# other-lines = "warning"
+max-wrap = 15
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+separator = "  "
+left = [
+  "mode",
+  "spacer",
+  "version-control",
+  "spacer",
+  "spinner",
+  "workspace-diagnostics",
+  "diagnostics",
+]
+center = [
+  "file-absolute-path",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+right = [
+  "diagnostics",
+  "diagnostics",
+  "selections",
+  "register",
+  "position",
+  "total-line-numbers",
+]
+
+[editor.lsp]
+display-messages = true
+# display-inlay-hints = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace.render]
+tab = "all"
+newline = "all"
+# space = "all"
+
+[editor.whitespace.characters]
+tab = "→"
+newline = "↵"
+tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
+
+[keys.normal]
+h = "goto_next_buffer"
+H = "goto_previous_buffer"
+A-left = "goto_previous_buffer"
+A-right = "goto_next_buffer"
+G = "goto_file_end"
+
+C-left = "jump_view_left"
+C-right = "jump_view_right"
+C-up = "jump_view_up"
+C-down = "jump_view_down"
+
+D = "kill_to_line_end"
+
+A-c = "copy_selection_on_prev_line"
+
+s = "select_mode"
+v = "select_regex"
+V = "split_selection"
+
+A-r = ":config-reload"
+A-a = ":pipe ~/.config/helix/scripts/pipe_words"
+A-x = ":pipe ~/.config/helix/scripts/pipe_words -p"
+
+[keys.select]
+s = "select_mode"
+v = "select_regex"
+V = "split_selection"
+G = "goto_file_end"
+
+[keys.normal.space]
+b = "buffer_picker"
+B.q = ":buffer-close"
+B.Q = ":buffer-close-all"
+w = "no_op"               # Only access with Ctrl+w
+
+[keys.normal.g]
+p = "goto_first_nonwhitespace"
+n = "goto_line_end"
+
+[keys.select.g]
+p = "goto_first_nonwhitespace"
+n = "goto_line_end"
+
+[keys.normal."C-w"]
+h = "hsplit"
+
+H = "no_op"
+K = "no_op"
+J = "no_op"
+L = "no_op"
+
+# h = "no_op"
+k = "no_op"
+j = "no_op"
+l = "no_op"
+
+C-h = "no_op"
+C-k = "no_op"
+C-j = "no_op"
+C-l = "no_op"
+
+C-left = "swap_view_left"
+C-down = "swap_view_down"
+C-up = "swap_view_up"
+C-right = "swap_view_right"
+
+[keys.insert]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
