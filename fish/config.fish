@@ -13,3 +13,5 @@ end
 
 starship init fish | source
 fastfetch --config examples/27.jsonc
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/flo/.ghcup/bin $PATH # ghcup-env

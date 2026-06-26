@@ -33,3 +33,11 @@ language-servers = [ "ty", "ruff" ]
 auto-format = true
 text-width = 79
 rulers = [79]
+
+[[language]]
+name = "haskell"
+language-servers = [ "haskell-language-server-wrapper" ]
+
+[[language]]
+name = "json"
+formatter = { command = 'jq', args = ["."] }

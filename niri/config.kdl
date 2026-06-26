@@ -218,15 +218,16 @@ cursor {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "HDMI-A-1" {
+output "HDMI-A-1" {
     // off
     mode "3840x2160"
+    // scale 1.5
     scale 1.5
     transform "normal"
     position x=0 y=0
     background-color "#282828"
 }
-/-output "HDMI-A-2" {
+output "HDMI-A-2" {
     // off
     mode "3840x2160"
     scale 1.5
