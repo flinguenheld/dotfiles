@@ -38,8 +38,8 @@ layout {
         width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#458588" to="#689D6A"
-        inactive-gradient from="#928374" to="#282828"
+        active-gradient from="#ef9f76" to="#e78284"
+        inactive-gradient from="#838ba7" to="#51576d"
        
     }
 
@@ -48,8 +48,8 @@ layout {
         width 5
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#458588" to="#689D6A"
-        inactive-gradient from="#928374" to="#282828"
+        active-gradient from="#ef9f76" to="#e78284"
+        inactive-gradient from="#838ba7" to="#51576d"
        
     }
 

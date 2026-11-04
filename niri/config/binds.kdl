@@ -17,8 +17,11 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return     hotkey-overlay-title="Open terminal"                          { spawn "wezterm"; }
-    Mod+B          hotkey-overlay-title="Open browser"                           { spawn "firefox"; }
-    Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "firefox" "--private-window"; }
+    // Mod+B          hotkey-overlay-title="Open browser"                           { spawn "firefox"; }
+    // Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "firefox" "--private-window"; }
+    // Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
+    Mod+B          hotkey-overlay-title="Open browser"                           { spawn "flatpak" "run" "com.brave.Browser"; }
+    Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "flatpak" "run" "com.brave.Browser" "--incognito"; }
     Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
@@ -151,7 +154,8 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    // Mod+N { toggle-window-floating; }
+    // For pacman dev
+    Mod+N { toggle-window-floating; }
     // Mod+Shift+N { switch-focus-between-floating-and-tiling; }
 }
 

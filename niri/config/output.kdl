@@ -10,8 +10,8 @@
 output "HDMI-A-1" {
     // off
     mode "3840x2160"
-    // scale 1.5
     scale 1.5
+    // scale 2
     transform "normal"
     position x=0 y=0
     background-color "#282828"

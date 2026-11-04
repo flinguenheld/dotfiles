@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "catppuccin_frappe"
 
 [editor]
 # scrolloff = 999
@@ -13,8 +13,10 @@ auto-format = true
 cursorline = true
 # cursorcolumn = true
 continue-comments = false
-# cursorcolumn = true
- 
+trim-trailing-whitespace = true  # Strip spaces at line ends on save
+trim-final-newlines = true       # Remove extra blank lines at end of file
+popup-border = "all"             # Borders on hover, completion and pickers
+
 # Minimum severity to show a diagnostic after the end of a line:
 end-of-line-diagnostics = "hint"
 
@@ -22,6 +24,11 @@ end-of-line-diagnostics = "hint"
 cursor-line = "warning"
 # other-lines = "warning"
 max-wrap = 15
+
+[editor.indent-guides]
+render = true
+character = "▏"  # Or "╎", "┆"
+skip-levels = 1  # No guide on the first indent level
 
 [editor.cursor-shape]
 insert = "bar"
@@ -40,15 +47,14 @@ left = [
   "spacer",
   "spinner",
   "workspace-diagnostics",
-  "diagnostics",
 ]
 center = [
-  "file-absolute-path",
+  # "file-absolute-path",
+  "file-base-name",
   "read-only-indicator",
   "file-modification-indicator",
 ]
 right = [
-  "diagnostics",
   "diagnostics",
   "selections",
   "register",

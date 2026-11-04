@@ -1,43 +1,95 @@
+# Helix languages config
+# Check installs with: hx --health <language>
+
+# ─────────────────────────────────────────────────────────────────── Rust ────
+# Requires: rust-analyzer, clippy (rustup component add rust-analyzer clippy)
+#           harper-ls (cargo install harper-ls --locked)
 [[language]]
 name = "rust"
 language-servers = ["rust-analyzer", "harper-ls"]
-formatter = { command = "rustfmt" }
 auto-format = true
+rulers = [79]
 
 [language-server.rust-analyzer.config]
-checkOnSave = { command = "clippy" }
+check.command = "clippy"
 # inlayHints.typeHints = false
 # inlayHints.parameterHints= false
 # inlayHints.maxLength = 90
 
+# ────────────────────────────────────────────────────────────────────── C ────
+# Requires: clangd (rpm-ostree install clang-tools-extra)
 [[language]]
 name = "c"
 file-types = ["h", "c"]
-indent = { tab-width = 4, unit = "t" }
-language-servers = [ "clangd" ]
+indent = { tab-width = 4, unit = "\t" }
+language-servers = ["clangd"]
 
-[[language]]
-name = "markdown"
-formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
-auto-format = true
-rulers = [20]
-text-width = 80
-
-[[language]]
-name = "kdl"
-indent = { tab-width = 4, unit = "    " }
-
+# ───────────────────────────────────────────────────────────────── Python ────
+# Requires: ty, ruff (rpm-ostree install ty ruff)
 [[language]]
 name = "python"
-language-servers = [ "ty", "ruff" ]
+language-servers = ["ty", "ruff"]
 auto-format = true
 text-width = 79
 rulers = [79]
 
+# ──────────────────────────────────────────────────────────────── Haskell ────
+# Requires: haskell-language-server (ghcup install hls)
+#           + an hls-powered GHC (see: ghcup list -t ghc)
 [[language]]
 name = "haskell"
-language-servers = [ "haskell-language-server-wrapper" ]
+language-servers = ["haskell-language-server"]
+auto-format = true
+
+# ─────────────────────────────────────────────────────────────── Markdown ────
+# Requires: harper-ls (cargo install harper-ls --locked)
+#           dprint (cargo install dprint --locked)
+#           + ~/.config/dprint/dprint.json with the markdown plugin
+[[language]]
+name = "markdown"
+language-servers = ["harper-ls"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
+auto-format = true
+rulers = [80]
+text-width = 80
+
+# ─────────────────────────────────────────────────────────────────── TOML ────
+# Requires: taplo (cargo install taplo-cli --locked)
+#           crates-lsp (cargo install crates-lsp --locked), Cargo.toml only
+# taplo workarounds: fixes "document excluded" and the broken schema catalog
+[language-server.taplo.config.evenBetterToml.schema]
+catalogs = []
+associations = { 'Cargo\.toml$' = "https://www.schemastore.org/cargo.json" }
+
+[language-server.crates-lsp]
+command = "crates-lsp"
+
+[[language]]
+name = "toml"
+language-servers = ["taplo", "crates-lsp"]
+formatter = { command = "taplo", args = ["fmt", "-"] }
+auto-format = true
+
+# ─────────────────────────────────────────────────────────── JSON / JSONC ────
+# Requires: biome, prebuilt binary from github.com/biomejs/biome/releases
+#           (biome-linux-x64 -> ~/bin/biome, chmod +x)
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
 
 [[language]]
 name = "json"
-formatter = { command = 'jq', args = ["."] }
+language-servers = ["biome"]
+auto-format = true
+
+[[language]]
+name = "jsonc"
+language-servers = ["biome"]
+auto-format = true
+
+# ──────────────────────────────────────────────────────────────────── KDL ────
+# KDL: node-based config format (niri config.kdl, zellij)
+# No LSP, check niri config with: niri validate
+[[language]]
+name = "kdl"
+indent = { tab-width = 4, unit = "    " }
