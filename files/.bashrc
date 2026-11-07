@@ -15,6 +15,9 @@ add_path "$HOME/.local/bin"
 unset -f add_path
 export PATH
 
+# Starship: its config lives in a folder, with its theme_apply
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
 . "$HOME/.cargo/env"
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 

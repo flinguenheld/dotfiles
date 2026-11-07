@@ -1,4 +1,5 @@
-@import "./themes/catppuccin_frappe.css";
+/* Colors: written by theme_apply from ~/.config/theme/palette.toml */
+@import "./palette.css";
 
 /* Corner radius: 10px for the blocks, 8px for the buttons inside them
    (10 - 2px gap). Keep it close to niri's geometry-corner-radius. */

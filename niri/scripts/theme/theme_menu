@@ -18,7 +18,7 @@ HELIX_REG="theme = \".*\""
 MAKO_FOLDER="$HOME/.config/mako/"
 MAKO_FOLDER_THEMES="$MAKO_FOLDER/themes/"
 
-STARSHIP_FILE="$HOME/.config/starship.toml"
+STARSHIP_FILE="$HOME/.config/starship/starship.toml"
 STARSHIP_REG="palette = \".*\""
 
 SWAYBG_FILE="$NIRI_FOLDER/scripts/startup"

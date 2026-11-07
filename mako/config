@@ -32,20 +32,16 @@ max-visible=5
 layer=overlay
 anchor=top-right
 
-# Mako_Colors
-border-color=#303446
-text-color=#303446
-background-color=#a6d189
-# progress-color=over #a6d189
+# COLORS
+# Written by theme_apply from ~/.config/theme/palette.toml. include is a
+# global option: it must come before the first [section].
+include=~/.config/mako/palette
 
 [urgency=low]
-background-color=#a6d189
 default-timeout=5000
 
 [urgency=normal]
-background-color=#8caaee
 default-timeout=5000
 
 [urgency=high]
-background-color=#e78284
 default-timeout=0
