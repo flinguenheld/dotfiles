@@ -26,7 +26,7 @@ binds {
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
     Mod+D          hotkey-overlay-title="Drun (fuzzer)"                          { spawn "fuzzel"; }
-    Mod+T          hotkey-overlay-title="Select theme"                           { spawn "~/.config/niri/scripts/theme_menu"; }
+    Mod+T          hotkey-overlay-title="Select theme"                           { spawn "~/.config/niri/scripts/theme/theme_menu"; }
     Mod+Ctrl+P     hotkey-overlay-title="Power menu"                             { spawn "~/.config/niri/scripts/power_menu"; }
 
     Mod+P          hotkey-overlay-title="Focus the previous focussed windows"    { focus-window-previous; }

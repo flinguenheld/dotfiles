@@ -72,7 +72,7 @@
   "custom/themes": {
     "format": "󰏘",
     "tooltip": false,
-    "on-click": "$HOME/.config/niri/scripts/theme_menu"
+    "on-click": "$HOME/.config/niri/scripts/theme/theme_menu"
   },
   "custom/power": {
     "format": "󰐥",

@@ -128,7 +128,7 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#716f6c\" to=\"#a8a5a1\""
   ;;
   "  󱞦")
-    ~/.config/niri/scripts/theme_menu
+    "$0"
   ;;
   *)
     exit 0

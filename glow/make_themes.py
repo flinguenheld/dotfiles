@@ -21,7 +21,7 @@ from pathlib import Path
 OUT = Path.home() / ".config/glow/themes"
 
 # glow file name ─▶ WezTerm scheme name.
-# Same pairs as THEMES / THEMES_WZ in ~/.config/niri/scripts/theme_menu
+# Same pairs as THEMES / THEMES_WZ in ~/.config/niri/scripts/theme/theme_menu
 THEMES = {
     "catppuccin_frappe": "Catppuccin Frappe",
     "catppuccin_latte": "Catppuccin Latte",
