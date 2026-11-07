@@ -24,10 +24,6 @@ THEMES = [
     "catppuccin_mocha",
     "gruvbox",
     "gruvbox_light",
-    "onedark",
-    "onelight",
-    "papercolor_dark",
-    "papercolor_light",
 ]
 
 
