@@ -1,0 +1,26 @@
+# ── LOOK ─────────────────────────────────────────────
+# auto (dark or light, from the terminal), dark, light,
+# dracula, tokyo-night, pink, notty, ascii,
+# or a path to a JSON style file
+style: "/home/flo/.config/glow/themes/catppuccin_frappe.json"
+
+# word-wrap at this column (0 = no wrap at all)
+width: 140
+
+# keep the line breaks of the source; leave it off,
+# or paragraphs and ASCII graphs can come out odd
+preserveNewLines: false
+
+# ── READING ──────────────────────────────────────────
+# show long files in a pager ($PAGER, else "less -r")
+pager: true
+
+# ── TUI (glow with no file, or glow -t) ──────────────
+# scroll with the mouse wheel
+mouse: true
+
+# line numbers in the TUI reader
+showLineNumbers: false
+
+# also list hidden and git-ignored files
+all: false

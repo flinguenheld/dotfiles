@@ -6,7 +6,8 @@
 #           harper-ls (cargo install harper-ls --locked)
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "harper-ls"]
+# language-servers = ["rust-analyzer", "harper-ls"]
+language-servers = ["rust-analyzer"]
 auto-format = true
 rulers = [79]
 

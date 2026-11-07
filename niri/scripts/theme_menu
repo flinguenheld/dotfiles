@@ -12,6 +12,9 @@ ALACRITTY_REG="themes/.*\.toml"
 FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
 FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
 
+GLOW_FILE="$HOME/.config/glow/glow.yml"
+GLOW_REG="^style: \".*\""
+
 HELIX_FILE="$HOME/.config/helix/config.toml"
 HELIX_REG="theme = \".*\""
 
@@ -149,6 +152,7 @@ if [[ -n $INDEX ]]; then
   sed -i "s#${ALACRITTY_REG}#themes/${THEMES[$INDEX]}.toml#" "${ALACRITTY_FILE}"
   sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEMES_WZ[$INDEX]}'#" "${WEZTERM_FILE}"
   sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${THEMES[$INDEX]}.ini#" "${FUZZEL_FILE}"
+  sed -i "s#${GLOW_REG}#style: \"${HOME}/.config/glow/themes/${THEMES[$INDEX]}.json\"#" "${GLOW_FILE}"
   sed -i "s#${HELIX_REG}#theme = \"${THEMES_HX[$INDEX]}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
   sed -i "s#${STARSHIP_REG}#palette = \"${THEMES_ST[$INDEX]}\"#" "${STARSHIP_FILE}"
   sed -i "s#${SWAYBG_REG}#\papers/${THEMES[$INDEX]}.jpg#" "${SWAYBG_FILE}"
