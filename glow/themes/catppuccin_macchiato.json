@@ -2,7 +2,7 @@
   "document": {
     "block_prefix": "\n",
     "block_suffix": "\n",
-    "color": "#CAD3F5",
+    "color": "#cad3f5",
     "margin": 2
   },
   "block_quote": {
@@ -17,30 +17,30 @@
   },
   "heading": {
     "block_suffix": "\n",
-    "color": "#8AADF4",
+    "color": "#8aadf4",
     "bold": true
   },
   "h1": {
     "prefix": " ",
     "suffix": " ",
-    "color": "#24273A",
-    "background_color": "#F5BDE6",
+    "color": "#24273a",
+    "background_color": "#f5bde6",
     "bold": true
   },
   "h2": {
-    "color": "#8AADF4",
+    "color": "#8aadf4",
     "prefix": "## "
   },
   "h3": {
-    "color": "#8BD5CA",
+    "color": "#8bd5ca",
     "prefix": "### "
   },
   "h4": {
-    "color": "#A6DA95",
+    "color": "#a6da95",
     "prefix": "#### "
   },
   "h5": {
-    "color": "#EED49F",
+    "color": "#eed49f",
     "prefix": "##### "
   },
   "h6": {
@@ -53,11 +53,11 @@
     "crossed_out": true
   },
   "emph": {
-    "color": "#EED49F",
+    "color": "#eed49f",
     "italic": true
   },
   "strong": {
-    "color": "#ED8796",
+    "color": "#ed8796",
     "bold": true
   },
   "hr": {
@@ -75,15 +75,15 @@
     "unticked": "[ ] "
   },
   "link": {
-    "color": "#8BD5CA",
+    "color": "#8bd5ca",
     "underline": true
   },
   "link_text": {
-    "color": "#8AADF4",
+    "color": "#8aadf4",
     "bold": true
   },
   "image": {
-    "color": "#F5BDE6",
+    "color": "#f5bde6",
     "underline": true
   },
   "image_text": {
@@ -93,93 +93,93 @@
   "code": {
     "prefix": " ",
     "suffix": " ",
-    "color": "#ED8796",
+    "color": "#ed8796",
     "background_color": "#313549"
   },
   "code_block": {
-    "color": "#CAD3F5",
+    "color": "#cad3f5",
     "margin": 2,
     "chroma": {
       "text": {
-        "color": "#CAD3F5"
+        "color": "#cad3f5"
       },
       "error": {
-        "color": "#24273A",
-        "background_color": "#ED8796"
+        "color": "#24273a",
+        "background_color": "#ed8796"
       },
       "comment": {
         "color": "#7f86a1",
         "italic": true
       },
       "comment_preproc": {
-        "color": "#EED49F"
+        "color": "#eed49f"
       },
       "keyword": {
-        "color": "#F5BDE6"
+        "color": "#f5bde6"
       },
       "keyword_reserved": {
-        "color": "#F5BDE6"
+        "color": "#f5bde6"
       },
       "keyword_namespace": {
-        "color": "#ED8796"
+        "color": "#ed8796"
       },
       "keyword_type": {
-        "color": "#EED49F"
+        "color": "#eed49f"
       },
       "operator": {
-        "color": "#8BD5CA"
+        "color": "#8bd5ca"
       },
       "punctuation": {
-        "color": "#CAD3F5"
+        "color": "#cad3f5"
       },
       "name": {
-        "color": "#CAD3F5"
+        "color": "#cad3f5"
       },
       "name_builtin": {
-        "color": "#ED8796"
+        "color": "#ed8796"
       },
       "name_tag": {
-        "color": "#8AADF4"
+        "color": "#8aadf4"
       },
       "name_attribute": {
-        "color": "#EED49F"
+        "color": "#eed49f"
       },
       "name_class": {
-        "color": "#EED49F",
+        "color": "#eed49f",
         "bold": true
       },
       "name_constant": {
-        "color": "#EED49F"
+        "color": "#eed49f"
       },
       "name_decorator": {
-        "color": "#8BD5CA"
+        "color": "#8bd5ca"
       },
       "name_exception": {
-        "color": "#ED8796"
+        "color": "#ed8796"
       },
       "name_function": {
-        "color": "#8AADF4"
+        "color": "#8aadf4"
       },
       "name_other": {},
       "literal": {},
       "literal_number": {
-        "color": "#EED49F"
+        "color": "#eed49f"
       },
       "literal_date": {},
       "literal_string": {
-        "color": "#A6DA95"
+        "color": "#a6da95"
       },
       "literal_string_escape": {
-        "color": "#8BD5CA"
+        "color": "#8bd5ca"
       },
       "generic_deleted": {
-        "color": "#ED8796"
+        "color": "#ed8796"
       },
       "generic_emph": {
         "italic": true
       },
       "generic_inserted": {
-        "color": "#A6DA95"
+        "color": "#a6da95"
       },
       "generic_strong": {
         "bold": true

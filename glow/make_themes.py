@@ -1,30 +1,78 @@
 #!/usr/bin/env python3
-"""Make one glow (glamour) style per alacritty theme.
+"""Make one glow (glamour) style per WezTerm color scheme.
 
-Reads ~/.config/alacritty/themes/<name>.toml and writes
-~/.config/glow/themes/<name>.json, so glow uses the same colors as the
-terminal. theme_menu then points glow.yml to the chosen file.
+WezTerm's schemes are built into its binary, so there is no file to read.
+This script asks WezTerm itself: it runs `wezterm show-keys` with a tiny
+Lua config that writes the colors of each scheme to a JSON file.
 
-Run it again after adding or changing an alacritty theme:
+    make_themes.py ─▶ dump.lua ─▶ wezterm ─▶ colors.json ─▶ themes/*.json
+
+theme_menu then points glow.yml to the chosen file.
+
+Run it again after adding a theme to THEMES:
     python3 ~/.config/glow/make_themes.py
 """
 
 import json
-import tomllib
+import subprocess
+import tempfile
 from pathlib import Path
 
-ALACRITTY = Path.home() / ".config/alacritty/themes"
 OUT = Path.home() / ".config/glow/themes"
 
-# Same names as THEMES in ~/.config/niri/scripts/theme_menu
-THEMES = [
-    "catppuccin_frappe",
-    "catppuccin_latte",
-    "catppuccin_macchiato",
-    "catppuccin_mocha",
-    "gruvbox",
-    "gruvbox_light",
-]
+# glow file name ─▶ WezTerm scheme name.
+# Same pairs as THEMES / THEMES_WZ in ~/.config/niri/scripts/theme_menu
+THEMES = {
+    "catppuccin_frappe": "Catppuccin Frappe",
+    "catppuccin_latte": "Catppuccin Latte",
+    "catppuccin_macchiato": "Catppuccin Macchiato",
+    "catppuccin_mocha": "Catppuccin Mocha",
+    "gruvbox": "Gruvbox Dark (Gogh)",
+    "gruvbox_light": "Gruvbox (Gogh)",
+    "ayu_mirage": "Ayu Mirage",
+    "ayu_light": "ayu_light",
+    "modus_vivendi": "Modus-Vivendi",
+    "modus_operandi": "Modus-Operandi",
+}
+
+# Order of WezTerm's `ansi` and `brights` lists
+ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
+
+LUA = """
+local wezterm = require 'wezterm'
+local schemes = wezterm.color.get_builtin_schemes()
+local out = {}
+for _, name in ipairs(wezterm.serde.json_decode([==[%s]==])) do
+  local s = schemes[name]
+  if s then
+    -- only these fields: the full table can't be encoded to JSON
+    out[name] = { background = s.background, foreground = s.foreground,
+                  ansi = s.ansi, brights = s.brights }
+  end
+end
+local f = io.open([==[%s]==], 'w')
+f:write(wezterm.serde.json_encode(out))
+f:close()
+return {}
+"""
+
+
+def wezterm_schemes(names):
+    """Ask WezTerm for the colors of these built-in schemes."""
+    with tempfile.TemporaryDirectory() as tmp:
+        lua, out = Path(tmp) / "dump.lua", Path(tmp) / "colors.json"
+        lua.write_text(LUA % (json.dumps(names), out))
+        # show-keys only loads the config and prints the key table:
+        # a quick way to run Lua inside WezTerm without opening a window
+        subprocess.run(
+            ["wezterm", "--config-file", str(lua), "show-keys"],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            timeout=30, check=False,
+        )
+        text = out.read_text() if out.exists() else ""
+    if not text:
+        raise SystemExit("wezterm wrote no colors (Lua error?)")
+    return json.loads(text)
 
 
 def rgb(hex_color):
@@ -43,14 +91,12 @@ def is_dark(hex_color):
     return 0.299 * r + 0.587 * g + 0.114 * b < 128
 
 
-def palette(name):
-    colors = tomllib.loads((ALACRITTY / f"{name}.toml").read_text())["colors"]
-    bg = colors["primary"]["background"]
-    fg = colors["primary"]["foreground"]
+def palette(scheme):
+    bg, fg = scheme["background"], scheme["foreground"]
     dark = is_dark(bg)
     # On a dark background the bright colors read better, on a light one
     # the normal (darker) ones.
-    acc = colors["bright"] if dark else colors["normal"]
+    acc = dict(zip(ANSI, scheme["brights"] if dark else scheme["ansi"]))
     return {
         "bg": bg,
         "fg": fg,
@@ -133,7 +179,12 @@ def style(p):
     }
 
 
+schemes = wezterm_schemes(list(THEMES.values()))
 OUT.mkdir(parents=True, exist_ok=True)
-for name in THEMES:
-    (OUT / f"{name}.json").write_text(json.dumps(style(palette(name)), indent=2, ensure_ascii=False) + "\n")
-    print("wrote", OUT / f"{name}.json")
+for name, scheme_name in THEMES.items():
+    if scheme_name not in schemes:
+        print(f"skip {name}: no WezTerm scheme named {scheme_name!r}")
+        continue
+    path = OUT / f"{name}.json"
+    path.write_text(json.dumps(style(palette(schemes[scheme_name])), indent=2, ensure_ascii=False) + "\n")
+    print("wrote", path)

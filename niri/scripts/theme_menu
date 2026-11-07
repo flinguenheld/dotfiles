@@ -6,9 +6,6 @@ NIRI_STYLE_FILE="$NIRI_FOLDER/config/style.kdl"
 NIRI_REG_ACTIVE=" active-gradient .*"
 NIRI_REG_INACTIVE=" inactive-gradient .*"
 
-ALACRITTY_FILE="$HOME/.config/alacritty/alacritty.toml"
-ALACRITTY_REG="themes/.*\.toml"
-
 FUZZEL_FILE="$HOME/.config/fuzzel/fuzzel.ini"
 FUZZEL_REG="include = ~/.config/fuzzel/themes/.*"
 
@@ -33,26 +30,32 @@ WAYBAR_REG="@import .*\.css\";"
 WEZTERM_FILE="$HOME/.wezterm.lua"
 WEZTERM_REG="config\.color_scheme = '.*'"
 
-THEMES=(   'catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light')
-THEMES_HX=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light')
-THEMES_ST=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light')
-THEMES_WZ=('Catppuccin Frappe' 'Catppuccin Latte' 'Catppuccin Macchiato' 'Catppuccin Mocha' 'Gruvbox Dark (Gogh)' 'Gruvbox (Gogh)')
+THEMES=(   'catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi' 'modus_operandi')
+THEMES_HX=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi' 'modus_operandi')
+THEMES_ST=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi' 'modus_operandi')
+THEMES_WZ=('Catppuccin Frappe' 'Catppuccin Latte' 'Catppuccin Macchiato' 'Catppuccin Mocha' 'Gruvbox Dark (Gogh)' 'Gruvbox (Gogh)' 'Ayu Mirage' 'ayu_light' 'Modus-Vivendi' 'Modus-Operandi')
 
 PREFER="prefer-light"
 
 # Menu
-case $(echo -e "Catppuccin\nGruvbox" | fuzzel --dmenu \
+case $(echo -e "Ayu\nCatppuccin\nGruvbox\nModus" | fuzzel --dmenu \
                                                           --font "JetBrains Mono:size=25" \
-                                                          --lines 2 \
+                                                          --lines 4 \
                                                           --width 25 \
                                                           --line-height 50 \
                                                           --inner-pad 50 \
                                                           --placeholder " Theme selection") in
+  "Ayu")
+    CHOICE="Ayu Light\nAyu Mirage\n"
+  ;;
   "Catppuccin")
     CHOICE="Latte\nFrappe\nMacchiato\nMocha\n"
   ;;
   "Gruvbox")
-    CHOICE="Gruv Dark\nGruv Light\n"
+    CHOICE="Gruv Light\nGruv Dark\n"
+  ;;
+  "Modus")
+    CHOICE="Modus Operandi\nModus Vivendi\n"
   ;;
   *)
     exit 0
@@ -102,6 +105,28 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
     NEW_NIRI_ACTIVE=" active-gradient from=\"#458588\" to=\"#689D6A\""
     NEW_NIRI_INACTIVE=" inactive-gradient from=\"#928374\" to=\"#282828\""
   ;;
+  "Ayu Mirage")
+    INDEX="6"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#ffcc66\" to=\"#f28779\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#7e8082\" to=\"#191e2a\""
+    PREFER="prefer-dark"
+  ;;
+  "Ayu Light")
+    INDEX="7"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#ff6a00\" to=\"#f29718\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#a3a9b0\" to=\"#c6c9ce\""
+  ;;
+  "Modus Vivendi")
+    INDEX="8"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#2fafff\" to=\"#b6a0ff\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#8c8c8c\" to=\"#1e1e1e\""
+    PREFER="prefer-dark"
+  ;;
+  "Modus Operandi")
+    INDEX="9"
+    NEW_NIRI_ACTIVE=" active-gradient from=\"#0031a9\" to=\"#531ab6\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#737373\" to=\"#ababab\""
+  ;;
   "  󱞦")
     ~/.config/niri/scripts/theme_menu
   ;;
@@ -115,7 +140,6 @@ if [[ -n $INDEX ]]; then
   sed -i "s%${NIRI_REG_INACTIVE}%${NEW_NIRI_INACTIVE}%" "${NIRI_STYLE_FILE}"
 
   cp "${MAKO_FOLDER_THEMES}${THEMES[$INDEX]}" "${MAKO_FOLDER}config" && makoctl reload
-  sed -i "s#${ALACRITTY_REG}#themes/${THEMES[$INDEX]}.toml#" "${ALACRITTY_FILE}"
   sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEMES_WZ[$INDEX]}'#" "${WEZTERM_FILE}"
   sed -i "s#${FUZZEL_REG}#include = ~/.config/fuzzel/themes/${THEMES[$INDEX]}.ini#" "${FUZZEL_FILE}"
   sed -i "s#${GLOW_REG}#style: \"${HOME}/.config/glow/themes/${THEMES[$INDEX]}.json\"#" "${GLOW_FILE}"
