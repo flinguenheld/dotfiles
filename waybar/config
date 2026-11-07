@@ -1,7 +1,7 @@
 // Waybar config file
 {
     // "output": "HDMI-A-1",
-    "include": "~/.config/niri/waybar/modules.json",
+    "include": "~/.config/waybar/modules.json",
     "name": "main-bar",
     "id": "main-bar",
     "layer": "top",

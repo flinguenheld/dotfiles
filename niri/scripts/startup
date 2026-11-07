@@ -7,7 +7,7 @@ kill -9 "$(pgrep swayidle)"
 swayidle -w timeout 901 'niri msg action power-off-monitors' timeout 900 'swaylock -f -c 7e7e7e' before-sleep 'swaylock -f -c a9a9a9' &
 # swayidle -w timeout 31 'niri msg action power-off-monitors' timeout 30 'swaylock -f -c 282828' before-sleep 'swaylock -f -c 282828'
 
-CONFIG="$HOME/.config/niri/waybar/config"
-STYLE="$HOME/.config/niri/waybar/style.css"
+CONFIG="$HOME/.config/waybar/config"
+STYLE="$HOME/.config/waybar/style.css"
 kill -9 "$(pgrep waybar)"
 waybar --bar main-bar --log-level error --config "${CONFIG}" --style "${STYLE}" &

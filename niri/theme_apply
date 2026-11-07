@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# florent@linguenheld.fr 2026
+
+PALETTE_FILE="$HOME/.config/theme/palette.toml"
+
+NIRI_FOLDER="$HOME/.config/niri"
+NIRI_STYLE_FILE="$NIRI_FOLDER/config/style.kdl"
+NIRI_REG_ACTIVE=" active-gradient .*"
+NIRI_REG_INACTIVE=" inactive-gradient .*"
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ───────────────────── PALETTE ─────
+# Get the palette variables $background $foreground ...
+source "${PALETTE_FILE}" || exit 1
+
+# c4 → c5 (blue → purple with --original)
+NEW_NIRI_ACTIVE=" active-gradient from=\"${c4}\" to=\"${c5}\""
+NEW_NIRI_INACTIVE=" inactive-gradient from=\"${muted}\" to=\"${surface}\""
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────────── APPLY ─────
+sed -i "s%${NIRI_REG_ACTIVE}%${NEW_NIRI_ACTIVE}%" "${NIRI_STYLE_FILE}"
+sed -i "s%${NIRI_REG_INACTIVE}%${NEW_NIRI_INACTIVE}%" "${NIRI_STYLE_FILE}"
+
+# Rebuild config.kdl from config/*.kdl: niri reloads it by itself
+"${NIRI_FOLDER}/scripts/combine_niri_config"

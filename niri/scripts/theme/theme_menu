@@ -24,7 +24,7 @@ STARSHIP_REG="palette = \".*\""
 SWAYBG_FILE="$NIRI_FOLDER/scripts/startup"
 SWAYBG_REG="papers/.*\.jpg"
 
-WAYBAR_FILE="$NIRI_FOLDER/waybar/style.css"
+WAYBAR_FILE="$HOME/.config/waybar/style.css"
 WAYBAR_REG="@import .*\.css\";"
 
 WEZTERM_FILE="$HOME/.wezterm.lua"
