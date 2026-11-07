@@ -106,8 +106,10 @@ def make(name, c):
         "-annotate", f"+0+{cy + R + 230 - H // 2}", c["title"],
         # A little noise hides the banding of a large gradient. Less on
         # light themes: near white it gets clipped and shows as grain.
-        "-attenuate", "0.2" if c["dark"] else "0.06", "+noise", "Gaussian",
-        "-quality", "92", str(OUT / f"{name}.jpg"),
+        # The noise is also what makes a JPEG heavy (it can't be compressed):
+        # 0.1 and quality 85 keep a 4K wallpaper around 300 KB.
+        "-attenuate", "0.1" if c["dark"] else "0.06", "+noise", "Gaussian",
+        "-quality", "85", str(OUT / f"{name}.jpg"),
     ]
     subprocess.run(cmd, check=True)
     print("wrote", OUT / f"{name}.jpg")
