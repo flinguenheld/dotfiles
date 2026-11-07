@@ -33,10 +33,10 @@ layer=overlay
 anchor=top-right
 
 # Mako_Colors
-border-color=#ffffff
-text-color=#ffffff
+border-color=#fbf7f0
+text-color=#fbf7f0
 background-color=#005e8b
-# progress-color=over #ffffff
+# progress-color=over #fbf7f0
 
 [urgency=low]
 background-color=#006800

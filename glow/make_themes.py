@@ -31,8 +31,8 @@ THEMES = {
     "gruvbox_light": "Gruvbox (Gogh)",
     "ayu_mirage": "Ayu Mirage",
     "ayu_light": "ayu_light",
-    "modus_vivendi": "Modus-Vivendi",
-    "modus_operandi": "Modus-Operandi",
+    "modus_vivendi": "Modus-Vivendi-Tinted",
+    "modus_operandi": "Modus-Operandi-Tinted",
 }
 
 # Order of WezTerm's `ansi` and `brights` lists

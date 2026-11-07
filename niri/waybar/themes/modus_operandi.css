@@ -1,9 +1,9 @@
 @define-color time #531ab6;
 @define-color hardware #7a4f2f;
-@define-color tray #f2f2f2;
+@define-color tray #efe9dd;
 @define-color submap #6f5500;
 @define-color workspaces #0031a9;
-@define-color workspace_active #737373;
+@define-color workspace_active #716f6c;
 @define-color workspace_urgent #a60000;
 @define-color sound #6f5500;
 @define-color bluetooth #0031a9;
@@ -13,8 +13,9 @@
 @define-color commands #a60000;
 @define-color red #a60000;
 
-@define-color background #ffffff;
-@define-color text #ffffff;
-@define-color disabled #737373;
-@define-color disabled-dark #404040;
-@define-color disabled-speaker #bca797;
+@define-color background #fbf7f0;
+@define-color foreground #000000;
+@define-color text #fbf7f0;
+@define-color disabled #716f6c;
+@define-color disabled-dark #3f3e3c;
+@define-color disabled-speaker #baa390;

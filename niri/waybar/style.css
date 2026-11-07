@@ -1,5 +1,8 @@
 @import "./themes/catppuccin_frappe.css";
 
+/* Corner radius: 10px for the blocks, 8px for the buttons inside them
+   (10 - 2px gap). Keep it close to niri's geometry-corner-radius. */
+
 * {
   min-height: 0;
   margin: 0;
@@ -21,24 +24,15 @@ window#waybar.hidden {
 
 /** *********************************************************************************************** **/
 /** *************************************************************************************** All *** **/
-#workplaces,
-#backlight,
-#battery,
+/* Text modules */
 #clock.date,
 #clock.time,
 #cpu,
-#disk,
-#mode,
 #memory,
-#mpd,
-#custom-spotify,
-#idle_inhibitor,
-#tray,
 #pulseaudio,
 #network,
 #custom-expressvpn,
 #bluetooth {
-
   font-family: "JetBrains Mono NF", sans-serif;
   font-size: 13px;
 
@@ -49,6 +43,7 @@ window#waybar.hidden {
   padding: 0px 10px;
 }
 
+/* Blocks: groups and standalone modules */
 #hardware,
 #commands,
 #web,
@@ -56,9 +51,7 @@ window#waybar.hidden {
 #sound,
 #tray,
 #bluetooth {
-
-  /* border: 2px solid; */
-  border-radius: 15px;
+  border-radius: 10px;
 
   background-color: @background;
   color: @text;
@@ -67,12 +60,12 @@ window#waybar.hidden {
   margin: 0px 4px;
 }
 
-#idle_inhibitor,
+/* Inverted pills inside a block */
 #clock.time,
 #memory,
 #pulseaudio.mic,
 #custom-expressvpn {
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 0px 15px;
   margin: 2px 0px;
 }
@@ -84,7 +77,6 @@ window#waybar.hidden {
 }
 
 #clock.date {
-  color: @text;
   background-color: @time;
 }
 
@@ -96,13 +88,28 @@ window#waybar.hidden {
 }
 
 /** *********************************************************************************************** **/
+/** *********************************************************************************** Tooltip *** **/
+/* Popups of every module (the calendars, the tray…), in the theme colors */
+tooltip {
+  background-color: @background;
+  border: 2px solid @time;
+  border-radius: 10px;
+}
+
+tooltip label {
+  font-family: "JetBrains Mono NF", monospace;
+  font-size: 16px;
+  color: @foreground;
+  padding: 6px 10px;
+}
+
+/** *********************************************************************************************** **/
 /** ********************************************************************************** Hardware *** **/
 #hardware {
   background-color: @hardware;
 }
 
 #cpu {
-  color: @text;
   background-color: @hardware;
 }
 
@@ -111,47 +118,39 @@ window#waybar.hidden {
   background-color: @text;
 }
 
-#disk {
-  /* color: @blue; */
-}
-
 /** *********************************************************************************************** **/
 /** ********************************************************************************** Commands *** **/
 #commands {
-  border: 2px solid @commands;
-  background-color: @text;
+  background-color: @commands;
 }
 
-#custom-themes {
-  color: @commands;
-}
-
+/* The three icons of the group: same font, size and spacing.
+   NFM (Mono) puts every icon in a cell of the same width: with NF, the
+   eye icons are 1.5x wider than the others and the gaps look uneven. */
+#custom-themes,
+#idle_inhibitor,
 #custom-power {
-  color: @commands;
+  font-family: "JetBrainsMono NFM", monospace;
+  font-size: 22px;
 
-  font-size: 15px;
-  padding: 0px 10px;
+  color: @text;
+  background-color: transparent;
+
+  padding: 0px 7px;
+  margin: 0px;
 }
 
-#idle_inhibitor {
-  color: @commands;
-  background-color: @text;
-
-  font-size: 15px;
-  padding: 0px 2px;
-}
-
+/* Off: the same color, half transparent */
 #idle_inhibitor.deactivated {
-  color: @disabled;
+  color: alpha(@text, 0.5);
 }
 
 /** *********************************************************************************************** **/
-/** ********************************************************************************** Hyprland *** **/
+/** ******************************************************************************** Workspaces *** **/
 #workspaces {
   background-color: @workspaces;
 
-  border-radius: 15px;
-  /* border: 2px solid @workspaces; */
+  border-radius: 10px;
   margin: 0px 4px;
   padding: 0px 10px;
 
@@ -170,7 +169,7 @@ window#waybar.hidden {
   color: @workspaces;
   padding: 0px 20px;
   margin: 2px 0px;
-  border-radius: 18px;
+  border-radius: 8px;
 }
 
 #workspaces button.urgent {
@@ -181,13 +180,12 @@ window#waybar.hidden {
 #workspaces button:hover {
   background: @commands;
   color: @text;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 /** *********************************************************************************************** **/
 /** ************************************************************************************** Tray *** **/
 #tray {
-  border-color: @tray;
   padding: 0px 15px;
 }
 
@@ -199,18 +197,14 @@ window#waybar.hidden {
   -gtk-icon-effect: highlight;
 }
 
-#tray>.active {}
-
 /** *********************************************************************************************** **/
 /** ******************************************************************************** Pulseaudio *** **/
 #sound {
   background-color: @sound;
-  color: @text;
 }
 
 #pulseaudio.speaker {
   background-color: @sound;
-  color: @text;
 }
 
 #pulseaudio.mic {
@@ -225,32 +219,16 @@ window#waybar.hidden {
   color: @disabled;
 }
 
-/* #pulseaudio.bluetooth { */
-/* background-color: @yellow; */
-/* } */
-
 /** *********************************************************************************************** **/
 /** ********************************************************************************* Bluetooth *** **/
 #bluetooth {
   background-color: @bluetooth;
-  color: @text;
 }
 
 #bluetooth.disabled,
 #bluetooth.off {
   background-color: @disabled;
-  color: @text;
 }
-
-#bluetooth.on {}
-
-#bluetooth.connected {}
-
-#bluetooth.discoverable {}
-
-#bluetooth.discovering {}
-
-#bluetooth.pairable {}
 
 /** *********************************************************************************************** **/
 /** *********************************************************************************** Network *** **/
@@ -260,7 +238,6 @@ window#waybar.hidden {
 
 #network {
   background-color: @web;
-  color: @text;
 }
 
 #network.disconnected,
@@ -268,32 +245,32 @@ window#waybar.hidden {
   color: @disabled-dark;
 }
 
-#network.linked {}
-
-#network.ethernet {}
-
-#network.wifi {}
-
 #custom-expressvpn {
   background-color: @text;
   color: @web;
 }
 
 /** *********************************************************************************************** **/
-/** ********************************************************************************* Backlight *** **/
+/** ************************************************************************************ Laptop *** **/
+/* Battery and backlight: not in the bar on the desktop (see config) */
+#battery,
+#backlight {
+  font-family: "JetBrains Mono NF", sans-serif;
+  font-size: 13px;
+
+  color: @text;
+
+  margin: 0px 2px;
+  padding: 0px 10px;
+}
+
 #backlight {
   background-color: @backlight;
 }
 
-/** *********************************************************************************************** **/
-/** ********************************************************************************** Battery *** **/
 #battery {
   background-color: @battery;
 }
-
-#battery.charging {}
-
-#battery.plugged {}
 
 @keyframes blink {
   to {

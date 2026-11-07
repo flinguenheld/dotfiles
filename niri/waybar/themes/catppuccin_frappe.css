@@ -10,8 +10,10 @@
 @define-color battery #ca9ee6;
 @define-color web #81c8be;
 @define-color commands #e78284;
+@define-color red #e78284;
 
 @define-color background #303446;
+@define-color foreground #c6d0f5;
 @define-color text #303446;
 @define-color disabled #949cbb;
 @define-color disabled-dark #626880;

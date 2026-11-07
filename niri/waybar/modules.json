@@ -1,53 +1,4 @@
 {
-  "backlight": {
-    "interval": 2,
-    "align": 0,
-    "rotate": 0,
-    //"device": "amdgpu_bl0",
-    "format": "{icon} {percent}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      ""
-    ],
-    "on-click": "",
-    "on-click-middle": "",
-    "on-click-right": "",
-    "on-update": "",
-    "on-scroll-up": "light -A 5%",
-    "on-scroll-down": "light -U 5%",
-    "smooth-scrolling-threshold": 1,
-  },
-  "battery": {
-    "interval": 60,
-    "align": 0,
-    "rotate": 0,
-    //"bat": "BAT1",
-    //"adapter": "ACAD",
-    "full-at": 100,
-    "design-capacity": false,
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-full": "{icon} Full",
-    //"format-good": "",
-    "format-alt": "{icon} {time}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "format-time": "{H}h {M}min",
-    "tooltip": true,
-  },
   "bluetooth": {
     //"controller": "controller1",
     //"format-device-preference": "",
@@ -68,27 +19,24 @@
     "interval": 60,
     "align": 0,
     "rotate": 0,
-    "timezone": "France/Paris",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "󰥔  {:%a %b %d, %G}",
+    "timezone": "Europe/Paris",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small><span alpha='40%'>────────────────────────────────────────────────────────────────────────</span>\n{calendar}</small></tt>",
+    "format": "󰥔  {:%a %b %d, %Y}",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
       "weeks-pos": "right",
       "on-scroll": 1,
-      "on-click-right": "mode",
       "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        "months": "<b>{}</b>",
+        "days": "{}",
+        "weeks": "<span alpha='45%'>W{}</span>",
+        "weekdays": "<span alpha='70%'><b>{}</b></span>",
+        "today": "<b><u>{}</u></b>"
       }
     },
     "actions": {
       "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
     }
@@ -97,21 +45,37 @@
     "interval": 1,
     "align": 0,
     "rotate": 0,
-    "timezone": "France/Paris",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "timezone": "Europe/Paris",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><span alpha='40%'>────────────────────────</span>\n{calendar}</tt>",
     // "format": "󰥔  {:%I:%M %p}",
-    "format": " {:%I:%M} ",
-    "format-alt": " {:%I:%M:%S} ",
+    "format": " {:%H:%M} ",
+    "format-alt": " {:%H:%M:%S} ",
     // "format-alt": "󱑑  {:%I:%M:%S %p}",
     // "format-alt": " {:%a %b %d, %G}"
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<b>{}</b>",
+        "days": "{}",
+        "weeks": "<span alpha='45%'>W{}</span>",
+        "weekdays": "<span alpha='70%'><b>{}</b></span>",
+        "today": "<b><u>{}</u></b>"
+      }
+    },
+    "actions": {
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
   "custom/themes": {
-    "format": "   ",
+    "format": "󰏘",
     "tooltip": false,
     "on-click": "$HOME/.config/niri/scripts/theme_menu"
   },
   "custom/power": {
-    "format": "⏻",
+    "format": "󰐥",
     "tooltip": false,
     "on-click": "$HOME/.config/niri/scripts/power_menu"
   },
@@ -123,10 +87,6 @@
     "interval": 5,
     "format": "  {percentage}%"
   },
-  "disk": {
-    "interval": 30,
-    "format": "  {free}"
-  },
   "network": {
     "interval": 5,
     "format-wifi": "  {essid}",
@@ -137,7 +97,7 @@
     "format-disabled": " Disabled",
     // "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
     "tooltip-format": "  {ifname} via {gwaddr}",
-    "on-click-right": "alacritty -e nmtui"
+    "on-click-right": "wezterm start -- nmtui"
   },
   "custom/expressvpn": {
     "interval": 5,
@@ -180,7 +140,7 @@
     "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+"
   },
   "idle_inhibitor": {
-    "format": " {icon}  ",
+    "format": "{icon}",
     "format-icons": {
       "activated": "",
       "deactivated": ""
@@ -193,5 +153,59 @@
   "tray": {
     "icon-size": 16,
     "spacing": 10
+  },
+
+  // ─────────────────────────────────────────────────────────── LAPTOP ─────
+  // Not in the bar on the desktop (no battery, no backlight).
+  // On a laptop: add "battery" to group/hardware and "backlight" to
+  // modules-right in config.
+  "battery": {
+    "interval": 60,
+    "align": 0,
+    "rotate": 0,
+    //"bat": "BAT1",
+    //"adapter": "ACAD",
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "{icon} Full",
+    //"format-good": "",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "format-time": "{H}h {M}min",
+    "tooltip": true
+  },
+  "backlight": {
+    "interval": 2,
+    "align": 0,
+    "rotate": 0,
+    //"device": "amdgpu_bl0",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
+    "on-update": "",
+    "on-scroll-up": "light -A 5%",
+    "on-scroll-down": "light -U 5%",
+    "smooth-scrolling-threshold": 1
   }
 }

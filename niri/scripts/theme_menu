@@ -31,9 +31,9 @@ WEZTERM_FILE="$HOME/.wezterm.lua"
 WEZTERM_REG="config\.color_scheme = '.*'"
 
 THEMES=(   'catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi' 'modus_operandi')
-THEMES_HX=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi' 'modus_operandi')
+THEMES_HX=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi_tinted' 'modus_operandi_tinted')
 THEMES_ST=('catppuccin_frappe' 'catppuccin_latte' 'catppuccin_macchiato' 'catppuccin_mocha' 'gruvbox'             'gruvbox_light'  'ayu_mirage' 'ayu_light' 'modus_vivendi' 'modus_operandi')
-THEMES_WZ=('Catppuccin Frappe' 'Catppuccin Latte' 'Catppuccin Macchiato' 'Catppuccin Mocha' 'Gruvbox Dark (Gogh)' 'Gruvbox (Gogh)' 'Ayu Mirage' 'ayu_light' 'Modus-Vivendi' 'Modus-Operandi')
+THEMES_WZ=('Catppuccin Frappe' 'Catppuccin Latte' 'Catppuccin Macchiato' 'Catppuccin Mocha' 'Gruvbox Dark (Gogh)' 'Gruvbox (Gogh)' 'Ayu Mirage' 'ayu_light' 'Modus-Vivendi-Tinted' 'Modus-Operandi-Tinted')
 
 PREFER="prefer-light"
 
@@ -119,13 +119,13 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
   "Modus Vivendi")
     INDEX="8"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#2fafff\" to=\"#b6a0ff\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#8c8c8c\" to=\"#1e1e1e\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#929399\" to=\"#1d2235\""
     PREFER="prefer-dark"
   ;;
   "Modus Operandi")
     INDEX="9"
     NEW_NIRI_ACTIVE=" active-gradient from=\"#0031a9\" to=\"#531ab6\""
-    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#737373\" to=\"#ababab\""
+    NEW_NIRI_INACTIVE=" inactive-gradient from=\"#716f6c\" to=\"#a8a5a1\""
   ;;
   "  󱞦")
     ~/.config/niri/scripts/theme_menu

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# ExpressVPN not installed: print nothing, so Waybar hides the module
+command -v expressvpn > /dev/null || exit 0
+
 if [[ -n $(expressvpn status | grep "Connecting...") ]]; then
   TXT="Connecting..."
 elif [[ -z $(expressvpn status | grep --fixed-strings "Not connected") ]]; then

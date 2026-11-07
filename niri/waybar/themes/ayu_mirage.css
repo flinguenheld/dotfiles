@@ -14,6 +14,7 @@
 @define-color red #f28779;
 
 @define-color background #1f2430;
+@define-color foreground #cbccc6;
 @define-color text #1f2430;
 @define-color disabled #7e8082;
 @define-color disabled-dark #a0a2a0;
