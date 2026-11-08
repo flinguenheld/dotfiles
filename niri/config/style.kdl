@@ -38,7 +38,7 @@ layout {
         width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#ca9ee6" to="#9479ae"
+        active-gradient from="#f4b8e4" to="#af8aad"
         inactive-gradient from="#737994" to="#9097b6"
        
     }
@@ -48,7 +48,7 @@ layout {
         width 5
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#ca9ee6" to="#9479ae"
+        active-gradient from="#f4b8e4" to="#af8aad"
         inactive-gradient from="#737994" to="#9097b6"
        
     }

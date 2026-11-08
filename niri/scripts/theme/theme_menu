@@ -28,28 +28,18 @@ WEZTERM_REG="config\.color_scheme = '.*'"
 # ──────────                                      ─────────────────────────────
 # ─────                                     ─────────────────────── USAGE ─────
 usage() {
-  echo "Usage: $(basename "${0}") [--original]"
+  echo "Usage: $(basename "${0}")"
   echo "   Pick a theme in two fuzzel menus, then apply it to every program."
   echo "   The accent colors are shuffled each time."
   echo
   echo "Options:"
-  echo "   --original   keep the theme's colors in their original order"
   echo "   --help, -h   print this help"
 }
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ─────────────────── ARGUMENTS ─────
-# Saved for the "back" entry, which restarts the script with the same options
-ARGUMENTS=("$@")
-ORIGINAL=""
-PLACEHOLDER_END=""
-
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --original)
-      ORIGINAL="--original"
-      PLACEHOLDER_END=" (original)"    # shown in the fuzzel menus
-    ;;
     --help | -h)
       usage
       exit 0
@@ -71,7 +61,7 @@ case $(echo -e "Ayu\nCatppuccin\nGruvbox\nModus" | fuzzel --dmenu \
                                                           --width 30 \
                                                           --line-height 50 \
                                                           --inner-pad 50 \
-                                                          --placeholder " Theme selection${PLACEHOLDER_END}") in
+                                                          --placeholder " Theme selection") in
   "Ayu")
     CHOICE="Ayu Light\nAyu Mirage\n"
   ;;
@@ -97,7 +87,7 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
                                        --width 30 \
                                        --line-height 50 \
                                        --inner-pad 50 \
-                                       --placeholder " Flavour${PLACEHOLDER_END}") in
+                                       --placeholder " Flavour") in
 
   "Frappe")
     THEME="catppuccin_frappe"
@@ -151,7 +141,7 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
   ;;
   "  󱞦")
     # exec: this script is replaced, not left waiting behind the new one
-    exec "$0" "${ARGUMENTS[@]}"
+    exec "$0"
   ;;
   *)
     exit 0
@@ -161,9 +151,8 @@ esac
 # ──────────                                      ─────────────────────────────
 # ─────                                     ─────────────────────── APPLY ─────
 # The flavour case above sets THEME, or leaves (exit, exec): THEME is set here
-# Colors: the palette (shuffled unless --original), then every adapter
-# ${ORIGINAL} without quotes: when empty, it disappears instead of becoming ""
-"${THEME_FOLDER}/theme_make_palette" ${ORIGINAL} "${THEME}" > /dev/null || exit 1
+# Colors: the palette (accents shuffled), then every adapter
+"${THEME_FOLDER}/theme_make_palette" "${THEME}" > /dev/null || exit 1
 for adapter in "${THEME_ADAPTERS[@]}"; do
   "${adapter}"
 done

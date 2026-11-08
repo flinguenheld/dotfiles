@@ -31,12 +31,12 @@ uv wezterm
 
 Default: catppuccin_frappe.
 
-`Mod+T` (or the bar icon) opens `theme_menu`. The accent colors are shuffled,
-`--original` keeps the theme's order. After a fresh install, pick a theme once:
+`Mod+T` (or the bar icon) opens `theme_menu`. The accent colors are shuffled
+(pick the same theme again for a new draw). After a fresh install, pick a theme once:
 the generated files are not in git.
 
 ```
-Mod+T ─► theme_menu [--original]
+Mod+T ─► theme_menu
            │
            ├─► niri/scripts/theme/theme_make_palette <theme>
            │     ─► ~/.config/theme/palette.toml   background … alert, c0 … c6, dark
