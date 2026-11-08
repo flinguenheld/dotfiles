@@ -26,7 +26,8 @@ binds {
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
     Mod+D          hotkey-overlay-title="Drun (fuzzer)"                          { spawn "fuzzel"; }
-    Mod+T          hotkey-overlay-title="Select theme"                           { spawn "~/.config/niri/scripts/theme/theme_menu"; }
+    Mod+T          hotkey-overlay-title="Select theme (shuffled colors)"         { spawn "~/.config/niri/scripts/theme/theme_menu"; }
+    Mod+Shift+T    hotkey-overlay-title="Select theme (original colors)"         { spawn "~/.config/niri/scripts/theme/theme_menu" "--original"; }
     Mod+Ctrl+P     hotkey-overlay-title="Power menu"                             { spawn "~/.config/niri/scripts/power_menu"; }
 
     Mod+P          hotkey-overlay-title="Focus the previous focussed windows"    { focus-window-previous; }
@@ -257,7 +258,6 @@ environment {
 
 spawn-at-startup "~/.config/niri/scripts/startup"
 spawn-at-startup "mako"
-spawn-at-startup "darkman"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" // Stores only text data
 // spawn-at-startup "wl-paste --type image --watch cliphist store" // Stores only image data
 // spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
@@ -318,7 +318,7 @@ layout {
         width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#8caaee" to="#ca9ee6"
+        active-gradient from="#a6d189" to="#81c8be"
         inactive-gradient from="#737994" to="#414559"
        
     }
@@ -328,7 +328,7 @@ layout {
         width 5
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#8caaee" to="#ca9ee6"
+        active-gradient from="#a6d189" to="#81c8be"
         inactive-gradient from="#737994" to="#414559"
        
     }

@@ -22,9 +22,6 @@ GLOW_REG="^style: \".*\""
 HELIX_FILE="$HOME/.config/helix/config.toml"
 HELIX_REG="theme = \".*\""
 
-SWAYBG_FILE="$NIRI_FOLDER/scripts/startup"
-SWAYBG_REG="papers/.*\.jpg"
-
 WEZTERM_FILE="$HOME/.wezterm.lua"
 WEZTERM_REG="config\.color_scheme = '.*'"
 
@@ -45,11 +42,13 @@ usage() {
 # Saved for the "back" entry, which restarts the script with the same options
 ARGUMENTS=("$@")
 ORIGINAL=""
+PLACEHOLDER_END=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --original)
       ORIGINAL="--original"
+      PLACEHOLDER_END=" (original)"    # shown in the fuzzel menus
     ;;
     --help | -h)
       usage
@@ -69,10 +68,10 @@ done
 case $(echo -e "Ayu\nCatppuccin\nGruvbox\nModus" | fuzzel --dmenu \
                                                           --font "JetBrains Mono:size=25" \
                                                           --lines 4 \
-                                                          --width 25 \
+                                                          --width 30 \
                                                           --line-height 50 \
                                                           --inner-pad 50 \
-                                                          --placeholder " Theme selection") in
+                                                          --placeholder " Theme selection${PLACEHOLDER_END}") in
   "Ayu")
     CHOICE="Ayu Light\nAyu Mirage\n"
   ;;
@@ -95,10 +94,10 @@ esac
 case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
                                        --font "JetBrains Mono:size=25" \
                                        --lines "$(echo -e "$CHOICE" | wc -l)" \
-                                       --width 25 \
+                                       --width 30 \
                                        --line-height 50 \
                                        --inner-pad 50 \
-                                       --placeholder " Flavour") in
+                                       --placeholder " Flavour${PLACEHOLDER_END}") in
 
   "Frappe")
     THEME="catppuccin_frappe"
@@ -173,7 +172,6 @@ done
 sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEME_WZ}'#" "${WEZTERM_FILE}"
 sed -i "s#${GLOW_REG}#style: \"${HOME}/.config/glow/themes/${THEME}.json\"#" "${GLOW_FILE}"
 sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
-sed -i "s#${SWAYBG_REG}#papers/${THEME}.jpg#" "${SWAYBG_FILE}"
 
-# Restart swaybg (new wallpaper), swayidle and waybar
+# Restart swaybg, swayidle and waybar: they read the new palette
 "${NIRI_FOLDER}/scripts/startup" &

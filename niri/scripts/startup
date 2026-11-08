@@ -1,13 +1,40 @@
 #!/usr/bin/env bash
+# florent@linguenheld.fr 2026
+# Start (or restart) the desktop programs: wallpaper, idle/lock, bar.
+# Run at login by niri, by theme_menu, and by Mod+Ctrl+Alt+Shift+R
 
-kill -9 "$(pgrep swaybg)"
-swaybg -i "$HOME/.config/niri/wallpapers/catppuccin_frappe.jpg" &
+PALETTE_FILE="$HOME/.config/theme/palette.toml"
+WALLPAPER_FOLDER="$HOME/.config/niri/wallpapers"
 
-kill -9 "$(pgrep swayidle)"
-swayidle -w timeout 901 'niri msg action power-off-monitors' timeout 900 'swaylock -f -c 7e7e7e' before-sleep 'swaylock -f -c a9a9a9' &
-# swayidle -w timeout 31 'niri msg action power-off-monitors' timeout 30 'swaylock -f -c 282828' before-sleep 'swaylock -f -c 282828'
+IDLE_LOCK=900          # seconds before the lock screen
+IDLE_SCREEN_OFF=901    # seconds before the screens turn off
 
-CONFIG="$HOME/.config/waybar/config"
-STYLE="$HOME/.config/waybar/style.css"
-kill -9 "$(pgrep waybar)"
-waybar --bar main-bar --log-level error --config "${CONFIG}" --style "${STYLE}" &
+WAYBAR_CONFIG="$HOME/.config/waybar/config"
+WAYBAR_STYLE="$HOME/.config/waybar/style.css"
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ───────────────────── PALETTE ─────
+# Get the palette variables $theme $background ...
+# (after a fresh install: pick a theme once with Mod+T)
+source "${PALETTE_FILE}" || exit 1
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────── WALLPAPER ─────
+# pkill -x: every process with exactly this name, and no error if none.
+# No -9: a normal SIGTERM lets the program quit cleanly
+pkill -x swaybg
+swaybg -i "${WALLPAPER_FOLDER}/${theme}.jpg" &
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ──────────────────────── IDLE ─────
+# Lock, then screens off. swaylock -c wants the color without the #
+pkill -x swayidle
+swayidle -w \
+  timeout "${IDLE_LOCK}" "swaylock -f -c ${background#\#}" \
+  timeout "${IDLE_SCREEN_OFF}" "niri msg action power-off-monitors" \
+  before-sleep "swaylock -f -c ${background#\#}" &
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ───────────────────────── BAR ─────
+pkill -x waybar
+waybar --bar main-bar --log-level error --config "${WAYBAR_CONFIG}" --style "${WAYBAR_STYLE}" &
