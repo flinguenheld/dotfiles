@@ -55,7 +55,7 @@ done
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ──────────────────────── MENU ─────
-case $(echo -e "Ayu\nCatppuccin\nGruvbox\nModus" | fuzzel --dmenu \
+case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox" | fuzzel --dmenu \
                                                           --font "JetBrains Mono:size=25" \
                                                           --lines 4 \
                                                           --width 30 \
@@ -68,11 +68,11 @@ case $(echo -e "Ayu\nCatppuccin\nGruvbox\nModus" | fuzzel --dmenu \
   "Catppuccin")
     CHOICE="Latte\nFrappe\nMacchiato\nMocha\n"
   ;;
+  "Everforest")
+    CHOICE="Everforest Light\nEverforest Dark\n"
+  ;;
   "Gruvbox")
     CHOICE="Gruv Light\nGruv Dark\n"
-  ;;
-  "Modus")
-    CHOICE="Modus Operandi\nModus Vivendi\n"
   ;;
   *)
     exit 0
@@ -129,15 +129,15 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
     THEME_HX="ayu_light"
     THEME_WZ="ayu_light"
   ;;
-  "Modus Vivendi")
-    THEME="modus_vivendi"
-    THEME_HX="modus_vivendi_tinted"
-    THEME_WZ="Modus-Vivendi-Tinted"
+  "Everforest Dark")
+    THEME="everforest_dark"
+    THEME_HX="everforest_dark"
+    THEME_WZ="Everforest Dark (Gogh)"
   ;;
-  "Modus Operandi")
-    THEME="modus_operandi"
-    THEME_HX="modus_operandi_tinted"
-    THEME_WZ="Modus-Operandi-Tinted"
+  "Everforest Light")
+    THEME="everforest_light"
+    THEME_HX="everforest_light"
+    THEME_WZ="Everforest Light (Gogh)"
   ;;
   "  󱞦")
     # exec: this script is replaced, not left waiting behind the new one

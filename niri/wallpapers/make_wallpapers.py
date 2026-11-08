@@ -55,13 +55,12 @@ THEMES = {
     "ayu_light": dict(
         title="ayu · light", dark=False, bg="#fafafa", fg="#5c6773",
         dots=["#ff3333", "#ff6a00", "#f29718", "#86b300", "#4dbf99", "#41a6d9", "#f07178", "#5c6773"]),
-    # Tinted flavours: night blue and warm paper instead of pure black/white
-    "modus_vivendi": dict(
-        title="modus · vivendi", dark=True, bg="#0d0e1c", fg="#ffffff",
-        dots=["#ff5f59", "#dfaf7a", "#d0bc00", "#44bc44", "#00d3d0", "#2fafff", "#b6a0ff", "#feacd0"]),
-    "modus_operandi": dict(
-        title="modus · operandi", dark=False, bg="#fbf7f0", fg="#000000",
-        dots=["#a60000", "#7a4f2f", "#6f5500", "#006800", "#005e8b", "#0031a9", "#531ab6", "#721045"]),
+    "everforest_dark": dict(
+        title="everforest · dark", dark=True, bg="#2d353b", fg="#d3c6aa",
+        dots=["#e67e80", "#e69875", "#dbbc7f", "#a7c080", "#83c092", "#7fbbb3", "#d699b6", "#859289"]),
+    "everforest_light": dict(
+        title="everforest · light", dark=False, bg="#fdf6e3", fg="#5c6a72",
+        dots=["#f85552", "#f57d26", "#dfa000", "#8da101", "#35a77c", "#3a94c5", "#df69ba", "#939f91"]),
 }
 
 

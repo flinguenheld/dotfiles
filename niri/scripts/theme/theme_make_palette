@@ -91,15 +91,15 @@ case "$THEME" in
     FIXED=("#fafafa" "#5c6773" "#f0eee4" "#abb0b6" "#ff3333")
     COLORS=("#fa8d3e" "#f2ae49" "#86b300" "#4cbf99" "#399ee6" "#a37acc" "#f07178")  # 7th: markup pink
   ;;
-  "modus_vivendi")
+  "everforest_dark")
     DARK=true
-    FIXED=("#0d0e1c" "#ffffff" "#1d2235" "#989898" "#ff5f59")
-    COLORS=("#dfaf7a" "#d0bc00" "#44bc44" "#00d3d0" "#2fafff" "#b6a0ff" "#feacd0")
+    FIXED=("#2d353b" "#d3c6aa" "#343f44" "#859289" "#e67e80")
+    COLORS=("#e69875" "#dbbc7f" "#a7c080" "#83c092" "#7fbbb3" "#d699b6" "#d3c6aa")  # 7th: beige (fg)
   ;;
-  "modus_operandi")
+  "everforest_light")
     DARK=false
-    FIXED=("#fbf7f0" "#000000" "#efe9dd" "#595959" "#a60000")
-    COLORS=("#7a4f2f" "#6f5500" "#006800" "#005e8b" "#0031a9" "#531ab6" "#721045")
+    FIXED=("#fdf6e3" "#5c6a72" "#efebd4" "#939f91" "#f85552")
+    COLORS=("#f57d26" "#dfa000" "#8da101" "#35a77c" "#3a94c5" "#df69ba" "#5c6a72")  # 7th: fg
   ;;
   "")
     echo "No theme given" >&2
