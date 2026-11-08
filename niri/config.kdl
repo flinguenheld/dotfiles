@@ -318,8 +318,8 @@ layout {
         width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#ef9f76" to="#e78284"
-        inactive-gradient from="#838ba7" to="#51576d"
+        active-gradient from="#8caaee" to="#ca9ee6"
+        inactive-gradient from="#737994" to="#414559"
        
     }
 
@@ -328,8 +328,8 @@ layout {
         width 5
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#ef9f76" to="#e78284"
-        inactive-gradient from="#838ba7" to="#51576d"
+        active-gradient from="#8caaee" to="#ca9ee6"
+        inactive-gradient from="#737994" to="#414559"
        
     }
 

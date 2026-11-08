@@ -42,5 +42,7 @@ source "${PALETTE_FILE}" || exit 1
   echo "@define-color disabled-speaker ${surface};"
 } > "${WAYBAR_PALETTE_FILE}" || exit 1
 
-# SIGUSR2: waybar reloads its config and style (no error if it's not running)
-pkill -SIGUSR2 waybar
+# No reload here: theme_menu runs niri/scripts/startup afterwards, which
+# restarts waybar. When running this adapter alone, reload by hand:
+# SIGUSR2 makes waybar reload its config and style
+# pkill -SIGUSR2 waybar
