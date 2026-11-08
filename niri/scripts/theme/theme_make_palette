@@ -48,8 +48,8 @@ done
 # ─────                                     ──────────────── SELECT THEME ─────
 # DARK   : true for a dark background (lets the adapters adjust)
 # FIXED  : background foreground surface muted alert
-# COLORS : 7 accents, in the theme's order: c0 orange, c1 yellow, c2 green, c3 cyan,
-#          c4 blue, c5 purple, c6 pink (≈, see the 7th color notes)
+# COLORS : 7 accents in this order: orange yellow green cyan blue purple
+#          pink (≈, see the 7th color notes)
 case "$THEME" in
   "catppuccin_frappe")
     DARK=true

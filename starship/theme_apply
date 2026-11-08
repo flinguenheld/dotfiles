@@ -21,8 +21,7 @@ STARSHIP_CONFIG_PART=$(sed -e "/^${STARSHIP_MARK}/,\$d" \
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ─────────────────────── APPLY ─────
-# Blocks left to right: user c0, git c1, directory c2 (like the waybar
-# rainbow with --original), ip c6 (only over ssh)
+# The ip block only shows over ssh
 {
   echo "${STARSHIP_CONFIG_PART}"
   echo
@@ -40,7 +39,7 @@ STARSHIP_CONFIG_PART=$(sed -e "/^${STARSHIP_MARK}/,\$d" \
   echo "fg_ip = \"${background}\""
   echo "fg_git = \"${background}\""
   echo "fg_dir = \"${background}\""
-  echo "fg_rust = \"${c0}\""
+  echo "fg_rust = \"${alert}\""
   echo "fg_c = \"${c4}\""
   echo "fg_lua = \"${c4}\""
   echo "fg_python = \"${c1}\""

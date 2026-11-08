@@ -34,7 +34,7 @@ mix_color() {
 # Get the palette variables $background $foreground ...
 source "${PALETTE_FILE}" || exit 1
 
-NEW_NIRI_ACTIVE=" active-gradient from=\"${c4}\" to=\"$(mix_color "${c4}" "${background}")\""
+NEW_NIRI_ACTIVE=" active-gradient from=\"${c0}\" to=\"$(mix_color "${c0}" "${background}")\""
 NEW_NIRI_INACTIVE=" inactive-gradient from=\"${muted}\" to=\"$(mix_color "${muted}" "${foreground}")\""
 
 # ──────────                                      ─────────────────────────────
