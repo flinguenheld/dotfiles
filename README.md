@@ -29,6 +29,8 @@ uv wezterm
 
 ## Theme
 
+Default: catppuccin_frappe.
+
 `Mod+T` (or the bar icon) opens `theme_menu`. The accent colors are shuffled,
 `--original` keeps the theme's order. After a fresh install, pick a theme once:
 the generated files are not in git.
