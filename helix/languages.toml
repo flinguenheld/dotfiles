@@ -1,13 +1,20 @@
 # Helix languages config
 # Check installs with: hx --health <language>
 
+# ───────────────────────────────────────────── Color swatches (shared) ────
+# Requires: uwu_colors (cargo install uwu_colors --locked)
+# Shows a colored square next to hex codes (#rrggbb) in any file
+# Added to: rust, python, markdown, toml, json, jsonc, kdl, bash
+[language-server.uwu-colors]
+command = "uwu_colors"
+
 # ─────────────────────────────────────────────────────────────────── Rust ────
 # Requires: rust-analyzer, clippy (rustup component add rust-analyzer clippy)
 #           harper-ls (cargo install harper-ls --locked)
 [[language]]
 name = "rust"
 # language-servers = ["rust-analyzer", "harper-ls"]
-language-servers = ["rust-analyzer"]
+language-servers = ["rust-analyzer", "uwu-colors"]
 auto-format = true
 rulers = [79]
 
@@ -29,7 +36,7 @@ language-servers = ["clangd"]
 # Requires: ty, ruff (rpm-ostree install ty ruff)
 [[language]]
 name = "python"
-language-servers = ["ty", "ruff"]
+language-servers = ["ty", "ruff", "uwu-colors"]
 auto-format = true
 text-width = 79
 rulers = [79]
@@ -48,7 +55,7 @@ auto-format = true
 #           + ~/.config/dprint/dprint.json with the markdown plugin
 [[language]]
 name = "markdown"
-language-servers = ["harper-ls"]
+language-servers = ["harper-ls", "uwu-colors"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 auto-format = true
 rulers = [80]
@@ -67,7 +74,7 @@ command = "crates-lsp"
 
 [[language]]
 name = "toml"
-language-servers = ["taplo", "crates-lsp"]
+language-servers = ["taplo", "crates-lsp", "uwu-colors"]
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true
 
@@ -80,17 +87,51 @@ args = ["lsp-proxy"]
 
 [[language]]
 name = "json"
-language-servers = ["biome"]
+language-servers = ["biome", "uwu-colors"]
 auto-format = true
 
 [[language]]
 name = "jsonc"
-language-servers = ["biome"]
+language-servers = ["biome", "uwu-colors"]
 auto-format = true
+
+# ─────────────────────────────────────────────────────────────── CSS/HTML ────
+# Requires: vscode-langservers-extracted
+#   Home:   rpm-ostree install nodejs nodejs-npm (then reboot)
+#           npm config set prefix ~/.local (no sudo for npm -g)
+#           npm i -g vscode-langservers-extracted
+#   School (no sudo): cargo install fnm --locked
+#           fnm install --lts
+#           npm i -g vscode-langservers-extracted
+#           + ~/.config/fish/conf.d/fnm.fish (puts Node in PATH)
+#           biome (see JSON section), for CSS lint + format
+# vscode-css shows color swatches itself (rgb(), hsl(), named), no uwu-colors
+# Optional for HTML: superhtml (prebuilt binary -> ~/bin), then add it to the
+#                    html language-servers list
+[[language]]
+name = "css"
+language-servers = ["biome", "vscode-css-language-server"]
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server"]
 
 # ──────────────────────────────────────────────────────────────────── KDL ────
 # KDL: node-based config format (niri config.kdl, zellij)
-# No LSP, check niri config with: niri validate
+# No real LSP (only uwu-colors), check niri config with: niri validate
 [[language]]
 name = "kdl"
+language-servers = ["uwu-colors"]
 indent = { tab-width = 4, unit = "    " }
+
+# ─────────────────────────────────────────────────────────────────── Bash ────
+# Requires: shfmt (rpm-ostree install shfmt)
+#           ShellCheck needs bash-language-server to show in Helix
+# shfmt: -i 2 two-space indent, -ci indent the case branches
+# No auto-format: shfmt puts ;; under the body, not under the pattern
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server", "uwu-colors"]
+formatter = { command = "shfmt", args = ["-i", "2", "-ci"] }
+auto-format = false

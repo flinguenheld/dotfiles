@@ -20,9 +20,8 @@ binds {
     // Mod+B          hotkey-overlay-title="Open browser"                           { spawn "firefox"; }
     // Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "firefox" "--private-window"; }
     // Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
-    Mod+B          hotkey-overlay-title="Open browser"                           { spawn "flatpak" "run" "com.brave.Browser"; }
-    Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "flatpak" "run" "com.brave.Browser" "--incognito"; }
-    Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
+    Mod+B          hotkey-overlay-title="Open browser"                           { spawn "flatpak" "run" "com.vivaldi.Vivaldi"; }
+    Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "flatpak" "run" "com.vivaldi.Vivaldi" "--incognito"; }
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
     Mod+D          hotkey-overlay-title="Drun (fuzzer)"                          { spawn "fuzzel"; }
@@ -158,4 +157,3 @@ binds {
     Mod+N { toggle-window-floating; }
     // Mod+Shift+N { switch-focus-between-floating-and-tiling; }
 }
-

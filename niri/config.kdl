@@ -20,9 +20,8 @@ binds {
     // Mod+B          hotkey-overlay-title="Open browser"                           { spawn "firefox"; }
     // Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "firefox" "--private-window"; }
     // Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
-    Mod+B          hotkey-overlay-title="Open browser"                           { spawn "flatpak" "run" "com.brave.Browser"; }
-    Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "flatpak" "run" "com.brave.Browser" "--incognito"; }
-    Mod+Alt+B      hotkey-overlay-title="Webpage menu"                           { spawn "~/.config/niri/scripts/firefox_menu"; }
+    Mod+B          hotkey-overlay-title="Open browser"                           { spawn "flatpak" "run" "com.vivaldi.Vivaldi"; }
+    Mod+Ctrl+B     hotkey-overlay-title="Open browser private"                   { spawn "flatpak" "run" "com.vivaldi.Vivaldi" "--incognito"; }
 
     Mod+V          hotkey-overlay-title="Clipboard history"                      { spawn "~/.config/niri/scripts/clipboard_history"; }
     Mod+D          hotkey-overlay-title="Drun (fuzzer)"                          { spawn "fuzzel"; }
@@ -158,7 +157,6 @@ binds {
     Mod+N { toggle-window-floating; }
     // Mod+Shift+N { switch-focus-between-floating-and-tiling; }
 }
-
 // ░░░░░   █ █▄░█ █▀█ █░█ ▀█▀   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ░░░░░   █ █░▀█ █▀▀ █▄█ ░█░   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -317,8 +315,8 @@ layout {
         width 10
         // active-color "#7fc8ff"
         // inactive-color "#505050"
-        active-gradient from="#e5c890" to="#a69476"
-        inactive-gradient from="#737994" to="#9097b6"
+        active-gradient from="#e69875" to="#a57561"
+        inactive-gradient from="#859289" to="#a0a495"
        
     }
 
@@ -327,8 +325,8 @@ layout {
         width 5
         // active-color "#ffc87f"
         // inactive-color "#505050"
-        active-gradient from="#e5c890" to="#a69476"
-        inactive-gradient from="#737994" to="#9097b6"
+        active-gradient from="#e69875" to="#a57561"
+        inactive-gradient from="#859289" to="#a0a495"
        
     }
 

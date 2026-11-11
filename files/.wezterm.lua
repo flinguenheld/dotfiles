@@ -15,7 +15,7 @@ config.initial_rows = 50
 -- or, changing the font size and color scheme.
 config.font_size = 11
 -- config.font = wezterm.font 'Hack Nerd Font'
-config.color_scheme = 'Catppuccin Frappe'
+config.color_scheme = 'Everforest Dark (Gogh)'
 
 --  ---------------------------------------------------------------------------
 --  ---------------------------------------------------------------- WINDOW ---

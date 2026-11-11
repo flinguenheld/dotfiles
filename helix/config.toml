@@ -1,4 +1,4 @@
-theme = "catppuccin_frappe"
+theme = "everforest_dark"
 
 [editor]
 # scrolloff = 999
@@ -49,12 +49,12 @@ left = [
   "workspace-diagnostics",
 ]
 center = [
-  # "file-absolute-path",
-  "file-base-name",
+  "file-name",  # path from the working dir (or file-base-name, file-absolute-path)
   "read-only-indicator",
   "file-modification-indicator",
 ]
 right = [
+  "file-type",
   "diagnostics",
   "selections",
   "register",

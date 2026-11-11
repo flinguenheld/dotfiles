@@ -1,99 +1,126 @@
 #!/usr/bin/env bash
 # florent@linguenheld.fr 2024
 
-WORDS="${HOME}/.config/helix/scripts/pipe_words.txt"
+# Next to this script, even if the folder moves
+WORDS_FILE="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/pipe_words.txt"
+MAX_LENGTH=20   # longer selections are not words, give them back unchanged
 
-# ---------------------------------------------------------------------------------------
-# ---------------------------------------------------------------------------------------
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────────── USAGE ─────
 usage() {
+  echo "Usage: $(basename "${0}") [option] < word"
+  echo "   Look for the piped word in $WORDS_FILE"
+  echo "   and print the next one of its line, with the same case."
+  echo "   Anything else (unknown word, several lines…) is printed unchanged."
   echo
-  echo "Usage: $(basename "${0}") [-p]"
-  echo "    Search the piped word given in the pipe_words file."
-  echo "    If found, return the next one with the same case."
-  echo "    Otherwise, return the given word."
-  echo
-  echo "       -l LIST:        List words."
-  echo "       -p PREVIOUS:    Take the previous word."
-  echo "       -h HELP:        display this message."
+  echo "Options:"
+  echo "   --previous, -p   print the previous word instead"
+  echo "   --list, -l       print the word lines"
+  echo "   --help, -h       print this help"
 }
 
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────── ARGUMENTS ─────
 MODE="next"
-while getopts phl OPTION; do
 
-  case ${OPTION} in
-
-    p)
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --previous | -p)
       MODE="previous"
     ;;
-    l)
+    --list | -l)
       MODE="list"
     ;;
-    h)
+    --help | -h)
       usage
       exit 0
     ;;
-    ?)
-      usage
+    *)
+      echo "Unknown option: $1" >&2
+      usage >&2
       exit 1
     ;;
   esac
+  shift
 done
 
-# ---------------------------------------------------------------------------------------
-# ---------------------------------------------------------------------------------------
+# ──────────                                      ─────────────────────────────
+# ─────                                     ──────────────────────── LIST ─────
 if [[ $MODE == "list" ]]; then
-  sed 's/,/, /g' < "$WORDS"
-
-else
-  read -r PIPED
-  if [[ ${#PIPED} -lt 20  ]]; then
-
-    NEXT_WORD=""
-    while read -r LINE; do
-
-      if [[ "${LINE:0:2}" != "//" ]]; then
-
-        # Exit with the asked word if the found one was the last
-        if [[ -n $NEXT_WORD ]]; then
-          echo "$PIPED"
-          exit 0
-        fi
-
-        if [[ $MODE == "previous" ]]; then
-          LINE=$(echo "$LINE" | tr ',' '\n' | tac)
-        else
-          LINE=$(echo "$LINE" | tr ',' '\n')
-        fi
-
-        while read -r WORD; do
-
-          if [[ -n $NEXT_WORD ]]; then
-
-            case $PIPED in
-              "${PIPED^^}")
-                echo "${WORD^^}"
-              ;;
-              "${PIPED^}")
-                echo "${WORD^}"
-              ;;
-              *)
-                echo "${WORD}"
-              ;;
-            esac
-
-            exit 0
-          fi
-
-        if [[ "${PIPED,,}" == "$WORD" ]]; then
-          NEXT_WORD="true"
-        fi
-
-        done <<< "$LINE"
-      fi
-    done < "$WORDS"
-
-  fi
+  grep -v -e '^//' -e '^$' "$WORDS_FILE" | sed 's/,/, /g'
+  exit 0
 fi
 
-# Not found
-echo "$PIPED"
+# ──────────                                      ─────────────────────────────
+# ─────                                     ────────────── READ SELECTION ─────
+# Helix replaces the whole selection with the output, so every byte counts:
+# $(...) drops the trailing newlines, the "x" guard keeps them
+INPUT=$(cat; printf x)
+INPUT=${INPUT%x}
+
+# Several lines or a long text: give it back untouched
+if [[ $INPUT == *$'\n'?* || ${#INPUT} -gt $MAX_LENGTH ]]; then
+  printf '%s' "$INPUT"
+  exit 0
+fi
+
+# Split around the word, so "true " (helix `w`) keeps its space
+# BASH_REMATCH[1]: leading spaces, [2]: the word, [3]: trailing spaces
+if [[ ! $INPUT =~ ^([[:space:]]*)(.*[^[:space:]])([[:space:]]*)$ ]]; then
+  printf '%s' "$INPUT"   # only spaces
+  exit 0
+fi
+BEFORE="${BASH_REMATCH[1]}"
+PIPED="${BASH_REMATCH[2]}"
+AFTER="${BASH_REMATCH[3]}"
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────── FIND WORD ─────
+# A line is a loop: its last word repeats the first one, so
+#   next     : look from the start, take the word after
+#   previous : look from the end,   take the word before
+FOUND=""
+
+while IFS= read -r LINE; do
+  [[ -z $LINE || $LINE == //* ]] && continue
+
+  # IFS=',' only: "let mut" stays one word
+  IFS=',' read -r -a WORDS <<< "$LINE"
+  LAST=$(( ${#WORDS[@]} - 1 ))
+
+  if [[ $MODE == "previous" ]]; then
+    for (( i = LAST; i > 0; i-- )); do
+      if [[ "${PIPED,,}" == "${WORDS[$i]}" ]]; then
+        FOUND="${WORDS[$((i - 1))]}"
+        break 2
+      fi
+    done
+  else
+    for (( i = 0; i < LAST; i++ )); do
+      if [[ "${PIPED,,}" == "${WORDS[$i]}" ]]; then
+        FOUND="${WORDS[$((i + 1))]}"
+        break 2
+      fi
+    done
+  fi
+done < "$WORDS_FILE"
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ────────────────────── OUTPUT ─────
+if [[ -z $FOUND ]]; then
+  printf '%s' "$INPUT"
+  exit 0
+fi
+
+# Same case as the piped word: TRUE → FALSE, True → False, true → false
+case "$PIPED" in
+  "${PIPED^^}")
+    FOUND="${FOUND^^}"
+  ;;
+  "${PIPED^}")
+    FOUND="${FOUND^}"
+  ;;
+esac
+
+# printf, not echo: echo would eat a word like "-n"
+printf '%s' "${BEFORE}${FOUND}${AFTER}"

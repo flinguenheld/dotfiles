@@ -2,16 +2,18 @@
 true,false,true
 left,right,left
 on,off,on
+yes,no,yes
+min,max,min
 height,width,height
 row,col,row
 -,+,-
 north,east,south,west,north
-zero,one,two,three,four,five,six,seven,eight,ten
+zero,one,two,three,four,five,six,seven,eight,nine,ten,zero
 a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a
 aaa,bbb,ccc,ddd,eee,fff,ggg,hhh,iii,jjj,kkk,lll,mmm,nnn,ooo,ppp,qqq,rrr,sss,ttt,uuu,vvv,www,xxx,yyy,zzz,aaa
 (,[,{,(
 ),],},)
-=>,=<,=>
+>=,<=,>=
 <,>,<
 let,let mut,let
 u8,i8,u16,i16,u32,i32,u64,i64,u128,i128,usize,isize,u8
@@ -19,3 +21,40 @@ u8,i8,u16,i16,u32,i32,u64,i64,u128,i128,usize,isize,u8
 ↑,→,↓,←,↑
 day,month,year,day
 days,months,years,days
+// General
+first,last,first
+start,end,start
+begin,end,begin
+top,bottom,top
+open,close,open
+show,hide,show
+enable,disable,enable
+enabled,disabled,enabled
+before,after,before
+prev,next,prev
+old,new,old
+get,set,get
+push,pop,push
+input,output,input
+read,write,read
+src,dst,src
+// Operators
+==,!=,==
+&&,||,&&
++=,-=,+=
+++,--,++
+// Rust (lowercase here, the case of the selection is kept: Some → None)
+pub,pub(crate),pub
+some,none,some
+ok,err,ok
+&,&mut,&
+f32,f64,f32
+struct,enum,struct
+assert_eq,assert_ne,assert_eq
+iter,iter_mut,into_iter,iter
+// Bash
+-eq,-ne,-lt,-le,-gt,-ge,-eq
+if,elif,else,if
+// Calendar
+monday,tuesday,wednesday,thursday,friday,saturday,sunday,monday
+january,february,march,april,may,june,july,august,september,october,november,december,january
