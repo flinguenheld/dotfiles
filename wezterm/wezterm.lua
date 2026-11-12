@@ -1,5 +1,3 @@
--- Folder : /home/
-
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
@@ -15,7 +13,7 @@ config.initial_rows = 50
 -- or, changing the font size and color scheme.
 config.font_size = 11
 -- config.font = wezterm.font 'Hack Nerd Font'
-config.color_scheme = 'Everforest Dark (Gogh)'
+config.color_scheme = 'Serika Light'
 
 --  ---------------------------------------------------------------------------
 --  ---------------------------------------------------------------- WINDOW ---
@@ -81,7 +79,7 @@ config.keys = {
   { key = 'RightArrow', mods = 'CTRL|SHIFT', action = wezterm.action.Nop, },
   { key = 'UpArrow',    mods = 'CTRL|SHIFT', action = wezterm.action.Nop, },
   { key = 'DownArrow',  mods = 'CTRL|SHIFT', action = wezterm.action.Nop, },
-  
+
   { key = 'LeftArrow',  mods = 'SUPER|ALT', action = wezterm.action.ActivatePaneDirection 'Left',  },
   { key = 'RightArrow', mods = 'SUPER|ALT', action = wezterm.action.ActivatePaneDirection 'Right', },
   { key = 'UpArrow',    mods = 'SUPER|ALT', action = wezterm.action.ActivatePaneDirection 'Up',    },

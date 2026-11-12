@@ -1,4 +1,4 @@
-theme = "everforest_dark"
+theme = "serika-light"
 
 [editor]
 # scrolloff = 999
@@ -99,7 +99,6 @@ s = "select_mode"
 v = "select_regex"
 V = "split_selection"
 
-A-r = ":config-reload"
 A-a = ":pipe ~/.config/helix/scripts/pipe_words"
 A-x = ":pipe ~/.config/helix/scripts/pipe_words -p"
 
@@ -111,9 +110,16 @@ G = "goto_file_end"
 
 [keys.normal.space]
 b = "buffer_picker"
-B.q = ":buffer-close"
-B.Q = ":buffer-close-all"
 w = "no_op"               # Only access with Ctrl+w
+
+# Space t: search comment tags (levels from the tree-sitter comment grammar)
+# No LaTeX "%" comments: "%" starts a column filter in Helix pickers
+[keys.normal.space.t]
+t = "@<space>/(//|#|--|;|\\*)\\W*(TODO|QUESTION|ASK)\\b"
+i = "@<space>/(//|#|--|;|\\*)\\W*(INFO|NOTE|PERF(ORMANCE)?|OPTIMIZE)\\b"
+w = "@<space>/(//|#|--|;|\\*)\\W*(HACK|WARN(ING)?|TEST|TEMP)\\b"
+e = "@<space>/(//|#|--|;|\\*)\\W*(BUG|FIX(ME|IT)?|ISSUE|XXX|SAFETY|FAILED|DEBUG|INVARIANT|COMPLIANCE)\\b"
+h = "@<space>/(//|#|--|;|\\*)\\W*(HINT|MARK|PASSED|STUB|MOCK)\\b"
 
 [keys.normal.g]
 p = "goto_first_nonwhitespace"

@@ -1,0 +1,19 @@
+# Serika Dark, colors from the Helix theme serika-dark
+
+[colors]
+foreground = "#d1d0c5"
+background = "#323437"
+
+cursor_bg = "#e2b714"
+cursor_border = "#e2b714"
+cursor_fg = "#323437"
+
+selection_bg = "#646669"
+selection_fg = "#d1d0c5"
+
+# black red green yellow blue magenta cyan white
+ansi = ["#494c50", "#ca4754", "#86b365", "#e2b714", "#6a89af", "#be9ec9", "#b9c2c6", "#d1d0c5"]
+brights = ["#797e86", "#e29da7", "#bcd5a8", "#f3e0a1", "#adc9db", "#be9ec9", "#b9c2c6", "#e1e1e3"]
+
+[metadata]
+name = "Serika Dark"

@@ -101,6 +101,17 @@ case "$THEME" in
     FIXED=("#fdf6e3" "#5c6a72" "#efebd4" "#939f91" "#f85552")
     COLORS=("#f57d26" "#dfa000" "#8da101" "#35a77c" "#3a94c5" "#df69ba" "#5c6a72")  # 7th: fg
   ;;
+  "serika_dark")
+    DARK=true
+    FIXED=("#323437" "#d1d0c5" "#494c50" "#797e86" "#ca4754")
+    COLORS=("#dd8a3c" "#e2b714" "#bcd5a8" "#b9c2c6" "#adc9db" "#be9ec9" "#e29da7")  # 7th: pale red
+  ;;
+  "serika_light")
+    DARK=false
+    # surface: grey1, Helix's own bars are dark (#494c50) in this theme
+    FIXED=("#d1d0c5" "#323437" "#e1e1e3" "#646669" "#da3333")
+    COLORS=("#57320f" "#9a7d0e" "#3d5128" "#455054" "#3f5673" "#5a4066" "#621d28")  # 7th: dark red
+  ;;
   "")
     echo "No theme given" >&2
     usage >&2

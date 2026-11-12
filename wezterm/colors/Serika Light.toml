@@ -1,0 +1,19 @@
+# Serika Light, colors from the Helix theme serika-light
+
+[colors]
+foreground = "#323437"
+background = "#d1d0c5"
+
+cursor_bg = "#791717"
+cursor_border = "#791717"
+cursor_fg = "#d1d0c5"
+
+selection_bg = "#aaaeb3"
+selection_fg = "#323437"
+
+# black red green yellow blue magenta cyan white
+ansi = ["#323437", "#791717", "#3d5128", "#9a7d0e", "#3f5673", "#5a4066", "#455054", "#aaaeb3"]
+brights = ["#646669", "#da3333", "#3d5128", "#57320f", "#3f5673", "#5a4066", "#455054", "#e1e1e3"]
+
+[metadata]
+name = "Serika Light"

@@ -22,7 +22,7 @@ GLOW_REG="^style: \".*\""
 HELIX_FILE="$HOME/.config/helix/config.toml"
 HELIX_REG="theme = \".*\""
 
-WEZTERM_FILE="$HOME/.wezterm.lua"
+WEZTERM_FILE="$HOME/.config/wezterm/wezterm.lua"
 WEZTERM_REG="config\.color_scheme = '.*'"
 
 # ──────────                                      ─────────────────────────────
@@ -55,13 +55,13 @@ done
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ──────────────────────── MENU ─────
-case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox" | fuzzel --dmenu \
-                                                          --font "JetBrains Mono:size=25" \
-                                                          --lines 4 \
-                                                          --width 30 \
-                                                          --line-height 50 \
-                                                          --inner-pad 50 \
-                                                          --placeholder " Theme selection") in
+case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox\nSerika" | fuzzel --dmenu \
+                                                                  --font "JetBrains Mono:size=25" \
+                                                                  --lines 5 \
+                                                                  --width 30 \
+                                                                  --line-height 50 \
+                                                                  --inner-pad 50 \
+                                                                  --placeholder " Theme selection") in
   "Ayu")
     CHOICE="Ayu Light\nAyu Mirage\n"
   ;;
@@ -73,6 +73,9 @@ case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox" | fuzzel --dmenu \
   ;;
   "Gruvbox")
     CHOICE="Gruv Light\nGruv Dark\n"
+  ;;
+  "Serika")
+    CHOICE="Serika Light\nSerika Dark\n"
   ;;
   *)
     exit 0
@@ -138,6 +141,17 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
     THEME="everforest_light"
     THEME_HX="everforest_light"
     THEME_WZ="Everforest Light (Gogh)"
+  ;;
+  # WezTerm: not built-in, see ~/.config/wezterm/colors/
+  "Serika Dark")
+    THEME="serika_dark"
+    THEME_HX="serika-dark"
+    THEME_WZ="Serika Dark"
+  ;;
+  "Serika Light")
+    THEME="serika_light"
+    THEME_HX="serika-light"
+    THEME_WZ="Serika Light"
   ;;
   "  󱞦")
     # exec: this script is replaced, not left waiting behind the new one
