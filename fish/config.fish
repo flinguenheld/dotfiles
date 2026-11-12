@@ -4,9 +4,17 @@ fish_add_path --append --path ~/bin ~/.local/bin
 # Starship: its config lives in a folder, with its theme_apply
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 
+# man pages through bat (colors follow the terminal theme)
+# MANROFFOPT: man adds no formatting codes of its own
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx MANROFFOPT -c
+
 if status is-interactive
     alias la="ls -la"
     alias ea="eza -la"
+
+    # Colored help: typing --help anywhere expands to --help | bat -plhelp
+    abbr -a --position anywhere -- --help '--help | bat -plhelp'
 
     starship init fish | source
     fzf --fish | source

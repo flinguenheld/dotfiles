@@ -1,4 +1,4 @@
-theme = "serika-light"
+theme = "catppuccin_frappe"
 
 [editor]
 # scrolloff = 999
