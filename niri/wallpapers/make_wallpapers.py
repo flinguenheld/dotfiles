@@ -61,6 +61,13 @@ THEMES = {
     "everforest_light": dict(
         title="everforest · light", dark=False, bg="#fdf6e3", fg="#5c6a72",
         dots=["#f85552", "#f57d26", "#dfa000", "#8da101", "#35a77c", "#3a94c5", "#df69ba", "#939f91"]),
+    # serika: the last dot is a second red (pale / dark), as in theme_make_palette
+    "serika_dark": dict(
+        title="serika · dark", dark=True, bg="#323437", fg="#d1d0c5",
+        dots=["#ca4754", "#dd8a3c", "#e2b714", "#bcd5a8", "#b9c2c6", "#adc9db", "#be9ec9", "#e29da7"]),
+    "serika_light": dict(
+        title="serika · light", dark=False, bg="#d1d0c5", fg="#323437",
+        dots=["#da3333", "#57320f", "#9a7d0e", "#3d5128", "#455054", "#3f5673", "#5a4066", "#621d28"]),
 }
 
 
