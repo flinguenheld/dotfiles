@@ -16,3 +16,4 @@ hardware-configuration.nix
 waybar/palette.css
 mako/palette
 fuzzel/palette.ini
+theme/palette.toml

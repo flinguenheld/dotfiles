@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # florent@linguenheld.fr 2026
 
-PALETTE_FILE="$HOME/.config/theme/palette.toml"
+THEME_FOLDER="$HOME/.config/theme"
+PALETTE_FILE="$THEME_FOLDER/palette.toml"
+MIX_COLOR="$THEME_FOLDER/theme_mix_color"
 
 NIRI_FOLDER="$HOME/.config/niri"
 NIRI_STYLE_FILE="$NIRI_FOLDER/config/style.kdl"
@@ -11,31 +13,12 @@ NIRI_REG_INACTIVE=" inactive-gradient .*"
 MIX_PERCENT=35   # % of the second color at the end of the gradient
 
 # ──────────                                      ─────────────────────────────
-# ─────                                     ───────────────────────── MIX ─────
-# Add MIX_PERCENT of the second color to the first one.
-mix_color() {
-  local from=${1#\#} to=${2#\#}
-
-  # Each channel: 2 hex characters → decimal
-  local from_r=$((16#${from:0:2})) to_r=$((16#${to:0:2}))
-  local from_g=$((16#${from:2:2})) to_g=$((16#${to:2:2}))
-  local from_b=$((16#${from:4:2})) to_b=$((16#${to:4:2}))
-
-  # Weighted average, +50 rounds to the nearest
-  local R=$(( (from_r * (100 - MIX_PERCENT) + to_r * MIX_PERCENT + 50) / 100 ))
-  local G=$(( (from_g * (100 - MIX_PERCENT) + to_g * MIX_PERCENT + 50) / 100 ))
-  local B=$(( (from_b * (100 - MIX_PERCENT) + to_b * MIX_PERCENT + 50) / 100 ))
-
-  printf '#%02x%02x%02x\n' "${R}" "${G}" "${B}"
-}
-
-# ──────────                                      ─────────────────────────────
 # ─────                                     ───────────────────── PALETTE ─────
 # Get the palette variables $background $foreground ...
 source "${PALETTE_FILE}" || exit 1
 
-NEW_NIRI_ACTIVE=" active-gradient from=\"${c0}\" to=\"$(mix_color "${c0}" "${background}")\""
-NEW_NIRI_INACTIVE=" inactive-gradient from=\"${muted}\" to=\"$(mix_color "${muted}" "${foreground}")\""
+NEW_NIRI_ACTIVE=" active-gradient from=\"${c0}\" to=\"$("${MIX_COLOR}" "${c0}" "${background}" "${MIX_PERCENT}")\""
+NEW_NIRI_INACTIVE=" inactive-gradient from=\"${muted}\" to=\"$("${MIX_COLOR}" "${muted}" "${foreground}" "${MIX_PERCENT}")\""
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ─────────────────────── APPLY ─────

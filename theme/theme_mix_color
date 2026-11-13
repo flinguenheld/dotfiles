@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# florent@linguenheld.fr 2026
+
+COLOR_REG="^#[0-9a-fA-F]{6}$"
+PERCENT_REG="^[0-9]+$"
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────────── USAGE ─────
+usage() {
+  echo "Usage: $(basename "${0}") from to percent"
+  echo "   Print the color from, with percent % of the color to, as #rrggbb."
+  echo "   Colors are #rrggbb, percent goes from 0 (from) to 100 (to)."
+  echo
+  echo "Options:"
+  echo "   --help, -h   print this help"
+  echo
+  echo "Example:"
+  echo "   $(basename "${0}") '#000000' '#ffffff' 50   →   #808080"
+}
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ─────────────────── ARGUMENTS ─────
+case "$1" in
+  --help | -h)
+    usage
+    exit 0
+  ;;
+esac
+
+if [[ $# -ne 3 ]] \
+  || ! [[ "$1" =~ $COLOR_REG && "$2" =~ $COLOR_REG && "$3" =~ $PERCENT_REG ]] \
+  || (( 10#$3 > 100 )); then
+  usage >&2
+  exit 1
+fi
+
+FROM=${1#\#}
+TO=${2#\#}
+PERCENT=$((10#$3))   # 10#: "08" would be read as octal
+
+# ──────────                                      ─────────────────────────────
+# ─────                                     ───────────────────────── MIX ─────
+# Each channel: 2 hex characters → decimal
+FROM_R=$((16#${FROM:0:2})) TO_R=$((16#${TO:0:2}))
+FROM_G=$((16#${FROM:2:2})) TO_G=$((16#${TO:2:2}))
+FROM_B=$((16#${FROM:4:2})) TO_B=$((16#${TO:4:2}))
+
+# Weighted average, +50 rounds to the nearest
+R=$(( (FROM_R * (100 - PERCENT) + TO_R * PERCENT + 50) / 100 ))
+G=$(( (FROM_G * (100 - PERCENT) + TO_G * PERCENT + 50) / 100 ))
+B=$(( (FROM_B * (100 - PERCENT) + TO_B * PERCENT + 50) / 100 ))
+
+printf '#%02x%02x%02x\n' "${R}" "${G}" "${B}"

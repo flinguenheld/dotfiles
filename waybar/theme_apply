@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # florent@linguenheld.fr 2026
 
-PALETTE_FILE="$HOME/.config/theme/palette.toml"
+THEME_FOLDER="$HOME/.config/theme"
+PALETTE_FILE="$THEME_FOLDER/palette.toml"
 
 WAYBAR_FOLDER="$HOME/.config/waybar"
 WAYBAR_PALETTE_FILE="$WAYBAR_FOLDER/palette.css"

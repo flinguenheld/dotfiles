@@ -5,7 +5,7 @@ NIRI_FOLDER="$HOME/.config/niri"
 
 # Colors: theme_make_palette writes palette.toml, then each program's
 # theme_apply reads it and writes its own file
-THEME_FOLDER="$NIRI_FOLDER/scripts/theme"
+THEME_FOLDER="$HOME/.config/theme"
 THEME_ADAPTERS=(
   "$NIRI_FOLDER/theme_apply"
   "$HOME/.config/waybar/theme_apply"
@@ -13,12 +13,10 @@ THEME_ADAPTERS=(
   "$HOME/.config/fuzzel/theme_apply"
   "$HOME/.config/starship/theme_apply"
   "$HOME/.config/gtk-3.0/theme_apply"
+  "$HOME/.config/mdt/theme_apply"
 )
 
 # Programs with their own built-in themes: only the theme name changes
-GLOW_FILE="$HOME/.config/glow/glow.yml"
-GLOW_REG="^style: \".*\""
-
 HELIX_FILE="$HOME/.config/helix/config.toml"
 HELIX_REG="theme = \".*\""
 
@@ -173,7 +171,6 @@ done
 
 # Built-in themes
 sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEME_WZ}'#" "${WEZTERM_FILE}"
-sed -i "s#${GLOW_REG}#style: \"${HOME}/.config/glow/themes/${THEME}.json\"#" "${GLOW_FILE}"
 sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
 
 # Restart swaybg, swayidle and waybar: they read the new palette

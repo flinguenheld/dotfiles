@@ -8,11 +8,12 @@ click on the fedora version and create a file .repo
 
 ## Env
 
+`rpm-ostree status`
+
 ```
-LayeredPackages: 'gcc-c++' bat bats cliphist exercism eza fastfetch fish fzf
-gcc glow gmp-devel helix lazygit make mako ncurses-compat-libs
-NetworkManager-tui niri perl ruff starship systemd-devel tealdeer tio ty unrar
-uv wezterm
+LayeredPackages: gcc-c++' bat bats cliphist exercism eza fastfetch fish fzf gcc gmp-devel helix lazygit make mako ncurses-compat-libs
+NetworkManager-tui niri nodejs nodejs-npm perl ruff ShellCheck shfmt starship systemd-devel tealdeer tio ty unrar uv
+wezterm
 ```
 
 ## Fish
@@ -32,8 +33,8 @@ uv wezterm
 Default: catppuccin_frappe.
 
 `Mod+T` (or the bar icon) opens `theme_menu`. The accent colors are shuffled
-(pick the same theme again for a new draw). After a fresh install, pick a theme once:
-the generated files are not in git.
+(pick the same theme again for a new draw). After a fresh install, pick a theme
+once: the generated files are not in git.
 
 ```
 Mod+T ─► theme_menu
@@ -49,7 +50,7 @@ Mod+T ─► theme_menu
            │     starship/   [palettes.generated] at the end of starship.toml
            │     gtk-3.0/    gsettings color-scheme (light or dark)
            │
-           ├─► sed: the theme name only ─► wezterm, glow, helix
+           ├─► sed: the theme name only ─► wezterm, helix
            │
            └─► niri/scripts/startup ─► swaybg   wallpaper ($theme.jpg)
                                        swayidle lock screen ($background)

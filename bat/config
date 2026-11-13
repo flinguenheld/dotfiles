@@ -1,5 +1,5 @@
 # ansi: only the terminal's 16 colors, so bat follows the WezTerm scheme
-# (no entry needed in niri/scripts/theme/theme_menu)
+# (no entry needed in theme/theme_menu)
 --theme="ansi"
 
 # Line numbers, git changes in the margin, file name on top, grid

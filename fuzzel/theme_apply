@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # florent@linguenheld.fr 2026
 
-PALETTE_FILE="$HOME/.config/theme/palette.toml"
+THEME_FOLDER="$HOME/.config/theme"
+PALETTE_FILE="$THEME_FOLDER/palette.toml"
 
 FUZZEL_FOLDER="$HOME/.config/fuzzel"
 FUZZEL_PALETTE_FILE="$FUZZEL_FOLDER/palette.ini"

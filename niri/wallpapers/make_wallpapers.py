@@ -13,7 +13,7 @@ Usage:
     python3 make_wallpapers.py gruvbox      # only some themes
 
 The files are written next to this script, named like THEMES in
-~/.config/niri/scripts/theme/theme_menu (gruvbox.jpg, ayu_light.jpg…).
+~/.config/theme/theme_menu (gruvbox.jpg, ayu_light.jpg…).
 Needs ImageMagick 7 (`magick`) and the JetBrains Mono Nerd Font.
 """
 

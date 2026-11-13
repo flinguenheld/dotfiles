@@ -21,7 +21,7 @@ popup-border = "all"             # Borders on hover, completion and pickers
 end-of-line-diagnostics = "hint"
 
 [editor.inline-diagnostics]
-cursor-line = "warning"
+cursor-line = "hint"
 # other-lines = "warning"
 max-wrap = 15
 
