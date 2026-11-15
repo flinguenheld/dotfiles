@@ -20,6 +20,9 @@ THEME_ADAPTERS=(
 HELIX_FILE="$HOME/.config/helix/config.toml"
 HELIX_REG="theme = \".*\""
 
+NVIM_FILE="$HOME/.config/nvim/lua/plugins/colorscheme.lua"
+NVIM_REG="^local theme = \".*\""
+
 WEZTERM_FILE="$HOME/.config/wezterm/wezterm.lua"
 WEZTERM_REG="config\.color_scheme = '.*'"
 
@@ -38,14 +41,14 @@ usage() {
 # ─────                                     ─────────────────── ARGUMENTS ─────
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --help | -h)
-      usage
-      exit 0
+  --help | -h)
+    usage
+    exit 0
     ;;
-    *)
-      echo "Unknown argument: $1" >&2
-      usage >&2
-      exit 1
+  *)
+    echo "Unknown argument: $1" >&2
+    usage >&2
+    exit 1
     ;;
   esac
   shift
@@ -54,109 +57,109 @@ done
 # ──────────                                      ─────────────────────────────
 # ─────                                     ──────────────────────── MENU ─────
 case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox\nSerika" | fuzzel --dmenu \
-                                                                  --font "JetBrains Mono:size=25" \
-                                                                  --lines 5 \
-                                                                  --width 30 \
-                                                                  --line-height 50 \
-                                                                  --inner-pad 50 \
-                                                                  --placeholder " Theme selection") in
-  "Ayu")
-    CHOICE="Ayu Light\nAyu Mirage\n"
+  --font "JetBrains Mono:size=25" \
+  --lines 5 \
+  --width 30 \
+  --line-height 50 \
+  --inner-pad 50 \
+  --placeholder " Theme selection") in
+"Ayu")
+  CHOICE="Ayu Light\nAyu Mirage\n"
   ;;
-  "Catppuccin")
-    CHOICE="Latte\nFrappe\nMacchiato\nMocha\n"
+"Catppuccin")
+  CHOICE="Latte\nFrappe\nMacchiato\nMocha\n"
   ;;
-  "Everforest")
-    CHOICE="Everforest Light\nEverforest Dark\n"
+"Everforest")
+  CHOICE="Everforest Light\nEverforest Dark\n"
   ;;
-  "Gruvbox")
-    CHOICE="Gruv Light\nGruv Dark\n"
+"Gruvbox")
+  CHOICE="Gruv Light\nGruv Dark\n"
   ;;
-  "Serika")
-    CHOICE="Serika Light\nSerika Dark\n"
+"Serika")
+  CHOICE="Serika Light\nSerika Dark\n"
   ;;
-  *)
-    exit 0
+*)
+  exit 0
   ;;
 esac
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ──────────────────── FLAVOURS ─────
 case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
-                                       --font "JetBrains Mono:size=25" \
-                                       --lines "$(echo -e "$CHOICE" | wc -l)" \
-                                       --width 30 \
-                                       --line-height 50 \
-                                       --inner-pad 50 \
-                                       --placeholder " Flavour") in
+  --font "JetBrains Mono:size=25" \
+  --lines "$(echo -e "$CHOICE" | wc -l)" \
+  --width 30 \
+  --line-height 50 \
+  --inner-pad 50 \
+  --placeholder " Flavour") in
 
-  "Frappe")
-    THEME="catppuccin_frappe"
-    THEME_HX="catppuccin_frappe"
-    THEME_WZ="Catppuccin Frappe"
+"Frappe")
+  THEME="catppuccin_frappe"
+  THEME_HX="catppuccin_frappe"
+  THEME_WZ="Catppuccin Frappe"
   ;;
-  "Latte")
-    THEME="catppuccin_latte"
-    THEME_HX="catppuccin_latte"
-    THEME_WZ="Catppuccin Latte"
+"Latte")
+  THEME="catppuccin_latte"
+  THEME_HX="catppuccin_latte"
+  THEME_WZ="Catppuccin Latte"
   ;;
-  "Macchiato")
-    THEME="catppuccin_macchiato"
-    THEME_HX="catppuccin_macchiato"
-    THEME_WZ="Catppuccin Macchiato"
+"Macchiato")
+  THEME="catppuccin_macchiato"
+  THEME_HX="catppuccin_macchiato"
+  THEME_WZ="Catppuccin Macchiato"
   ;;
-  "Mocha")
-    THEME="catppuccin_mocha"
-    THEME_HX="catppuccin_mocha"
-    THEME_WZ="Catppuccin Mocha"
+"Mocha")
+  THEME="catppuccin_mocha"
+  THEME_HX="catppuccin_mocha"
+  THEME_WZ="Catppuccin Mocha"
   ;;
-  "Gruv Dark")
-    THEME="gruvbox"
-    THEME_HX="gruvbox"
-    THEME_WZ="Gruvbox Dark (Gogh)"
+"Gruv Dark")
+  THEME="gruvbox"
+  THEME_HX="gruvbox"
+  THEME_WZ="Gruvbox Dark (Gogh)"
   ;;
-  "Gruv Light")
-    THEME="gruvbox_light"
-    THEME_HX="gruvbox_light"
-    THEME_WZ="Gruvbox (Gogh)"
+"Gruv Light")
+  THEME="gruvbox_light"
+  THEME_HX="gruvbox_light"
+  THEME_WZ="Gruvbox (Gogh)"
   ;;
-  "Ayu Mirage")
-    THEME="ayu_mirage"
-    THEME_HX="ayu_mirage"
-    THEME_WZ="Ayu Mirage"
+"Ayu Mirage")
+  THEME="ayu_mirage"
+  THEME_HX="ayu_mirage"
+  THEME_WZ="Ayu Mirage"
   ;;
-  "Ayu Light")
-    THEME="ayu_light"
-    THEME_HX="ayu_light"
-    THEME_WZ="ayu_light"
+"Ayu Light")
+  THEME="ayu_light"
+  THEME_HX="ayu_light"
+  THEME_WZ="ayu_light"
   ;;
-  "Everforest Dark")
-    THEME="everforest_dark"
-    THEME_HX="everforest_dark"
-    THEME_WZ="Everforest Dark (Gogh)"
+"Everforest Dark")
+  THEME="everforest_dark"
+  THEME_HX="everforest_dark"
+  THEME_WZ="Everforest Dark (Gogh)"
   ;;
-  "Everforest Light")
-    THEME="everforest_light"
-    THEME_HX="everforest_light"
-    THEME_WZ="Everforest Light (Gogh)"
+"Everforest Light")
+  THEME="everforest_light"
+  THEME_HX="everforest_light"
+  THEME_WZ="Everforest Light (Gogh)"
   ;;
-  # WezTerm: not built-in, see ~/.config/wezterm/colors/
-  "Serika Dark")
-    THEME="serika_dark"
-    THEME_HX="serika-dark"
-    THEME_WZ="Serika Dark"
+# WezTerm: not built-in, see ~/.config/wezterm/colors/
+"Serika Dark")
+  THEME="serika_dark"
+  THEME_HX="serika-dark"
+  THEME_WZ="Serika Dark"
   ;;
-  "Serika Light")
-    THEME="serika_light"
-    THEME_HX="serika-light"
-    THEME_WZ="Serika Light"
+"Serika Light")
+  THEME="serika_light"
+  THEME_HX="serika-light"
+  THEME_WZ="Serika Light"
   ;;
-  "  󱞦")
-    # exec: this script is replaced, not left waiting behind the new one
-    exec "$0"
+"  󱞦")
+  # exec: this script is replaced, not left waiting behind the new one
+  exec "$0"
   ;;
-  *)
-    exit 0
+*)
+  exit 0
   ;;
 esac
 
@@ -164,14 +167,15 @@ esac
 # ─────                                     ─────────────────────── APPLY ─────
 # The flavour case above sets THEME, or leaves (exit, exec): THEME is set here
 # Colors: the palette (accents shuffled), then every adapter
-"${THEME_FOLDER}/theme_make_palette" "${THEME}" > /dev/null || exit 1
+"${THEME_FOLDER}/theme_make_palette" "${THEME}" >/dev/null || exit 1
 for adapter in "${THEME_ADAPTERS[@]}"; do
   "${adapter}"
 done
 
 # Built-in themes
+sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2>/dev/null
+sed -i "s#${NVIM_REG}#local theme = \"${THEME}\"#" "${NVIM_FILE}" && pkill -USR1 nvim
 sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEME_WZ}'#" "${WEZTERM_FILE}"
-sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2> /dev/null
 
 # Restart swaybg, swayidle and waybar: they read the new palette
 "${NIRI_FOLDER}/scripts/startup" &
