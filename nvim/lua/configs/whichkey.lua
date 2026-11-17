@@ -10,6 +10,7 @@ return {
 
   spec = {
     { "<leader>b", group = "buffers" },
+    { "<leader>c", group = "code" },
     { "<leader>s", group = "search" },
     { "<leader>u", group = "ui" },
 

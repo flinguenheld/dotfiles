@@ -41,7 +41,7 @@ Written on 2026-11-17.
 | Code | `mason-org/mason.nvim` + `WhoIsSethDaniel/mason-tool-installer.nvim` | installs LSP servers and formatters |
 | Code | `neovim/nvim-lspconfig` | server settings, used through `vim.lsp.config` / `vim.lsp.enable` |
 | Code | `nvim-treesitter/nvim-treesitter` (`main` branch) | parsers, highlighting |
-| Code | `nvim-treesitter/nvim-treesitter-textobjects` | `]f`/`[f`, `]c`/`[c` jumps; queries used by mini.ai |
+| Code | `nvim-treesitter/nvim-treesitter-textobjects` | `]f` `]a` `]t` `]h` jumps; queries used by mini.ai |
 | Code | `saghen/blink.cmp` + `rafamadriz/friendly-snippets` | completion + snippets |
 | Code | `stevearc/conform.nvim` | format on save |
 | Colours | `brenoprata10/nvim-highlight-colors` | colour squares for hex, `rgb()`, `hsl()`, CSS variables; also in blink's menu |
@@ -107,7 +107,9 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
    Notes from the first discussion:
    - nvim-surround: Visual `S` clashes with flash's `S`; idea: Visual surround on `gs`.
    - mini.ai: letters lined up with Helix (`f` function, `t` type, `a` argument, `c` comment, `x` tag, `T` test, `u` call).
-   - treesitter-textobjects: Helix jumps `]f` `]t` `]a` `]c` `]T`; `]t` is the todo jump today.
+   - treesitter-textobjects (decided in step 8): `]f` function, `]a` argument, `]t` class/type, `]h` comment
+     (`h` = comment key). `]c` = change everywhere (diff mode: Neovim's; otherwise git hunks, step 13).
+     No `]T` (test): no language has a test query in the plugin.
    - blink: preset `default` (`Ctrl-y`), `super-tab` or `enter`; no `↑` `↓` in the menu (arrows are off in Insert).
    - grug-far: idea `<space>sr`, with recent files moved to `<space>s.`.
 2. Neovim's own defaults (`gr*`, `[d` `]d`, `Ctrl-s` in Insert, `gc`): keep or replace, **decided during the steps**
@@ -126,14 +128,14 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 5 ✓ | Themes | `plugins/colorscheme.lua` as described above; `theme_menu` only signals | Serika: warning + default theme; all theme plugins `lazy = true` |
 | 6 ✓ | snacks + mini.icons | `configs/snacks.lua`; `<space>ut` = colorschemes picker (session only, the file stays the reference); `<space>s`, `<space>b`, `<space>u`, `<space>e` keys | icons `style = "ascii"` or glyphs |
 | 7 ✓ | which-key | `configs/whichkey.lua`: group labels | `<space>?`: which-key or keymaps picker? `h` in the operator list? |
-| 8 | Treesitter + textobjects | `configs/treesitter.lua`: parser list, start highlighting on FileType; `]f`/`[f` jumps; install the parsers | Treesitter indent? |
-| 9 | Mason | `configs/mason.lua` | — |
-| 10 | LSP + lazydev | `configs/lspconfig.lua`: capabilities from blink, diagnostics style + icons, lua_ls, rust_analyzer + clippy; `g…` and `<space>c` keys; rename via snacks input | — |
+| 8 ✓ | Treesitter + textobjects | `configs/treesitter.lua`: parser list, start highlighting on FileType; `]f`/`[f` jumps; install the parsers | Treesitter indent? |
+| 9 ✓ | Mason | `configs/mason.lua` | — |
+| 10 ✓ | LSP + lazydev | `configs/lspconfig.lua`: capabilities from blink, diagnostics style + icons, lua_ls, rust_analyzer + clippy; `g…` and `<space>c` keys; rename via snacks input | — |
 | 11 | Completion | blink.cmp + friendly-snippets, nvim-autopairs | one way to show signatures: blink or `Ctrl-k` |
 | 12 | Format | `configs/conform.lua`, format on save | — |
-| 13 | Git | gitsigns + `<space>g` keys, `]g`/`[g`, `ig` | — |
+| 13 | Git | gitsigns + `<space>g` keys, `]c`/`[c` hunks (Neovim's diff jump kept in diff mode), `ig` | — |
 | 14 | flash | `configs/flash.lua`, as now | — |
-| 15 | todo-comments | `configs/todo.lua`, as now | Neovim 0.12 `[t`/`]t` (tag jumps) clash with the todo jumps |
+| 15 | todo-comments | `configs/todo.lua`, as now, without `]t`/`[t` (class/type since step 8; the `<space>t` pickers do it) | — |
 | 16 | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
 | 17 | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
 | 18 | Statusline | `configs/lualine.lua` | which sections |

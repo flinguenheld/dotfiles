@@ -8,7 +8,7 @@ return {
   dashboard = { enabled = true }, -- start screen (recent files, keys…)
   explorer = { enabled = true }, -- file tree (<space>e); also opens on `nvim folder/`
   image = { enabled = true }, -- show images (Markdown, picker preview) in WezTerm
-  indent = { enabled = true }, -- indent guides
+  indent = { enabled = true, animate = { enabled = false } }, -- indent guides
   input = { enabled = true }, -- popup when Neovim asks for text (rename…)
   notifier = { enabled = true }, -- notifications as popups + history (<space>sn)
   -- quickfile = { enabled = true }, -- show the file faster on `nvim file`

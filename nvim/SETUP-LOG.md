@@ -197,11 +197,121 @@ Changes made by hand after the steps:
   which-key (`win = { border = … }`) and snacks set their own. snacks falls back to `"rounded"` when
   `winborder` is `"none"`, and its picker layouts have fixed borders: changing them means a custom layout.
 
-## Where we are (2026-11-17, break after step 7)
+## Step 8: Treesitter + textobjects (2026-11-17)
 
-- Done: steps 0–7 (ticked in `BUILD-PLAN.md`).
+Files:
+
+- `lua/plugins/init.lua`: `nvim-treesitter/nvim-treesitter` and `nvim-treesitter/nvim-treesitter-textobjects`, both
+  `branch = "main"`, `lazy = false` (the main branch doesn't lazy-load). nvim-treesitter has `build = ":TSUpdate"` and
+  installs the list at startup; textobjects has `move = { set_jumps = true }`.
+- `lua/configs/treesitter.lua`: the parser list (47 active, 29 commented), copied from the old config. Missing parsers
+  are installed in the background at startup (`require("nvim-treesitter").install`), so `:TSInstallAll` is gone:
+  uncomment a name and restart. The 7 parsers Neovim ships are in the list too (nvim-treesitter's queries expect its versions).
+- `lua/autocmds.lua`: on `FileType`, `pcall(vim.treesitter.start)` (highlighting for every file type with a parser),
+  then Treesitter indent (`indentexpr`, like Helix) only if the language has an `indents` query.
+- `lua/mappings.lua`: the jumps below.
+
+Keys (Normal, Visual, Operator-pending):
+
+| Keys | Does | Replaces Neovim's |
+|---|---|---|
+| `]f` / `[f` | next / previous function | — |
+| `]a` / `[a` | next / previous argument | argument list (`:next` / `:previous`) |
+| `]t` / `[t` | next / previous class / type | tag stack |
+| `]h` / `[h` | next / previous comment (`h` is the comment key) | — |
+
+Decided:
+
+- `]c`/`[c` = "change" everywhere: Neovim's diff-mode jump stays; gitsigns adds git hunks outside diff mode in
+  step 13 (so no `]g`). Differs from Helix (`]c` comment, `]g` change).
+- No `]T` (test): no language has a `@test` query in nvim-treesitter-textobjects.
+- No `<space>uT` toggle, no Treesitter folding.
+
+Tested: 51 parsers installed (47 + dependencies such as `php_only`, `html_tags`, `ecma`, `jsx`); Rust and Lua get
+Treesitter highlighting and indent, a `.txt` file gets neither; jumps land on the right lines, `Ctrl-o` comes back;
+`:checkhealth nvim-treesitter` without warnings.
+
+Gotchas:
+
+- The first install run was cut off when headless Neovim quit: `jsdoc` and `regex` had to be installed again.
+  The startup install catches up on its own in a normal session.
+- The `main` branch needs the `tree-sitter` CLI (0.26.11 here) and a C compiler.
+
+Fix to step 3: the trim-on-save autocommand now skips buffers that can't be edited (`modifiable` off).
+Saving `:checkhealth` output with `:w` gave `E21: Cannot make changes, 'modifiable' is off`.
+
+Changed by hand: `configs/snacks.lua` indent has `animate = { enabled = false }` (no animation on the scope guide).
+The global `vim.g.snacks_animate = false` would also turn off the dim animation; not used.
+
+## Step 9: Mason (2026-11-17)
+
+- `lua/plugins/init.lua`: `mason-org/mason.nvim` (`lazy = false`: its `bin` folder must be in Neovim's PATH before
+  the LSP servers start) and `WhoIsSethDaniel/mason-tool-installer.nvim` (`lazy = false`: installs at startup).
+- `lua/configs/mason.lua`: `lua-language-server`, `rust-analyzer`, `stylua` (Mason names).
+
+How it works:
+
+- Mason mostly downloads ready-made programs (no compiling, no sudo: everything goes in `~/.local/share/nvim/mason`).
+  Some packages go through npm / pip / cargo / go instead, and need that tool.
+- Mason puts `~/.local/share/nvim/mason/bin` first in **Neovim's** PATH only (LSP servers, formatters, `:!`,
+  `:terminal`). The shell's PATH doesn't change.
+- Mason installs; the LSP setup (step 10) says how to start a server and runs the first copy found in PATH.
+
+Decided: rust-analyzer comes from Mason, so Neovim has its own copy even if rustup's (used by Helix) is removed.
+Inside Neovim, Mason's copy wins (`0.3.3121-standalone`); Helix and the shell keep rustup's (`1.99.1`).
+clippy and rustfmt still come from rustup.
+
+Tested: the three packages installed; `exepath("rust-analyzer")` is Mason's; startup without messages.
+Mason window keys (`i`, `u`, `X`, `Enter`, `g?`) have no hjkl: nothing to change. No key for `:Mason`.
+
+## Step 10: LSP + lazydev (2026-11-17)
+
+Files:
+
+- `lua/plugins/init.lua`: `neovim/nvim-lspconfig` (`lazy = false`: its `lsp/*.lua` server descriptions must be in the
+  runtimepath before the first file opens); `folke/lazydev.nvim` (`ft = "lua"`), with two library entries for
+  what's used without `require`: `vim.uv` (luv types) and the `Snacks` global.
+- `lua/configs/lspconfig.lua`: diagnostics like Helix (message at the end of other lines, full message under the
+  cursor line, errors first), sign icons; `rust_analyzer` with `check.command = "clippy"`; `vim.lsp.enable` for
+  `lua_ls` and `rust_analyzer`. No hand-written lua_ls library list (lazydev does it). The old `cssls` / `html` are
+  left for "Later".
+- `lua/configs/whichkey.lua`: `<space>c` group "code".
+
+Keys (`lua/mappings.lua`):
+
+| Keys | Does |
+|---|---|
+| `gd` `gD` `gr` `gi` `gy` | definition, declaration, references, implementation, type definition (snacks picker) |
+| `k` | hover (since step 4) |
+| `<space>cs` / `cS` | symbols in file / project |
+| `<space>cc` / `cC` | incoming / outgoing calls |
+| `<space>cd` / `cD` | diagnostics in file / project |
+| `<space>ce` | line diagnostic (popup) |
+| `<space>cr` `ca` `cl` | rename (snacks input), code actions, run code lens |
+| `]d` `[d` `]D` `[D` | Neovim's: next / previous / last / first diagnostic (kept, same as Helix) |
+
+Removed Neovim keys: `grn`, `gra` (Normal + Visual), `grr`, `gri`, `grt`, `grx`, `gO`, `Ctrl-w d`, `Ctrl-w Ctrl-d`.
+`gi` was Neovim's "insert where Insert mode was left" (still reachable as `` `^i ``).
+
+Decided: inlay hints off by default, `<space>uh` toggles them; the `<space>c` group is kept (Helix puts these
+straight on `<space>`, but `<space>s` is search here).
+
+Not needed here:
+
+- blink capabilities: blink.cmp adds them to every server itself (step 11).
+- Rename popup: `vim.lsp.buf.rename` asks through `vim.ui.input`, which snacks input replaces.
+
+Tested: `lua_ls` attaches to the config with 0 diagnostics; a test file using `Snacks`, `vim.uv` and
+`require("lazy")` only got "undefined global" for a made-up name; `rust_analyzer` attaches in a Cargo project and
+reports rustc and clippy diagnostics; the removed keys are gone; startup without messages.
+
+## Where we are (2026-11-17, after step 10)
+
+- Done: steps 0–10 (ticked in `BUILD-PLAN.md`).
 - To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
   popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
-- Next: step 8, Treesitter + textobjects (parser list, highlighting on FileType, `]f`/`[f`; Treesitter indent?).
+- To test in a real window (step 8): highlighting in a few languages, indent on Enter / `o`, the `]` jumps.
+- To test in a real window (step 10): `gd` / `gr` pickers, `<space>cr` rename popup, diagnostics display, sign icons.
+- Next: step 11, completion (blink.cmp, friendly-snippets, nvim-autopairs).
 - Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
   `iq` (any quote) and `ib` (any bracket).

@@ -86,6 +86,55 @@ map("n", "K", "K", { desc = "help for word under cursor" })
 -- Hover docs (k is free since hjkl are off)
 map("n", "k", function() vim.lsp.buf.hover() end, { desc = "LSP hover docs" })
 
+-- Neovim's LSP keys: removed (replaced below by Helix-style g… keys and <space>c…)
+-- ]d / [d / ]D / [D (next / previous / last / first diagnostic) are kept: same as Helix
+del("n", "grn")
+del({ "n", "x" }, "gra")
+del("n", "grr")
+del("n", "gri")
+del("n", "grt")
+del("n", "grx")
+del("n", "gO")
+del("n", "<C-w>d")
+del("n", "<C-w><C-d>")
+
+-- Go to (Helix-style, picker if several results)
+-- gi was Neovim's "insert where Insert mode was left" (still there as `^i)
+map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "goto definition" })
+map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "goto declaration" })
+map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "goto references" })
+map("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "goto implementation" })
+map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "goto type definition" })
+
+-- Code tools (<space>c); format (<space>cf) comes with conform
+map("n", "<leader>cs", function() Snacks.picker.lsp_symbols() end, { desc = "symbols in file" })
+map("n", "<leader>cS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "symbols in project" })
+map("n", "<leader>cc", function() Snacks.picker.lsp_incoming_calls() end, { desc = "incoming calls" })
+map("n", "<leader>cC", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "outgoing calls" })
+map("n", "<leader>cd", function() Snacks.picker.diagnostics_buffer() end, { desc = "diagnostics in file" })
+map("n", "<leader>cD", function() Snacks.picker.diagnostics() end, { desc = "diagnostics in project" })
+map("n", "<leader>ce", function() vim.diagnostic.open_float() end, { desc = "line diagnostic (popup)" })
+map("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "rename (snacks input)" })
+map({ "n", "x" }, "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "code actions" })
+map("n", "<leader>cl", function() vim.lsp.codelens.run() end, { desc = "run code lens" })
+
+-- ────────────────────────────────────────────────────── Treesitter jumps ────
+-- Like Helix: ]f function, ]a argument, ]t class/type, ]h comment (h is the comment key here)
+-- They replace Neovim's ]a / [a (argument list) and ]t / [t (tag stack)
+-- Also in Visual (extends the selection) and Operator-pending mode (d]f deletes up to the next function)
+
+local function ts_next(query) return function() require("nvim-treesitter-textobjects.move").goto_next_start(query, "textobjects") end end
+local function ts_prev(query) return function() require("nvim-treesitter-textobjects.move").goto_previous_start(query, "textobjects") end end
+
+map({ "n", "x", "o" }, "]f", ts_next "@function.outer", { desc = "next function" })
+map({ "n", "x", "o" }, "[f", ts_prev "@function.outer", { desc = "previous function" })
+map({ "n", "x", "o" }, "]a", ts_next "@parameter.inner", { desc = "next argument" })
+map({ "n", "x", "o" }, "[a", ts_prev "@parameter.inner", { desc = "previous argument" })
+map({ "n", "x", "o" }, "]t", ts_next "@class.outer", { desc = "next class / type" })
+map({ "n", "x", "o" }, "[t", ts_prev "@class.outer", { desc = "previous class / type" })
+map({ "n", "x", "o" }, "]h", ts_next "@comment.outer", { desc = "next comment" })
+map({ "n", "x", "o" }, "[h", ts_prev "@comment.outer", { desc = "previous comment" })
+
 -- ─────────────────────────────────────────────────────────── Undo / redo ────
 -- u is already undo; U was "undo all changes on the line"
 
