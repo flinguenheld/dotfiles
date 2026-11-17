@@ -72,7 +72,7 @@ map({ "n", "x" }, "<leader>y", '"+y', { desc = "yank to system clipboard" })
 
 del({ "n", "x" }, "gc")
 del("n", "gcc")
--- gc in Operator-pending mode (comment text object, dgc) is kept until mini.ai (step 16)
+del("o", "gc") -- comment text object (dgc): replaced by mini.ai's ic / ac
 
 map({ "n", "x" }, "h", function() return require("vim._comment").operator() end, { expr = true, desc = "comment" })
 map("n", "hh", function() return require("vim._comment").operator() .. "_" end, { expr = true, desc = "comment line" })
@@ -172,6 +172,20 @@ end, { desc = "previous change (git hunk / diff)" })
 -- Hunk text object: dig, yig, vig…
 map({ "o", "x" }, "ig", function() require("gitsigns").select_hunk() end, { desc = "git hunk" })
 
+-- ────────────────────────────────────────────────────────────── Surround ────
+-- Like Helix (m = match): ms add, md delete, mr replace, instead of nvim-surround's ys / ds / cs
+-- Marks s, d, r, S can't be set any more (m + any other letter still sets a mark); . repeats them
+
+map("n", "ms", "<Plug>(nvim-surround-normal)", { desc = "surround add (motion, char): msiw\"" })
+map("n", "mss", "<Plug>(nvim-surround-normal-cur)", { desc = "surround add around the line" })
+map("n", "mS", "<Plug>(nvim-surround-normal-line)", { desc = "surround add, pair on own lines" })
+map("n", "md", "<Plug>(nvim-surround-delete)", { desc = "surround delete (char): md\"" })
+map("n", "mr", "<Plug>(nvim-surround-change)", { desc = "surround replace (old, new): mr\"'" })
+
+-- Visual: wrap the selection (S is flash's)
+map("x", "ms", "<Plug>(nvim-surround-visual)", { desc = "surround selection" })
+map("x", "mS", "<Plug>(nvim-surround-visual-line)", { desc = "surround selection, on new lines" })
+
 -- ────────────────────────────────────────────────────────── Jump (flash) ────
 -- f / F / t / T are enhanced by flash itself (configs/flash.lua)
 -- s / S replace Neovim's s (= cl) and S (= cc); R in Visual was the same as S
@@ -239,6 +253,10 @@ map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "n
 map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "quickfix list" })
 map("n", "<leader>ss", function() Snacks.picker.resume() end, { desc = "resume last picker" })
 map("n", "<leader>sp", function() Snacks.picker.pickers() end, { desc = "all pickers" })
+
+-- Search and replace in the project (grug-far); in Visual mode the selection fills the search field
+-- Code symbols: <space>cr (LSP rename) knows scopes; grug-far replaces text (comments, docs, config…)
+map({ "n", "x" }, "<leader>r", function() require("grug-far").open() end, { desc = "search & replace (project)" })
 
 -- ────────────────────────────────────────────────────────────── Buffers ────
 

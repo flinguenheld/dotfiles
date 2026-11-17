@@ -8,6 +8,13 @@ return {
   -- preset = "modern",
   preset = "helix",
 
+  -- When the popup opens: <auto> = every prefix, except single letters other than g / z / Z
+  -- m added by hand for the surround keys (m + another letter still sets a mark)
+  triggers = {
+    { "<auto>", mode = "nxso" },
+    { "m", mode = { "n", "x" } },
+  },
+
   spec = {
     { "<leader>b", group = "buffers" },
     { "<leader>c", group = "code" },
@@ -18,6 +25,27 @@ return {
 
     -- Outside <space>
     { "h", group = "comment" },
+    { "m", group = "surround (other letters: set mark)", mode = { "n", "x" } },
+
+    -- Text objects from mini.ai (configs/miniai.lua): which-key's built-in labels for ab / at are Neovim's
+    { mode = { "o", "x" },
+      { "aa", desc = "argument (+ comma)" },
+      { "ab", desc = "any bracket ( [ {" },
+      { "ac", desc = "comment" },
+      { "af", desc = "function" },
+      { "aq", desc = "any quote \" ' `" },
+      { "at", desc = "type / class" },
+      { "au", desc = "function call" },
+      { "ax", desc = "tag (HTML / XML)" },
+      { "ia", desc = "inner argument" },
+      { "ib", desc = "inner any bracket" },
+      { "ic", desc = "comment" },
+      { "if", desc = "inner function" },
+      { "iq", desc = "inner any quote" },
+      { "it", desc = "inner type / class" },
+      { "iu", desc = "inner function call (arguments)" },
+      { "ix", desc = "inner tag" },
+    },
 
     -- Ctrl-w keys turned off in mappings.lua (Ctrl-arrows replace them): hidden from the popup,
     -- otherwise which-key still lists them with its built-in labels

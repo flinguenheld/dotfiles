@@ -43,9 +43,31 @@ return {
   },
 
   {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    -- Its own keys (ys, cs, ds, Visual S, Insert Ctrl-g s…) are set when it loads: all off,
+    -- the Helix-style m keys are in mappings.lua
+    init = function() vim.g.nvim_surround_no_mappings = true end,
+  },
+
+  {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" }, -- when a file opens
     opts = {}, -- defaults: signs on (shown by snacks statuscolumn), line blame off (<space>ub)
+  },
+
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar", -- also loaded by <space>r (mappings.lua)
+    opts = {
+      -- Its window keys start with <space> (local leader): <space>r replace, <space>s sync, <space>q close, g? help
+      keymaps = {
+        close = { n = "<localleader>q" }, -- was <space>c (q like <space>bq)
+        qflist = { n = "<localleader>Q" }, -- was <space>q
+        openNextLocation = false, -- was ↓: the arrows only move the cursor (hjkl are off)
+        openPrevLocation = false, -- was ↑
+      },
+    },
   },
 
   {
@@ -58,6 +80,12 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false, -- its lsp/*.lua server descriptions must be in the runtimepath before the first file opens
     config = function() require "configs.lspconfig" end,
+  },
+
+  {
+    "nvim-mini/mini.ai",
+    event = "VeryLazy",
+    opts = function() return require "configs.miniai" end, -- a function: the file needs mini.ai loaded
   },
 
   {
@@ -99,18 +127,18 @@ return {
   },
 
   {
+    "stevearc/conform.nvim",
+    event = "BufWritePre", -- format on save
+    cmd = "ConformInfo",
+    opts = require "configs.conform",
+  },
+
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {
       check_ts = true, -- Treesitter: no pairing inside strings and comments
     },
-  },
-
-  {
-    "stevearc/conform.nvim",
-    event = "BufWritePre", -- format on save
-    cmd = "ConformInfo",
-    opts = require "configs.conform",
   },
 
   {

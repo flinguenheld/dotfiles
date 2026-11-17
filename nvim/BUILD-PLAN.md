@@ -111,7 +111,7 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
      (`h` = comment key). `]c` = change everywhere (diff mode: Neovim's; otherwise git hunks, step 13).
      No `]T` (test): no language has a test query in the plugin.
    - blink: preset `default` (`Ctrl-y`), `super-tab` or `enter`; no `↑` `↓` in the menu (arrows are off in Insert).
-   - grug-far: idea `<space>sr`, with recent files moved to `<space>s.`.
+   - grug-far (decided in step 17): `<space>r`; recent files stay `<space>sr`.
 2. Neovim's own defaults (`gr*`, `[d` `]d`, `Ctrl-s` in Insert, `gc`): keep or replace, **decided during the steps**
    that touch them (step 4 for `gc`, step 10 for `gr*` and diagnostics, step 11 for `Ctrl-s`).
 3. The leader groups: **decided during the steps**. The full reference table is written here as they're settled.
@@ -136,8 +136,8 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 13 ✓ | Git | gitsigns + `<space>g` keys, `]c`/`[c` hunks (Neovim's diff jump kept in diff mode), `ig` | — |
 | 14 ✓ | flash | `configs/flash.lua`, as now | — |
 | 15 ✓ | todo-comments | `configs/todo.lua`, as now, without `]t`/`[t` (class/type since step 8; the `<space>t` pickers do it) | — |
-| 16 | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
-| 17 | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
+| 16 ✓ | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
+| 17 ✓ | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
 | 18 | Statusline | `configs/lualine.lua` | which sections |
 | 19 | Buffer bar | `configs/bufferline.lua`; `Alt-←/→`, `Tab`, `<space>bq`/`ba` | keep both `Alt-←/→` and `Tab`? (one key per action); Neovim 0.12 `[b`/`]b` do the same |
 | 20 | Colour squares | nvim-highlight-colors | — |

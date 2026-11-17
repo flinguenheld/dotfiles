@@ -437,9 +437,84 @@ Colours: the groups link to the diagnostic colours, so they follow the theme (no
 Tested: a Lua file with TODO / FIX / BUG / NOTE and a "todo" without colon: highlighted; `<space>ta` finds 4,
 the FIX group finds 2 (FIX + BUG).
 
-## Where we are (2026-11-17, after step 15)
+## Step 16: Text objects + surround (2026-11-17)
 
-- Done: steps 0–15 (ticked in `BUILD-PLAN.md`).
+- `lua/plugins/init.lua`: `nvim-mini/mini.ai` (`VeryLazy`, `opts` is a function because `configs/miniai.lua`
+  needs mini.ai loaded); `kylechui/nvim-surround` v4 (`VeryLazy`; v4 sets its keys when it loads, so `init` sets
+  `vim.g.nvim_surround_no_insert_mappings` and `…_no_visual_mappings` before that). Also fixed: surround and
+  conform were out of alphabetical order.
+- `lua/configs/miniai.lua` (new): letters like Helix; no next / last variants.
+- `lua/configs/whichkey.lua`: labels for the mini.ai objects (which-key's built-in `ab` / `at` labels are Neovim's).
+- `lua/mappings.lua`: `del("o", "gc")` (comment object, replaced by `ic` / `ac`); Surround section (`ms` / `mS`).
+
+Text objects (`i…` / `a…`):
+
+| Letter | Object | From |
+|---|---|---|
+| `a` | argument (`aa` + comma) | mini.ai |
+| `b` | any bracket `(` `[` `{` | mini.ai |
+| `c` | comment (`ic` = `ac`: few languages, not Rust, have an inner comment query) | Treesitter |
+| `f` | function definition | Treesitter |
+| `q` | any quote | mini.ai |
+| `t` | type / class | Treesitter |
+| `u` | function call | mini.ai (its `f`) |
+| `x` | HTML / XML tag | mini.ai (its `t` pattern) |
+
+Kept: Neovim's `iw` `ip` `is` `i"` `i(`…, snacks `ii` / `ai` (indent), gitsigns `ig`. Neovim's `it` / `at` → `ix` / `ax`.
+No `T` (test): no test queries.
+
+Neovim 0.12's syntax-node selection is kept (it's Helix's `Alt-o` / `Alt-i` / `Alt-n` / `Alt-p`): Visual `an` grow
+to parent node (also Operator-pending), `in` shrink to child, `]n` / `[n` next / previous sibling. mini.ai's
+`an` / `in` / `al` / `il` (next / last object) are turned off; mini.ai already searches forward on its own.
+
+Surround (changed after the step, Helix style, `m` = match): `ms{motion}{char}` add (`msiw"`), `mss{char}` around
+the line, `mS{motion}{char}` add with the pair on its own lines, `md{char}` delete, `mr{old}{new}` replace; Visual
+`ms` / `mS`. All of nvim-surround's own keys are off (`vim.g.nvim_surround_no_mappings = true` in `init`): `ys`,
+`yss`, `yS`, `ySS`, `ds`, `cs`, `cS`, Visual `S` / `gS` (Visual `S` is flash's), Insert `Ctrl-g s` / `Ctrl-g S`.
+`ySS` / `cS` have no replacement. `.` repeats them.
+Cost: marks `s`, `d`, `r`, `S` can't be set in Normal mode (and `s`, `S` in Visual); `m` + any other letter still
+sets a mark, without delay.
+Why `ys` in vim-surround: `ds` / `cs` mirror `d` / `c`; `ys` was free (`s` isn't a motion). "you surround".
+which-key: `m` group "surround (other letters: set mark)" (Normal + Visual), and `m` added to `triggers`
+(`configs/whichkey.lua`): which-key's `<auto>` triggers skip single lowercase letters other than `g` / `z`
+(and capitals other than `Z`), so a group label alone showed nothing. Tested: `ma` still sets the mark, `msiw"` works.
+While `md` / `mr` wait for the character, the showcmd corner shows `g@l` (the plugin runs as an operator so `.`
+can repeat it): harmless.
+
+Tested (Rust): `cia`, `daa`, `ciq`, `diu`, `dif`, `dat`, `ysiw"`, `cs"'`, `ds(`, Visual `ms]`, Visual `anan`
+(then again with the m keys: `msiw"`, `mss)`, `md"`, `mr"'`, `mSiw}`, `.` repeat, `ma` still sets a mark);
+`o gc` removed; Visual `S` still flash.
+
+Gotchas:
+
+- `daa` on the first argument leaves the space after the comma (`foo(a, b)` → `foo( b)`): mini.ai's documented
+  default. `gen_spec.argument { separator = "%s*,%s*" }` would remove it, at the cost of an ambiguous pick when
+  the cursor is on that space.
+- mini.ai only looks at or after the cursor ("cover or next"): `dac` with the cursor below a comment finds nothing.
+- Headless tests that rewrite the buffer quickly need `vim.treesitter.get_parser(0):parse()` before each Treesitter
+  text object, or they see the old tree.
+
+## Step 17: grug-far (2026-11-17)
+
+- `lua/plugins/init.lua`: `MagicDuck/grug-far.nvim`, loaded by `:GrugFar` or `<space>r`. Its `↓` / `↑`
+  (open next / previous result) are turned off: the arrows are the only way to move.
+- `lua/mappings.lua`: `<space>r` search & replace in the project (Normal; Visual: the selection fills the search).
+
+In its window (keys start with the local leader, `<space>`): `<space>r` replace all, `<space>s` write hand edits
+back, `<space>l` sync the line, `<space>q` close (was `<space>c`, now like `<space>bq`), `<space>Q` quickfix
+(was `<space>q`), `<space>t` history, `Enter` go to the line,
+`g?` help. Fields: Search, Replace, Flags (`--ignore-case`, `-w`…), Files filter, Paths. Uses `rg`.
+
+Decided: key C, `<space>r` ("replace"; Helix's `<space>r` is rename, here `<space>cr`); recent files stay `<space>sr`.
+`<space>cr` vs `<space>r`: LSP rename changes the symbol and knows scopes; grug-far changes text everywhere
+(comments, strings, docs, TOML / Markdown, regex with capture groups).
+
+Tested (temporary project): search `old_name` → `new_name` previewed 4 lines; `<space>r` in the window replaced it in
+a Rust line, a Rust comment and a TOML file.
+
+## Where we are (2026-11-17, after step 17)
+
+- Done: steps 0–17 (ticked in `BUILD-PLAN.md`).
 - To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
   popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
 - To test in a real window (step 8): highlighting in a few languages, indent on Enter / `o`, the `]` jumps.
@@ -447,6 +522,7 @@ the FIX group finds 2 (FIX + BUG).
 - To test in a real window (step 11): the menu and its docs, `Enter`, a snippet with `Tab`, the signature popup,
   `<space>ug`, the menu on the very first `:` after startup.
 - To test in a real window (step 13): `<space>gg` lazygit, sign colours, `<space>ub`, `<space>go`.
-- Next: step 16, text objects + surround (mini.ai, nvim-surround; surround's Visual key: `gs`, `ms` or `S`).
+- To test in a real window (step 16): which-key after `d` / `c` / `y` (labels), Visual `an` / `in` / `]n`.
+- Next: step 18, statusline (lualine: which sections; maybe `showcmdloc` for the `g@l` of surround).
 - Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
   `iq` (any quote) and `ib` (any bracket).
