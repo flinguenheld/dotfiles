@@ -59,3 +59,40 @@ for filetype settings and for files without a Treesitter parser.
 - `FileType`: removes `r` and `o` from `formatoptions`, so Enter / `o` / `O` don't continue a comment
   (Helix `continue-comments = false`). Done per file type because each ftplugin sets its own `formatoptions`.
 - Formatters (step 12) usually trim too; the autocommand covers files with no formatter, or when it fails.
+
+## Step 4: Basic keys (2026-11-17)
+
+`lua/mappings.lua`, loaded from `init.lua` after the autocmds. One `map()` / `del()` per line.
+
+| Keys | Modes | Does |
+|---|---|---|
+| `j`, `l` | Normal, Visual, Op-pending | off (arrows instead) |
+| `h` / `hh` | Normal (+ `h` in Visual) | comment operator / comment line (Neovim's `gc` / `gcc`); off in Op-pending |
+| `k` | Normal | LSP hover; off in Visual and Op-pending |
+| `K` | Normal | Vim help (mapped to itself so Neovim doesn't make it hover) |
+| arrows, `Home`, `End`, `PageUp`, `PageDown` | Insert | off (like Helix) |
+| `Ctrl-←↓↑→` | Normal | go to the window on that side |
+| `Ctrl-w Ctrl-←↓↑→` | Normal | move the window to that side |
+| `<space>y` | Normal, Visual | yank to the system clipboard (`"+y`) |
+| `U` | Normal | redo |
+
+Removed or turned off (one key per action):
+
+- `gc` / `gcc` (Normal, Visual): `del()`, replaced by `h` / `hh`. `gc` in Op-pending (comment text
+  object, `dgc`) is kept until mini.ai (step 16).
+- `Ctrl-r`: `<Nop>`, replaced by `U`.
+- Built-in window keys: `Ctrl-w h/j/k/l`, `Ctrl-w Ctrl-h/j/k/l`, `Ctrl-w BS`, `Ctrl-w ←↓↑→`,
+  `Ctrl-w H/J/K/L` → `<Nop>`. The Ctrl-arrow mappings still work: a mapping's right-hand side is
+  non-recursive, so it uses the built-in command, not the `<Nop>`.
+- The `h` / `k` "off" lines are written but commented, pointing to their new job.
+
+Decisions:
+
+- Windows stay on `Ctrl-w` (like Helix, where `<space>w` was turned off); no `<space>w` group.
+- `gr*`, `gO`, `Ctrl-s` (Insert, Select) are kept for now: removed in steps 10 / 11, which replace them.
+- Terminal-mode window keys: later, when a terminal is added.
+- Neovim 0.12 defaults noted in the plan for later steps: `[t`/`]t` (step 15), `an`/`in`, `[n`/`]n`
+  (step 16), `[b`/`]b` (step 19).
+
+Gotcha: with both `h` and `hh` mapped, Neovim waits `timeoutlen` (400 ms) after `h` only if you pause;
+typing `hip` straight away works at once.

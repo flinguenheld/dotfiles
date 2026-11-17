@@ -124,7 +124,7 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 1 ✓ | Skeleton | `init.lua`: leader key, lazy.nvim bootstrap, load the files below; `configs/lazy.lua` | — |
 | 2 ✓ | Options | `options.lua`: the Helix options + common ones (clipboard, ignorecase/smartcase, undofile, splits, signcolumn, indent width…) | go through the options one by one |
 | 3 ✓ | Autocommands | `autocmds.lua`: trim on save, `formatoptions` | — |
-| 4 | Basic keys | `mappings.lua`: the base rules from "Shortcuts" (hjkl, arrows, windows, `U`, `h`, `k`, `K`); `<space>y` → `"+y` (Normal + Visual, Helix clipboard style); remove Neovim's `gr*`, `gO`, `Ctrl-s`, `gc`/`gcc`, `Ctrl-r` | — |
+| 4 ✓ | Basic keys | `mappings.lua`: the base rules from "Shortcuts" (hjkl, arrows, windows, `U`, `h`, `k`, `K`); `<space>y` → `"+y` (Normal + Visual, Helix clipboard style); remove Neovim's `gc`/`gcc`, `Ctrl-r` and the built-in window keys (`gr*`, `gO` → step 10, `Ctrl-s` → step 11) | — |
 | 5 | Themes | `plugins/colorscheme.lua` as described above; `<space>ut` = snacks colorschemes picker | — |
 | 6 | snacks + mini.icons | `configs/snacks.lua`; `<space>s`, `<space>b`, `<space>u`, `<space>e` keys | icons `style = "ascii"` or glyphs |
 | 7 | which-key | `configs/whichkey.lua`: group labels | `<space>?`: which-key or keymaps picker? `h` in the operator list? |
@@ -135,11 +135,11 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 12 | Format | `configs/conform.lua`, format on save | — |
 | 13 | Git | gitsigns + `<space>g` keys, `]g`/`[g`, `ig` | — |
 | 14 | flash | `configs/flash.lua`, as now | — |
-| 15 | todo-comments | `configs/todo.lua`, as now | — |
-| 16 | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai` |
+| 15 | todo-comments | `configs/todo.lua`, as now | Neovim 0.12 `[t`/`]t` (tag jumps) clash with the todo jumps |
+| 16 | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
 | 17 | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
 | 18 | Statusline | `configs/lualine.lua` | which sections |
-| 19 | Buffer bar | `configs/bufferline.lua`; `Alt-←/→`, `Tab`, `<space>bq`/`ba` | keep both `Alt-←/→` and `Tab`? (one key per action) |
+| 19 | Buffer bar | `configs/bufferline.lua`; `Alt-←/→`, `Tab`, `<space>bq`/`ba` | keep both `Alt-←/→` and `Tab`? (one key per action); Neovim 0.12 `[b`/`]b` do the same |
 | 20 | Colour squares | nvim-highlight-colors | — |
 | 21 | Log | rewrite `SETUP-LOG.md` for the new config | — |
 
