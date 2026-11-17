@@ -131,3 +131,77 @@ Gotchas:
   re-reads changed files every 2 s, after the signal has arrived.
 - neovim-ayu sets `g:colors_name = "ayu"` for every variant.
 - `<space>ut` (colorschemes picker) comes with snacks in step 6: a theme picked there lasts for the session only.
+
+## Step 6: snacks + mini.icons (2026-11-17)
+
+Files:
+
+- `lua/plugins/init.lua` (new): plugin list. `folke/snacks.nvim` (`lazy = false`, `priority = 1000`,
+  opts from `configs/snacks.lua`); `nvim-mini/mini.icons` (`lazy = false`, `style = "glyph"`, the `"ascii"`
+  line commented; `mock_nvim_web_devicons()` so plugins asking for nvim-web-devicons get mini.icons).
+- `lua/configs/snacks.lua`: modules switched on: bigfile, dashboard, explorer, image, indent (guides on every
+  level), input, notifier, picker, scope, statuscolumn, words. `quickfile` written but commented out.
+  Function-only modules (no setup): bufdelete, dim, gitbrowse, lazygit, rename, toggle.
+- Picker keys: `j`/`k` and `Ctrl-j`/`Ctrl-k` off in the input and list windows (arrows move, `Ctrl-d`/`Ctrl-u`
+  scroll). Explorer: `h`/`l` off, `Enter` opens a file or opens/closes a folder (no arrows).
+
+Keys (`lua/mappings.lua`):
+
+| Keys | Does |
+|---|---|
+| `<space>sf` `sF` `sa` `sr` | files, + hidden, all (hidden + ignored), recent |
+| `<space>sg` `sw` `sl` | grep, grep word / selection, lines in file |
+| `<space>sh` `sk` `sc` `sm` `sj` `su` `sR` | help, keymaps, commands, marks, jumps, undo history, registers |
+| `<space>sn` `sq` `ss` `sp` | notifications, quickfix, resume last picker, all pickers |
+| `<space>bq` `ba` `bs` | close buffer (keeps window), close all others, search buffers |
+| `<space>e` / `<space>E` | explorer open/close / go to the explorer (opens it if closed) |
+| `<space>un` `ut` | dismiss notifications, colour schemes (session only) |
+| `<space>ud` `uD` `uh` `ul` `uL` `ur` `us` `uw` | toggles: diagnostics, dim, inlay hints, line numbers, whitespace, relative numbers, spell, wrap |
+| `]r` / `[r` | next / previous LSP reference (snacks words) |
+| `ii` / `ai`, `[i` / `]i` | indent-scope text objects and jumps (snacks scope, set by snacks itself) |
+
+Tested: startup without errors; `vim.notify` goes to the snacks history; nvim-web-devicons resolves to
+mini.icons; picker input has `↓`/`Ctrl-d` but no `Ctrl-j`, list has no `j`; explorer list has `Enter`, no `h`/`l`;
+`<space>E` moves into an open explorer.
+
+Gotchas:
+
+- Picker key overrides must be spelled like snacks' defaults (`"<c-j>"`, lowercase) to replace them.
+- The picker input is in Insert mode, but its arrows work: snacks' buffer-local keys win over the global
+  "no arrows in Insert" mappings.
+- `Snacks.explorer()` toggles: a second call closes the explorer, hence `<space>E` to go into it.
+
+## Step 7: which-key (2026-11-17)
+
+- `lua/plugins/init.lua`: `folke/which-key.nvim`, `event = "VeryLazy"`, opts from `configs/whichkey.lua`.
+- `lua/configs/whichkey.lua`: `preset = "helix"` (column at the bottom right; `classic` and `modern` commented); groups
+  `<space>b` buffers, `<space>s` search, `<space>u` ui, `h` comment (kept for now). The `c`, `g`, `t` groups
+  come with their steps. The 17 `Ctrl-w` keys turned off in step 4 are `hidden = true`: which-key's
+  built-in window preset would otherwise still list them.
+- `<space>?` (`mappings.lua`): which-key popup with the current buffer's keys only
+  (`show { global = false }`); `<space>sk` stays the full keymaps picker.
+
+Fixes the `<space>` bug seen after step 6: without which-key, `<space>` waited `timeoutlen` (400 ms),
+then ran Neovim's built-in `<space>` (move right), and `<space>E` typed slowly became "right" + `E`.
+which-key's popup waits as long as it's open. `vim.g.mapleader` doesn't turn off the built-in `<space>`:
+it only says what `<leader>` means when a mapping is defined. No `<space>` → `<Nop>` line (like LazyVim / NvChad).
+
+`:checkhealth which-key`: no issues, no overlapping or duplicate keymaps.
+
+To check in a real window: the `Ctrl-w` popup (no turned-off keys), what shows after `h` (operator).
+
+Changes made by hand after the steps:
+
+- `options.lua`: `listchars` commented out → Neovim's default (`tab:> ,trail:-,nbsp:+`, no `↵`).
+- Borders: kept as they are. `winborder = "single"` only affects Neovim's own popups (hover, diagnostics);
+  which-key (`win = { border = … }`) and snacks set their own. snacks falls back to `"rounded"` when
+  `winborder` is `"none"`, and its picker layouts have fixed borders: changing them means a custom layout.
+
+## Where we are (2026-11-17, break after step 7)
+
+- Done: steps 0–7 (ticked in `BUILD-PLAN.md`).
+- To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
+  popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
+- Next: step 8, Treesitter + textobjects (parser list, highlighting on FileType, `]f`/`[f`; Treesitter indent?).
+- Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
+  `iq` (any quote) and `ib` (any bracket).

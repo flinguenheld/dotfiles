@@ -124,8 +124,8 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 3 ✓ | Autocommands | `autocmds.lua`: trim on save, `formatoptions` | — |
 | 4 ✓ | Basic keys | `mappings.lua`: the base rules from "Shortcuts" (hjkl, arrows, windows, `U`, `h`, `k`, `K`); `<space>y` → `"+y` (Normal + Visual, Helix clipboard style); remove Neovim's `gc`/`gcc`, `Ctrl-r` and the built-in window keys (`gr*`, `gO` → step 10, `Ctrl-s` → step 11) | — |
 | 5 ✓ | Themes | `plugins/colorscheme.lua` as described above; `theme_menu` only signals | Serika: warning + default theme; all theme plugins `lazy = true` |
-| 6 | snacks + mini.icons | `configs/snacks.lua`; `<space>ut` = colorschemes picker (session only, the file stays the reference); `<space>s`, `<space>b`, `<space>u`, `<space>e` keys | icons `style = "ascii"` or glyphs |
-| 7 | which-key | `configs/whichkey.lua`: group labels | `<space>?`: which-key or keymaps picker? `h` in the operator list? |
+| 6 ✓ | snacks + mini.icons | `configs/snacks.lua`; `<space>ut` = colorschemes picker (session only, the file stays the reference); `<space>s`, `<space>b`, `<space>u`, `<space>e` keys | icons `style = "ascii"` or glyphs |
+| 7 ✓ | which-key | `configs/whichkey.lua`: group labels | `<space>?`: which-key or keymaps picker? `h` in the operator list? |
 | 8 | Treesitter + textobjects | `configs/treesitter.lua`: parser list, start highlighting on FileType; `]f`/`[f` jumps; install the parsers | Treesitter indent? |
 | 9 | Mason | `configs/mason.lua` | — |
 | 10 | LSP + lazydev | `configs/lspconfig.lua`: capabilities from blink, diagnostics style + icons, lua_ls, rust_analyzer + clippy; `g…` and `<space>c` keys; rename via snacks input | — |

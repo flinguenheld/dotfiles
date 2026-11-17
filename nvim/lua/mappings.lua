@@ -91,3 +91,71 @@ map("n", "k", function() vim.lsp.buf.hover() end, { desc = "LSP hover docs" })
 
 map("n", "U", "<C-r>", { desc = "redo" })
 map("n", "<C-r>", "<Nop>") -- redo is on U only (U still works: its mapping is non-recursive)
+
+-- ──────────────────────────────────────────── Search (snacks pickers) ────
+
+map("n", "<leader>sf", function() Snacks.picker.files() end, { desc = "files" })
+map("n", "<leader>sF", function() Snacks.picker.files { hidden = true } end, { desc = "files + hidden" })
+map("n", "<leader>sa", function() Snacks.picker.files { hidden = true, ignored = true, follow = true } end, { desc = "all files (hidden + ignored)" })
+map("n", "<leader>sr", function() Snacks.picker.recent() end, { desc = "recent files" })
+map("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "grep (text in project)" })
+map({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "grep word / selection" })
+map("n", "<leader>sl", function() Snacks.picker.lines() end, { desc = "lines in file" })
+map("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "help pages" })
+map("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "keymaps" })
+map("n", "<leader>sc", function() Snacks.picker.commands() end, { desc = "commands" })
+map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "marks" })
+map("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "jump list" })
+map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "undo history" })
+map("n", "<leader>sR", function() Snacks.picker.registers() end, { desc = "registers (paste on Enter)" })
+map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "notifications history" })
+map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "quickfix list" })
+map("n", "<leader>ss", function() Snacks.picker.resume() end, { desc = "resume last picker" })
+map("n", "<leader>sp", function() Snacks.picker.pickers() end, { desc = "all pickers" })
+
+-- ────────────────────────────────────────────────────────────── Buffers ────
+
+map("n", "<leader>bq", function() Snacks.bufdelete() end, { desc = "close current (keeps windows)" })
+map("n", "<leader>ba", function() Snacks.bufdelete.other() end, { desc = "close all others" })
+map("n", "<leader>bs", function() Snacks.picker.buffers() end, { desc = "search buffers" })
+
+-- ───────────────────────────────────────────────────── Explorer (snacks) ────
+
+-- Put the cursor in the explorer, opening it first if it's closed
+local function explorer_focus()
+  local explorer = Snacks.picker.get({ source = "explorer" })[1]
+  if explorer then
+    explorer:focus()
+  else
+    Snacks.explorer()
+  end
+end
+
+map("n", "<leader>e", function() Snacks.explorer() end, { desc = "file explorer (open / close)" })
+map("n", "<leader>E", explorer_focus, { desc = "file explorer (go to)" })
+
+-- ─────────────────────────────────────────────────────────────────── UI ────
+
+map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "dismiss notifications" })
+map("n", "<leader>ut", function() Snacks.picker.colorschemes() end, { desc = "colour schemes (this session only)" })
+
+-- Toggles (snacks): which-key shows if each one is on or off
+Snacks.toggle.diagnostics():map "<leader>ud"
+Snacks.toggle.dim():map "<leader>uD"
+Snacks.toggle.inlay_hints():map "<leader>uh"
+Snacks.toggle.line_number():map "<leader>ul"
+Snacks.toggle.option("list", { name = "whitespace (tabs, line ends)" }):map "<leader>uL"
+Snacks.toggle.option("relativenumber", { name = "relative numbers" }):map "<leader>ur"
+Snacks.toggle.option("spell", { name = "spell check" }):map "<leader>us"
+Snacks.toggle.option("wrap", { name = "line wrap" }):map "<leader>uw"
+
+-- ──────────────────────────────────────────────────────── Words (snacks) ────
+-- Other uses of the word under the cursor (from the LSP) are highlighted
+
+map("n", "]r", function() Snacks.words.jump(vim.v.count1) end, { desc = "next reference" })
+map("n", "[r", function() Snacks.words.jump(-vim.v.count1) end, { desc = "previous reference" })
+
+-- ───────────────────────────────────────────────────────────────── Help ────
+-- All shortcuts: <space>sk (keymaps picker); this one: only the current buffer's
+
+map("n", "<leader>?", function() require("which-key").show { global = false } end, { desc = "keys of this buffer (which-key)" })
