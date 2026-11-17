@@ -7,7 +7,7 @@ Written on 2026-11-17.
 
 - Talk through each step first, and edit only after the go-ahead.
 - One shortcut per action: when a key replaces a Neovim default, the default is removed (`del(...)`).
-- Plain one-line commands in the config: no loops, no helper functions.
+- Mappings: one plain `map()` line per key, no loops. Helper functions are welcome elsewhere.
 - Each Lua file starts with a 3-line description and a `─` separator.
 - Lists are kept in alphabetical order.
 - Each step ends with Neovim starting without errors, and is tested before the next one.
@@ -63,24 +63,22 @@ Written on 2026-11-17.
 
 ## Themes
 
-The theme menu script `~/.config/theme/theme_menu` stays unchanged. It already does:
+The theme menu script `~/.config/theme/theme_menu` writes the theme name to `~/.config/theme/palette.toml`
+(`theme="catppuccin_frappe"`, via `theme_make_palette`), then runs `pkill -USR1 nvim`. Neovim reads the name
+from that file; the script no longer edits the Neovim config (changed in step 5: its `sed` on
+`colorscheme.lua` was removed).
 
-```bash
-NVIM_FILE="$HOME/.config/nvim/lua/plugins/colorscheme.lua"
-NVIM_REG="^local theme = \".*\""
-sed -i "s#${NVIM_REG}#local theme = \"${THEME}\"#" "${NVIM_FILE}" && pkill -USR1 nvim
-```
+`lua/plugins/colorscheme.lua` contains:
 
-`lua/plugins/colorscheme.lua` will contain:
-
-1. `local theme = "catppuccin_frappe"`: the line the script edits.
+1. `get_theme()`: the name from the `theme="…"` line of `palette.toml`; `catppuccin_frappe` if the file is missing.
 2. A table from the script's names to `{ Neovim colour scheme, background }`, for example
    `catppuccin_frappe = { "catppuccin-frappe", "dark" }`, `gruvbox_light = { "gruvbox", "light" }`.
-3. At startup: apply `theme`. The plugin of the starting theme has `priority = 1000`; the others are
-   `lazy = true`, and lazy.nvim loads them on the first `:colorscheme`.
-4. `autocmd Signal SIGUSR1`: read the file again, take the new `local theme = "…"`, apply it.
+3. At startup (`User LazyDone`): apply `get_theme()`. All four theme plugins are `lazy = true`: lazy.nvim loads
+   the right one on the first `:colorscheme`.
+4. `autocmd Signal SIGUSR1`: apply `get_theme()` again.
    (Tested: `pkill -USR1 nvim` reaches both Neovim processes; the autocommand runs once, in the editor.)
-5. Check: an unknown name, or a colour scheme that fails to load, gives a warning and keeps the current theme.
+5. Check: a missing file or an unknown name gives a warning and the default theme; a colour scheme that
+   fails to load gives a warning and keeps the current theme.
 6. The plugin entries for the four theme families.
 
 lualine (`theme = "auto"`) and bufferline follow `:colorscheme` by themselves.
@@ -125,8 +123,8 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 2 ✓ | Options | `options.lua`: the Helix options + common ones (clipboard, ignorecase/smartcase, undofile, splits, signcolumn, indent width…) | go through the options one by one |
 | 3 ✓ | Autocommands | `autocmds.lua`: trim on save, `formatoptions` | — |
 | 4 ✓ | Basic keys | `mappings.lua`: the base rules from "Shortcuts" (hjkl, arrows, windows, `U`, `h`, `k`, `K`); `<space>y` → `"+y` (Normal + Visual, Helix clipboard style); remove Neovim's `gc`/`gcc`, `Ctrl-r` and the built-in window keys (`gr*`, `gO` → step 10, `Ctrl-s` → step 11) | — |
-| 5 | Themes | `plugins/colorscheme.lua` as described above; `<space>ut` = snacks colorschemes picker | — |
-| 6 | snacks + mini.icons | `configs/snacks.lua`; `<space>s`, `<space>b`, `<space>u`, `<space>e` keys | icons `style = "ascii"` or glyphs |
+| 5 ✓ | Themes | `plugins/colorscheme.lua` as described above; `theme_menu` only signals | Serika: warning + default theme; all theme plugins `lazy = true` |
+| 6 | snacks + mini.icons | `configs/snacks.lua`; `<space>ut` = colorschemes picker (session only, the file stays the reference); `<space>s`, `<space>b`, `<space>u`, `<space>e` keys | icons `style = "ascii"` or glyphs |
 | 7 | which-key | `configs/whichkey.lua`: group labels | `<space>?`: which-key or keymaps picker? `h` in the operator list? |
 | 8 | Treesitter + textobjects | `configs/treesitter.lua`: parser list, start highlighting on FileType; `]f`/`[f` jumps; install the parsers | Treesitter indent? |
 | 9 | Mason | `configs/mason.lua` | — |

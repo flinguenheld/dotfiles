@@ -96,3 +96,38 @@ Decisions:
 
 Gotcha: with both `h` and `hh` mapped, Neovim waits `timeoutlen` (400 ms) after `h` only if you pause;
 typing `hip` straight away works at once.
+
+## Step 5: Themes (2026-11-17)
+
+`lua/plugins/colorscheme.lua` (first plugin file: `init.lua` now loads `{ { import = "plugins" } }`).
+
+- The theme name comes from `~/.config/theme/palette.toml` (`theme="…"`, written by `theme_make_palette`,
+  which `theme_menu` runs first). `get_theme()` reads it and always returns a name from the table: missing
+  file, no `theme="…"` line, or unknown name (Serika) → warning (`warn()` helper) + `catppuccin_frappe`.
+- `themes` table: theme_menu name → `{ colour scheme, background }` for ayu (light, mirage), catppuccin
+  (frappe, latte, macchiato, mocha), everforest (dark, light), gruvbox (dark, light).
+- `apply(name)`: sets `background`, then `:colorscheme`. A scheme that fails to load: warning, current
+  theme kept (background restored).
+- Startup: `User LazyDone` autocommand applies `get_theme()`. `SIGUSR1`: applies `get_theme()` again.
+  Both in the `theme` augroup with `clear = true` (lazy.nvim re-reads the file when it changes).
+- Plugins, all `lazy = true` (lazy.nvim loads the right one on `:colorscheme`): `Shatur/neovim-ayu`,
+  `catppuccin/nvim` (`auto_integrations = true`), `ellisonleao/gruvbox.nvim`, `sainnhe/everforest`
+  (the last three have no integration setting; they cover common plugins by default).
+- `configs/lazy.lua`: `change_detection = { notify = true }` (lazy.nvim's default, written out): when a file
+  in `lua/plugins/` changes, lazy.nvim re-reads the plugin list (`:Lazy` shows new plugins) and says so. It
+  doesn't re-apply running plugins or the other config files: restart for that.
+- `~/.config/theme/theme_menu` changed: `NVIM_FILE` / `NVIM_REG` and the `sed` on `colorscheme.lua` removed;
+  only `pkill -USR1 nvim 2>/dev/null` is left. The config folder is no longer edited by a script.
+
+Tested: startup theme; SIGUSR1 after changing `palette.toml` to gruvbox light, everforest dark, ayu light,
+and back; Serika at startup and on the signal, no `theme=` line, no `palette.toml` → warning + catppuccin frappe.
+
+Gotchas:
+
+- Autocommands need `nested = true` to run `:colorscheme` from a callback: without it, `ColorSchemePre`
+  (lazy.nvim's plugin loader) and `ColorScheme` (lualine, bufferline) don't fire, and you get
+  `E185: Cannot find color scheme`.
+- Reading the theme from a variable in a lazy.nvim spec file doesn't work for the signal: lazy.nvim only
+  re-reads changed files every 2 s, after the signal has arrived.
+- neovim-ayu sets `g:colors_name = "ayu"` for every variant.
+- `<space>ut` (colorschemes picker) comes with snacks in step 6: a theme picked there lasts for the session only.

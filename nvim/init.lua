@@ -18,8 +18,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- load plugins (no plugin yet: becomes { { import = "plugins" } } at the first plugin step)
-require("lazy").setup({}, require "configs.lazy")
+-- load plugins: every file in lua/plugins/ returns plugin specs
+require("lazy").setup({ { import = "plugins" } }, require "configs.lazy")
 
 require "autocmds"
 require "mappings"

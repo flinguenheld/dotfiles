@@ -4,6 +4,9 @@
 -- ─────────────────────────────────────────────────────────────────────────────
 
 return {
+  -- re-read lua/plugins/ when a file there changes, with a "Config Change Detected. Reloading…" message
+  change_detection = { notify = true },
+
   performance = {
     rtp = {
       disabled_plugins = {

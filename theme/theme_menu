@@ -20,9 +20,6 @@ THEME_ADAPTERS=(
 HELIX_FILE="$HOME/.config/helix/config.toml"
 HELIX_REG="theme = \".*\""
 
-NVIM_FILE="$HOME/.config/nvim/lua/plugins/colorscheme.lua"
-NVIM_REG="^local theme = \".*\""
-
 WEZTERM_FILE="$HOME/.config/wezterm/wezterm.lua"
 WEZTERM_REG="config\.color_scheme = '.*'"
 
@@ -174,8 +171,10 @@ done
 
 # Built-in themes
 sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2>/dev/null
-sed -i "s#${NVIM_REG}#local theme = \"${THEME}\"#" "${NVIM_FILE}" && pkill -USR1 nvim
 sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEME_WZ}'#" "${WEZTERM_FILE}"
+
+# Neovim reads the theme name from palette.toml (see ~/.config/nvim/lua/plugins/colorscheme.lua)
+pkill -USR1 nvim 2>/dev/null
 
 # Restart swaybg, swayidle and waybar: they read the new palette
 "${NIRI_FOLDER}/scripts/startup" &
