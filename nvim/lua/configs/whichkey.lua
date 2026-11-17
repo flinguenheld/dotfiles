@@ -11,7 +11,9 @@ return {
   spec = {
     { "<leader>b", group = "buffers" },
     { "<leader>c", group = "code" },
+    { "<leader>g", group = "git" },
     { "<leader>s", group = "search" },
+    { "<leader>t", group = "todo" },
     { "<leader>u", group = "ui" },
 
     -- Outside <space>

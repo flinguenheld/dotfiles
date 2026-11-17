@@ -5,6 +5,12 @@
 
 return {
   {
+    "folke/flash.nvim",
+    event = "VeryLazy", -- loaded right after startup (f / t need it ready)
+    opts = require "configs.flash",
+  },
+
+  {
     "folke/lazydev.nvim",
     ft = "lua", -- only for Lua files
     opts = {
@@ -24,9 +30,22 @@ return {
   },
 
   {
+    "folke/todo-comments.nvim",
+    event = "VeryLazy", -- right after startup: its snacks picker (<space>t) must exist before any file opens
+    opts = require "configs.todo",
+    -- no plenary.nvim: only todo-comments' own :TodoQuickFix / :TodoLocList / :TodoTelescope need it
+  },
+
+  {
     "folke/which-key.nvim",
     event = "VeryLazy", -- loaded right after startup
     opts = require "configs.whichkey",
+  },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" }, -- when a file opens
+    opts = {}, -- defaults: signs on (shown by snacks statuscolumn), line blame off (<space>ub)
   },
 
   {

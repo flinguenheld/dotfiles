@@ -365,15 +365,88 @@ Decided: no `rustfmt.toml` for single `.rs` files outside a Cargo project (rustf
 Tested: a squashed Rust file and a Lua file are formatted on `:w` (stylua used `.stylua.toml`); with the toggle off,
 the file is saved as it is.
 
-## Where we are (2026-11-17, after step 12)
+## Step 13: Git (2026-11-17)
 
-- Done: steps 0–12 (ticked in `BUILD-PLAN.md`).
+- `lua/plugins/init.lua`: `lewis6991/gitsigns.nvim` (`BufReadPre` / `BufNewFile`), default options: signs on
+  (drawn on the right of the numbers by snacks statuscolumn), line blame off.
+- `lua/configs/whichkey.lua`: `<space>g` group "git".
+- `lua/mappings.lua`: Git section + `<space>ub` toggle.
+
+Keys:
+
+| Keys | Does |
+|---|---|
+| `]c` / `[c` | next / previous change: git hunk, or Neovim's own jump in diff mode (gitsigns README recipe) |
+| `ig` | hunk text object (`dig`, `yig`, `vig`) |
+| `<space>gg` | lazygit (snacks, floating) |
+| `<space>gs` `gl` `gf` `gL` `gb` `gd` `gS` | pickers: status, log of project / file / line, branches, diff (all hunks), stash |
+| `<space>gp` | preview hunk |
+| `<space>ga` / `gA` | stage hunk (Visual: selected lines; on a staged hunk: unstage) / stage file |
+| `<space>gr` / `gR` | reset hunk (Visual: selected lines) / reset file |
+| `<space>gB` | blame of the line (popup, full commit) |
+| `<space>gD` | diff of the file, side by side (diff mode) |
+| `<space>go` | open in browser (Normal, or Visual for a line range) |
+| `<space>ub` | toggle line blame |
+
+Decided: all 15 old keys kept (`gS` stash and `gL` line log are niche, but which-key lists them); `]g`/`[g` not used
+(hunks are on `]c`); lazygit keeps its own keys (`j`/`k` and arrows both work), changing them means its own config:
+another time.
+
+Tested (temporary repo, 2 changed lines): 2 hunks; `]c` / `[c` go 5 → 20 → 5; `vig` selects the hunk; staging it
+shows in `git diff --cached`; `<space>gD` opens 2 diff windows and `]c` there uses Neovim's diff jump.
+
+## Step 14: flash (2026-11-17)
+
+- `lua/plugins/init.lua`: `folke/flash.nvim`, `event = "VeryLazy"` (f / t must be ready right after startup).
+- `lua/configs/flash.lua` (new): enhanced `f` `F` `t` `T` (matches highlighted, press `f` again for the next one);
+  no labels in `/` `?` searches.
+- `lua/mappings.lua`: Jump (flash) section.
+
+| Keys | Modes | Does |
+|---|---|---|
+| `s` | Normal, Visual, Operator-pending | jump: type a few letters, then the label |
+| `S` | Normal, Visual, Operator-pending | Treesitter select (labels on the code blocks around the cursor) |
+| `r` | Operator-pending | remote: `yr` + label + motion = act over there, stay here |
+| `R` | Visual, Operator-pending | Treesitter search: jump, then pick a code block there |
+| `Ctrl-s` | while typing a `/` or `?` search | labels on the matches, for this search only (easy to forget!) |
+
+Replaced Neovim keys: `s` (= `cl`), `S` (= `cc`), Visual `R` (= Visual `S`). Normal `r` (replace a character) stays.
+Colours: the theme plugins style flash themselves (no more base46 line).
+
+Decided: Visual `S` stays flash; nvim-surround's Visual key is chosen at step 16 (`gs`, Helix-like `ms`, or `S`).
+
+Tested: `fa` then `f` goes to the next `a`; `s` + `targ` + label jumps to `target` on another line; the five keys mapped.
+
+Gotcha: headless Neovim has no UI, so lazy.nvim's `VeryLazy` never fires there (flash, which-key): tests must load
+them by hand (`require("lazy").load { plugins = { "flash.nvim" } }`).
+
+## Step 15: todo-comments (2026-11-17)
+
+- `lua/plugins/init.lua`: `folke/todo-comments.nvim`, `event = "VeryLazy"`: it registers its snacks picker source
+  when it starts, so it must load before `<space>t` can be pressed (with `BufReadPost`, `<space>ta` from the dashboard
+  would fail: unknown source). Files opened before and after it loads are highlighted.
+- `lua/configs/todo.lua`: the old Helix keyword groups (`merge_keywords = false`): TODO, NOTE, WARN, FIX, HINT + alts.
+- `lua/mappings.lua`: `<space>ta` all, `tt` TODO, `ti` NOTE / INFO, `tw` WARN / HACK, `te` FIX / BUG, `th` HINT / MOCK.
+  No `]t` / `[t` (class / type since step 8).
+- `lua/configs/whichkey.lua`: `<space>t` group "todo".
+
+Decided: no plenary.nvim (a helper library for plugin authors). The pickers use snacks' grep (`rg`); only
+todo-comments' own `:TodoQuickFix`, `:TodoLocList`, `:TodoTelescope` need plenary, and they now fail.
+Colours: the groups link to the diagnostic colours, so they follow the theme (no base46 line).
+
+Tested: a Lua file with TODO / FIX / BUG / NOTE and a "todo" without colon: highlighted; `<space>ta` finds 4,
+the FIX group finds 2 (FIX + BUG).
+
+## Where we are (2026-11-17, after step 15)
+
+- Done: steps 0–15 (ticked in `BUILD-PLAN.md`).
 - To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
   popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
 - To test in a real window (step 8): highlighting in a few languages, indent on Enter / `o`, the `]` jumps.
 - To test in a real window (step 10): `gd` / `gr` pickers, `<space>cr` rename popup, diagnostics display, sign icons.
 - To test in a real window (step 11): the menu and its docs, `Enter`, a snippet with `Tab`, the signature popup,
   `<space>ug`, the menu on the very first `:` after startup.
-- Next: step 13, git (gitsigns, `<space>g` keys, `]c`/`[c` hunks, `ig`).
+- To test in a real window (step 13): `<space>gg` lazygit, sign colours, `<space>ub`, `<space>go`.
+- Next: step 16, text objects + surround (mini.ai, nvim-surround; surround's Visual key: `gs`, `ms` or `S`).
 - Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
   `iq` (any quote) and `ib` (any bracket).

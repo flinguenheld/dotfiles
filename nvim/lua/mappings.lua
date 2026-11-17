@@ -126,6 +126,64 @@ del({ "i", "s" }, "<C-s>")
 map("i", "<C-k>", "<Nop>")
 map("c", "<C-k>", "<Nop>")
 
+-- ─────────────────────────────────────────────────────────────────── Git ────
+-- gitsigns: hunks (blocks of changed lines) of the current file; snacks: lazygit, pickers, browser
+
+-- Lazygit and pickers (snacks)
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "lazygit" })
+map("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "status (changed files)" })
+map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "log of project" })
+map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "log of current file" })
+map("n", "<leader>gL", function() Snacks.picker.git_log_line() end, { desc = "log of current line" })
+map("n", "<leader>gb", function() Snacks.picker.git_branches() end, { desc = "branches" })
+map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "diff (all changed hunks)" })
+map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "stash" })
+
+-- Hunks (gitsigns); ga on a staged hunk unstages it
+map("n", "<leader>gp", function() require("gitsigns").preview_hunk() end, { desc = "preview hunk" })
+map("n", "<leader>ga", function() require("gitsigns").stage_hunk() end, { desc = "stage / unstage hunk" })
+map("x", "<leader>ga", function() require("gitsigns").stage_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "stage selected lines" })
+map("n", "<leader>gr", function() require("gitsigns").reset_hunk() end, { desc = "reset hunk" })
+map("x", "<leader>gr", function() require("gitsigns").reset_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "reset selected lines" })
+map("n", "<leader>gA", function() require("gitsigns").stage_buffer() end, { desc = "stage file" })
+map("n", "<leader>gR", function() require("gitsigns").reset_buffer() end, { desc = "reset file" })
+
+-- Info
+map("n", "<leader>gB", function() require("gitsigns").blame_line { full = true } end, { desc = "blame line (popup)" })
+map("n", "<leader>gD", function() require("gitsigns").diffthis() end, { desc = "diff file (side by side)" })
+map({ "n", "x" }, "<leader>go", function() Snacks.gitbrowse() end, { desc = "open in browser" })
+
+-- ]c / [c: next / previous change; in diff mode Neovim's own jump, otherwise git hunks
+map("n", "]c", function()
+  if vim.wo.diff then
+    vim.cmd.normal { "]c", bang = true }
+  else
+    require("gitsigns").nav_hunk "next"
+  end
+end, { desc = "next change (git hunk / diff)" })
+map("n", "[c", function()
+  if vim.wo.diff then
+    vim.cmd.normal { "[c", bang = true }
+  else
+    require("gitsigns").nav_hunk "prev"
+  end
+end, { desc = "previous change (git hunk / diff)" })
+
+-- Hunk text object: dig, yig, vig…
+map({ "o", "x" }, "ig", function() require("gitsigns").select_hunk() end, { desc = "git hunk" })
+
+-- ────────────────────────────────────────────────────────── Jump (flash) ────
+-- f / F / t / T are enhanced by flash itself (configs/flash.lua)
+-- s / S replace Neovim's s (= cl) and S (= cc); R in Visual was the same as S
+
+map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "flash jump" })
+map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "flash treesitter select" })
+map("o", "r", function() require("flash").remote() end, { desc = "flash remote (yr…: act there, stay here)" })
+map({ "o", "x" }, "R", function() require("flash").treesitter_search() end, { desc = "flash treesitter search" })
+
+-- While typing a / or ? search: labels on the matches, for this search only
+map("c", "<C-s>", function() require("flash").toggle() end, { desc = "flash labels in search" })
+
 -- ────────────────────────────────────────────────────── Treesitter jumps ────
 -- Like Helix: ]f function, ]a argument, ]t class/type, ]h comment (h is the comment key here)
 -- They replace Neovim's ]a / [a (argument list) and ]t / [t (tag stack)
@@ -142,6 +200,18 @@ map({ "n", "x", "o" }, "]t", ts_next "@class.outer", { desc = "next class / type
 map({ "n", "x", "o" }, "[t", ts_prev "@class.outer", { desc = "previous class / type" })
 map({ "n", "x", "o" }, "]h", ts_next "@comment.outer", { desc = "next comment" })
 map({ "n", "x", "o" }, "[h", ts_prev "@comment.outer", { desc = "previous comment" })
+
+-- ───────────────────────────────────────────────────────── Todo comments ────
+-- Same keyword groups as Helix, defined in configs/todo.lua (main + alt); no ]t / [t (class / type jumps)
+
+local todo = require("configs.todo").keywords
+
+map("n", "<leader>ta", function() Snacks.picker.todo_comments() end, { desc = "all" })
+map("n", "<leader>tt", function() Snacks.picker.todo_comments { keywords = { "TODO", unpack(todo.TODO.alt) } } end, { desc = "TODO" })
+map("n", "<leader>ti", function() Snacks.picker.todo_comments { keywords = { "NOTE", unpack(todo.NOTE.alt) } } end, { desc = "NOTE / INFO" })
+map("n", "<leader>tw", function() Snacks.picker.todo_comments { keywords = { "WARN", unpack(todo.WARN.alt) } } end, { desc = "WARN / HACK" })
+map("n", "<leader>te", function() Snacks.picker.todo_comments { keywords = { "FIX", unpack(todo.FIX.alt) } } end, { desc = "FIX / BUG" })
+map("n", "<leader>th", function() Snacks.picker.todo_comments { keywords = { "HINT", unpack(todo.HINT.alt) } } end, { desc = "HINT / MOCK" })
 
 -- ─────────────────────────────────────────────────────────── Undo / redo ────
 -- u is already undo; U was "undo all changes on the line"
@@ -197,6 +267,11 @@ map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "dismiss 
 map("n", "<leader>ut", function() Snacks.picker.colorschemes() end, { desc = "colour schemes (this session only)" })
 
 -- Toggles (snacks): which-key shows if each one is on or off
+Snacks.toggle({
+  name = "git line blame",
+  get = function() return require("gitsigns.config").config.current_line_blame end,
+  set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
+}):map "<leader>ub"
 Snacks.toggle.diagnostics():map "<leader>ud"
 Snacks.toggle.dim():map "<leader>uD"
 Snacks.toggle({

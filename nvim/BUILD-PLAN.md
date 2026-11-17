@@ -32,7 +32,7 @@ Written on 2026-11-17.
 | UI | `nvim-mini/mini.icons` | icons; also stands in for nvim-web-devicons (bufferline needs that) |
 | Themes | `catppuccin/nvim`, `ellisonleao/gruvbox.nvim`, `sainnhe/everforest`, `Shatur/neovim-ayu` | see "Themes" below |
 | Editing | `folke/flash.nvim` | jumps, enhanced `f/t` |
-| Editing | `folke/todo-comments.nvim` + `nvim-lua/plenary.nvim` | TODO highlights, `]t`/`[t`, `<space>t` pickers |
+| Editing | `folke/todo-comments.nvim` | TODO highlights, `<space>t` pickers (no plenary: only its old commands need it) |
 | Editing | `kylechui/nvim-surround` | surround; its keys `ys`/`cs`/`ds` don't clash with flash's `s` |
 | Editing | `MagicDuck/grug-far.nvim` | search and replace across files |
 | Editing | `nvim-mini/mini.ai` | `a`/`i` text objects: function, class, argument, call, quotes… |
@@ -133,9 +133,9 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 10 ✓ | LSP + lazydev | `configs/lspconfig.lua`: capabilities from blink, diagnostics style + icons, lua_ls, rust_analyzer + clippy; `g…` and `<space>c` keys; rename via snacks input | — |
 | 11 ✓ | Completion | blink.cmp + friendly-snippets, nvim-autopairs | one way to show signatures: blink or `Ctrl-k` |
 | 12 ✓ | Format | `configs/conform.lua`, format on save | — |
-| 13 | Git | gitsigns + `<space>g` keys, `]c`/`[c` hunks (Neovim's diff jump kept in diff mode), `ig` | — |
-| 14 | flash | `configs/flash.lua`, as now | — |
-| 15 | todo-comments | `configs/todo.lua`, as now, without `]t`/`[t` (class/type since step 8; the `<space>t` pickers do it) | — |
+| 13 ✓ | Git | gitsigns + `<space>g` keys, `]c`/`[c` hunks (Neovim's diff jump kept in diff mode), `ig` | — |
+| 14 ✓ | flash | `configs/flash.lua`, as now | — |
+| 15 ✓ | todo-comments | `configs/todo.lua`, as now, without `]t`/`[t` (class/type since step 8; the `<space>t` pickers do it) | — |
 | 16 | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
 | 17 | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
 | 18 | Statusline | `configs/lualine.lua` | which sections |
@@ -162,4 +162,3 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 - Terminal: none for now. `:terminal` is built into Neovim; a snacks toggle key (`Snacks.terminal`)
   can be added later, maybe with REPLs for Python/Haskell (sending code to `python` / `ghci`).
 - snacks scratch, dashboard customisation, `:checkhealth snacks` in WezTerm (images).
-- `Ctrl-s` for flash labels in `/` searches.
