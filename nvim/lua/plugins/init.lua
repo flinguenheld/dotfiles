@@ -72,6 +72,29 @@ return {
   },
 
   {
+    "saghen/blink.cmp",
+    version = "1.*", -- release versions download the ready-made Rust fuzzy matcher (no compiling)
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = { "rafamadriz/friendly-snippets" },
+    opts = require "configs.blink",
+  },
+
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true, -- Treesitter: no pairing inside strings and comments
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre", -- format on save
+    cmd = "ConformInfo",
+    opts = require "configs.conform",
+  },
+
+  {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     lazy = false, -- must load before VimEnter to install at startup
     dependencies = { "mason-org/mason.nvim" },

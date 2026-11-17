@@ -106,17 +106,25 @@ map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, d
 map("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "goto implementation" })
 map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "goto type definition" })
 
--- Code tools (<space>c); format (<space>cf) comes with conform
+-- Code tools (<space>c)
 map("n", "<leader>cs", function() Snacks.picker.lsp_symbols() end, { desc = "symbols in file" })
 map("n", "<leader>cS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "symbols in project" })
 map("n", "<leader>cc", function() Snacks.picker.lsp_incoming_calls() end, { desc = "incoming calls" })
 map("n", "<leader>cC", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "outgoing calls" })
 map("n", "<leader>cd", function() Snacks.picker.diagnostics_buffer() end, { desc = "diagnostics in file" })
+map({ "n", "x" }, "<leader>cf", function() require("conform").format { lsp_format = "fallback" } end, { desc = "format (file / selection)" })
 map("n", "<leader>cD", function() Snacks.picker.diagnostics() end, { desc = "diagnostics in project" })
 map("n", "<leader>ce", function() vim.diagnostic.open_float() end, { desc = "line diagnostic (popup)" })
 map("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "rename (snacks input)" })
 map({ "n", "x" }, "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "code actions" })
 map("n", "<leader>cl", function() vim.lsp.codelens.run() end, { desc = "run code lens" })
+
+-- Signature help: blink's popup (opens by itself, Ctrl-k toggles it, see configs/blink.lua)
+del({ "i", "s" }, "<C-s>")
+
+-- Digraphs off (Ctrl-k + two letters → é, €…): in Insert mode blink's Ctrl-k falls back here
+map("i", "<C-k>", "<Nop>")
+map("c", "<C-k>", "<Nop>")
 
 -- ────────────────────────────────────────────────────── Treesitter jumps ────
 -- Like Helix: ]f function, ]a argument, ]t class/type, ]h comment (h is the comment key here)
@@ -191,6 +199,16 @@ map("n", "<leader>ut", function() Snacks.picker.colorschemes() end, { desc = "co
 -- Toggles (snacks): which-key shows if each one is on or off
 Snacks.toggle.diagnostics():map "<leader>ud"
 Snacks.toggle.dim():map "<leader>uD"
+Snacks.toggle({
+  name = "format on save",
+  get = function() return vim.g.autoformat ~= false end, -- read by configs/conform.lua
+  set = function(state) vim.g.autoformat = state end,
+}):map "<leader>uf"
+Snacks.toggle({
+  name = "ghost text (completion)",
+  get = function() return vim.g.ghost_text ~= false end, -- read by configs/blink.lua
+  set = function(state) vim.g.ghost_text = state end,
+}):map "<leader>ug"
 Snacks.toggle.inlay_hints():map "<leader>uh"
 Snacks.toggle.line_number():map "<leader>ul"
 Snacks.toggle.option("list", { name = "whitespace (tabs, line ends)" }):map "<leader>uL"

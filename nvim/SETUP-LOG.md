@@ -305,13 +305,75 @@ Tested: `lua_ls` attaches to the config with 0 diagnostics; a test file using `S
 `require("lazy")` only got "undefined global" for a made-up name; `rust_analyzer` attaches in a Cargo project and
 reports rustc and clippy diagnostics; the removed keys are gone; startup without messages.
 
-## Where we are (2026-11-17, after step 10)
+## Step 11: Completion (2026-11-17)
 
-- Done: steps 0–10 (ticked in `BUILD-PLAN.md`).
+Files:
+
+- `lua/plugins/init.lua`: `saghen/blink.cmp` (`version = "1.*"`: downloads the ready-made Rust fuzzy matcher;
+  loads on `InsertEnter` / `CmdlineEnter`) with `rafamadriz/friendly-snippets`; `windwp/nvim-autopairs`
+  (`InsertEnter`, `check_ts = true`: no pairing inside strings and comments).
+- `lua/configs/blink.lua` (new): keys, documentation, ghost text, signature, sources, command line.
+
+Keys:
+
+| Where | Keys | Does |
+|---|---|---|
+| Insert menu | `Ctrl-n` / `Ctrl-p`, `↑` / `↓` | move (the arrows only while the menu is open; otherwise still off) |
+| Insert menu | `Enter`, `Ctrl-e`, `Ctrl-Space` | accept, cancel, open |
+| Insert menu | `Ctrl-u` / `Ctrl-d` | scroll the documentation (only while it's open; otherwise Insert mode's own `Ctrl-u` / `Ctrl-d`) |
+| Snippets | `Tab` / `Shift-Tab` | next / previous field (a normal Tab when no snippet is active) |
+| Insert | `Ctrl-k` | show / hide the signature popup |
+| Command line | `Tab` / `Shift-Tab`, `Ctrl-n` / `Ctrl-p` | move; the selected item is written into the line, `Enter` runs it |
+| Normal | `<space>ug` | toggle ghost text (snacks toggle on `vim.g.ghost_text`, read by blink) |
+
+Removed: blink's `Ctrl-b` / `Ctrl-f` (docs scroll, moved to `Ctrl-u` / `Ctrl-d`) and its command-line `←` / `→`
+(they keep moving the cursor); Neovim's `Ctrl-s` (signature, Insert + Select); digraphs (`Ctrl-k` → `<Nop>` in Insert
+and the command line; blink's `Ctrl-k` falls back to it).
+
+Settings: documentation beside the menu after 200 ms; signature popup opens by itself after `(`; ghost text on;
+sources `lsp`, `path`, `snippets`, `buffer`, + `lazydev` for Lua (module names in `require`); command line: menu
+shown while typing, no preselected item (so the first `Ctrl-n` picks the first item).
+
+Snippets: friendly-snippets, expanded by Neovim's `vim.snippet` (no LuaSnip). Helix only expands snippets sent by
+the language server; it has no snippet library.
+
+Tested (Rust project): the menu and the documentation window open, `Enter` accepts (`String::ne(&self, other)`
+with its fields), autopairs gives `foo()`; command line: menu shown, `Ctrl-n` → `checkhealth`;
+`:checkhealth blink.cmp`: binary downloaded, one informational warning.
+
+Gotchas:
+
+- The fuzzy matcher is downloaded the first time blink loads (`blink.cmp  Downloading pre-built binary`).
+- Headless test: the very first `:` (the one that loads blink) showed no menu; later ones did.
+
+## Step 12: Format on save (2026-11-17)
+
+- `lua/plugins/init.lua`: `stevearc/conform.nvim`, loaded on `BufWritePre` (first save), `:ConformInfo` or `<space>cf`.
+- `lua/configs/conform.lua` (new): `lua` → `stylua` (Mason, reads `.stylua.toml`), `rust` → `rustfmt` (rustup, reads the
+  edition from `Cargo.toml`). Format on save with `timeout_ms = 500`, `lsp_format = "fallback"` (no formatter in the
+  list → the language server formats, if it can). `format_on_save` is a function that returns nothing when
+  `vim.g.autoformat == false`.
+- `lua/mappings.lua`: `<space>cf` format (Normal: file; Visual: selection, if the formatter supports it);
+  `<space>uf` snacks toggle for format on save (`vim.g.autoformat`).
+
+How it fits: Mason installs the formatter, conform knows how to run it (built-in list, `:h conform-formatters`),
+`formatters_by_ft` is the choice. A server runs all session; a formatter runs once per save on the buffer's text.
+The trim-on-save autocommand (step 3) stays, for files without a formatter.
+
+Decided: no `rustfmt.toml` for single `.rs` files outside a Cargo project (rustfmt then uses the 2015 edition).
+
+Tested: a squashed Rust file and a Lua file are formatted on `:w` (stylua used `.stylua.toml`); with the toggle off,
+the file is saved as it is.
+
+## Where we are (2026-11-17, after step 12)
+
+- Done: steps 0–12 (ticked in `BUILD-PLAN.md`).
 - To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
   popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
 - To test in a real window (step 8): highlighting in a few languages, indent on Enter / `o`, the `]` jumps.
 - To test in a real window (step 10): `gd` / `gr` pickers, `<space>cr` rename popup, diagnostics display, sign icons.
-- Next: step 11, completion (blink.cmp, friendly-snippets, nvim-autopairs).
+- To test in a real window (step 11): the menu and its docs, `Enter`, a snippet with `Tab`, the signature popup,
+  `<space>ug`, the menu on the very first `:` after startup.
+- Next: step 13, git (gitsigns, `<space>g` keys, `]c`/`[c` hunks, `ig`).
 - Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
   `iq` (any quote) and `ib` (any bracket).

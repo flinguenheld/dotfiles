@@ -131,8 +131,8 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 8 ✓ | Treesitter + textobjects | `configs/treesitter.lua`: parser list, start highlighting on FileType; `]f`/`[f` jumps; install the parsers | Treesitter indent? |
 | 9 ✓ | Mason | `configs/mason.lua` | — |
 | 10 ✓ | LSP + lazydev | `configs/lspconfig.lua`: capabilities from blink, diagnostics style + icons, lua_ls, rust_analyzer + clippy; `g…` and `<space>c` keys; rename via snacks input | — |
-| 11 | Completion | blink.cmp + friendly-snippets, nvim-autopairs | one way to show signatures: blink or `Ctrl-k` |
-| 12 | Format | `configs/conform.lua`, format on save | — |
+| 11 ✓ | Completion | blink.cmp + friendly-snippets, nvim-autopairs | one way to show signatures: blink or `Ctrl-k` |
+| 12 ✓ | Format | `configs/conform.lua`, format on save | — |
 | 13 | Git | gitsigns + `<space>g` keys, `]c`/`[c` hunks (Neovim's diff jump kept in diff mode), `ig` | — |
 | 14 | flash | `configs/flash.lua`, as now | — |
 | 15 | todo-comments | `configs/todo.lua`, as now, without `]t`/`[t` (class/type since step 8; the `<space>t` pickers do it) | — |
