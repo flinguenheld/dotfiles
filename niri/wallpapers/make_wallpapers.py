@@ -61,13 +61,31 @@ THEMES = {
     "everforest_light": dict(
         title="everforest · light", dark=False, bg="#fdf6e3", fg="#5c6a72",
         dots=["#f85552", "#f57d26", "#dfa000", "#8da101", "#35a77c", "#3a94c5", "#df69ba", "#939f91"]),
-    # serika: the last dot is a second red (pale / dark), as in theme_make_palette
-    "serika_dark": dict(
-        title="serika · dark", dark=True, bg="#323437", fg="#d1d0c5",
-        dots=["#ca4754", "#dd8a3c", "#e2b714", "#bcd5a8", "#b9c2c6", "#adc9db", "#be9ec9", "#e29da7"]),
-    "serika_light": dict(
-        title="serika · light", dark=False, bg="#d1d0c5", fg="#323437",
-        dots=["#da3333", "#57320f", "#9a7d0e", "#3d5128", "#455054", "#3f5673", "#5a4066", "#621d28"]),
+    "nightfox": dict(
+        title="nightfox · night", dark=True, bg="#192330", fg="#cdcecf",
+        dots=["#c94f6d", "#f4a261", "#dbc074", "#81b29a", "#63cdcf", "#719cd6", "#9d79d6", "#d67ad2"]),
+    "nightfox_dusk": dict(
+        title="nightfox · dusk", dark=True, bg="#232136", fg="#e0def4",
+        dots=["#eb6f92", "#ea9a97", "#f6c177", "#a3be8c", "#9ccfd8", "#569fba", "#c4a7e7", "#eb98c3"]),
+    "nightfox_nord": dict(
+        title="nightfox · nord", dark=True, bg="#2e3440", fg="#cdcecf",
+        dots=["#bf616a", "#c9826b", "#ebcb8b", "#a3be8c", "#88c0d0", "#81a1c1", "#b48ead", "#bf88bc"]),
+    "nightfox_day": dict(
+        title="nightfox · day", dark=False, bg="#f6f2ee", fg="#3d2b5a",
+        dots=["#a5222f", "#955f61", "#ac5402", "#396847", "#287980", "#2848a9", "#6e33ce", "#a440b5"]),
+    "nightfox_dawn": dict(
+        title="nightfox · dawn", dark=False, bg="#faf4ed", fg="#575279",
+        dots=["#b4637a", "#d7827e", "#ea9d34", "#618774", "#56949f", "#286983", "#907aa9", "#d685af"]),
+    # rosé pine: no orange, rose takes its place; the last dot is subtle (grey)
+    "rose_pine": dict(
+        title="rosé pine · main", dark=True, bg="#191724", fg="#e0def4",
+        dots=["#eb6f92", "#ebbcba", "#f6c177", "#95b1ac", "#9ccfd8", "#31748f", "#c4a7e7", "#908caa"]),
+    "rose_pine_moon": dict(
+        title="rosé pine · moon", dark=True, bg="#232136", fg="#e0def4",
+        dots=["#eb6f92", "#ea9a97", "#f6c177", "#95b1ac", "#9ccfd8", "#3e8fb0", "#c4a7e7", "#908caa"]),
+    "rose_pine_dawn": dict(
+        title="rosé pine · dawn", dark=False, bg="#faf4ed", fg="#464261",
+        dots=["#b4637a", "#d7827e", "#ea9d34", "#6d8f89", "#56949f", "#286983", "#907aa9", "#797593"]),
 }
 
 

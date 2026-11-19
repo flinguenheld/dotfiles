@@ -1,6 +1,6 @@
 -- Colour scheme: the theme picked with ~/.config/theme/theme_menu, read from palette.toml
 -- Applied at startup, and again when theme_menu sends SIGUSR1 (pkill -USR1 nvim)
--- Missing file or unknown name (e.g. Serika): warning + default theme; scheme fails: warning, theme kept
+-- Missing file or unknown name: warning + default theme; scheme fails: warning, theme kept
 -- ─────────────────────────────────────────────────────────────────────────────
 
 local palette_path = vim.fs.normalize "~/.config/theme/palette.toml"
@@ -16,6 +16,14 @@ local themes = {
   everforest_light = { "everforest", "light" },
   gruvbox = { "gruvbox", "dark" },
   gruvbox_light = { "gruvbox", "light" },
+  nightfox = { "nightfox", "dark" },
+  nightfox_dawn = { "dawnfox", "light" },
+  nightfox_day = { "dayfox", "light" },
+  nightfox_dusk = { "duskfox", "dark" },
+  nightfox_nord = { "nordfox", "dark" },
+  rose_pine = { "rose-pine-main", "dark" },
+  rose_pine_dawn = { "rose-pine-dawn", "light" },
+  rose_pine_moon = { "rose-pine-moon", "dark" },
 }
 
 -- ─────────────────────────────────────────────────────────────────────────────
@@ -50,10 +58,15 @@ end
 local function apply(name)
   local scheme = themes[name]
   local background = vim.o.background
+  local colors_name = vim.g.colors_name
+  -- No name: changing background won't reload the old scheme (stale colours with Fox, Rosé Pine)
+  vim.g.colors_name = nil
+  vim.cmd.highlight "clear"
   vim.o.background = scheme[2]
   local ok, err = pcall(vim.cmd.colorscheme, scheme[1])
   if not ok then
     vim.o.background = background
+    if colors_name then pcall(vim.cmd.colorscheme, colors_name) end -- `hi clear` above removed it
     warn("Colour scheme " .. scheme[1] .. " failed to load: current theme kept\n" .. err)
   end
 end
@@ -89,10 +102,12 @@ vim.api.nvim_create_autocmd("Signal", {
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- ─────────────────────────────────────────────────────────────────────────────
--- The four theme families, loaded only when their colour scheme is used
+-- The six theme families, loaded only when their colour scheme is used
 return {
   { "Shatur/neovim-ayu", lazy = true },
   { "catppuccin/nvim", name = "catppuccin", lazy = true, opts = { auto_integrations = true } },
   { "ellisonleao/gruvbox.nvim", lazy = true },
   { "sainnhe/everforest", lazy = true },
+  { "EdenEast/nightfox.nvim", lazy = true },
+  { "rose-pine/neovim", name = "rose-pine", lazy = true },
 }

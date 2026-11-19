@@ -23,7 +23,7 @@ wezterm
 ## Fonts
 
 - Create `~/.fonts/`
-- Download nerd fonts (Hack, JetBrain, Fira)
+- Download nerd fonts (Hack, JetBrain, Fira, RecMono)
 - Unzip
 - `fc-cache -fv`
 - `fc-list`

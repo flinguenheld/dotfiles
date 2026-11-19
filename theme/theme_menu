@@ -17,11 +17,11 @@ THEME_ADAPTERS=(
 )
 
 # Programs with their own built-in themes: only the theme name changes
-HELIX_FILE="$HOME/.config/helix/config.toml"
-HELIX_REG="theme = \".*\""
+# HELIX_FILE="$HOME/.config/helix/config.toml"
+# HELIX_REG="theme = \".*\""
 
 WEZTERM_FILE="$HOME/.config/wezterm/wezterm.lua"
-WEZTERM_REG="config\.color_scheme = '.*'"
+WEZTERM_REG="config\.color_scheme = [\"'].*[\"']"
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ─────────────────────── USAGE ─────
@@ -53,9 +53,9 @@ done
 
 # ──────────                                      ─────────────────────────────
 # ─────                                     ──────────────────────── MENU ─────
-case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox\nSerika" | fuzzel --dmenu \
+case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox\nNightfox\nRosé Pine" | fuzzel --dmenu \
   --font "JetBrains Mono:size=25" \
-  --lines 5 \
+  --lines 6 \
   --width 30 \
   --line-height 50 \
   --inner-pad 50 \
@@ -72,8 +72,11 @@ case $(echo -e "Ayu\nCatppuccin\nEverforest\nGruvbox\nSerika" | fuzzel --dmenu \
 "Gruvbox")
   CHOICE="Gruv Light\nGruv Dark\n"
   ;;
-"Serika")
-  CHOICE="Serika Light\nSerika Dark\n"
+"Nightfox")
+  CHOICE="Dayfox\nDawnfox\nNordfox\nDuskfox\nNightfox\n"
+  ;;
+"Rosé Pine")
+  CHOICE="Rosé Pine Dawn\nRosé Pine Moon\nRosé Pine\n"
   ;;
 *)
   exit 0
@@ -92,64 +95,75 @@ case $(echo -e "${CHOICE}  󱞦" | fuzzel --dmenu \
 
 "Frappe")
   THEME="catppuccin_frappe"
-  THEME_HX="catppuccin_frappe"
   THEME_WZ="Catppuccin Frappe"
   ;;
 "Latte")
   THEME="catppuccin_latte"
-  THEME_HX="catppuccin_latte"
   THEME_WZ="Catppuccin Latte"
   ;;
 "Macchiato")
   THEME="catppuccin_macchiato"
-  THEME_HX="catppuccin_macchiato"
   THEME_WZ="Catppuccin Macchiato"
   ;;
 "Mocha")
   THEME="catppuccin_mocha"
-  THEME_HX="catppuccin_mocha"
   THEME_WZ="Catppuccin Mocha"
   ;;
 "Gruv Dark")
   THEME="gruvbox"
-  THEME_HX="gruvbox"
   THEME_WZ="Gruvbox Dark (Gogh)"
   ;;
 "Gruv Light")
   THEME="gruvbox_light"
-  THEME_HX="gruvbox_light"
   THEME_WZ="Gruvbox (Gogh)"
   ;;
 "Ayu Mirage")
   THEME="ayu_mirage"
-  THEME_HX="ayu_mirage"
   THEME_WZ="Ayu Mirage"
   ;;
 "Ayu Light")
   THEME="ayu_light"
-  THEME_HX="ayu_light"
   THEME_WZ="ayu_light"
   ;;
 "Everforest Dark")
   THEME="everforest_dark"
-  THEME_HX="everforest_dark"
   THEME_WZ="Everforest Dark (Gogh)"
   ;;
 "Everforest Light")
   THEME="everforest_light"
-  THEME_HX="everforest_light"
   THEME_WZ="Everforest Light (Gogh)"
   ;;
-# WezTerm: not built-in, see ~/.config/wezterm/colors/
-"Serika Dark")
-  THEME="serika_dark"
-  THEME_HX="serika-dark"
-  THEME_WZ="Serika Dark"
+"Nightfox")
+  THEME="nightfox"
+  THEME_WZ="nightfox"
   ;;
-"Serika Light")
-  THEME="serika_light"
-  THEME_HX="serika-light"
-  THEME_WZ="Serika Light"
+"Duskfox")
+  THEME="nightfox_dusk"
+  THEME_WZ="duskfox"
+  ;;
+"Nordfox")
+  THEME="nightfox_nord"
+  THEME_WZ="nordfox"
+  ;;
+"Dayfox")
+  THEME="nightfox_day"
+  THEME_WZ="dayfox"
+  ;;
+"Dawnfox")
+  THEME="nightfox_dawn"
+  THEME_WZ="dawnfox"
+  ;;
+"Rosé Pine")
+  THEME="rose_pine"
+  THEME_WZ="rose-pine"
+  ;;
+"Rosé Pine Moon")
+  THEME="rose_pine_moon"
+  THEME_WZ="rose-pine-moon"
+  ;;
+"Rosé Pine Dawn")
+  THEME="rose_pine_dawn"
+  THEME_WZ="rose-pine-dawn"
   ;;
 "  󱞦")
   # exec: this script is replaced, not left waiting behind the new one
@@ -170,8 +184,8 @@ for adapter in "${THEME_ADAPTERS[@]}"; do
 done
 
 # Built-in themes
-sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2>/dev/null
-sed -i "s#${WEZTERM_REG}#config.color_scheme = '${THEME_WZ}'#" "${WEZTERM_FILE}"
+# sed -i "s#${HELIX_REG}#theme = \"${THEME_HX}\"#" "${HELIX_FILE}" && pkill -USR1 hx 2>/dev/null
+sed -i "s#${WEZTERM_REG}#config.color_scheme = \"${THEME_WZ}\"#" "${WEZTERM_FILE}"
 
 # Neovim reads the theme name from palette.toml (see ~/.config/nvim/lua/plugins/colorscheme.lua)
 pkill -USR1 nvim 2>/dev/null
