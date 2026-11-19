@@ -68,34 +68,6 @@ autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
   end,
 })
 
--- ────────────────────────────────────────────────────────── Search count ────
-
--- Search count at the end of the line, like "[2/5]", when the cursor is on a match (after *, #, n, N, /…)
--- Hidden once the cursor leaves the match, after :nohlsearch, or in Insert mode
--- shortmess "S" (options.lua) keeps Neovim from also printing it in the command line
-local search_ns = vim.api.nvim_create_namespace "search_count"
-local search_buf -- buffer that shows the count, so it can be cleared from another one
-
-local function clear_search_count()
-  if search_buf and vim.api.nvim_buf_is_valid(search_buf) then vim.api.nvim_buf_clear_namespace(search_buf, search_ns, 0, -1) end
-  search_buf = nil
-end
-
-autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
-  callback = function(args)
-    clear_search_count()
-    if args.event ~= "CursorMoved" or vim.v.hlsearch == 0 then return end
-    local ok, count = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 100 })
-    if not ok or count.total == 0 or count.exact_match == 0 then return end
-    local total = count.incomplete == 2 and ">" .. count.maxcount or count.total
-    search_buf = args.buf
-    vim.api.nvim_buf_set_extmark(args.buf, search_ns, vim.fn.line "." - 1, 0, {
-      virt_text = { { ("[%d/%s]"):format(count.current, total), "DiagnosticVirtualTextInfo" } }, -- color: any group from :lua Snacks.picker.highlights()
-      virt_text_pos = "eol",
-    })
-  end,
-})
-
 -- ───────────────────────────────────────────────────────── Resize splits ────
 
 -- Terminal resized (e.g. by Niri): share the space equally again between splits, in every tab

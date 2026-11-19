@@ -9,13 +9,14 @@ return {
   preset = "helix",
 
   -- When the popup opens: <auto> = every prefix, except single letters other than g / z / Z
-  -- m added by hand for the surround keys (m + another letter still sets a mark)
+  -- h added by hand for the surround keys
   triggers = {
     { "<auto>", mode = "nxso" },
-    { "m", mode = { "n", "x" } },
+    { "h", mode = { "n", "x" } },
   },
 
   spec = {
+    { "<leader>?", group = "help" },
     { "<leader>b", group = "buffers" },
     { "<leader>c", group = "code" },
     { "<leader>g", group = "git" },
@@ -24,8 +25,8 @@ return {
     { "<leader>u", group = "ui" },
 
     -- Outside <space>
-    { "h", group = "comment" },
-    { "m", group = "surround (other letters: set mark)", mode = { "n", "x" } },
+    { "h", group = "surround", mode = { "n", "x" } },
+    { "k", group = "comment" },
 
     -- Text objects from mini.ai (configs/miniai.lua): which-key's built-in labels for ab / at are Neovim's
     { mode = { "o", "x" },

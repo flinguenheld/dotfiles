@@ -10,7 +10,7 @@ return {
   image = { enabled = true }, -- show images (Markdown, picker preview) in WezTerm
   indent = { enabled = true, animate = { enabled = false } }, -- indent guides
   input = { enabled = true }, -- popup when Neovim asks for text (rename…)
-  notifier = { enabled = true }, -- notifications as popups + history (<space>sn)
+  notifier = { enabled = true }, -- notifications as popups + history (<space>?n)
   -- quickfile = { enabled = true }, -- show the file faster on `nvim file`
   scope = { enabled = true }, -- ii / ai text objects, [i / ]i jumps
   statuscolumn = { enabled = true }, -- signs left (diagnostics, marks), git right

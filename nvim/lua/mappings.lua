@@ -11,10 +11,8 @@ local del = vim.keymap.del
 -- hjkl off in Normal, Visual and Operator-pending mode (the arrows do every move)
 map({ "n", "x", "o" }, "j", "<Nop>")
 map({ "n", "x", "o" }, "l", "<Nop>")
--- map({ "n", "x", "o" }, "h", "<Nop>") -- remapped: comment (see Comments)
--- map({ "n", "x", "o" }, "k", "<Nop>") -- remapped: LSP hover (see LSP)
-map("o", "h", "<Nop>")
-map({ "x", "o" }, "k", "<Nop>")
+map({ "n", "x", "o" }, "h", "<Nop>") -- h alone: nothing; h… keys are surround (see Surround)
+map("o", "k", "<Nop>") -- k is comment in Normal and Visual (see Comments)
 
 -- No arrows, Home/End or PageUp/PageDown in Insert mode (like Helix)
 map("i", "<Up>", "<Nop>")
@@ -77,24 +75,24 @@ map("n", "<C-p>", "<Plug>(YankyNextEntry)", { desc = "after paste: newer yank" }
 map("n", "<C-n>", "<Plug>(YankyPreviousEntry)", { desc = "after paste: older yank" })
 
 -- ───────────────────────────────────────────────────────────── Comments ────
--- h is the comment operator (Neovim's built-in gc, moved to a single key):
--- hh (line), h in Visual, hip, h3↓…
+-- k is the comment operator (Neovim's built-in gc, moved to a single key):
+-- kk (line), k in Visual, kip, k3↓…
 
 del({ "n", "x" }, "gc")
 del("n", "gcc")
 del("o", "gc") -- comment text object (dgc): replaced by mini.ai's ic / ac
 
-map({ "n", "x" }, "h", function() return require("vim._comment").operator() end, { expr = true, desc = "comment" })
-map("n", "hh", function() return require("vim._comment").operator() .. "_" end, { expr = true, desc = "comment line" })
+map({ "n", "x" }, "k", function() return require("vim._comment").operator() end, { expr = true, desc = "comment" })
+map("n", "kk", function() return require("vim._comment").operator() .. "_" end, { expr = true, desc = "comment line" })
 
 -- ────────────────────────────────────────────────────────────────── LSP ────
 
--- K: Vim's help for the word under cursor (:help in Vim script files, man elsewhere)
--- Mapped to itself so Neovim doesn't replace it with LSP hover
-map("n", "K", "K", { desc = "help for word under cursor" })
+-- Hover docs on <space>k, like Helix
+map("n", "<leader>k", function() vim.lsp.buf.hover() end, { desc = "LSP hover docs" })
 
--- Hover docs (k is free since hjkl are off)
-map("n", "k", function() vim.lsp.buf.hover() end, { desc = "LSP hover docs" })
+-- K: Vim's help for the word under cursor (:help in Vim script files, man elsewhere)
+-- Mapped to itself so Neovim doesn't replace it with LSP hover (it only does when K isn't mapped)
+map("n", "K", "K", { desc = "help / man page for word under cursor" })
 
 -- Neovim's LSP keys: removed (replaced below by Helix-style g… keys and <space>c…)
 -- ]d / [d / ]D / [D (next / previous / last / first diagnostic) are kept: same as Helix
@@ -183,18 +181,18 @@ end, { desc = "previous change (git hunk / diff)" })
 map({ "o", "x" }, "ig", function() require("gitsigns").select_hunk() end, { desc = "git hunk" })
 
 -- ────────────────────────────────────────────────────────────── Surround ────
--- Like Helix (m = match): ms add, md delete, mr replace, instead of nvim-surround's ys / ds / cs
--- Marks s, d, r, S can't be set any more (m + any other letter still sets a mark); . repeats them
+-- h is the surround prefix: hh add, hd delete, hr replace, instead of nvim-surround's ys / ds / cs
+-- (Helix has them on ms / md / mr; m stays Neovim's marks here); . repeats them
 
-map("n", "ms", "<Plug>(nvim-surround-normal)", { desc = 'surround add (motion, char): msiw"' })
-map("n", "mss", "<Plug>(nvim-surround-normal-cur)", { desc = "surround add around the line" })
-map("n", "mS", "<Plug>(nvim-surround-normal-line)", { desc = "surround add, pair on own lines" })
-map("n", "md", "<Plug>(nvim-surround-delete)", { desc = 'surround delete (char): md"' })
-map("n", "mr", "<Plug>(nvim-surround-change)", { desc = "surround replace (old, new): mr\"'" })
+map("n", "hh", "<Plug>(nvim-surround-normal)", { desc = 'surround add (motion, char): hhiw"' })
+map("n", "hH", "<Plug>(nvim-surround-normal-cur)", { desc = "surround add around the line" })
+map("n", "hS", "<Plug>(nvim-surround-normal-line)", { desc = "surround add, pair on own lines" })
+map("n", "hd", "<Plug>(nvim-surround-delete)", { desc = 'surround delete (char): hd"' })
+map("n", "hr", "<Plug>(nvim-surround-change)", { desc = "surround replace (old, new): hr\"'" })
 
--- Visual: wrap the selection (S is flash's)
-map("x", "ms", "<Plug>(nvim-surround-visual)", { desc = "surround selection" })
-map("x", "mS", "<Plug>(nvim-surround-visual-line)", { desc = "surround selection, on new lines" })
+-- Visual: wrap the selection
+map("x", "hh", "<Plug>(nvim-surround-visual)", { desc = "surround selection" })
+map("x", "hS", "<Plug>(nvim-surround-visual-line)", { desc = "surround selection, on new lines" })
 
 -- ────────────────────────────────────────────────────────── Jump (flash) ────
 -- f / F / t / T are enhanced by flash itself (configs/flash.lua)
@@ -209,7 +207,7 @@ map({ "o", "x" }, "R", function() require("flash").treesitter_search() end, { de
 map("c", "<C-s>", function() require("flash").toggle() end, { desc = "flash labels in search" })
 
 -- ────────────────────────────────────────────────────── Treesitter jumps ────
--- Like Helix: ]f function, ]a argument, ]t class/type, ]h comment (h is the comment key here)
+-- Like Helix: ]f function, ]a argument, ]t class/type, ]k comment (k is the comment key here)
 -- They replace Neovim's ]a / [a (argument list) and ]t / [t (tag stack)
 -- Also in Visual (extends the selection) and Operator-pending mode (d]f deletes up to the next function)
 
@@ -226,8 +224,8 @@ map({ "n", "x", "o" }, "]a", ts_next "@parameter.inner", { desc = "next argument
 map({ "n", "x", "o" }, "[a", ts_prev "@parameter.inner", { desc = "previous argument" })
 map({ "n", "x", "o" }, "]t", ts_next "@class.outer", { desc = "next class / type" })
 map({ "n", "x", "o" }, "[t", ts_prev "@class.outer", { desc = "previous class / type" })
-map({ "n", "x", "o" }, "]h", ts_next "@comment.outer", { desc = "next comment" })
-map({ "n", "x", "o" }, "[h", ts_prev "@comment.outer", { desc = "previous comment" })
+map({ "n", "x", "o" }, "]k", ts_next "@comment.outer", { desc = "next comment" })
+map({ "n", "x", "o" }, "[k", ts_prev "@comment.outer", { desc = "previous comment" })
 
 -- ───────────────────────────────────────────────────────── Todo comments ────
 -- Same keyword groups as Helix, defined in configs/todo.lua (main + alt); no ]t / [t (class / type jumps)
@@ -256,15 +254,11 @@ map("n", "<leader>sr", function() Snacks.picker.recent() end, { desc = "recent f
 map("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "grep (text in project)" })
 map({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "grep word / selection" })
 map("n", "<leader>sl", function() Snacks.picker.lines() end, { desc = "lines in file" })
-map("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "help pages" })
-map("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "keymaps" })
-map("n", "<leader>sc", function() Snacks.picker.commands() end, { desc = "commands" })
 map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "marks" })
 map("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "jump list" })
 map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "undo history" })
 map("n", "<leader>sR", function() Snacks.picker.registers() end, { desc = "registers (paste on Enter)" })
 map("n", "<leader>sy", function() Snacks.picker.yanky() end, { desc = "yank history (paste on Enter)" })
-map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "notifications history" })
 map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "quickfix list" })
 map("n", "<leader>ss", function() Snacks.picker.resume() end, { desc = "resume last picker" })
 map("n", "<leader>sp", function() Snacks.picker.pickers() end, { desc = "all pickers" })
@@ -324,6 +318,17 @@ Snacks.toggle({
   get = function() return require("gitsigns.config").config.current_line_blame end,
   set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
 }):map "<leader>ub"
+Snacks.toggle({
+  name = "colour squares (#ff8800, rgb()…)",
+  get = function() return require("nvim-highlight-colors").is_active() end,
+  set = function(state)
+    if state then
+      require("nvim-highlight-colors").turnOn()
+    else
+      require("nvim-highlight-colors").turnOff()
+    end
+  end,
+}):map "<leader>uc"
 Snacks.toggle.diagnostics():map "<leader>ud"
 Snacks.toggle.dim():map "<leader>uD"
 Snacks.toggle({
@@ -359,6 +364,14 @@ map("n", "]r", function() Snacks.words.jump(vim.v.count1) end, { desc = "next re
 map("n", "[r", function() Snacks.words.jump(-vim.v.count1) end, { desc = "previous reference" })
 
 -- ───────────────────────────────────────────────────────────────── Help ────
--- All shortcuts: <space>sk (keymaps picker); this one: only the current buffer's
+-- <space>? = everything to look things up: keys, commands, help, plugins, health
 
-map("n", "<leader>?", function() require("which-key").show { global = false } end, { desc = "keys of this buffer (which-key)" })
+map("n", "<leader>??", function() require("which-key").show { global = false } end, { desc = "keys of this buffer (which-key)" })
+map("n", "<leader>?k", function() Snacks.picker.keymaps() end, { desc = "all keymaps" })
+map("n", "<leader>?c", function() Snacks.picker.commands() end, { desc = "commands" })
+map("n", "<leader>?h", function() Snacks.picker.help() end, { desc = "help pages" })
+map("n", "<leader>?a", function() Snacks.picker.autocmds() end, { desc = "autocmds" })
+map("n", "<leader>?n", function() Snacks.picker.notifications() end, { desc = "notifications history" })
+map("n", "<leader>?l", "<Cmd>Lazy<CR>", { desc = "Lazy (plugins)" })
+map("n", "<leader>?m", "<Cmd>Mason<CR>", { desc = "Mason (servers, formatters)" })
+map("n", "<leader>?C", "<Cmd>checkhealth<CR>", { desc = "checkhealth" })

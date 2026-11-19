@@ -11,6 +11,12 @@ return {
   },
 
   {
+    "brenoprata10/nvim-highlight-colors",
+    event = { "BufReadPre", "BufNewFile" }, -- when a file opens
+    opts = require "configs.highlightcolors",
+  },
+
+  {
     "folke/flash.nvim",
     event = "VeryLazy", -- loaded right after startup (f / t need it ready)
     opts = require "configs.flash",
