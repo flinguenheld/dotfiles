@@ -512,9 +512,73 @@ Decided: key C, `<space>r` ("replace"; Helix's `<space>r` is rename, here `<spac
 Tested (temporary project): search `old_name` → `new_name` previewed 4 lines; `<space>r` in the window replaced it in
 a Rust line, a Rust comment and a TOML file.
 
-## Where we are (2026-11-17, after step 17)
+## Step 18: Statusline (2026-11-18)
 
-- Done: steps 0–17 (ticked in `BUILD-PLAN.md`).
+- `lua/plugins/init.lua`: `nvim-lualine/lualine.nvim`, `event = "VeryLazy"`; `init` sets `statusline = " "` so Neovim's
+  own bar doesn't flash before lualine loads.
+- `lua/configs/lualine.lua` (new): a plain table of lualine's built-in parts (like LazyVim: no helpers in the file),
+  NvChad's layout, powerline arrows, `theme = "auto"`, `globalstatus`, no bar on the snacks dashboard.
+- `lua/options.lua`: `showcmdloc = "statusline"` (pending keys in the bar through `%S`; surround's `g@l` goes there too).
+- `lua/mappings.lua`: one toggle, `<space>up` (a second one, `<space>ux`, was removed: see Gotchas), and `lualine_part()` (finds a part of lualine's config by name).
+
+| Section | Shows |
+|---|---|
+| `a` | mode |
+| `b` |  branch +  added /  changed /  removed (`diff` with gitsigns as its source through the `gitsigns_diff()` helper, like LazyVim: no second git call) |
+| `c` | file icon + path from the working dir (`[+]` modified, `[-]` read-only) |
+| `x` | `%S` pending keys · selection count (Visual) · diagnostics of this file ·  diagnostics of the project (`nvim_workspace_diagnostic`, shown only when other files have some: `diagnostics_elsewhere()`); same icons as the sign column |
+| `y` | `lsp_status`: servers of the buffer, spinner while they work, `✓` when done |
+| `z` | `line:col` · percentage (`Top` / `Bot` / `42%`) |
+
+Extensions (short bars in special windows): `lazy`, `man`, `mason`, `quickfix`.
+
+| Keys | Does |
+|---|---|
+| `<space>up` | path from the working dir ↔ file name only (`filename` `path` 1 ↔ 0) |
+
+The toggles take lualine's running config (`get_config()`), change the part and run `setup()` again.
+
+Left out: filetype (the icon shows it), fileformat / encoding (almost always unix / utf-8), total lines (the
+percentage), searchcount (Neovim shows `[3/12]` already), buffers / tabs (bufferline, step 19), winbar,
+`inactive_sections` (one global bar), cwd name, LazyVim's clock / plugin-updates count. Macro recording: Neovim shows
+`recording @q` in the command line, even with `showmode` off.
+
+History: the first version copied NvChad's parts with hand-written code (centred LSP progress text, `LSP ~ name`, cwd,
+recording, toggles through `vim.g` variables read by `cond` functions). Replaced by built-in parts after comparing
+with LazyVim (whose statusline is also mostly built-ins + one-line functions).
+
+Tested (headless): mode, icon + `lua/configs/lualine.lua`, `󰅙 1`, `lua_ls ⠋` then `✓`, `1:1 Top`; `<space>up` gives
+`lualine.lua` and back; no messages.
+
+Gotchas:
+
+- lualine draws from a timer: headless tests need `vim.wait()` after a change, or the bar is still empty.
+- Text from a hand-written part goes into the statusline as is: a `%` in it (`45%`) starts a statusline code and gave
+  `E539: Illegal character < >` (first version). Built-in parts escape it themselves.
+- Icons not lined up vertically (2026-11-18): the bar mixed three Nerd Font families (Devicons branch, Octicons
+  diff, Material diagnostics), each drawn at its own height. Now every icon is a Codicon (VS Code's set): branch
+  U+EA68, diff U+EADC / U+EADE / U+EADF, error / warn / info / hint U+EA87 / U+EA6C / U+EA74 / U+EA61, also for
+  the sign column (`configs/lspconfig.lua`). The warn icon was an empty string in both files (lost when copied):
+  icons are now written by codepoint with a script. `~/.wezterm.lua`: `config.font = FiraCode Nerd Font`
+  (patched font, icons centred). Not the "Mono" variant: it shrinks every icon to one cell, so they looked tiny;
+  the normal variant draws them ~1.5 cells wide over the space that follows each icon.
+- File + project diagnostics at the same time (2026-11-18): replaced the `<space>ux` switch (removed from
+  `mappings.lua`; `lualine_part()` stays for `<space>up`). The project counts start with a folder icon (U+EA83) and
+  are hidden when they'd repeat the file's (`cond`: total of `vim.diagnostic.count()` > that of `count(0)`).
+  "Project" = what the servers sent: the whole crate for rust-analyzer, only opened files for lua_ls.
+  Tested headless with fake diagnostics in two buffers (hidden / shown / both counts / hidden again). Headless
+  needs `Lazy! load lualine.nvim` (no `VeryLazy`) and ~1 s waits (lualine redraws once a second).
+
+Incident (2026-11-18): `~/.local/share/nvim` was gone at the start of the session, so the first headless run reinstalled
+every plugin and filled the home disk (4.7 GB, "No space left on device"). After caches were cleared, the broken clones
+(`nvim-lspconfig`, `nvim-treesitter`, `snacks.nvim`) were removed and `:Lazy! sync` reinstalled the plugins. The
+`tree-sitter` CLI was gone too (0.26.11, compiled here). Mason's `tree-sitter-cli` was added to `configs/mason.lua`:
+0.27.2 built the 49 parsers (they all load) with a warning (built for glibc 2.39, Ubuntu 22.04 has 2.35); a test
+install left Mason's 0.26.11, which doesn't start at all (needs glibc 2.39). See "Where we are".
+
+## Where we are (2026-11-18, after step 18)
+
+- Done: steps 0–18 (ticked in `BUILD-PLAN.md`).
 - To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
   popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
 - To test in a real window (step 8): highlighting in a few languages, indent on Enter / `o`, the `]` jumps.
@@ -523,6 +587,11 @@ a Rust line, a Rust comment and a TOML file.
   `<space>ug`, the menu on the very first `:` after startup.
 - To test in a real window (step 13): `<space>gg` lazygit, sign colours, `<space>ub`, `<space>go`.
 - To test in a real window (step 16): which-key after `d` / `c` / `y` (labels), Visual `an` / `in` / `]n`.
-- Next: step 18, statusline (lualine: which sections; maybe `showcmdloc` for the `g@l` of surround).
+- To test in a real window (step 18): colours with a few themes (theme_menu), git branch / diff in a repo, the
+  `lsp_status` spinner (rust-analyzer indexing), `recording @q` in the command line, selection count, `%S` while
+  typing `ms` / `"a` / `3d`.
+- To fix: Mason's `tree-sitter` (0.26.11) doesn't start on glibc 2.35, so `:TSUpdate` / new parsers fail. Either pin
+  `v0.27.2` in `configs/mason.lua` (works, with a warning) or `cargo install tree-sitter-cli` (and drop it from Mason).
+- Next: step 19, buffer bar (bufferline).
 - Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
   `iq` (any quote) and `ib` (any bracket).

@@ -83,6 +83,13 @@ return {
   },
 
   {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy", -- right after startup
+    init = function() vim.o.statusline = " " end, -- empty bar until lualine loads (not Neovim's own for a moment)
+    opts = require "configs.lualine",
+  },
+
+  {
     "nvim-mini/mini.ai",
     event = "VeryLazy",
     opts = function() return require "configs.miniai" end, -- a function: the file needs mini.ai loaded

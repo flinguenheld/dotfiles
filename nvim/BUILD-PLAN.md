@@ -138,7 +138,7 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 15 ✓ | todo-comments | `configs/todo.lua`, as now, without `]t`/`[t` (class/type since step 8; the `<space>t` pickers do it) | — |
 | 16 ✓ | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
 | 17 ✓ | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
-| 18 | Statusline | `configs/lualine.lua` | which sections |
+| 18 ✓ | Statusline | `configs/lualine.lua` | which sections |
 | 19 | Buffer bar | `configs/bufferline.lua`; `Alt-←/→`, `Tab`, `<space>bq`/`ba` | keep both `Alt-←/→` and `Tab`? (one key per action); Neovim 0.12 `[b`/`]b` do the same |
 | 20 | Colour squares | nvim-highlight-colors | — |
 | 21 | Log | rewrite `SETUP-LOG.md` for the new config | — |

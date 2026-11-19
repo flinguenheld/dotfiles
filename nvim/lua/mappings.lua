@@ -284,6 +284,13 @@ map("n", "<leader>E", explorer_focus, { desc = "file explorer (go to)" })
 map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "dismiss notifications" })
 map("n", "<leader>ut", function() Snacks.picker.colorschemes() end, { desc = "colour schemes (this session only)" })
 
+-- Statusline toggle (<space>up): lualine's current config (from configs/lualine.lua), and one of its parts by name
+local function lualine_part(config, section, name)
+  for _, part in ipairs(config.sections[section]) do
+    if type(part) == "table" and part[1] == name then return part end
+  end
+end
+
 -- Toggles (snacks): which-key shows if each one is on or off
 Snacks.toggle({
   name = "git line blame",
@@ -305,6 +312,15 @@ Snacks.toggle({
 Snacks.toggle.inlay_hints():map "<leader>uh"
 Snacks.toggle.line_number():map "<leader>ul"
 Snacks.toggle.option("list", { name = "whitespace (tabs, line ends)" }):map "<leader>uL"
+Snacks.toggle({
+  name = "statusline: path from root",
+  get = function() return lualine_part(require("lualine").get_config(), "lualine_c", "filename").path == 1 end,
+  set = function(state)
+    local config = require("lualine").get_config()
+    lualine_part(config, "lualine_c", "filename").path = state and 1 or 0
+    require("lualine").setup(config)
+  end,
+}):map "<leader>up"
 Snacks.toggle.option("relativenumber", { name = "relative numbers" }):map "<leader>ur"
 Snacks.toggle.option("spell", { name = "spell check" }):map "<leader>us"
 Snacks.toggle.option("wrap", { name = "line wrap" }):map "<leader>uw"
