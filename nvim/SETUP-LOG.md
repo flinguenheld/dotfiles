@@ -92,7 +92,7 @@ Decisions:
 - `gr*`, `gO`, `Ctrl-s` (Insert, Select) are kept for now: removed in steps 10 / 11, which replace them.
 - Terminal-mode window keys: later, when a terminal is added.
 - Neovim 0.12 defaults noted in the plan for later steps: `[t`/`]t` (step 15), `an`/`in`, `[n`/`]n`
-  (step 16), `[b`/`]b` (step 19).
+  (step 16), `[b`/`]b` (step 20).
 
 Gotcha: with both `h` and `hh` mapped, Neovim waits `timeoutlen` (400 ms) after `h` only if you pause;
 typing `hip` straight away works at once.
@@ -539,7 +539,7 @@ Extensions (short bars in special windows): `lazy`, `man`, `mason`, `quickfix`.
 The toggles take lualine's running config (`get_config()`), change the part and run `setup()` again.
 
 Left out: filetype (the icon shows it), fileformat / encoding (almost always unix / utf-8), total lines (the
-percentage), searchcount (Neovim shows `[3/12]` already), buffers / tabs (bufferline, step 19), winbar,
+percentage), searchcount (Neovim shows `[3/12]` already), buffers / tabs (bufferline, step 20), winbar,
 `inactive_sections` (one global bar), cwd name, LazyVim's clock / plugin-updates count. Macro recording: Neovim shows
 `recording @q` in the command line, even with `showmode` off.
 
@@ -576,9 +576,78 @@ every plugin and filled the home disk (4.7 GB, "No space left on device"). After
 0.27.2 built the 49 parsers (they all load) with a warning (built for glibc 2.39, Ubuntu 22.04 has 2.35); a test
 install left Mason's 0.26.11, which doesn't start at all (needs glibc 2.39). See "Where we are".
 
-## Where we are (2026-11-18, after step 18)
+## Small additions (2026-11-19, before step 19)
 
-- Done: steps 0–18 (ticked in `BUILD-PLAN.md`).
+- Yank flash: `TextYankPost` autocmd with `vim.hl.on_yank { timeout = 200 }` (`autocmds.lua`); replaced in step 19
+  by yanky's own flash.
+- `<Esc>` in Normal mode clears the search highlight (`mappings.lua`, UI section). Neovim's `Ctrl-L` does the
+  same and is kept on purpose (an accepted exception to "one key per action").
+- Considered: yanky.nvim (yank history). Not standard in NvChad; an optional extra in LazyVim. Added as step 19 (bufferline moves to 20).
+
+## Step 19: Yank history (2026-11-19)
+
+- `gbprod/yanky.nvim` in `plugins/init.lua`, `event = "VeryLazy"`; settings in `configs/yanky.lua`.
+- Keys (`mappings.lua`, "Yank history" section, after Clipboard):
+  - `p` / `P` / `gp` / `gP` (Normal + Visual) go through yanky (`<Plug>(YankyPutAfter)`…). `gp` / `gP` = paste
+    with the cursor left after the text; kept to try them out.
+  - `Ctrl-p` / `Ctrl-n`: right after a paste, swap it for an older / newer yank. In Normal mode they were only
+    ↑ / ↓ again, so no key is lost.
+  - `<space>sy`: `Snacks.picker.yanky()`, a real snacks picker with a preview. The source comes with yanky
+    (`yanky/sources/snacks.lua`), registered when yanky loads, so yanky must load after snacks (it does: snacks
+    is `lazy = false`, yanky `VeryLazy`). In the picker: `Ctrl-y` puts the entry in the `"` register,
+    `Ctrl-x` deletes it from the history. `<space>sR` (all registers, macros too) stays.
+  - Not taken: yanky's / LazyVim's `[p` / `]p` (Vim already has them), `[y` / `]y`.
+- History: last 100 yanks (`ring.history_length`), saved in the shada file (`storage = "shada"`, works because
+  the `shada` option has `!`). Neovim's `<50` limit on register lines doesn't apply to it.
+- `system_clipboard.sync_with_ring`: text copied in another app is added to the history when Neovim gets focus
+  back. Registers aren't touched (`clipboard = ""`): `p` pastes the last Neovim yank, `p` then `Ctrl-p` the
+  other app's text.
+- Flash: yanky's `highlight.on_yank` and `on_put`, its default 500 ms. The `TextYankPost` autocmd in
+  `autocmds.lua` was removed (it would flash twice).
+- Tested headless: three `yy` → history newest first, `p` then `Ctrl-p` `Ctrl-p` swaps the pasted line for each
+  older yank; no `TextYankPost` autocmd left besides yanky's two.
+
+## Step 20: Buffer bar (2026-11-19)
+
+- `akinsho/bufferline.nvim` in `plugins/init.lua`, `event = "VeryLazy"`; settings in `configs/bufferline.lua`.
+  Icons from mini.icons (it stands in for nvim-web-devicons). Colours: bufferline's own, from the theme.
+- `always_show_bufferline = false`: hidden with one buffer (like Helix `bufferline = "multiple"`).
+- Mouse kept: the ✕ on each tab and a right click close through `Snacks.bufdelete` (window stays, like `<space>bq`).
+- `diagnostics = false` (the statusline has them). Offset for the snacks explorer (`snacks_layout_box`).
+- `separator_style`: `thin` (default) on; `thick`, `slant`, `padded_slant`, `slope`, `padded_slope` commented out,
+  one per line, to try.
+- Keys (`mappings.lua`, Buffers section): `Alt-←` / `Alt-→` previous / next buffer in the bar's order
+  (`BufferLineCyclePrev/Next`); `<space>bp` pick a buffer by letter (`BufferLinePick`). Neovim's `[b` / `]b`
+  removed (`del`); `[B` / `]B` (first / last) kept. `Tab` not mapped: in the terminal it's `Ctrl-i` (jump
+  forward, opposite of `Ctrl-o`).
+- Not taken: move tabs, close left / right (decided: would be forgotten).
+- Changed after trying (2026-11-19): `separator_style = "slant"`, `show_buffer_close_icons = false`, the snacks
+  `close_command` / `right_mouse_command` commented out; pick moved to `<space>bb`. Then the mouse turned off on
+  the bar: `left_mouse_command`, `right_mouse_command`, `middle_mouse_command` = `false` (bufferline skips a
+  `false` command; its default right click was `bdelete!`, which drops unsaved changes).
+- Added: `show_duplicate_prefix = true` written out (bufferline's default): two `init.lua` show as `x/init.lua`
+  and `y/init.lua`. Pinning (`<space>bp`, `BufferLineTogglePin`) was tried, then removed again.
+- `by_name()` in `configs/bufferline.lua` (SORTING section): alphabetical by file name, case-insensitive, then by
+  path. Used as `sort_by = by_name`: bufferline sorts at each redraw, so new buffers go to their place (no
+  autocmd, no key; a `:BufferLineSortBy` key would freeze the order after one use). `Alt-←/→` follow it.
+  Tested headless: Zeta, c, x/init, a, mid, y/init, b opened → a b c x/init.lua y/init.lua mid Zeta; next after b = c.
+- Tested headless: `showtabline` 0 with one buffer, 2 with three; prev / prev / next goes c → b → a → b.
+  Headless needs one call to `nvim_bufferline()` first (no screen, so the bar's buffer list isn't built yet).
+
+## Resize splits (2026-11-19, after step 20)
+
+- `autocmds.lua`, "Resize splits": on `VimResized` (terminal resized, e.g. by Niri) `tabdo wincmd =` then back
+  to the current tab, so splits stay equal like in Helix. Neovim's `equalalways` only acts when a split opens
+  or closes. Difference from Helix: splits are made equal, not kept in proportion (a 70/30 made by hand goes
+  back to 50/50). Windows with a fixed width (snacks explorer) keep it.
+- Tested headless: two splits made 20 / 59 columns by hand, terminal resized to 120 → 60 / 59.
+- Same when the snacks explorer opens (`FileType snacks_layout_box`, scheduled `wincmd =`): it took its 40
+  columns from the next window only (66 / 52). Its width is fixed, so it stays 40. Closing it already
+  re-balanced. Tested headless (160 columns): 79 / 80 → open 40 + 59 / 59 → closed 79 / 80 → reopened the same.
+
+## Where we are (2026-11-19, after step 20)
+
+- Done: steps 0–20 (ticked in `BUILD-PLAN.md`).
 - To test in a real window (step 7): `<space>` popup (no cursor move, `<space>E` typed slowly), `Ctrl-w`
   popup (no turned-off keys), what shows after `h`, toggle states under `<space>u`.
 - To test in a real window (step 8): highlighting in a few languages, indent on Enter / `o`, the `]` jumps.
@@ -590,8 +659,12 @@ install left Mason's 0.26.11, which doesn't start at all (needs glibc 2.39). See
 - To test in a real window (step 18): colours with a few themes (theme_menu), git branch / diff in a repo, the
   `lsp_status` spinner (rust-analyzer indexing), `recording @q` in the command line, selection count, `%S` while
   typing `ms` / `"a` / `3d`.
+- To test in a real window (step 19): flash on yank / paste, `<space>sy` picker (preview, `Ctrl-y`, `Ctrl-x`), copy text in the
+  browser then `p` `Ctrl-p` in Neovim, history still there after restarting.
+- To test in a real window (step 20): bar shows with the 2nd buffer, `Alt-←/→`, `<space>bp` letters, ✕ click
+  keeps the window, offset with `<space>e`, the separator styles, colours with a few themes.
 - To fix: Mason's `tree-sitter` (0.26.11) doesn't start on glibc 2.35, so `:TSUpdate` / new parsers fail. Either pin
   `v0.27.2` in `configs/mason.lua` (works, with a warning) or `cargo install tree-sitter-cli` (and drop it from Mason).
-- Next: step 19, buffer bar (bufferline).
+- Next: step 21, colour squares (nvim-highlight-colors).
 - Reminders: quotes are `i"` / `i'` / `` i` ``; `ii`/`ai` is snacks scope (indent). mini.ai (step 16) adds
   `iq` (any quote) and `ib` (any bracket).

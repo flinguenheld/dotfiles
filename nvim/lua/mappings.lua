@@ -66,6 +66,16 @@ map("n", "<C-w>L", "<Nop>")
 
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "yank to system clipboard" })
 
+-- ─────────────────────────────────────────────── Yank history (yanky) ────
+-- p / P / gp / gP paste as usual, through yanky so it knows what was pasted
+-- Right after a paste, Ctrl-p / Ctrl-n swap it for an older / newer yank (they were ↑ / ↓ in Normal mode)
+-- History picker: <space>sy (Search section)
+
+map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "paste after" })
+map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "paste before" })
+map("n", "<C-p>", "<Plug>(YankyNextEntry)", { desc = "after paste: newer yank" })
+map("n", "<C-n>", "<Plug>(YankyPreviousEntry)", { desc = "after paste: older yank" })
+
 -- ───────────────────────────────────────────────────────────── Comments ────
 -- h is the comment operator (Neovim's built-in gc, moved to a single key):
 -- hh (line), h in Visual, hip, h3↓…
@@ -176,10 +186,10 @@ map({ "o", "x" }, "ig", function() require("gitsigns").select_hunk() end, { desc
 -- Like Helix (m = match): ms add, md delete, mr replace, instead of nvim-surround's ys / ds / cs
 -- Marks s, d, r, S can't be set any more (m + any other letter still sets a mark); . repeats them
 
-map("n", "ms", "<Plug>(nvim-surround-normal)", { desc = "surround add (motion, char): msiw\"" })
+map("n", "ms", "<Plug>(nvim-surround-normal)", { desc = 'surround add (motion, char): msiw"' })
 map("n", "mss", "<Plug>(nvim-surround-normal-cur)", { desc = "surround add around the line" })
 map("n", "mS", "<Plug>(nvim-surround-normal-line)", { desc = "surround add, pair on own lines" })
-map("n", "md", "<Plug>(nvim-surround-delete)", { desc = "surround delete (char): md\"" })
+map("n", "md", "<Plug>(nvim-surround-delete)", { desc = 'surround delete (char): md"' })
 map("n", "mr", "<Plug>(nvim-surround-change)", { desc = "surround replace (old, new): mr\"'" })
 
 -- Visual: wrap the selection (S is flash's)
@@ -203,8 +213,12 @@ map("c", "<C-s>", function() require("flash").toggle() end, { desc = "flash labe
 -- They replace Neovim's ]a / [a (argument list) and ]t / [t (tag stack)
 -- Also in Visual (extends the selection) and Operator-pending mode (d]f deletes up to the next function)
 
-local function ts_next(query) return function() require("nvim-treesitter-textobjects.move").goto_next_start(query, "textobjects") end end
-local function ts_prev(query) return function() require("nvim-treesitter-textobjects.move").goto_previous_start(query, "textobjects") end end
+local function ts_next(query)
+  return function() require("nvim-treesitter-textobjects.move").goto_next_start(query, "textobjects") end
+end
+local function ts_prev(query)
+  return function() require("nvim-treesitter-textobjects.move").goto_previous_start(query, "textobjects") end
+end
 
 map({ "n", "x", "o" }, "]f", ts_next "@function.outer", { desc = "next function" })
 map({ "n", "x", "o" }, "[f", ts_prev "@function.outer", { desc = "previous function" })
@@ -249,6 +263,7 @@ map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "marks" })
 map("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "jump list" })
 map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "undo history" })
 map("n", "<leader>sR", function() Snacks.picker.registers() end, { desc = "registers (paste on Enter)" })
+map("n", "<leader>sy", function() Snacks.picker.yanky() end, { desc = "yank history (paste on Enter)" })
 map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "notifications history" })
 map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "quickfix list" })
 map("n", "<leader>ss", function() Snacks.picker.resume() end, { desc = "resume last picker" })
@@ -260,9 +275,18 @@ map({ "n", "x" }, "<leader>r", function() require("grug-far").open() end, { desc
 
 -- ────────────────────────────────────────────────────────────── Buffers ────
 
-map("n", "<leader>bq", function() Snacks.bufdelete() end, { desc = "close current (keeps windows)" })
+map("n", "<leader>bq", function() Snacks.bufdelete() end, { desc = "close current" })
 map("n", "<leader>ba", function() Snacks.bufdelete.other() end, { desc = "close all others" })
 map("n", "<leader>bs", function() Snacks.picker.buffers() end, { desc = "search buffers" })
+map("n", "<leader>bb", "<Cmd>BufferLinePick<CR>", { desc = "pick buffer by letter" })
+
+-- Previous / next buffer in the bar's order (bufferline)
+-- Replaces Neovim's [b / ]b (removed); [B / ]B (first / last buffer) are kept
+-- Tab stays free: in the terminal it's the same key as Ctrl-i (jump forward, the opposite of Ctrl-o)
+map("n", "<M-Left>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "previous buffer" })
+map("n", "<M-Right>", "<Cmd>BufferLineCycleNext<CR>", { desc = "next buffer" })
+del("n", "[b")
+del("n", "]b")
 
 -- ───────────────────────────────────────────────────── Explorer (snacks) ────
 
@@ -280,6 +304,9 @@ map("n", "<leader>e", function() Snacks.explorer() end, { desc = "file explorer 
 map("n", "<leader>E", explorer_focus, { desc = "file explorer (go to)" })
 
 -- ─────────────────────────────────────────────────────────────────── UI ────
+
+-- Esc clears the search highlight (after / ? * #); Neovim's Ctrl-L does the same and is kept on purpose
+map("n", "<Esc>", "<Cmd>nohlsearch<CR><Esc>", { desc = "clear search highlight" })
 
 map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "dismiss notifications" })
 map("n", "<leader>ut", function() Snacks.picker.colorschemes() end, { desc = "colour schemes (this session only)" })

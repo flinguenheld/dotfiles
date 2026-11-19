@@ -5,6 +5,12 @@
 
 return {
   {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy", -- right after startup (the bar only shows with 2+ buffers anyway)
+    opts = require "configs.bufferline",
+  },
+
+  {
     "folke/flash.nvim",
     event = "VeryLazy", -- loaded right after startup (f / t need it ready)
     opts = require "configs.flash",
@@ -40,6 +46,12 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy", -- loaded right after startup
     opts = require "configs.whichkey",
+  },
+
+  {
+    "gbprod/yanky.nvim",
+    event = "VeryLazy", -- right after startup: its <Plug> keys (p, P, Ctrl-p…) must exist before the first paste
+    opts = require "configs.yanky",
   },
 
   {
@@ -97,7 +109,7 @@ return {
 
   {
     "nvim-mini/mini.icons",
-    lazy = false, -- small, and bufferline (step 19) asks for nvim-web-devicons at startup
+    lazy = false, -- small, and bufferline (step 20) asks for nvim-web-devicons at startup
     opts = {
       style = "glyph", -- Nerd Font icons (WezTerm ships the symbols as a fallback font)
       -- style = "ascii", -- letters instead of icons

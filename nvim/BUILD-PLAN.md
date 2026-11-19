@@ -36,6 +36,7 @@ Written on 2026-11-17.
 | Editing | `kylechui/nvim-surround` | surround; its keys `ys`/`cs`/`ds` don't clash with flash's `s` |
 | Editing | `MagicDuck/grug-far.nvim` | search and replace across files |
 | Editing | `nvim-mini/mini.ai` | `a`/`i` text objects: function, class, argument, call, quotes… |
+| Editing | `gbprod/yanky.nvim` | yank history: cycle through older yanks after a paste, snacks picker |
 | Editing | `windwp/nvim-autopairs` | auto brackets, Treesitter-aware |
 | Code | `folke/lazydev.nvim` | lua_ls knows the config and plugins (replaces the hand-written `library` list) |
 | Code | `mason-org/mason.nvim` + `WhoIsSethDaniel/mason-tool-installer.nvim` | installs LSP servers and formatters |
@@ -139,9 +140,10 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 | 16 ✓ | Text objects, surround | mini.ai (with Treesitter function/class objects), nvim-surround | mini.ai keys vs snacks scope `ii`/`ai`; remove Op-pending `gc` (comment object) if mini.ai `c` replaces it; Neovim 0.12 `an`/`in`, `[n`/`]n` (Treesitter nodes) |
 | 17 ✓ | grug-far | search and replace | key (`<space>sr` is taken by recent files) |
 | 18 ✓ | Statusline | `configs/lualine.lua` | which sections |
-| 19 | Buffer bar | `configs/bufferline.lua`; `Alt-←/→`, `Tab`, `<space>bq`/`ba` | keep both `Alt-←/→` and `Tab`? (one key per action); Neovim 0.12 `[b`/`]b` do the same |
-| 20 | Colour squares | nvim-highlight-colors | — |
-| 21 | Log | rewrite `SETUP-LOG.md` for the new config | — |
+| 19 ✓ | Yank history | `configs/yanky.lua`: yanky.nvim; `p`/`P`/`gp`/`gP` through yanky, `Ctrl-p`/`Ctrl-n` cycle after a paste, `<space>sy` history picker; shada storage (100), clipboard sync on; yanky's flash replaces the `TextYankPost` autocmd | — |
+| 20 ✓ | Buffer bar | `configs/bufferline.lua`: shown with 2+ buffers, alphabetical order, mouse off, explorer offset, no diagnostics, separator styles listed; `Alt-←/→`, `<space>bb` (pick by letter); duplicate names show their folder; `[b`/`]b` removed, `Tab` left free (= `Ctrl-i`) | — |
+| 21 | Colour squares | nvim-highlight-colors | — |
+| 22 | Log | rewrite `SETUP-LOG.md` for the new config | — |
 
 ## Reference and gotchas
 
@@ -157,7 +159,7 @@ plugin; `:colorscheme <name>` runs it. Neovim 0.12 ships `catppuccin` (latte/moc
 - Languages from Helix: Python (ty, ruff), Haskell (hls), Markdown (harper-ls, dprint, render-markdown),
   TOML (taplo, crates-lsp, SchemaStore), JSON/CSS (biome), HTML (+ nvim-ts-autotag), KDL,
   Bash (shfmt, no format on save), per-language rulers.
-- Plugins: trouble.nvim, crates.nvim, nvim-dap, yanky, persistence.nvim, guess-indent.nvim.
+- Plugins: trouble.nvim, crates.nvim, nvim-dap, persistence.nvim, guess-indent.nvim.
 - Optional: mini.align (Helix `&`), treesj (split/join), mini.move.
 - Terminal: none for now. `:terminal` is built into Neovim; a snacks toggle key (`Snacks.terminal`)
   can be added later, maybe with REPLs for Python/Haskell (sending code to `python` / `ghci`).
