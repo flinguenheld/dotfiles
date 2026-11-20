@@ -6,6 +6,7 @@
 return {
   ensure_installed = {
     "lua-language-server",
+    "rumdl",
     "rust-analyzer", -- Neovim's own copy, comes before rustup's in Neovim's PATH
     "stylua",
     "tree-sitter-cli", -- builds the Treesitter parsers (configs/treesitter.lua); needs a C compiler too

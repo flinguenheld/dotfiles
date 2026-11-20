@@ -27,6 +27,19 @@ vim.diagnostic.config {
 -- Mason: lua-language-server, stylua
 -- lazydev (plugins/init.lua) tells lua_ls about Neovim, this config and the plugins
 
+-- ─────────────────────────────────────────────────────────────── Markdown ────
+-- Mason: marksman, rumdl
+-- Project root: .git or .marksman.toml (marksman options go in that file)
+
+-- ───────────────────────────────────────────────────────────────── Python ────
+-- Project environment: ruff (lint, format, imports), ty (types, completion, navigation)
+
+vim.lsp.config("ruff", {
+  on_attach = function(client)
+    client.server_capabilities.hoverProvider = false -- ty shows the hover
+  end,
+})
+
 -- ─────────────────────────────────────────────────────────────────── Rust ────
 -- Mason: rust-analyzer | rustup: rustfmt, clippy
 
@@ -43,5 +56,8 @@ vim.lsp.config("rust_analyzer", {
 
 vim.lsp.enable {
   "lua_ls",
+  "marksman",
+  "ruff",
   "rust_analyzer",
+  "ty",
 }

@@ -7,6 +7,8 @@ return {
   -- Names from conform's list (:h conform-formatters), in alphabetical order of file type
   formatters_by_ft = {
     lua = { "stylua" }, -- Mason; reads .stylua.toml
+    markdown = { "rumdl" },
+    python = { "ruff_organize_imports", "ruff_format" },
     rust = { "rustfmt" }, -- rustup; reads the edition from Cargo.toml
   },
 
