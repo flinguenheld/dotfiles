@@ -58,7 +58,10 @@ autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
     clear_search_count()
     if args.event ~= "CursorMoved" or vim.v.hlsearch == 0 then return end
     local ok, count = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 100 })
-    if not ok or count.total == 0 or count.exact_match == 0 then return end
+
+    -- current / total can be missing (e.g. the search timed out): show nothing then
+    if not ok or not count.current or not count.total or count.total == 0 or count.exact_match == 0 then return end
+
     local total = count.incomplete == 2 and ">" .. count.maxcount or count.total
     search_buf = args.buf
     vim.api.nvim_buf_set_extmark(args.buf, search_ns, vim.fn.line "." - 1, 0, {
@@ -84,5 +87,7 @@ autocmd("VimResized", {
 -- (its own width is fixed, so it keeps it; closing it already re-balances by itself)
 autocmd("FileType", {
   pattern = "snacks_layout_box",
-  callback = function() vim.schedule(function() vim.cmd "wincmd =" end) end,
+  callback = function()
+    vim.schedule(function() vim.cmd "wincmd =" end)
+  end,
 })
