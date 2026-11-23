@@ -9,9 +9,16 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Before saving: remove spaces at line ends and empty lines at the end of the file
 -- (like Helix trim-trailing-whitespace + trim-final-newlines; formatters often do it too)
+-- Skipped for the file types below
+local no_trim = {
+  "markdown",
+  "diff",
+  "mail",
+}
 autocmd("BufWritePre", {
   callback = function()
     if not vim.bo.modifiable then return end -- e.g. saving :checkhealth output with :w
+    if vim.list_contains(no_trim, vim.bo.filetype) then return end
     local view = vim.fn.winsaveview()
     vim.cmd [[keeppatterns %s/\s\+$//e]]
     vim.cmd [[keeppatterns %s/\n\+\%$//e]]
@@ -59,7 +66,7 @@ autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
     if args.event ~= "CursorMoved" or vim.v.hlsearch == 0 then return end
     local ok, count = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 100 })
 
-    -- current / total can be missing (e.g. the search timed out): show nothing then
+    -- searchcount() returns {} when there's no search pattern yet (fresh install, no shada): show nothing then
     if not ok or not count.current or not count.total or count.total == 0 or count.exact_match == 0 then return end
 
     local total = count.incomplete == 2 and ">" .. count.maxcount or count.total
